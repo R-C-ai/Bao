@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/calendarFragment">
+
+<!--    <fragment-->
+<!--        android:id="@+id/addServiceFragment"-->
+<!--        android:name="com.hsiaoling.bao.addservice.AddServiceFragment"-->
+<!--        android:label="fragment_add"-->
+<!--        tools:layout="@layout/fragment_add" />-->
+    <fragment
+        android:id="@+id/serviceStatusFragment"
+        android:name="com.hsiaoling.bao.servicestatus.ServiceStatusFragment"
+        android:label="fragment_service_status"
+        tools:layout="@layout/fragment_service_status" />
+    <fragment
+        android:id="@+id/salesAmountFragment"
+        android:name="com.hsiaoling.bao.slesaomunt.SalesAmountFragment"
+        android:label="fragment_sales_amount"
+        tools:layout="@layout/fragment_sales_amount" />
+    <action
+        android:id="@+id/action_global_serviceStatusFragment"
+        app:destination="@id/serviceStatusFragment" />
+    <action
+        android:id="@+id/action_global_salesAmountFragment"
+        app:destination="@id/salesAmountFragment" />
+<!--    <action-->
+<!--        android:id="@+id/action_global_addServiceFragment"-->
+<!--        app:destination="@id/addServiceFragment" />-->
+    <fragment
+        android:id="@+id/addNewJobFragment"
+        android:name="com.hsiaoling.bao.addservice.AddNewJobFragment"
+        android:label="fragment_add_new_job" >
+        <argument
+            android:name="day"
+            app:argType="com.hsiaoling.bao.data.Day" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_addNewJobFragment"
+        app:destination="@id/addNewJobFragment" />
+    <fragment
+        android:id="@+id/calendarFragment"
+        android:name="com.hsiaoling.bao.addservice.CalendarFragment"
+        android:label="CalendarFragment" />
+    <action
+        android:id="@+id/action_global_calendarFragment"
+        app:destination="@id/calendarFragment" />
+</navigation>
