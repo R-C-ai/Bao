@@ -17,6 +17,9 @@
     <dimen name="popup_quote_height">40dp</dimen>
     <dimen name="popup_quote_margin_top">-30dp</dimen>
 
+    <dimen name="height_catalog_tab">20dp</dimen>
+
+
 
 
 

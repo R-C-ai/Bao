@@ -30,21 +30,20 @@
 <!--        android:id="@+id/action_global_addServiceFragment"-->
 <!--        app:destination="@id/addServiceFragment" />-->
     <fragment
-        android:id="@+id/addNewJobFragment"
-        android:name="com.hsiaoling.bao.addservice.AddNewJobFragment"
-        android:label="fragment_add_new_job" >
-        <argument
-            android:name="day"
-            app:argType="com.hsiaoling.bao.data.Day" />
-    </fragment>
-    <action
-        android:id="@+id/action_global_addNewJobFragment"
-        app:destination="@id/addNewJobFragment" />
-    <fragment
         android:id="@+id/calendarFragment"
         android:name="com.hsiaoling.bao.addservice.CalendarFragment"
         android:label="CalendarFragment" />
     <action
         android:id="@+id/action_global_calendarFragment"
         app:destination="@id/calendarFragment" />
+    <fragment
+        android:id="@+id/addJobFragment"
+        android:name="com.hsiaoling.bao.addservice.AddBaoFragment"
+        android:label="AddJobFragment" >
+        <argument android:name="baoService"
+            app:argType="com.hsiaoling.bao.data.BaoService" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_addJobFragment"
+        app:destination="@id/addJobFragment" />
 </navigation>

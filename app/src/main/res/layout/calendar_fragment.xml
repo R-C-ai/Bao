@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -10,22 +11,52 @@
 
     </data>
 
-    <FrameLayout
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".addservice.CalendarFragment">
+        android:layout_height="match_parent">
+
 
         <CalendarView
             android:id="@+id/calendarView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:endYear="2025"
             android:firstDayOfWeek="1"
             android:startYear="2020"
-            android:endYear="2025"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager_master"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/calendarView" >
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabs_master"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_catalog_tab"
+                app:tabIndicatorColor="@color/black_3f3a3a"
+                app:tabSelectedTextColor="@color/black_3f3a3a"
+                app:tabTextColor="@color/gray_888888">
+
+            </com.google.android.material.tabs.TabLayout>
+
+        </androidx.viewpager.widget.ViewPager>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </FrameLayout>
+
+
+
 </layout>

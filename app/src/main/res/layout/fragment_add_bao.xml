@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/slected_info"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_selected_info"
+            app:layout_constraintBottom_toTopOf="@id/selected_customer_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_store"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/logo_twm" />
+
+            <TextView
+                android:id="@+id/text_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="松菸文創店"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_store"
+                app:layout_constraintStart_toEndOf="@+id/image_store" />
+
+            <ImageView
+                android:id="@+id/image_salesman"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="200dp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_store"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_store"
+                app:srcCompat="@drawable/salesman_3" />
+
+            <TextView
+                android:id="@+id/text_salesman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="230dp"
+                android:text="陳小花"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/image_salesman"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_salesman" />
+
+
+            <ImageView
+                android:id="@+id/image_enter_time"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_store"
+                app:srcCompat="@drawable/clock_0" />
+
+            <TextView
+                android:id="@+id/text_enter_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text=" 2020/2/08  12:00"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/image_enter_time"
+                app:layout_constraintStart_toEndOf="@id/image_enter_time" />
+
+            <ImageView
+                android:id="@+id/image_master"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/text_enter_time"
+                app:layout_constraintStart_toStartOf="@+id/image_salesman"
+                app:srcCompat="@drawable/master_0" />
+
+            <TextView
+                android:id="@+id/text_master"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="230dp"
+                android:text="包膜傑利哥"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/image_master"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_master" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/selected_customer_info"
+            android:layout_width="0dp"
+            android:layout_height="450dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_selected_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/slected_info">
+
+
+            <ImageView
+                android:id="@+id/image_customer"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/finish_0" />
+
+
+            <EditText
+                android:id="@+id/text_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:hint=" 輸入客戶代碼"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/image_customer"
+                app:layout_constraintStart_toEndOf="@id/image_customer"
+                app:layout_constraintTop_toTopOf="@+id/image_customer" />
+
+
+            <ImageView
+                android:id="@+id/image_device"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_customer"
+                app:srcCompat="@drawable/device_0" />
+
+            <EditText
+                android:id="@+id/text_device"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:hint="輸入手機型號"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/image_device"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_device" />
+
+            <ImageView
+                android:id="@+id/image_service"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="24dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_device"
+                app:srcCompat="@drawable/working_1" />
+
+            <EditText
+                android:id="@+id/text_service_0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:hint="輸入保貼商品名稱"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_service" />
+
+            <EditText
+                android:id="@+id/text_service_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="8dp"
+                android:hint="輸入包膜商品名稱"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_service_0" />
+
+            <ImageView
+                android:id="@+id/image_price"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="45dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_service"
+                app:srcCompat="@drawable/sales_0" />
+
+            <EditText
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="110dp"
+                android:hint="輸入包膜服務金額"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/image_price"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/image_price" />
+
+
+            <Button
+                android:id="@+id/button_reserve"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_buttom"
+                android:text="確認預約"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_price" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
