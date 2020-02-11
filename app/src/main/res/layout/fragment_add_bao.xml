@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.hsiaoling.bao.addservice.AddBaoViewModel" />
     </data>
 
 
@@ -143,6 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+
                 android:hint=" 輸入客戶代碼"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/image_customer"
@@ -234,6 +238,8 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/bg_buttom"
                 android:text="確認預約"
+                android:clickable="true"
+
                 android:textColor="@color/white_FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"

@@ -5,13 +5,12 @@
 
     <data>
     <variable
-        name="baoService"
-        type="com.hsiaoling.bao.data.BaoService" />
+        name="service"        type="com.hsiaoling.bao.data.Service" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="320dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_margin="5dp"
         android:layout_marginStart="30dp"
@@ -25,6 +24,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/one" />
@@ -34,6 +34,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="50dp"
+
             app:layout_constraintBottom_toBottomOf="@+id/image_sort_number"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/image_sort_number"
@@ -44,7 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
-            android:text="可預約"
+            android:text="@{service.status}"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@id/image_reserve_status"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,11 +58,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="__:__"
+            android:text="@{String.valueOf(service.reserve_time)}"
             android:textSize="15sp"
+
+
             app:layout_constraintBottom_toBottomOf="@+id/text_reserve_status"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/text_reserve_status" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 

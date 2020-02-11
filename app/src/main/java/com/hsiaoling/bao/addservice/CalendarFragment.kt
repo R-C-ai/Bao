@@ -15,7 +15,7 @@ import com.google.android.material.tabs.TabLayout
 import com.hsiaoling.bao.NavigationDirections
 
 import com.hsiaoling.bao.R
-import com.hsiaoling.bao.data.Day
+import com.hsiaoling.bao.data.Date
 import com.hsiaoling.bao.databinding.CalendarFragmentBinding
 import com.hsiaoling.bao.master.MasterAdapter
 import kotlinx.android.synthetic.main.calendar_fragment.*
@@ -43,7 +43,8 @@ class CalendarFragment : Fragment() {
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
 //            val msg = "Selected date is " + dayOfMonth + "/" + (month + 1) + "/" + year
 //            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
-            val newDay= Day(year,month,dayOfMonth)
+//            val selectedDate= Date(year,month,dayOfMonth)
+
 //            viewModel.navToAddNewJob(newDay)
 
          viewpager_master.let{

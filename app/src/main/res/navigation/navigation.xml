@@ -37,13 +37,10 @@
         android:id="@+id/action_global_calendarFragment"
         app:destination="@id/calendarFragment" />
     <fragment
-        android:id="@+id/addJobFragment"
+        android:id="@+id/addBaoFragment"
         android:name="com.hsiaoling.bao.addservice.AddBaoFragment"
-        android:label="AddJobFragment" >
-        <argument android:name="baoService"
-            app:argType="com.hsiaoling.bao.data.BaoService" />
-    </fragment>
+        android:label="AddBaoFragment" />
     <action
-        android:id="@+id/action_global_addJobFragment"
-        app:destination="@id/addJobFragment" />
+        android:id="@+id/action_global_addBaoFragment"
+        app:destination="@id/addBaoFragment" />
 </navigation>
