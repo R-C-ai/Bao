@@ -13,12 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.hsiaoling.bao.NavigationDirections
 import com.hsiaoling.bao.addservice.CalendarFragment
 import com.hsiaoling.bao.addservice.CalendarViewModel
+import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.databinding.FragmentMasterDailyItemBinding
 import com.hsiaoling.bao.ext.getVmFactory
 import com.hsiaoling.bao.master.MasterTypeFliter
 
-class MasterDailyItemFragment(private val masterType:MasterTypeFliter):Fragment() {
+class MasterDailyItemFragment(private val master:Master):Fragment() {
 
     private val viewModel by viewModels<MasterDailyItemViewModel> { getVmFactory() }
 
@@ -51,12 +52,15 @@ class MasterDailyItemFragment(private val masterType:MasterTypeFliter):Fragment(
                 viewModel.onAddJobNavigated()
             }
         })
-//
+
+
+        // let  "date" from CalendarViewModel  pass to MasterDailyItemFragment ,need to pass by parentViewModel
         val parentViewModel = ViewModelProviders.of(parentFragment!!).get(CalendarViewModel::class.java)
 
+        // when observe CalendarFragment  " date" change  , MasterDailyItemViewModel  get the Result of the "date"
         parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {
             Log.i("HsiaoLing","getDate=${it}")
-            Log.i("HsiaoLing","masterType.value=${masterType.value}")
+            Log.i("HsiaoLing","masters=${master}")
             viewModel.getDateResult(it)
         })
 

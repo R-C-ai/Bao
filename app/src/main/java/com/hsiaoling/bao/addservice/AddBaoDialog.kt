@@ -42,7 +42,6 @@ class AddBaoDialog : AppCompatDialogFragment() {
         binding.viewModel = viewModel
 
         service = requireArguments().getParcelable<Service>("givenservice")
-
         service?.let {  viewModel.setService(it) }
 
 

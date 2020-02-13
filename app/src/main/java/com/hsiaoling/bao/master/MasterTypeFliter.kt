@@ -1,7 +1,6 @@
 package com.hsiaoling.bao.master
 
 enum class MasterTypeFliter (val value :String){
-    MASTER_A("Master_級米哥"),
-    MASTER_B("Master_竭力哥")
-
+    MASTER_A("主要包膜師"),
+    MASTER_B("支援包膜師")
 }

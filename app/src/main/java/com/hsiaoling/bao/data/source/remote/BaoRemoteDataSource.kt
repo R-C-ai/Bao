@@ -6,6 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
+import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.source.BaoDataSource
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -18,10 +19,38 @@ object BaoRemoteDataSource:BaoDataSource {
 
     private const val PATH_STORE = "store"
     private const val PATH_SERVICES = "service"
+    private const val PATH_MASTER = "master"
     private const val KEY_DATE = "date"
 
 
 
+    override suspend fun getMastersResult(): Result<List<Master>> = suspendCoroutine { continuation->
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_MASTER)
+            .get()
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    val list = mutableListOf<Master>()
+                    for (document in task.result!!){
+
+                        val master = document.toObject(Master::class.java)
+                        Log.i("GetFirestoreMaster","isSuccessfulMaster=$list")
+                        list.add(master)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else if (task.exception != null) {
+                    task.exception?.let {
+                        Log.i("master","exception")
+                        continuation.resume(Result.Error(it))
+                    }
+                } else {
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+
+            }
+    }
 
     override suspend fun getDateResult(date: String): Result<List<Service>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()

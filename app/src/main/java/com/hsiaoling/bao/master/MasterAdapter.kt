@@ -3,16 +3,17 @@ package com.hsiaoling.bao.master
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.master.dailyItem.MasterDailyItemFragment
 
-class MasterAdapter (fragmentManager: FragmentManager): FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class MasterAdapter (fragmentManager: FragmentManager,val masters:List<Master>): FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): Fragment {
-        return MasterDailyItemFragment(MasterTypeFliter.values()[position])
+        return MasterDailyItemFragment(masters[position])
     }
-
-    override fun getCount() = MasterTypeFliter.values().size
+    override fun getCount() = masters.size
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return MasterTypeFliter.values()[position].value
+        return masters[position].name
     }
 }
+

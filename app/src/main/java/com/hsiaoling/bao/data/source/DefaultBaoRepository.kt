@@ -1,5 +1,6 @@
 package com.hsiaoling.bao.data.source
 
+import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Service
 
@@ -12,6 +13,11 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
     override suspend fun insertServiceInMaster(service: Service):Result<Boolean> {
        return baoRemoteDataSource.insertServiceInMastert(service)
     }
+
+    override suspend fun getMastersResult():Result<List<Master>>{
+        return baoRemoteDataSource.getMastersResult()
+    }
+
 
     override suspend fun getServicesInMaster():Result<List<Service>>{
         return baoRemoteDataSource.getServicesInMaster()

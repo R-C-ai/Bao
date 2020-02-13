@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout
 import com.hsiaoling.bao.NavigationDirections
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.Date
+import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.databinding.CalendarFragmentBinding
 import com.hsiaoling.bao.ext.getVmFactory
 import com.hsiaoling.bao.master.MasterAdapter
@@ -24,12 +25,8 @@ import kotlinx.android.synthetic.main.calendar_fragment.*
 
 class CalendarFragment : Fragment() {
 
-//    companion object {
-//        fun newInstance() = CalendarFragment()
-//    }
 
     private val viewModel by viewModels<CalendarViewModel> { getVmFactory() }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,41 +37,43 @@ class CalendarFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            //            val msg = "Selected date is " + dayOfMonth + "/" + (month + 1) + "/" + year
-//            Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
-            val selectedDate = "$year-$month-$dayOfMonth"
+        binding.calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            //  val msg = "Selected date is " + dayOfMonth + "/" + (month + 1) + "/" + year
+            //  Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+
+            // get date
+            val selectedDate: String = "" + year + "-" + (month + 1) + "-" + dayOfMonth
             viewModel.selectedDate(selectedDate)
 
             Log.i("SelectedDate", "selectedDay=${selectedDate}")
-
-
-//            viewModel.navToAddNewJob(newDay)
-//binding.viewpagerMaster
-
         }
 
-        binding.viewpagerMaster.let {
-            binding.tabsMaster.setupWithViewPager(it)
-            it.adapter = MasterAdapter(childFragmentManager)
-            it.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabsMaster))
-        }
 
-//        viewModel.navigateToAddNewJob.observe(this, Observer {
-//            it?.let{
-//                    findNavController().navigate(NavigationDirections.actionGlobalAddNewJobFragment(it))
-//                viewModel.onAddNewJobNavigated()
-//            }
-//        })
 
+
+//        val masters = mutableListOf<Master>()
+//        val masterA = Master("9527", "Jimmy")
+//        val masterB = Master("9528", "Jerry")
+//        val masterC = Master("9529", "Angela")
+//        masters.add(masterA)
+//        masters.add(masterB)
+//        masters.add(masterC)
+
+        // start Master viewpager
+        viewModel.masters.observe(this, Observer {
+            Log.i("HsiaoLing","viewModel.masters.observe, it=$it")
+            it?.let { masters ->
+
+                binding.viewpagerMaster.let {
+                    binding.tabsMaster.setupWithViewPager(it)
+                    it.adapter = MasterAdapter(childFragmentManager, masters)
+                    it.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabsMaster))
+                }
+            }
+        })
 
         return binding.root
     }
-
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//
-
 }
 
 

@@ -20,40 +20,33 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
 
     private val _schedules = MutableLiveData<List<Service>>()
-
     val schedules: LiveData<List<Service>>
         get() = _schedules
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
-
     val status: LiveData<LoadApiStatus>
         get() = _status
 
     private val _error = MutableLiveData<String>()
-
     val error: LiveData<String>
         get() = _error
 
     private val _refreshStatus = MutableLiveData<Boolean>()
-
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
 
 
     private val _navigateToAddBao = MutableLiveData<Service>()
-
     val navgateToAddBao:LiveData<Service>
     get() = _navigateToAddBao
 
     private val _refresh = MutableLiveData<Boolean>()
-
     val refresh: LiveData<Boolean>
         get() = _refresh
 
 
     private var viewModelJob = Job()
-
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -65,6 +58,8 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
     init {
 //        getDateResult()
     }
+
+
 
     fun getDateResult(date: String){
         coroutineScope.launch{
@@ -78,8 +73,6 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                     Log.i("HsiaoLing","result.data=${result.data}")
 
                     result.data
-
-
                 }
                 is Result.Fail -> {
                     _error.value = result.error
@@ -98,18 +91,13 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                 }
             }
             _refreshStatus.value = false
-
-
         }
     }
-
 
 
 //    init {
 //        getScheduleResult()
 //    }
-
-
 
 //    fun getScheduleResult(){
 //        coroutineScope.launch{
