@@ -8,7 +8,6 @@ object Logger {
 
     private const val TAG = "H-Bao"
 
-
     fun v(content: String) {  Log.v(TAG, content) }
     fun d(content: String) {  Log.d(TAG, content) }
     fun i(content: String) {  Log.i(TAG, content) }

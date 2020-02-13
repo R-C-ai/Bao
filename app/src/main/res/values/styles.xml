@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AddBaoDialog">
+        <item name="android:windowBackground">@color/white_FFFFFF</item>
+    </style>
+
 </resources>

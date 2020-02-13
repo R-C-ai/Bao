@@ -11,22 +11,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.hsiaoling.bao.NavigationDirections
-import com.hsiaoling.bao.data.BaoService
-import com.hsiaoling.bao.data.Schedule
+import com.hsiaoling.bao.addservice.CalendarFragment
+import com.hsiaoling.bao.addservice.CalendarViewModel
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.databinding.FragmentMasterDailyItemBinding
 import com.hsiaoling.bao.ext.getVmFactory
-import com.hsiaoling.bao.master.MasterAdapter
 import com.hsiaoling.bao.master.MasterTypeFliter
 
 class MasterDailyItemFragment(private val masterType:MasterTypeFliter):Fragment() {
 
     private val viewModel by viewModels<MasterDailyItemViewModel> { getVmFactory() }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+    override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?
     ): View? {
         val binding:FragmentMasterDailyItemBinding = FragmentMasterDailyItemBinding.inflate(inflater,container,false)
         binding.lifecycleOwner = this
@@ -40,13 +36,6 @@ class MasterDailyItemFragment(private val masterType:MasterTypeFliter):Fragment(
             }
         )
 
-
-//        val schedule = Schedule ("0","可預約圖","可預約" ,0)
-//        val schedule1 = Schedule ("1","已預約圖","已預約",1)
-//        val list:MutableList<Schedule> = mutableListOf<Schedule>()
-//        list.add(schedule)
-//        list.add(schedule1)
-
 //        val service = BaoService(0, "iPhone X", "", "", 1)
 //        val service2 = BaoService(1, "iPhone XR", "", "", 1)
 //        val list = mutableListOf<BaoService>()
@@ -54,14 +43,35 @@ class MasterDailyItemFragment(private val masterType:MasterTypeFliter):Fragment(
 //        list.add(service2)
 //        (binding.recyclerMasterDailyItem.adapter as MasterDailyItemAdapter).submitList(list)
 
-//        binding.recyclerMasterDailyItem.adapter = MasterDailyItemAdapter()
+
 
         viewModel.navgateToAddBao.observe(this, Observer {
             it?.let{
-                findNavController().navigate(NavigationDirections.actionGlobalAddBaoFragment())
+                findNavController().navigate(NavigationDirections.actionGlobalAddBaoDialog(it))
                 viewModel.onAddJobNavigated()
             }
         })
+//
+        val parentViewModel = ViewModelProviders.of(parentFragment!!).get(CalendarViewModel::class.java)
+
+        parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {
+            Log.i("HsiaoLing","getDate=${it}")
+            Log.i("HsiaoLing","masterType.value=${masterType.value}")
+            viewModel.getDateResult(it)
+        })
+
+
+
+
+
+//        ViewModelProviders.of(activity!!).get(MasterDailyItemViewModel::class.java).apply {
+//            refresh.observe(this@MasterDailyItemFragment, Observer {
+//                it?.let {
+//                    viewModel.refresh()
+//                    onRefreshed()
+//                }
+//            })
+//        }
 
 
 //        viewModel.navgateToAddBao.observe(this, Observer {

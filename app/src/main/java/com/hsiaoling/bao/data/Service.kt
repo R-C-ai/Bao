@@ -8,20 +8,20 @@ import java.util.*
 
 @Parcelize
 data class Service(
-    val store_id:String="",
-    val salesman_id:String="",
-    val master_id:String="",
-    var customer_no: String="",
+    var storeId:String="",
+    var salesmanId:String="",
+    var masterId:String="",
+    var customerNo: String="",
     var date:String="",
-    var schedule_sort: String = "",
-    var service_id:String="",
+    var scheduleSort: Int = -1,
+    var serviceId:String="",
     var device: String="",
-    var service_0:String="",
-    var service_1:String="",
-    var price:Int=0,
-    var status:String="",
-    var status_img: String = "",
-    var status_text: String = "",
-    var reserve_time:Long =0
+    var service0:String="",
+    var service1:String="",
+    var price:Long=-1,
+    var status:Int=-1,
+    var statusImg: String = "",
+    var statusText: String = "",
+    var reserveTime: Long=-1
 //    val reserve_time: Timestamp = Timestamp(Calendar.getInstance().time)
 ): Parcelable

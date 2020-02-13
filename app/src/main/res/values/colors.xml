@@ -6,6 +6,7 @@
 
     <color name="royalBlue">#4169E1</color>
     <color name="eventColor">#553fa9eb</color>
+    <color name="lightCyan_b2ebf2">#b2ebf2</color>
     <color name="eventColorSelected">#aab2c99a</color>
 
     <!-- Bottom Navigation -->
@@ -17,6 +18,8 @@
     <color name="bottom_navigation_item_selected">@color/black_3f3a3a</color>
 
     <color name="gray_888888">#888888</color>
+    <color name="lightGray_f5f5f5">#f5f5f5</color>
+
 
 
 </resources>

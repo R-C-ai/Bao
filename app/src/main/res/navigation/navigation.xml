@@ -26,9 +26,7 @@
     <action
         android:id="@+id/action_global_salesAmountFragment"
         app:destination="@id/salesAmountFragment" />
-<!--    <action-->
-<!--        android:id="@+id/action_global_addServiceFragment"-->
-<!--        app:destination="@id/addServiceFragment" />-->
+
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.hsiaoling.bao.addservice.CalendarFragment"
@@ -36,11 +34,15 @@
     <action
         android:id="@+id/action_global_calendarFragment"
         app:destination="@id/calendarFragment" />
-    <fragment
-        android:id="@+id/addBaoFragment"
-        android:name="com.hsiaoling.bao.addservice.AddBaoFragment"
-        android:label="AddBaoFragment" />
+    <dialog
+        android:id="@+id/addBaoDialog"
+        android:name="com.hsiaoling.bao.addservice.AddBaoDialog"
+        android:label="AddBaoDialog" >
+        <argument
+            android:name="givenservice"
+            app:argType="com.hsiaoling.bao.data.Service" />
+    </dialog>
     <action
-        android:id="@+id/action_global_addBaoFragment"
-        app:destination="@id/addBaoFragment" />
+        android:id="@+id/action_global_addBaoDialog"
+        app:destination="@id/addBaoDialog" />
 </navigation>

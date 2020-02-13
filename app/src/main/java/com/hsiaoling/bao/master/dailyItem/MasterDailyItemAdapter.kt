@@ -28,7 +28,7 @@ class MasterDailyItemAdapter(val onClickListener : OnClickListener) :
         }
 
         override fun areContentsTheSame(oldItem: Service, newItem: Service): Boolean {
-            return oldItem.schedule_sort == newItem.schedule_sort
+            return oldItem.scheduleSort == newItem.scheduleSort
         }
     }
 
