@@ -10,7 +10,7 @@ interface BaoRepository {
 
     suspend fun getServicesInMaster(): Result<List<Service>>
     suspend fun insertServiceInMaster(service: Service):Result<Boolean>
-    suspend fun getDateResult(date: String): Result<List<Service>>
+    suspend fun getDateResult(date: String,masterId:String): Result<List<Service>>
 
 //    suspend fun removeBaoInMaster(baoService: BaoService)
 

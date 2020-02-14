@@ -45,4 +45,15 @@
     <action
         android:id="@+id/action_global_addBaoDialog"
         app:destination="@id/addBaoDialog" />
+    <dialog
+        android:id="@+id/messageDialog"
+        android:name="com.hsiaoling.bao.messageDialog.MessageDialog"
+        android:label="MessageDialog" >
+        <argument
+            android:name="messageTypeKey"
+            app:argType="com.hsiaoling.bao.messageDialog.MessageDialog$MessageType" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_messageDialog3"
+        app:destination="@id/messageDialog" />
 </navigation>

@@ -20,7 +20,8 @@
     <dimen name="height_catalog_tab">20dp</dimen>
 
 
+    <dimen name="height_all_bottom_layout">80dp</dimen>
 
-
+    <dimen name="size_message">123dp</dimen>
 
 </resources>

@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel(){
 
-
+    val storeId = "4d7yMjfPO5lw66u8sHnt"
 
     private val _schedules = MutableLiveData<List<Service>>()
     val schedules: LiveData<List<Service>>
@@ -61,17 +61,20 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
 
 
-    fun getDateResult(date: String){
+    fun getDateResult(date: String,masterId:String){
         coroutineScope.launch{
             _status.value = LoadApiStatus.LOADING
-            val result = repository.getDateResult(date)
+            val result = repository.getDateResult(date,masterId)
             _schedules.value = when (result) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
 
-                    Log.i("HsiaoLing","result.data=${result.data}")
+                    Log.i("HsiaoLing", "result.data=${result.data}")
 
+                    if(result.data.size == 0){
+                        newDailyServices(date,masterId)
+                    }
                     result.data
                 }
                 is Result.Fail -> {
@@ -94,6 +97,48 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
         }
     }
 
+
+
+
+    fun newDailyServices (date: String, masterId: String) {
+
+        for (i in 0..7) {
+            val service = Service(storeId,"001",masterId,"",date,
+                i,"","","","",0,0,"可預約","")
+            Log.i("Hsiao","addService=$service")
+            insertServiceToMastert(service)
+        }
+
+    }
+
+    fun insertServiceToMastert(service: Service) {
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.insertServiceInMaster(service))
+
+            {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
 
 //    init {
 //        getScheduleResult()

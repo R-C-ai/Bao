@@ -52,12 +52,13 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
-    override suspend fun getDateResult(date: String): Result<List<Service>> = suspendCoroutine { continuation->
+    override suspend fun getDateResult(date: String, materId: String): Result<List<Service>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICES)
             .whereEqualTo(KEY_DATE, date)
+            .whereEqualTo("masterId",materId)
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
@@ -96,7 +97,7 @@ object BaoRemoteDataSource:BaoDataSource {
                     for (document in task.result!!){
 
                         val service = document.toObject(Service::class.java)
-                        Log.i("FirestoregetServicesInMaster","isSuccessfulgetdata=$list")
+                        Log.i("Hsiao","Successfulget=$list")
                         list.add(service)
                     }
                     continuation.resume(Result.Success(list))
@@ -113,19 +114,18 @@ object BaoRemoteDataSource:BaoDataSource {
     }
 
     override suspend fun insertServiceInMastert(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
-        val services = FirebaseFirestore.getInstance().collection("store").document().collection(
+        val services = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
             PATH_SERVICES)
         val document = services.document()
 
         service.serviceId = document.id
-
         service.reserveTime = Calendar.getInstance().timeInMillis
 
         document
             .set(service)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Logger.i("addOnCompleteListener: $service")
+                    Logger.i("HsiaoaddOnCompleteListener: $service")
 
                     continuation.resume(Result.Success(true))
                 } else {

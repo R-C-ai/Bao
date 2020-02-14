@@ -31,6 +31,8 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
 
         val list = mutableListOf<Service>()
 
+
+
         binding.recyclerMasterDailyItem.adapter = MasterDailyItemAdapter(
             MasterDailyItemAdapter.OnClickListener{
                 viewModel.navgateToAddBao(it)
@@ -44,8 +46,6 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
 //        list.add(service2)
 //        (binding.recyclerMasterDailyItem.adapter as MasterDailyItemAdapter).submitList(list)
 
-
-
         viewModel.navgateToAddBao.observe(this, Observer {
             it?.let{
                 findNavController().navigate(NavigationDirections.actionGlobalAddBaoDialog(it))
@@ -53,18 +53,23 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
             }
         })
 
-
         // let  "date" from CalendarViewModel  pass to MasterDailyItemFragment ,need to pass by parentViewModel
         val parentViewModel = ViewModelProviders.of(parentFragment!!).get(CalendarViewModel::class.java)
-
         // when observe CalendarFragment  " date" change  , MasterDailyItemViewModel  get the Result of the "date"
         parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {
             Log.i("HsiaoLing","getDate=${it}")
             Log.i("HsiaoLing","masters=${master}")
-            viewModel.getDateResult(it)
+            viewModel.getDateResult(it, master.id)
         })
 
-
+//        viewModel.schedules.observe(this, Observer {
+//            it?.let{
+//                if (it.size == 0)
+//                viewModel.newDailySchedules()
+//                return@let
+//            }
+//        }
+//        )
 
 
 

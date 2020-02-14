@@ -17,14 +17,15 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_master_daily_item"
                 android:layout_width="match_parent"
-                android:layout_height="700dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
 
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:schedules="@{viewModel.schedules}"
-                tools:itemCount="5"
+
                 tools:list="@layout/item_time_reserve">
 
 

@@ -23,22 +23,19 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 
     private val _service = MutableLiveData<Service>()
     val service:LiveData<Service>
-    get() = _service
+    get() = _service as LiveData<Service>
 
     fun setService(service: Service) {
         _service.value = service
     }
 
-    private val _leave = MutableLiveData<Boolean>()
-    val leave: LiveData<Boolean>
-        get() = _leave
+
 
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
 
     private val _error = MutableLiveData<String>()
-
     val error: LiveData<String>
         get() = _error
 
@@ -71,12 +68,13 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
         val navigateToAddFail : LiveData<Service>
         get() = _navigateToAddedFail
 
-    private val _refresh = MutableLiveData<Boolean>()
+//    private val _refresh = MutableLiveData<Boolean>()
+//    val refresh: LiveData<Boolean>
+//        get() = _refresh
 
-    val refresh: LiveData<Boolean>
-        get() = _refresh
-
-
+    private val _leave = MutableLiveData<Boolean>()
+    val leave: LiveData<Boolean>
+        get() = _leave
 
     private var viewModelJob = Job()
 
@@ -106,7 +104,7 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
-                    leave(true)
+                    leave()
                 }
                 is Result.Fail -> {
                     _error.value = result.error
@@ -129,10 +127,7 @@ fun click (){
     if (service.value != null ){
         insertServiceToMastert(service.value!!)
     }
-
 }
-
-
 
 
 
@@ -165,7 +160,7 @@ fun click (){
 
 
 
-    fun leave(needRefresh:Boolean = false) {
+    fun leave() {
         _leave.value = true
     }
 
@@ -173,13 +168,13 @@ fun click (){
         _leave.value = null
     }
 
-    fun refresh() {
-        _refresh.value = true
-    }
-
-    fun onRefreshed() {
-        _refresh.value = null
-    }
+//    fun refresh() {
+//        _refresh.value = true
+//    }
+//
+//    fun onRefreshed() {
+//        _refresh.value = null
+//    }
 
     fun onLeaveCompleted() {
         _leave.value = null

@@ -23,8 +23,8 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.getServicesInMaster()
     }
 
-    override suspend fun getDateResult(date: String): Result<List<Service>> {
-        return baoRemoteDataSource.getDateResult(date)
+    override suspend fun getDateResult(date: String,masterId:String): Result<List<Service>> {
+        return baoRemoteDataSource.getDateResult(date,masterId)
     }
 
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {

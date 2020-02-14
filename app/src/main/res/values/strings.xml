@@ -10,6 +10,9 @@
     <string name="status1">已預約</string>
     <string name="status2">已完成</string>
 
+    <string name="login_success">登入成功</string>
+    <string name="addto_success">預約成功</string>
+    <string name="bao_finished">包膜已完成</string>
 
 
 </resources>

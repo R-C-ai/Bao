@@ -48,9 +48,6 @@ class CalendarFragment : Fragment() {
             Log.i("SelectedDate", "selectedDay=${selectedDate}")
         }
 
-
-
-
 //        val masters = mutableListOf<Master>()
 //        val masterA = Master("9527", "Jimmy")
 //        val masterB = Master("9528", "Jerry")
@@ -59,7 +56,7 @@ class CalendarFragment : Fragment() {
 //        masters.add(masterB)
 //        masters.add(masterC)
 
-        // start Master viewpager
+        //  observe  masters in CalenderViewModel getMasterResult , start Master viewpager  with masterResult
         viewModel.masters.observe(this, Observer {
             Log.i("HsiaoLing","viewModel.masters.observe, it=$it")
             it?.let { masters ->

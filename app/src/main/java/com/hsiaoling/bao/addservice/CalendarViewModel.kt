@@ -106,10 +106,10 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
 //
-//    fun getDateResult(){
+//    fun getDateResult(date: String){
 //        coroutineScope.launch{
 //            _status.value = LoadApiStatus.LOADING
-//            val result = repository.getDateResult()
+//            val result = repository.getDateResult("")
 //
 //            _schedules.value = when (result) {
 //                is Result.Success -> {

@@ -1,7 +1,10 @@
 package com.hsiaoling.bao.ext
 
+import android.graphics.Rect
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
+import android.view.TouchDelegate
+import android.view.View
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
@@ -9,6 +12,20 @@ fun Long.toDisplayFormat(): String {
     val time = Calendar.getInstance()
     return SimpleDateFormat("yyyy.MM.dd hh:mm",Locale.TAIWAN).format(time)
 }
+
+fun View.setTouchDelegate() {
+    val parent = this.parent as View  // button: the view you want to enlarge hit area
+    parent.post {
+        val rect = Rect()
+        this.getHitRect(rect)
+        rect.top -= 100    // increase top hit area
+        rect.left -= 100   // increase left hit area
+        rect.bottom += 100 // increase bottom hit area
+        rect.right += 100  // increase right hit area
+        parent.touchDelegate = TouchDelegate(rect, this)
+    }
+}
+
 
 
 

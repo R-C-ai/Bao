@@ -1,9 +1,7 @@
 package com.hsiaoling.bao
 
-import android.icu.util.Calendar
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hsiaoling.bao.data.Service
@@ -29,31 +27,31 @@ fun bindDisplayFormatTime(textView: TextView, time: Long?) {
 }
 
 @BindingAdapter("itemScheduleSort")
-fun setScheduleSort(imageView: ImageView, position: Int) {
+fun setScheduleSort(imageView: ImageView, sort: Int) {
 
     when {
-        position == 0 -> {
+        sort == 0 -> {
             imageView.setImageResource(R.drawable.one)
         }
-        position == 1 -> {
+        sort == 1 -> {
+            imageView.setImageResource(R.drawable.two)
+        }
+        sort == 2 -> {
             imageView.setImageResource(R.drawable.one)
         }
-        position == 2 -> {
+        sort == 3 -> {
             imageView.setImageResource(R.drawable.one)
         }
-        position == 3 -> {
+        sort == 4 -> {
             imageView.setImageResource(R.drawable.one)
         }
-        position == 4 -> {
+        sort == 5 -> {
             imageView.setImageResource(R.drawable.one)
         }
-        position == 5 -> {
+        sort == 6 -> {
             imageView.setImageResource(R.drawable.one)
         }
-        position == 6 -> {
-            imageView.setImageResource(R.drawable.one)
-        }
-        position == 7 -> {
+        sort == 7 -> {
             imageView.setImageResource(R.drawable.one)
         }
     }

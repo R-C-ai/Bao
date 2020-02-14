@@ -20,7 +20,7 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun getDateResult(date: String): Result<List<Service>> {
+    override suspend fun getDateResult(date: String,masterId:String): Result<List<Service>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
