@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="device_list">
+        <item>@string/iPhone_XR</item>
+        <item>@string/iPHONE_11_PRO</item>
+        <item>@string/aSUS_5Z</item>
+        <item>@string/aSUS_ROG_PHONE</item>
+        <item>@string/sAMSUMG_GALAXY_S20</item>
+        <item>@string/sAMSUMG_GALAXY_S20_5G</item>
+    </string-array>
+</resources>
+

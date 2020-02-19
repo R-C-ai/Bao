@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="service0_list">
+        <item>@string/立體曲面滿版_玻璃保貼</item>
+        <item>@string/滿版_玻璃保貼</item>
+        <item>@string/一般_玻璃保貼</item>
+        <item>@string/PET_曲面保貼</item>
+        <item>@string/PET_保貼</item>
+    </string-array>
+</resources>

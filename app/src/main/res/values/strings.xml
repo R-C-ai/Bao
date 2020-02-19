@@ -14,5 +14,36 @@
     <string name="addto_success">預約成功</string>
     <string name="bao_finished">包膜已完成</string>
 
+    <string name="select_device">選擇手機型號</string>
+    <string name="select_service0">選擇保貼商品</string>
+    <string name="select_service1">選擇包膜商品</string>
+
+
+<!--Device_List-->
+    <string name="iPhone_XR">IPHONE_XR</string>
+    <string name="iPHONE_11_PRO">IPHONE_11_PRO</string>
+    <string name="aSUS_5Z">ASUS_5Z</string>
+    <string name="aSUS_ROG_PHONE">ASUS_ROG_PHONE</string>
+    <string name="sAMSUMG_GALAXY_S20"> SAMSUMG_GALAXY_S20</string>
+    <string name="sAMSUMG_GALAXY_S20_5G">SAMSUMG_GALAXY_S20_5G</string>
+
+
+    <!--Service0_List-->
+    <string name="立體曲面滿版_玻璃保貼">立體曲面滿版_玻璃保貼</string>
+    <string name="滿版_玻璃保貼">滿版_玻璃保貼</string>
+    <string name="一般_玻璃保貼">一般_玻璃保貼</string>
+    <string name="PET_曲面保貼">PET_曲面保貼</string>
+    <string name="PET_保貼">PET_保貼</string>
+
+
+    <!--Service1_List-->
+    <string name="客製_浮雕膜">客製_浮雕膜</string>
+    <string name="授權_浮雕膜">授權_浮雕膜</string>
+    <string name="非授權_浮雕膜">非授權_浮雕膜</string>
+    <string name="彩繪_包膜">彩繪_包膜</string>
+    <string name="透明壓紋_包膜">透明壓紋_包膜</string>
+
+
+
 
 </resources>

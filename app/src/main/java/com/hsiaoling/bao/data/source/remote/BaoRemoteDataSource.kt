@@ -2,6 +2,8 @@ package com.hsiaoling.bao.data.source.remote
 
 import android.icu.util.Calendar
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.hsiaoling.bao.BaoApplication
@@ -18,9 +20,13 @@ import com.hsiaoling.bao.util.Logger
 object BaoRemoteDataSource:BaoDataSource {
 
     private const val PATH_STORE = "store"
-    private const val PATH_SERVICES = "service"
+    private const val PATH_SERVICE = "service"
     private const val PATH_MASTER = "master"
     private const val KEY_DATE = "date"
+    private const val PATH_SCHEDULESORT = "scheduleSort"
+    private const val KEY_MASTERID = "masterId"
+    private const val KEY_MASTER = "master"
+
 
 
 
@@ -36,7 +42,7 @@ object BaoRemoteDataSource:BaoDataSource {
                     for (document in task.result!!){
 
                         val master = document.toObject(Master::class.java)
-                        Log.i("GetFirestoreMaster","isSuccessfulMaster=$list")
+                        Log.i("HsiaoGetFirestoreMaster","isSuccessGetMaster=$list")
                         list.add(master)
                     }
                     continuation.resume(Result.Success(list))
@@ -52,13 +58,15 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
-    override suspend fun getDateResult(date: String, materId: String): Result<List<Service>> = suspendCoroutine { continuation->
+    override suspend fun getDateResult(date: String, masterId: String): Result<List<Service>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
-            .collection(PATH_SERVICES)
+            .collection(PATH_SERVICE)
             .whereEqualTo(KEY_DATE, date)
-            .whereEqualTo("masterId",materId)
+            .whereEqualTo(KEY_MASTERID,masterId)
+            .orderBy("scheduleSort",Query.Direction.ASCENDING)
+//            .orderBy(PATH_SCHEDULESORT,Query.Direction.ASCENDING)
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
@@ -66,7 +74,7 @@ object BaoRemoteDataSource:BaoDataSource {
                     for (document in task.result!!){
 
                         val service = document.toObject(Service::class.java)
-                        Log.i("GetFirestoreDate","isSuccessfulDate=$list")
+                        Log.i("HsiaoGetDateResult","isSuccessDateResult=$list")
                         list.add(service)
                     }
                     continuation.resume(Result.Success(list))
@@ -82,14 +90,44 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
+    override fun getLiveDateServices(date: String, masterId: String): LiveData<List<Service>> {
+        val liveData = MutableLiveData<List<Service>>()
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SERVICE)
+            .whereEqualTo(KEY_DATE,date)
+            .whereEqualTo(KEY_MASTERID,masterId)
+            .orderBy("scheduleSort",Query.Direction.ASCENDING)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("addSnapshotListener detect")
+                exception?.let {
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+                val list = mutableListOf<Service>()
+                for (document in snapshot!!) {
+                    Logger.d(document.id + " => " + document.data)
+                    val service = document.toObject(Service::class.java)
+                    list.add(service)
+                }
+                liveData.value = list
+            }
+        return liveData
+    }
+
+
+
+
+
+
 
     override suspend fun getServicesInMaster(): Result<List<Service>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
-                //TODO: CHANGE ID TO DYNAMIC
             .document("4d7yMjfPO5lw66u8sHnt")
-            .collection(PATH_SERVICES)
-            .orderBy(KEY_DATE,Query.Direction.DESCENDING)
+            .collection(PATH_SERVICE)
+//            .orderBy(PATH_SCHEDULESORT, Query.Direction.ASCENDING)
+//            .orderBy(KEY_DATE,Query.Direction.DESCENDING)
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
@@ -97,7 +135,7 @@ object BaoRemoteDataSource:BaoDataSource {
                     for (document in task.result!!){
 
                         val service = document.toObject(Service::class.java)
-                        Log.i("Hsiao","Successfulget=$list")
+                        Log.i("HsiaoLingGetSort","GetBySchedule=$list")
                         list.add(service)
                     }
                     continuation.resume(Result.Success(list))
@@ -113,19 +151,19 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
-    override suspend fun insertServiceInMastert(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
+    override suspend fun addNewDayToMaster(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
         val services = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
-            PATH_SERVICES)
+            PATH_SERVICE)
         val document = services.document()
 
         service.serviceId = document.id
-        service.reserveTime = Calendar.getInstance().timeInMillis
+//        service.reserveTime = Calendar.getInstance().timeInMillis
 
         document
             .set(service)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Logger.i("HsiaoaddOnCompleteListener: $service")
+                    Logger.i("HsiaoAddNew: $service")
 
                     continuation.resume(Result.Success(true))
                 } else {
@@ -139,6 +177,71 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
+
+    override suspend fun updateService(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
+
+
+//        val document = services.document()
+//        service.serviceId = document.id
+
+        FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
+            PATH_SERVICE).document(service.serviceId)
+            .update(mapOf(
+                "status" to 1,
+                "customerNo" to service.customerNo,
+                "device" to service.device,
+                "service0" to service.service0,
+                "service1" to service.service1,
+                "price" to service.price,
+                "reserveTime" to Calendar.getInstance().timeInMillis
+            ))
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("HsiaoaddOnCompleteListener: $service")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                    }
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+
+        }
+
+
+    override suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service> = suspendCoroutine { continuation->
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SERVICE)
+            .whereEqualTo(KEY_DATE, date)
+            .whereEqualTo("masterId",masterId)
+            .whereEqualTo("serviceId",serviceId)
+            .get()
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    val service = MutableLiveData<Service>()
+                    for (document in task.result!!){
+
+                        val service = document.toObject(Service::class.java)
+                        Log.i("HsiaoLingGetOneService","GetByServiveId=$service")
+                        (service)
+                    }
+//                    continuation.resume(Result.Success())
+                } else if (task.exception != null) {
+                    task.exception?.let {
+                        Log.i("FirestoregetServicesInMaster","exception")
+                        continuation.resume(Result.Error(it))
+                    }
+                } else {
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+
+            }
+    }
 
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

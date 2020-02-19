@@ -32,12 +32,12 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
         val list = mutableListOf<Service>()
 
 
-
-        binding.recyclerMasterDailyItem.adapter = MasterDailyItemAdapter(
+        val masterDailyItemAdapter =MasterDailyItemAdapter(
             MasterDailyItemAdapter.OnClickListener{
                 viewModel.navgateToAddBao(it)
             }
         )
+        binding.recyclerMasterDailyItem.adapter = masterDailyItemAdapter
 
 //        val service = BaoService(0, "iPhone X", "", "", 1)
 //        val service2 = BaoService(1, "iPhone XR", "", "", 1)
@@ -56,11 +56,24 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
         // let  "date" from CalendarViewModel  pass to MasterDailyItemFragment ,need to pass by parentViewModel
         val parentViewModel = ViewModelProviders.of(parentFragment!!).get(CalendarViewModel::class.java)
         // when observe CalendarFragment  " date" change  , MasterDailyItemViewModel  get the Result of the "date"
-        parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {
-            Log.i("HsiaoLing","getDate=${it}")
+        parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {date ->
+            Log.i("HsiaoLing","getDate=${date}")
             Log.i("HsiaoLing","masters=${master}")
-            viewModel.getDateResult(it, master.id)
+
+            viewModel.getLiveDateServices(date, master.id)
+                Log.i("GetLiveData","getLiveDateServices=${viewModel.schedules.value}")
+            viewModel.schedules.observe(this, Observer {
+                Log.i("GetLiveData","schedules.observe=${viewModel.schedules.value}")
+                it?.let {
+                    if (it.size == 0) {
+                        viewModel.newDailyServices(date, master.id,master.name)
+                    }
+                }
+                Log.i("HsiaoLing","getLiveDateServices = $it")
+                masterDailyItemAdapter.submitList(it)
+            })
         })
+
 
 //        viewModel.schedules.observe(this, Observer {
 //            it?.let{

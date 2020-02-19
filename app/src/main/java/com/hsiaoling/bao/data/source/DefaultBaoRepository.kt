@@ -1,5 +1,6 @@
 package com.hsiaoling.bao.data.source
 
+import androidx.lifecycle.LiveData
 import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Service
@@ -10,14 +11,18 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
 
 ):BaoRepository {
 
-    override suspend fun insertServiceInMaster(service: Service):Result<Boolean> {
-       return baoRemoteDataSource.insertServiceInMastert(service)
+    override suspend fun addNewDayToMaster(service: Service):Result<Boolean> {
+       return baoRemoteDataSource.addNewDayToMaster(service)
     }
 
     override suspend fun getMastersResult():Result<List<Master>>{
         return baoRemoteDataSource.getMastersResult()
     }
 
+    override suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service> {
+        return baoRemoteDataSource.getOneServiceResult(date,masterId,serviceId)
+
+    }
 
     override suspend fun getServicesInMaster():Result<List<Service>>{
         return baoRemoteDataSource.getServicesInMaster()
@@ -25,6 +30,14 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
 
     override suspend fun getDateResult(date: String,masterId:String): Result<List<Service>> {
         return baoRemoteDataSource.getDateResult(date,masterId)
+    }
+
+    override fun getLiveDateServices(date: String,masterId: String): LiveData<List<Service>> {
+        return baoRemoteDataSource.getLiveDateServices(date,masterId)
+    }
+
+    override suspend fun updateService(service: Service): Result<Boolean> {
+        return baoRemoteDataSource.updateService(service)
     }
 
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {

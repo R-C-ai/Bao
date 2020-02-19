@@ -1,10 +1,13 @@
 package com.hsiaoling.bao.data
 
+import androidx.lifecycle.MutableLiveData
+
 sealed class Result<out R> {
 
     data class Success<out T>(val data: T) : Result<T>()
     data class Fail(val error: String) : Result<Nothing>()
     data class Error(val exception: Exception) : Result<Nothing>()
+
     object Loading : Result<Nothing>()
 
     override fun toString(): String {

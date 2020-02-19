@@ -9,8 +9,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
 fun Long.toDisplayFormat(): String {
-    val time = Calendar.getInstance()
-    return SimpleDateFormat("yyyy.MM.dd hh:mm",Locale.TAIWAN).format(time)
+
+    return SimpleDateFormat("yyyy.MM.dd hh:mm",Locale.TAIWAN).format(this)
 }
 
 fun View.setTouchDelegate() {

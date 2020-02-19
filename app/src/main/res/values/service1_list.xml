@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="service1_list">
+        <item>@string/客製_浮雕膜</item>
+        <item>@string/授權_浮雕膜</item>
+        <item>@string/非授權_浮雕膜</item>
+        <item>@string/彩繪_包膜</item>
+        <item>@string/透明壓紋_包膜</item>
+    </string-array>
+</resources>
