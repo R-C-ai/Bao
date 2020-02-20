@@ -1,5 +1,6 @@
 package com.hsiaoling.bao.ext
 
+import android.app.Activity
 import androidx.fragment.app.Fragment
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.ViewModelFactory
@@ -14,4 +15,7 @@ fun Fragment.getVmFactory(): ViewModelFactory {
     return ViewModelFactory(repository)
 }
 
-
+fun Activity.getVmFactory(): ViewModelFactory {
+    val repository = (applicationContext as BaoApplication).repository
+    return ViewModelFactory(repository)
+}

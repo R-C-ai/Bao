@@ -4,10 +4,12 @@
     <color name="colorPrimaryDarkGreen">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="darkBlue">#27274a</color>
     <color name="royalBlue">#4169E1</color>
     <color name="eventColor">#553fa9eb</color>
     <color name="lightCyan_b2ebf2">#b2ebf2</color>
     <color name="eventColorSelected">#aab2c99a</color>
+    <color name="golden">#ffd300</color>
 
     <!-- Bottom Navigation -->
     <color name="white_FFFFFF">#FFFFFF</color>

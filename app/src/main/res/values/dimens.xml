@@ -7,7 +7,20 @@
 
     <!-- Day View -->
 
+    <!-- Toolbar -->
+    <dimen name="height_toolbar">50dp</dimen>
+    <dimen name="height_status_bar_origin">24dp</dimen>
 
+    <dimen name="elevation_all">4dp</dimen>
+    <dimen name="height_all_bottom_layout">80dp</dimen>
+
+    <!-- Bottom Navigation -->
+    <dimen name="height_bottom_nav_view_main">56dp</dimen>
+    <dimen name="size_bottom_nav_icon">36dp</dimen>
+
+    <!-- Login Dialog -->
+    <dimen name="height_login">600dp</dimen>
+    <dimen name="size_progress">24dp</dimen>
     <!-- Event View -->
     <dimen name="event_header_padding_bottom">8dp</dimen>
 
@@ -20,7 +33,7 @@
     <dimen name="height_catalog_tab">20dp</dimen>
 
 
-    <dimen name="height_all_bottom_layout">80dp</dimen>
+
 
     <dimen name="size_message">123dp</dimen>
 

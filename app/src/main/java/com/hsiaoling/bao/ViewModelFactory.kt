@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.hsiaoling.bao.addservice.AddBaoViewModel
 import com.hsiaoling.bao.addservice.CalendarViewModel
 import com.hsiaoling.bao.data.source.BaoRepository
+import com.hsiaoling.bao.login.LoginViewModel
 import com.hsiaoling.bao.master.dailyItem.MasterDailyItemViewModel
 
 /**
@@ -20,6 +21,14 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
+
+                isAssignableFrom(LoginViewModel::class.java) ->
+                    LoginViewModel(baoRepository)
+
+
+                isAssignableFrom(MainViewModel::class.java) ->
+                    MainViewModel(baoRepository)
+
                 isAssignableFrom(MasterDailyItemViewModel::class.java) ->
                     MasterDailyItemViewModel(baoRepository)
 

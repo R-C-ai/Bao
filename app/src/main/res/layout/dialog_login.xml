@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="com.hsiaoling.bao.network.LoadApiStatus"/>
+        <variable name="viewModel" type="com.hsiaoling.bao.login.LoginViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{() -> viewModel.leave()}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_login"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_login"
+            android:background="@drawable/bg_dialog_corner"
+            android:onClick="@{() -> viewModel.nothing()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView_bao"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/artist" />
+
+            <ImageView
+                android:id="@+id/imageView_name"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/darkBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_bao"
+                app:srcCompat="@drawable/logobao3" />
+
+
+            <View
+                android:id="@+id/view_login_separation"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/gray_cccccc"
+                app:layout_constraintBottom_toTopOf="@+id/button_login_salesman"
+                app:layout_constraintEnd_toEndOf="@+id/button_login_salesman"
+                app:layout_constraintStart_toStartOf="@+id/button_login_salesman" />
+
+
+            <ImageView
+                android:id="@+id/imageView_store"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="72dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_name"
+                app:srcCompat="@drawable/store1" />
+
+            <TextView
+                android:id="@+id/text_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="松菸文創店"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_store"
+                app:layout_constraintStart_toEndOf="@+id/imageView_store"
+                app:layout_constraintTop_toTopOf="@+id/imageView_store" />
+
+            <ImageView
+                android:id="@+id/imageView_salesman"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_store"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/imageView_store"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_store"
+                app:srcCompat="@drawable/salesman0" />
+
+            <Spinner
+                android:id="@+id/text_salesman"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:prompt="@string/select_salesman"
+                android:selectedItemPosition="@={viewModel.selectedSalesmanPosition}"
+                android:spinnerMode="dialog"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_salesman"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView_salesman"
+                app:layout_constraintTop_toTopOf="@+id/imageView_salesman"
+                tools:text="選擇門市業務人員" />
+
+            <Button
+                android:id="@+id/button_login_salesman"
+                style="@style/SalesmanLoginButton"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:fontFamily="@font/noto_sans"
+                android:gravity="center"
+                android:letterSpacing="0.15"
+                android:text="@string/login_twm_text"
+                android:textAllCaps="false"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="@string/login_twm_text" />
+
+
+            <Button
+                android:id="@+id/button_login_close"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/button_dialog_close_ripple"
+                android:onClick="@{() -> viewModel.leave()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

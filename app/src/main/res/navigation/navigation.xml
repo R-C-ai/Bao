@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/calendarFragment">
+    app:startDestination="@id/loginDialog">
 
 <!--    <fragment-->
 <!--        android:id="@+id/addServiceFragment"-->
@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_service_status" />
     <fragment
         android:id="@+id/salesAmountFragment"
-        android:name="com.hsiaoling.bao.slesaomunt.SalesAmountFragment"
+        android:name="com.hsiaoling.bao.salesaomunt.SalesAmountFragment"
         android:label="fragment_sales_amount"
         tools:layout="@layout/fragment_sales_amount" />
     <action
@@ -56,4 +56,11 @@
     <action
         android:id="@+id/action_global_messageDialog3"
         app:destination="@id/messageDialog" />
+    <fragment
+        android:id="@+id/loginDialog"
+        android:name="com.hsiaoling.bao.login.LoginDialog"
+        android:label="LoginDialog" />
+    <action
+        android:id="@+id/action_global_loginDialog"
+        app:destination="@id/loginDialog" />
 </navigation>

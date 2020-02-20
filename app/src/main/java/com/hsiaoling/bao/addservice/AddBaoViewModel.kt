@@ -40,14 +40,14 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 
     //Service0Chosen spinner
     val selectedService0Position = MutableLiveData<Int>()
-    val service0Chosen: LiveData<DeviceChosen> = Transformations.map(selectedService0Position) {
-        DeviceChosen.values()[it]
+    val service0Chosen: LiveData<Service0Chosen> = Transformations.map(selectedService0Position) {
+        Service0Chosen.values()[it]
     }
 
     //Service1Chosen spinner
     val selectedService1Position = MutableLiveData<Int>()
-    val service1Chosen: LiveData<DeviceChosen> = Transformations.map(selectedService1Position) {
-        DeviceChosen.values()[it]
+    val service1Chosen: LiveData<Service1Chosen> = Transformations.map(selectedService1Position) {
+        Service1Chosen.values()[it]
     }
 
 
@@ -93,9 +93,9 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 
 
 
-    private val _navigateToAddedSuccess = MutableLiveData<Service>()
+    private val _navigateToAddSuccess = MutableLiveData<Service>()
         val navigateToAddSuccess : LiveData<Service>
-        get() = _navigateToAddedSuccess
+        get() = _navigateToAddSuccess
 
     private val _navigateToAddedFail = MutableLiveData<Service>()
         val navigateToAddFail : LiveData<Service>
@@ -138,7 +138,7 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
                     _status.value = LoadApiStatus.DONE
                     refresh()
                     Log.i("HsiaoLingUpdate", "refreshData=${result.data}")
-                    _navigateToAddedSuccess.value=service
+                    _navigateToAddSuccess.value=service
                 }
 
                 is Result.Fail -> {
@@ -219,7 +219,7 @@ fun click (){
 
 
     fun onAddedSuccessNavigated() {
-        _navigateToAddedSuccess.value = null
+        _navigateToAddSuccess.value = null
     }
 
     fun onAddedFailNavigated() {
