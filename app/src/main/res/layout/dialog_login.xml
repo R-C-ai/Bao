@@ -59,19 +59,19 @@
 
             <ImageView
                 android:id="@+id/imageView_store"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="72dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_name"
-                app:srcCompat="@drawable/store1" />
+                app:srcCompat="@drawable/store3" />
 
             <TextView
                 android:id="@+id/text_store"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:text="松菸文創店"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_store"
@@ -80,20 +80,20 @@
 
             <ImageView
                 android:id="@+id/imageView_salesman"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="32dp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView_store"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/imageView_store"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_store"
-                app:srcCompat="@drawable/salesman0" />
+                app:srcCompat="@drawable/salesman2" />
 
             <Spinner
                 android:id="@+id/text_salesman"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:prompt="@string/select_salesman"
                 android:selectedItemPosition="@={viewModel.selectedSalesmanPosition}"
                 android:spinnerMode="dialog"
@@ -116,6 +116,7 @@
                 android:fontFamily="@font/noto_sans"
                 android:gravity="center"
                 android:letterSpacing="0.15"
+                android:onClick="@{() -> viewModel.navigateToCalendar(viewModel.selectedSalesman)}"
                 android:text="@string/login_twm_text"
                 android:textAllCaps="false"
                 android:textColor="@color/white_FFFFFF"

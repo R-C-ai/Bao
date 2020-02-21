@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
-import com.hsiaoling.bao.data.Date
-import com.hsiaoling.bao.data.Master
-import com.hsiaoling.bao.data.Result
-import com.hsiaoling.bao.data.Service
+import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
@@ -28,7 +25,6 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
     private val _schedules = MutableLiveData<List<Service>>()
-
     val schedules: LiveData<List<Service>>
         get() = _schedules
 

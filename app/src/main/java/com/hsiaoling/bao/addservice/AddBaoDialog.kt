@@ -20,6 +20,7 @@ import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.databinding.DialogAddBaoBinding
 
 import com.hsiaoling.bao.ext.getVmFactory
+import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.messageDialog.MessageDialog
 import com.hsiaoling.bao.util.Logger
 
@@ -46,8 +47,15 @@ class AddBaoDialog : AppCompatDialogFragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
+
         service = requireArguments().getParcelable<Service>("givenservice")
-        service?.let {  viewModel.setService(it) }
+        service?.let {
+            viewModel.setService(it)
+            SalesmanManager.salesman?.let {
+                viewModel.setSalesmanForService(it)
+            }
+        }
 
 
         //Device Spinner Adapter

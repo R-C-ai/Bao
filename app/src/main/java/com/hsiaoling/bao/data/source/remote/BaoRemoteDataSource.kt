@@ -13,6 +13,7 @@ import com.hsiaoling.bao.data.source.BaoDataSource
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import com.hsiaoling.bao.data.Result
+import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.util.Logger
 
@@ -22,11 +23,42 @@ object BaoRemoteDataSource:BaoDataSource {
     private const val PATH_STORE = "store"
     private const val PATH_SERVICE = "service"
     private const val PATH_MASTER = "master"
+    private const val PATH_SALESMAN = "salesman"
     private const val KEY_DATE = "date"
     private const val PATH_SCHEDULESORT = "scheduleSort"
     private const val KEY_MASTERID = "masterId"
     private const val KEY_MASTER = "master"
 
+
+
+
+    override suspend fun getSalesmansResult(): Result<List<Salesman>> = suspendCoroutine { continuation->
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SALESMAN)
+            .get()
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    val list = mutableListOf<Salesman>()
+                    for (document in task.result!!){
+
+                        val salesman = document.toObject(Salesman::class.java)
+                        Log.i("Hsiao","isSuccessGetSalesman=$list")
+                        list.add(salesman)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else if (task.exception != null) {
+                    task.exception?.let {
+                        Log.i("Hsiao","exception")
+                        continuation.resume(Result.Error(it))
+                    }
+                } else {
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+
+            }
+    }
 
 
 
@@ -189,6 +221,8 @@ object BaoRemoteDataSource:BaoDataSource {
             .update(mapOf(
                 "status" to 1,
                 "customerNo" to service.customerNo,
+                "salesmanId" to service.salesmanId,
+                "salesmanName" to service.salesmanName,
                 "device" to service.device,
                 "service0" to service.service0,
                 "service1" to service.service1,

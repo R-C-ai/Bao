@@ -30,7 +30,9 @@
     <fragment
         android:id="@+id/calendarFragment"
         android:name="com.hsiaoling.bao.addservice.CalendarFragment"
-        android:label="CalendarFragment" />
+        android:label="CalendarFragment" >
+
+    </fragment>
     <action
         android:id="@+id/action_global_calendarFragment"
         app:destination="@id/calendarFragment" />

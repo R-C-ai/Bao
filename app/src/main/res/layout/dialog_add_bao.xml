@@ -184,6 +184,7 @@
                     android:layout_marginStart="4dp"
                     android:prompt="@string/select_device"
                     android:selectedItemPosition="@={viewModel.selectedDevicePosition}"
+
                     android:spinnerMode="dialog"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/image_device"

@@ -22,34 +22,34 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.hsiaoling.bao.data.Result
+import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.source.remote.BaoRemoteDataSource.getDateResult
+import com.hsiaoling.bao.login.SalesmanManager.salesman
 
 class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 
 
-//    var selectedCustomer = MutableLiveData<String>()
-//    var selectedDevice = MutableLiveData<String>()
-//    var selectedService0 = MutableLiveData<String>()
-//    var selectedService1 = MutableLiveData<String>()
-
     //DeviceChosen spinner
     val selectedDevicePosition = MutableLiveData<Int>()
     val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
+        service.value!!.device=DeviceChosen.values()[it].toString()
         DeviceChosen.values()[it]
     }
 
     //Service0Chosen spinner
     val selectedService0Position = MutableLiveData<Int>()
     val service0Chosen: LiveData<Service0Chosen> = Transformations.map(selectedService0Position) {
+        // put livedata to service
+        service.value!!.service0=Service0Chosen.values()[it].toString()
         Service0Chosen.values()[it]
     }
 
     //Service1Chosen spinner
     val selectedService1Position = MutableLiveData<Int>()
     val service1Chosen: LiveData<Service1Chosen> = Transformations.map(selectedService1Position) {
+        service.value!!.service1 = Service1Chosen.values()[it].toString()
         Service1Chosen.values()[it]
     }
-
 
 
     // Get Input Service  LiveData
@@ -57,11 +57,20 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
     val service:LiveData<Service>
     get() = _service as LiveData<Service>
 
+    // put selscted schedule data into service
     fun setService(service: Service) {
         _service.value = service
     }
 
-//    val serviceId = service.value!!.serviceId
+    // put loginsalesman data into service
+    fun setSalesmanForService(salesman: Salesman) {
+        _service.value?.let {
+            it.salesmanId = salesman.id
+            it.salesmanName = salesman.name
+        }
+        _service.value = _service.value
+    }
+
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -130,7 +139,7 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
     fun update(service: Service) {
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING
-
+            Log.i("HsiaoLingUpdate", " _status.value=${service}")
             when (val result = repository.updateService(service)) {
 
                 is Result.Success -> {

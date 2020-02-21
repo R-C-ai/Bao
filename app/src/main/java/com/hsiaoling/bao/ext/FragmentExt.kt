@@ -15,6 +15,7 @@ fun Fragment.getVmFactory(): ViewModelFactory {
     return ViewModelFactory(repository)
 }
 
+
 fun Activity.getVmFactory(): ViewModelFactory {
     val repository = (applicationContext as BaoApplication).repository
     return ViewModelFactory(repository)

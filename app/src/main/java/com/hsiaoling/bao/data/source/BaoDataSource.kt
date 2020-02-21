@@ -3,9 +3,12 @@ package com.hsiaoling.bao.data.source
 import androidx.lifecycle.LiveData
 import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
+import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.Service
 
 interface BaoDataSource {
+
+    suspend fun  getSalesmansResult():Result<List<Salesman>>
 
     suspend fun getMastersResult():Result<List<Master>>
 

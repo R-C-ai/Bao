@@ -19,6 +19,7 @@ import com.hsiaoling.bao.data.Date
 import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.databinding.CalendarFragmentBinding
 import com.hsiaoling.bao.ext.getVmFactory
+import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.master.MasterAdapter
 import kotlinx.android.synthetic.main.calendar_fragment.*
 
@@ -36,6 +37,8 @@ class CalendarFragment : Fragment() {
         val binding = CalendarFragmentBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+        Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
 
         binding.calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
             //  val msg = "Selected date is " + dayOfMonth + "/" + (month + 1) + "/" + year

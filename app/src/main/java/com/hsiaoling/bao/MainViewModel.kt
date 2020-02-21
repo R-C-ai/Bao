@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.hsiaoling.bao.login.SalesManManager
+import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
@@ -21,9 +21,9 @@ import kotlinx.coroutines.Job
  */
 class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 
-    private val _salesman = MutableLiveData<Salesman>()
-    val salesman: LiveData<Salesman>
-        get() = _salesman
+    private val _loginSalesman = MutableLiveData<Salesman>()
+    val loginSalesman: LiveData<Salesman>
+        get() = _loginSalesman
 
     // Handle navigation to login success
     private val _navigateToLoginSuccess = MutableLiveData<Salesman>()
@@ -55,9 +55,6 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 //    val navigateToHomeByBottomNav: LiveData<Boolean>
 //        get() = _navigateToHomeByBottomNav
 
-    // check user login status
-    val isLoggedIn
-        get() = SalesManManager.isLoggedIn
 
 
 
@@ -91,21 +88,21 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
     }
     fun setupSalesman(salesman: Salesman) {
 
-        _salesman.value = salesman
+        _loginSalesman.value = salesman
 
-        Log.i("Hsiao","| setupUser |")
+        Log.i("Hsiao","| setupl=LoginSalesman |")
         Log.i("Hsiao","user=$salesman")
         Log.i("Hsiao","MainViewModel=${this}")
 
     }
 
-    fun checkSalesman() {
-        if (salesman.value == null) {
-            SalesManManager.salesmanToken?.let {
-//                getUserProfile(it)
-            }
-        }
-    }
+//    fun checkSalesman() {
+//        if (loginSalesman.value == null) {
+//            SalesmanManager.salesmanToken?.let {
+//                getSalesmanProfile(it)
+//            }
+//        }
+//    }
 
     fun navigateToLoginSuccess(salesman: Salesman) {
         _navigateToLoginSuccess.value = salesman
@@ -159,7 +156,7 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 //                    _error.value = result.error
 //                    _status.value = LoadApiStatus.ERROR
 //                    if (result.error.contains("Invalid Access Token", true)) {
-//                        SalesManManager.clear()
+//                        SalesmanManager.clear()
 //                    }
 //                    null
 //                }

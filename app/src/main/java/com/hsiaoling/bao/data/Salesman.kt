@@ -8,5 +8,5 @@ import kotlinx.android.parcel.Parcelize
 data class Salesman(
     var id: String = "",
     var name: String = "",
-    var store : Store
+    var store : Store = Store("","")
 ) : Parcelable

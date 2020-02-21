@@ -72,8 +72,6 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
 
 
-
-
     fun newDailyServices (date: String, masterId: String,masterName:String) {
 
         for (i in 0..2) {

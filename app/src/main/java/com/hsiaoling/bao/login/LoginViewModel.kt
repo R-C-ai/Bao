@@ -1,15 +1,21 @@
 package com.hsiaoling.bao.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.hsiaoling.bao.BaoApplication
+import com.hsiaoling.bao.R
+import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Salesman
+import com.hsiaoling.bao.data.Store
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 /**
  * Created by Wayne Chen in Jul. 2019.
@@ -18,19 +24,19 @@ import kotlinx.coroutines.Job
  */
 class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
-    // Get Input salesman  LiveData
-    private val _salesman = MutableLiveData<Salesman>()
-    val salesman: LiveData<Salesman>
-        get() = _salesman as LiveData<Salesman>
+    val mockStore = Store("4d7yMjfPO5lw66u8sHnt", "松菸文創店")
 
-    fun setSalesman(salesman: Salesman){
-        _salesman.value = salesman
-    }
+    // Get Firebase salesman  Data
+    private val _salesmans = MutableLiveData<List<Salesman>>()
+    val salemans: LiveData<List<Salesman>>
+        get() = _salesmans
+
+
 
     //SalesmanChosen spinner
     val selectedSalesmanPosition = MutableLiveData<Int>()
-    val salesmanChosen: LiveData<SalesManChosen> = Transformations.map(selectedSalesmanPosition) {
-        SalesManChosen.values()[it]
+    val selectedSalesman: LiveData<Salesman> = Transformations.map(selectedSalesmanPosition) {
+        salemans.value!![it]
     }
 
     private val _navigateToCalendar = MutableLiveData<Salesman>()
@@ -69,6 +75,11 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
 
@@ -90,80 +101,59 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
     }
 
+    init {
+        getSalesmansResult()
+    }
 
-    /**
-     * track [StylishRepository.userSignIn]: -> [DefaultStylishRepository] : [StylishRepository] -> [StylishRemoteDataSource] : [StylishDataSource]
-     * @param fbToken: Facebook token
-     */
-//     private fun loginBao(twmToken: String) {
+    fun getSalesmansResult(){
+        coroutineScope.launch{
+            _status.value = LoadApiStatus.LOADING
+            val result = repository.getSalesmansResult()
+            _salesmans.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+
+                    Log.i("HsiaoLing","salesmans=${result.data}")
+                    result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
+    }
+
+
+
+
+
+//    fun click (){
+//        if (salesman.value != null ){
+////            getSalesman(salesman.value!!)
+//            Log.i("HsiaoLingUpdate", "UpateNewData=${salesman.value}")
 //
-//        coroutineScope.launch {
-//
-//            _status.value = LoadApiStatus.LOADING
-//            // It will return Result object after Deferred flow
-//            when (val result = stylishRepository.userSignIn(fbToken)) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    SalesManManager.userToken = result.data.userSignIn?.accessToken
-//                    _user.value = result.data.userSignIn?.user
-//                    _navigateToLoginSuccess.value = user.value
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//                else -> {
-//                    _error.value = getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//            }
 //        }
-//     }
-
-    /**
-     * Login Stylish by Facebook: Step 1. Register FB Login Callback
-     */
-//    fun login() {
-//        _status.value = LoadApiStatus.LOADING
-//
-//        fbCallbackManager = CallbackManager.Factory.create()
-//        LoginManager.getInstance().registerCallback(fbCallbackManager, object : FacebookCallback<LoginResult> {
-//            override fun onSuccess(loginResult: LoginResult) {
-//
-//                loginStylish(loginResult.accessToken.token)
-//            }
-//
-//            override fun onCancel() { _status.value = LoadApiStatus.ERROR }
-//
-//            override fun onError(exception: FacebookException) {
-//                Logger.w("[${this::class.simpleName}] exception=${exception.message}")
-//
-//                exception.message?.let {
-//                    _error.value = if (it.contains("ERR_INTERNET_DISCONNECTED")) {
-//                         getString(R.string.internet_not_connected)
-//                    } else {
-//                        it
-//                    }
-//                }
-//                _status.value = LoadApiStatus.ERROR
-//            }
-//        })
-//
-//        loginFacebook()
 //    }
 
-    /**
-     * Login Stylish by Facebook: Step 2. Login Facebook
-     */
-//    private fun loginFacebook() {
-//        _loginFacebook.value = true
-//    }
-//
+    fun navigateToCalendar(salesman: Salesman) {
+        _navigateToCalendar.value = salesman
+    }
+
+
     fun leave() {
         _leave.value = true
     }

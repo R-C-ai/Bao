@@ -15,7 +15,7 @@
     <!-- Login Dialog -->
     <string name="login_title">請先登入</string>
     <string name="login_description">登入後即可預約包膜服務。</string>
-    <string name="login_twm_text">業務人員帳號登入</string>
+    <string name="login_twm_text">門市人員登入</string>
 
 
     <string name="status0">可預約</string>
@@ -29,7 +29,7 @@
     <string name="select_device">選擇手機型號</string>
     <string name="select_service0">選擇保貼商品</string>
     <string name="select_service1">選擇包膜商品</string>
-    <string name="select_salesman">選擇包膜商品</string>
+    <string name="select_salesman">門市業務人員</string>
 
 
 

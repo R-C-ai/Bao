@@ -3,6 +3,7 @@ package com.hsiaoling.bao.data.source
 import androidx.lifecycle.LiveData
 import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
+import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.Service
 
 class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
@@ -13,6 +14,10 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
 
     override suspend fun addNewDayToMaster(service: Service):Result<Boolean> {
        return baoRemoteDataSource.addNewDayToMaster(service)
+    }
+
+    override suspend fun getSalesmansResult():Result<List<Salesman>>{
+        return baoRemoteDataSource.getSalesmansResult()
     }
 
     override suspend fun getMastersResult():Result<List<Master>>{
