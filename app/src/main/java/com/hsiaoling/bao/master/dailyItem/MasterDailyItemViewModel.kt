@@ -76,7 +76,7 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
         for (i in 0..2) {
             val service = Service(storeId,"松菸文創店","","",masterId,masterName,"",date,
-                i,"","","","",0,0,"可預約","",0,Master("",""))
+                i,"","","","",0,0,"可預約","",-1,-1,Master("",""))
             Log.i("HsiaoLing","addNewService=$service")
             addNewDayToMaster(service)
         }

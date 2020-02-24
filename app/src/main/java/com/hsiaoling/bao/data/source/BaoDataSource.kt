@@ -23,6 +23,8 @@ interface BaoDataSource {
 
     fun getLiveDateServices(date: String,masterId: String):LiveData<List<Service>>
 
+    fun getLiveStatus(salesmanId:String):LiveData<List<Service>>
+
     suspend fun updateService(service: Service):Result<Boolean>
 //    suspend fun removeBaoInMaster(baoService: BaoService)
 }

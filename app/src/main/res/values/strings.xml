@@ -12,6 +12,13 @@
     <string name="serviceStatus">查詢包膜進度</string>
     <string name="salesAmount">查詢包膜業績</string>
 
+    <!--    BottonNavigation-->
+    <string name="bottomAdd">預約包膜</string>
+    <string name="bottomStatus">查詢進度</string>
+    <string name="bottomSales">查詢業績</string>
+
+
+
     <!-- Login Dialog -->
     <string name="login_title">請先登入</string>
     <string name="login_description">登入後即可預約包膜服務。</string>

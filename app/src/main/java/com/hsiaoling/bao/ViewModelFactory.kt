@@ -7,6 +7,7 @@ import com.hsiaoling.bao.addservice.CalendarViewModel
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.login.LoginViewModel
 import com.hsiaoling.bao.master.dailyItem.MasterDailyItemViewModel
+import com.hsiaoling.bao.servicestatus.ServiceStatusViewModel
 
 /**
  * Created by Wayne Chen in Jul. 2019.
@@ -21,6 +22,9 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
+
+                isAssignableFrom(ServiceStatusViewModel::class.java) ->
+                   ServiceStatusViewModel(baoRepository)
 
                 isAssignableFrom(LoginViewModel::class.java) ->
                     LoginViewModel(baoRepository)

@@ -50,6 +50,7 @@ class AddBaoDialog : AppCompatDialogFragment() {
         Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
 
         service = requireArguments().getParcelable<Service>("givenservice")
+
         service?.let {
             viewModel.setService(it)
             SalesmanManager.salesman?.let {

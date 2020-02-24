@@ -160,7 +160,7 @@ class MainActivity : BaseActivity() {
                     val layoutParams = Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT)
                     layoutParams.gravity = Gravity.CENTER
                     layoutParams.topMargin = statusBarHeight - oriStatusBarHeight
-                    binding.imageToolbarLogo.layoutParams = layoutParams
+//                    binding.imageToolbarLogo.layoutParams = layoutParams
                     binding.textToolbarTitle.layoutParams = layoutParams
                 }
             }

@@ -28,8 +28,8 @@ object BaoRemoteDataSource:BaoDataSource {
     private const val PATH_SCHEDULESORT = "scheduleSort"
     private const val KEY_MASTERID = "masterId"
     private const val KEY_MASTER = "master"
-
-
+    private const val KEY_SALESMANID = "salesmanId"
+    private const val KEY_STATUS = "status"
 
 
     override suspend fun getSalesmansResult(): Result<List<Salesman>> = suspendCoroutine { continuation->
@@ -90,6 +90,7 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
+    // get exist data  when add by   addOnCompleteListener  , need to refresh to update and get data
     override suspend fun getDateResult(date: String, masterId: String): Result<List<Service>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
@@ -121,7 +122,7 @@ object BaoRemoteDataSource:BaoDataSource {
 
             }
     }
-
+            // update intime by addSnapshotListener
     override fun getLiveDateServices(date: String, masterId: String): LiveData<List<Service>> {
         val liveData = MutableLiveData<List<Service>>()
         FirebaseFirestore.getInstance()
@@ -134,7 +135,7 @@ object BaoRemoteDataSource:BaoDataSource {
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("addSnapshotListener detect")
                 exception?.let {
-                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    Logger.w("[] Error getting documents. ${it.message}")
                 }
                 val list = mutableListOf<Service>()
                 for (document in snapshot!!) {
@@ -147,6 +148,41 @@ object BaoRemoteDataSource:BaoDataSource {
         return liveData
     }
 
+    // update intime by addSnapshotListener
+    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
+        val liveData = MutableLiveData<List<Service>>()
+
+        Logger.w("getLiveStatus11111 $salesmanId")
+
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SERVICE)
+            .whereEqualTo(KEY_SALESMANID,salesmanId)
+            .orderBy(KEY_STATUS,Query.Direction.ASCENDING)
+            .whereGreaterThan(KEY_STATUS,0)
+            .orderBy("reserveTime",Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("addSnapshotListener detect")
+                exception?.let {
+                    Logger.w("[] Error getting documents. ${it.message}")
+                }
+                val list = mutableListOf<Service>()
+                snapshot?.let {
+                    for (document in snapshot!!) {
+                        Logger.d(document.id + " =============> " + document.data)
+                        val service = document.toObject(Service::class.java)
+                        list.add(service)
+                    }
+                    liveData.value = list
+                    Logger.d( " liveData.value =============> $list")
+                }
+
+//                liveData.value = list
+//                Logger.d( " liveData.value =============> $list")
+            }
+        return liveData
+    }
 
 
 

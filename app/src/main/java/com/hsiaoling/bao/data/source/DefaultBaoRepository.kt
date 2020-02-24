@@ -41,6 +41,10 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.getLiveDateServices(date,masterId)
     }
 
+    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
+        return baoRemoteDataSource.getLiveStatus(salesmanId)
+    }
+
     override suspend fun updateService(service: Service): Result<Boolean> {
         return baoRemoteDataSource.updateService(service)
     }

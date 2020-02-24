@@ -1,20 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".servicestatus.ServiceStatusFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hsiaoling.bao.servicestatus.ServiceStatusViewModel" />
+        <variable
+            name="service"            type="com.hsiaoling.bao.data.Service" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="salesman"
+            type="com.hsiaoling.bao.data.Salesman" />
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".servicestatus.ServiceStatusFragment">
 
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/salesman_status_total"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@drawable/bg_pagetitle"
+                android:elevation="@dimen/elevation_all"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView_status"
+                    android:layout_width="80dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/statuspagew_bg1" />
+
+                <TextView
+                    android:id="@+id/text_salesman_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_text"
+                    android:text="@{salesman.name}"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_status"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_status"
+                    tools:text="salesman" />
+
+                <ImageView
+                    android:id="@+id/imageView_doing"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/lightBlue"
+                    android:scaleType="centerInside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/statuspagedoing1" />
+
+                <ImageView
+                    android:id="@+id/imageView_done"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/lightBlue"
+                    android:scaleType="centerInside"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_doing"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_doing"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_doing"
+                    app:srcCompat="@drawable/statuspagedone1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_status_item"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/salesman_status_total" />
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/salesman_status_item"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:elevation="@dimen/elevation_all"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/salesman_status_total">-->
+
+<!--                -->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-</FrameLayout>
+    </FrameLayout>
+</layout>

@@ -1,7 +1,6 @@
 package com.hsiaoling.bao.addservice
 
 
-
 import android.graphics.Rect
 import android.util.Log
 import android.view.View
@@ -26,13 +25,13 @@ import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.source.remote.BaoRemoteDataSource.getDateResult
 import com.hsiaoling.bao.login.SalesmanManager.salesman
 
-class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
+class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
     //DeviceChosen spinner
     val selectedDevicePosition = MutableLiveData<Int>()
     val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
-        service.value!!.device=DeviceChosen.values()[it].toString()
+        service.value!!.device = DeviceChosen.values()[it].toString()
         DeviceChosen.values()[it]
     }
 
@@ -40,7 +39,7 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
     val selectedService0Position = MutableLiveData<Int>()
     val service0Chosen: LiveData<Service0Chosen> = Transformations.map(selectedService0Position) {
         // put livedata to service
-        service.value!!.service0=Service0Chosen.values()[it].toString()
+        service.value!!.service0 = Service0Chosen.values()[it].toString()
         Service0Chosen.values()[it]
     }
 
@@ -54,8 +53,8 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 
     // Get Input Service  LiveData
     private val _service = MutableLiveData<Service>()
-    val service:LiveData<Service>
-    get() = _service as LiveData<Service>
+    val service: LiveData<Service>
+        get() = _service as LiveData<Service>
 
     // put selscted schedule data into service
     fun setService(service: Service) {
@@ -72,7 +71,6 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
     }
 
 
-
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status
@@ -83,9 +81,8 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 
     // get uodate Service
     private val _oneService = MutableLiveData<Service>()
-    val oneService:LiveData<Service>
+    val oneService: LiveData<Service>
         get() = _service as LiveData<Service>
-
 
 
     private val _refreshStatus = MutableLiveData<Boolean>()
@@ -100,14 +97,12 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
 //        get() = _checkoutSuccess
 
 
-
-
     private val _navigateToAddSuccess = MutableLiveData<Service>()
-        val navigateToAddSuccess : LiveData<Service>
+    val navigateToAddSuccess: LiveData<Service>
         get() = _navigateToAddSuccess
 
     private val _navigateToAddedFail = MutableLiveData<Service>()
-        val navigateToAddFail : LiveData<Service>
+    val navigateToAddFail: LiveData<Service>
         get() = _navigateToAddedFail
 
 
@@ -133,9 +128,6 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
     }
 
 
-
-
-
     fun update(service: Service) {
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING
@@ -147,7 +139,7 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
                     _status.value = LoadApiStatus.DONE
                     refresh()
                     Log.i("HsiaoLingUpdate", "refreshData=${result.data}")
-                    _navigateToAddSuccess.value=service
+                    _navigateToAddSuccess.value = service
                 }
 
                 is Result.Fail -> {
@@ -167,64 +159,62 @@ class AddBaoViewModel(private val repository:BaoRepository): ViewModel() {
         }
     }
 
-        fun refresh(){
-
-        if(status.value!=LoadApiStatus.LOADING){
-            Log.i("Hsiao","")
-            getOneServiceResult(service.value!!.date,service.value!!.masterId,service.value!!.serviceId)
+    fun refresh() {
+        if (status.value != LoadApiStatus.LOADING) {
+            Log.i("Hsiao", "")
+            getOneServiceResult(
+                service.value!!.date,
+                service.value!!.masterId,
+                service.value!!.serviceId
+            )
 //       getDateResult(service.value!!.date,service.value!!.masterId)
-
         }
-        }
-
-
-
-
-        fun getOneServiceResult(date:String,masterId:String,serviceId:String) {
-
-            coroutineScope.launch {
-
-                _status.value = LoadApiStatus.LOADING
-
-                val result = repository.getOneServiceResult(date,masterId,serviceId)
-
-                _oneService.value = when (result) {
-                    is Result.Success -> {
-                        _error.value = null
-                        _status.value = LoadApiStatus.DONE
-                        result.data
-                    }
-                    is Result.Fail -> {
-                        _error.value = result.error
-                        _status.value = LoadApiStatus.ERROR
-                        null
-                    }
-                    is Result.Error -> {
-                        _error.value = result.exception.toString()
-                        _status.value = LoadApiStatus.ERROR
-                        null
-                    }
-                    else -> {
-                        _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-                        _status.value = LoadApiStatus.ERROR
-                        null
-                    }
-                }
-                _refreshStatus.value = false
-            }
-        }
-
-
-
-
-fun click (){
-    if (service.value != null ){
-//        insertServiceToMaster(service.value!!)
-     update(service.value!!)
-        Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
-
     }
-}
+
+
+    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            val result = repository.getOneServiceResult(date, masterId, serviceId)
+
+            _oneService.value = when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    result.data
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+                else -> {
+                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                    null
+                }
+            }
+            _refreshStatus.value = false
+        }
+    }
+
+
+    fun click() {
+        if (service.value != null) {
+//        insertServiceToMaster(service.value!!)
+            update(service.value!!)
+            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
+
+        }
+    }
 
 
     fun onAddedSuccessNavigated() {
@@ -252,7 +242,6 @@ fun click (){
     fun convertLongToString(value: Long): String {
         return value.toString()
     }
-
 
 
     fun leave() {

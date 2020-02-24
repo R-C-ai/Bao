@@ -6,15 +6,15 @@
     <item
         android:id="@+id/navigation_add_service"
         android:icon="@drawable/ic_nav_add_service_selector"
-        android:title=""/>
+        android:title="@string/bottomAdd" />
 
     <item
         android:id="@+id/navigation_service_status"
         android:icon="@drawable/ic_nav_service_status_selector"
-        android:title=""/>
+        android:title="@string/bottomStatus"/>
 
     <item
         android:id="@+id/navigation_sales_amount"
         android:icon="@drawable/ic_nav_sales_amount_selector"
-        android:title=""/>
+        android:title="@string/bottomSales"/>
 </menu>

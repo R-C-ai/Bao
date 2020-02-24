@@ -34,6 +34,29 @@
         <item name="colorAccent">@color/white_FFFFFF</item>
     </style>
 
+<!--    Bottomnavgation-->
 
+
+    <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNavigationView.Active" parent="@style/TextAppearance.AppCompat.Caption">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+
+<!--Separation-->
+    <style name="Separation">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:background">@color/gray_cccccc</item>
+    </style>
+
+    <style name="LineSeparation">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_cccccc</item>
+    </style>
 
 </resources>

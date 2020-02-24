@@ -41,6 +41,10 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }

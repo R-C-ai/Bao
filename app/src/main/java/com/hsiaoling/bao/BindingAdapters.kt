@@ -37,7 +37,7 @@ fun bindRecyclerViewWithSchedule(recyclerView: RecyclerView, schedules: List<Ser
 fun bindDisplayFormatTime(textView: TextView, time: Long?) {
         Log.i("HsiaoTime","bindDisplayFormatTime, time=$time")
     time?.let {
-        if (it==0L){
+        if (it<=0L){
             textView.visibility = View.INVISIBLE
         }else{
             textView.visibility = View.VISIBLE

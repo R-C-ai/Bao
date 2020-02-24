@@ -5,11 +5,25 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="darkBlue">#27274a</color>
+    <color name="backBlue">#1F3C5F</color>
+    <color name="dark1Blue">#01579b</color>
+    <color name="lightBlue">#4f83cc</color>
+    <color name="light1Blue">#64b5f6</color>
+    <color name="brightBlue">#0336ff</color>
+    <color name="dark2Blue">#1A237E</color>
+
     <color name="royalBlue">#4169E1</color>
+    <color name="loginBlue">#2196F3</color>
     <color name="eventColor">#553fa9eb</color>
     <color name="lightCyan_b2ebf2">#b2ebf2</color>
     <color name="eventColorSelected">#aab2c99a</color>
     <color name="golden">#ffd300</color>
+    <color name="downyellow">#ffd300</color>
+
+    <color name="cardgreen">#09af00</color>
+
+
+
 
     <!-- Bottom Navigation -->
     <color name="white_FFFFFF">#FFFFFF</color>

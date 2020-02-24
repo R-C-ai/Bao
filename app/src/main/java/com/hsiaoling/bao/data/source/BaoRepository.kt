@@ -16,6 +16,8 @@ interface BaoRepository {
     suspend fun addNewDayToMaster(service: Service):Result<Boolean>
     suspend fun getDateResult(date: String,masterId:String): Result<List<Service>>
     fun getLiveDateServices(date: String,masterId: String):LiveData<List<Service>>
+
+    fun getLiveStatus(salesmanId:String):LiveData<List<Service>>
     suspend fun updateService(service: Service):Result<Boolean>
 
 //    suspend fun removeBaoInMaster(baoService: BaoService)

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    <variable
+        name="service"        type="com.hsiaoling.bao.data.Service" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bg_dialog_corner"
+        android:layout_margin="5dp"
+        android:layout_marginStart="30dp"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/status_card"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bg_dialog_corner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView_side"
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:background="@color/cardgreen"
+                android:gravity="center"
+                android:text="包      膜      狀      態"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/texttitle_reserve_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="預約時間"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/textView_side"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_reserve_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="10sp"
+                app:timeToDisplayFormat="@{service.reserveTime}"
+                app:layout_constraintStart_toStartOf="@id/texttitle_reserve_time"
+                app:layout_constraintTop_toBottomOf="@id/texttitle_reserve_time"
+                tools:text = "2020.02.25 02.55"/>
+
+            <ImageView
+                android:id="@+id/imageView_master"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView_side"
+                app:srcCompat="@drawable/newmaster1" />
+
+            <TextView
+                android:id="@+id/text_master_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="12sp"
+                android:text="@{service.masterName}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView_master" />
+
+            <View
+                android:id="@+id/view_lineseparation"
+                style="@style/LineSeparation"
+                android:layout_marginStart="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/texttitle_reserve_time"
+                app:layout_constraintStart_toEndOf="@id/texttitle_reserve_time"
+                app:layout_constraintTop_toTopOf="@+id/texttitle_reserve_time" />
+
+            <TextView
+                android:id="@+id/texttitle_done_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="完成時間"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view_lineseparation"
+                app:layout_constraintStart_toEndOf="@+id/view_lineseparation"
+                app:layout_constraintTop_toTopOf="@+id/view_lineseparation" />
+
+            <TextView
+                android:id="@+id/text_done_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textSize="10sp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintEnd_toStartOf="@+id/view_done_separation"
+                app:layout_constraintStart_toStartOf="@id/texttitle_done_time"
+                app:layout_constraintTop_toBottomOf="@id/texttitle_done_time"
+                tools:text="2020.02.20 02.50" />
+
+            <ImageView
+                android:id="@+id/imageView_customer"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_master_name"
+                app:srcCompat="@drawable/newcustomer1" />
+
+            <TextView
+                android:id="@+id/text_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="12sp"
+                android:text="@{service.customerNo}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageView_customer" />
+
+
+            <View
+                android:id="@+id/view_done_separation"
+                style="@style/Separation"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageView_done"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
+
+            <ImageView
+                android:id="@+id/imageView_done"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                app:srcCompat="@drawable/bao_status_b0" />
+
+
+            <TextView
+                android:id="@+id/text_reserve_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textSize="12sp"
+                android:text="預約狀態"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_done"
+                app:layout_constraintStart_toStartOf="@+id/imageView_done" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+        android:background="@color/dark1Blue"
             android:onClick="@{() -> viewModel.leave()}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,24 +28,23 @@
             <ImageView
                 android:id="@+id/imageView_bao"
                 android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_height="160dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/artist" />
+                app:srcCompat="@drawable/baolog0" />
+
 
             <ImageView
                 android:id="@+id/imageView_name"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/darkBlue"
+                android:layout_height="70dp"
+                android:background="@color/white_FFFFFF"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_bao"
-                app:srcCompat="@drawable/logobao3" />
-
+                app:srcCompat="@drawable/baolog1" />
 
             <View
                 android:id="@+id/view_login_separation"
@@ -62,10 +62,10 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="48dp"
-                android:layout_marginTop="72dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_name"
-                app:srcCompat="@drawable/store3" />
+                app:srcCompat="@drawable/storeblue0" />
 
             <TextView
                 android:id="@+id/text_store"
@@ -82,12 +82,12 @@
                 android:id="@+id/imageView_salesman"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="24dp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView_store"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/imageView_store"
                 app:layout_constraintTop_toBottomOf="@+id/imageView_store"
-                app:srcCompat="@drawable/salesman2" />
+                app:srcCompat="@drawable/salesmanblue0" />
 
             <Spinner
                 android:id="@+id/text_salesman"
@@ -120,7 +120,7 @@
                 android:text="@string/login_twm_text"
                 android:textAllCaps="false"
                 android:textColor="@color/white_FFFFFF"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
