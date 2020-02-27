@@ -18,13 +18,6 @@ import kotlinx.coroutines.launch
 
 class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel() {
 
-    private val _date = MutableLiveData<String>()
-    val date: LiveData<String>
-        get() = _date
-
-    fun selectedDate (date: String){
-        _date.value = date
-    }
 
     // set salesman in serviceStatusViiewModel
     private val _salesman = MutableLiveData<Salesman>()
@@ -40,7 +33,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     val newStatuses: LiveData<Service>
         get() = _newStatuses
 
-    // put selscted schedule data into service
+    // put selscted status card data into service
     fun setNewstatus(service: Service) {
         _newStatuses.value = service
     }
@@ -57,7 +50,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
     //get exit reserved service
 //    private var _liveStatuses = MutableLiveData<List<Service>>()
-    var liveStatuses = MutableLiveData<List<Service>>()
+    var  liveStatuses = MutableLiveData<List<Service>>()
 //        get() = _liveStatuses
 
 
@@ -79,6 +72,16 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
         get() = _refreshStatus
 
 
+    private val _navigateToUpdateStatus = MutableLiveData<Service>()
+    val navgateToUpdateStatus:LiveData<Service>
+        get() = _navigateToUpdateStatus
+
+    private val _refresh = MutableLiveData<Boolean>()
+    val refresh: LiveData<Boolean>
+        get() = _refresh
+
+
+
 
     private var viewModelJob = Job()
 
@@ -94,46 +97,38 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 //        getLiveStatus()
     }
 
+    // get live status from firebase
     fun getLiveStatus(){
-        liveStatuses =
-            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
-        Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
+        repository.getLiveStatus(SalesmanManager.salesman!!.id) {
+            liveStatuses.value = it
+        }
+
+//        liveStatuses =
+//            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
+//        Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
     }
 
 
-//
-//    fun getDateResult(date: String){
-//        coroutineScope.launch{
-//            _status.value = LoadApiStatus.LOADING
-//            val result = repository.getDateResult("")
-//
-//            _schedules.value = when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    result.data
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//
-//
-//        }
-//    }
+
+
+    fun refresh() {
+        _refresh.value = true
+    }
+
+    fun onRefreshed() {
+        _refresh.value = null
+    }
+
+
+    fun navgateToUpdateStatus(service: Service){
+        _navigateToUpdateStatus.value =service
+    }
+
+    fun onUpdateStatusNavigated(){
+        _navigateToUpdateStatus.value = null
+    }
+
+
 
 
 

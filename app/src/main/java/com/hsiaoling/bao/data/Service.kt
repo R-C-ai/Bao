@@ -26,7 +26,10 @@ data class Service(
     var statusImg: String = "",
     var statusText: String = "",
     var reserveTime: Long=-1,
-    var doneTime: Long=-1,
+    var doneTime:Long=-1,
+    var updateTime: Long=-1,
+    var startWorkTime:Long=-1,
+    var endWorkTime:Long=-1,
     var master: Master = Master("","")
 //    val reserve_time: Timestamp = Timestamp(Calendar.getInstance().time)
 ): Parcelable

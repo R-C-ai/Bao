@@ -77,11 +77,11 @@ class AddBaoDialog : AppCompatDialogFragment() {
             BaoApplication.instance.resources.getStringArray(R.array.service0_list)
         )
 
-        viewModel.selectedService0Position.observe(this, Observer {
+        viewModel.selectedScreenPosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedService0Position.observe, it=$it")
         })
-        viewModel.service0Chosen.observe(this, Observer {
-            Log.i("Hsiao","viewModel.service0Chosen.observe, it=$it")
+        viewModel.screenChosen.observe(this, Observer {
+            Log.i("Hsiao","viewModel.screenChosen.observe, it=$it")
         })
 
 
@@ -90,11 +90,11 @@ class AddBaoDialog : AppCompatDialogFragment() {
             BaoApplication.instance.resources.getStringArray(R.array.service1_list)
         )
 
-        viewModel.selectedService1Position.observe(this, Observer {
-            Log.i("Hsiao","viewModel.selectedService1Position.observe, it=$it")
+        viewModel.selectedBackPosition.observe(this, Observer {
+            Log.i("Hsiao","viewModel.selectedBackPosition.observe, it=$it")
         })
-        viewModel.service1Chosen.observe(this, Observer {
-            Log.i("Hsiao","viewModel.service1Chosen.observe, it=$it")
+        viewModel.backChosen.observe(this, Observer {
+            Log.i("Hsiao","viewModel.backChosen.observe, it=$it")
         })
 
 //        binding.textDevice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

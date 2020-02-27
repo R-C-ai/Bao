@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.hsiaoling.bao.servicestatus.StatusUpdateViewModel"/>
+        <variable name="salesman"   type="com.hsiaoling.bao.login.SalesmanManager" />
+        <variable name="service"     type="com.hsiaoling.bao.data.Service" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/translucent_40"
+        android:onClick="@{() -> viewModel.leave()}">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_status_update"
+            android:layout_width="350dp"
+            android:layout_height="250dp"
+            android:background="@color/eventColorSelected"
+            android:elevation="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:id="@+id/textView_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/bg_text"
+                android:text="@{viewModel.service.storeName}"
+                android:textColor="@color/dark1Blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/button_done"
+                app:layout_constraintEnd_toStartOf="@+id/textView_salesman"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="store" />
+
+            <TextView
+                android:id="@+id/textView_salesman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:text="@{viewModel.service.salesmanName}"
+                android:textColor="@color/dark1Blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_store"
+                app:layout_constraintEnd_toStartOf="@+id/textView_master"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView_store"
+                app:layout_constraintTop_toTopOf="@+id/textView_store"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="salesman" />
+
+            <TextView
+                android:id="@+id/textView_master"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_text"
+                android:text="@{viewModel.service.masterName}"
+                android:textColor="@color/dark1Blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_salesman"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/textView_salesman"
+                app:layout_constraintTop_toTopOf="@+id/textView_salesman"
+                tools:text="master" />
+
+            <TextView
+                android:id="@+id/textView_customer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_text"
+                android:text="@{viewModel.service.customerNo}"
+                android:textColor="@color/dark1Blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView_master"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                tools:text="customer" />
+
+            <Button
+                android:id="@+id/button_done"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/dark1Blue"
+                android:clickable="true"
+                android:onClick="@{() -> viewModel.selectDone()}"
+                android:shadowColor="@color/gray_999999"
+                android:text="確認完成"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_delete"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/button_delete"
+                android:layout_width="170dp"
+                android:layout_height="60dp"
+                android:background="@color/red_d0021b"
+                android:clickable="true"
+                android:shadowColor="@color/gray_999999"
+                android:text="確認取消"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/button_done"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/button_done"
+                app:layout_constraintTop_toTopOf="@+id/button_done" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView_customer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView_customer"
+                app:srcCompat="@drawable/newcustomer1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

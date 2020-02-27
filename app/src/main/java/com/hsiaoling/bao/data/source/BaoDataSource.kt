@@ -5,6 +5,7 @@ import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.Service
+import com.hsiaoling.bao.servicestatus.ServiceAction
 
 interface BaoDataSource {
 
@@ -26,5 +27,10 @@ interface BaoDataSource {
     fun getLiveStatus(salesmanId:String):LiveData<List<Service>>
 
     suspend fun updateService(service: Service):Result<Boolean>
+
+    suspend fun updateStatus(service: Service,serviceAction: ServiceAction):Result<Boolean>
+
 //    suspend fun removeBaoInMaster(baoService: BaoService)
+
+    fun getLiveStatus(salesmanId:String, completeHandler:(List<Service>) -> Unit)
 }

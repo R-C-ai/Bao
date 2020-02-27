@@ -209,7 +209,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:prompt="@string/select_service0"
-                    android:selectedItemPosition="@={viewModel.selectedService0Position}"
+                    android:selectedItemPosition="@={viewModel.selectedScreenPosition}"
                     android:spinnerMode="dialog"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/image_service"
@@ -223,7 +223,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:prompt="@string/select_service0"
-                    android:selectedItemPosition="@={viewModel.selectedService1Position}"
+                    android:selectedItemPosition="@={viewModel.selectedBackPosition}"
                     android:spinnerMode="dialog"
                     android:textSize="18sp"
 
@@ -250,7 +250,7 @@
                     android:layout_height="wrap_content"
                     android:hint="輸入包膜服務金額"
                     android:inputType="number"
-                    android:text="@={viewModel.convertLongToString(viewModel.service.price)}"
+                    android:text="@{viewModel.convertLongToString(viewModel.totalPrice)}"
                     android:textSize="18sp"
 
                     app:layout_constraintEnd_toEndOf="@+id/text_service_1"

@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hsiaoling.bao.BaoApplication
-import com.hsiaoling.bao.R
+
 import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
@@ -13,6 +13,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.icu.text.SimpleDateFormat
+
+import android.icu.util.Calendar
+import com.hsiaoling.bao.data.Date
+import java.util.*
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import com.hsiaoling.bao.ext.toTodayFormat
+
 
 class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
 
@@ -24,6 +34,8 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
         _date.value = date
     }
 
+
+
     private val _schedules = MutableLiveData<List<Service>>()
     val schedules: LiveData<List<Service>>
         get() = _schedules
@@ -32,6 +44,10 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
     val masters: LiveData<List<Master>>
         get() = _masters
 
+
+    //define var to get  today and transfer to String
+    var currentday = Calendar.getInstance().getTime()
+    var today =this.currentday.time.toTodayFormat()
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -65,7 +81,10 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
     init {
+        getToday()
         getMastersResult()
+
+
     }
 
     fun getMastersResult(){
@@ -91,7 +110,7 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
                     null
                 }
                 else -> {
-                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = BaoApplication.instance.getString(com.hsiaoling.bao.R.string.you_know_nothing)
                     _status.value = LoadApiStatus.ERROR
                     null
                 }
@@ -99,6 +118,16 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
             _refreshStatus.value = false
         }
     }
+
+
+
+   fun getToday()  {
+       currentday.time.toTodayFormat()
+       Log.i("HsiaoLing","currentday=${ currentday.time.toTodayFormat()}")
+    }
+
+
+
 
 
 //

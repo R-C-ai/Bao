@@ -5,6 +5,7 @@ import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.Service
+import com.hsiaoling.bao.servicestatus.ServiceAction
 
 class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
                             private val baoLocalDataSource: BaoDataSource
@@ -49,9 +50,17 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.updateService(service)
     }
 
+    override suspend fun updateStatus(service: Service,serviceAction: ServiceAction): Result<Boolean> {
+        return baoRemoteDataSource.updateStatus(service,serviceAction)
+    }
+
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }
+
+    override fun getLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
+        return baoRemoteDataSource.getLiveStatus(salesmanId, completeHandler)
+    }
     
 }
 

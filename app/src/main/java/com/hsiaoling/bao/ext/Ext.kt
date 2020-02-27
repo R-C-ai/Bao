@@ -13,6 +13,10 @@ fun Long.toDisplayFormat(): String {
     return SimpleDateFormat("yyyy.MM.dd hh:mm",Locale.TAIWAN).format(this)
 }
 
+fun Long.toTodayFormat():String {
+    return SimpleDateFormat ("yyyy.MM.dd",Locale.TAIWAN).format(this)
+}
+
 fun View.setTouchDelegate() {
     val parent = this.parent as View  // button: the view you want to enlarge hit area
     parent.post {

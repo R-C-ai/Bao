@@ -4,15 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable
-            name="viewModel"
-            type="com.hsiaoling.bao.servicestatus.ServiceStatusViewModel" />
-        <variable
-            name="service"            type="com.hsiaoling.bao.data.Service" />
-
-        <variable
-            name="salesman"
-            type="com.hsiaoling.bao.data.Salesman" />
+        <variable   name="viewModel"   type="com.hsiaoling.bao.servicestatus.ServiceStatusViewModel" />
+        <variable   name="service"       type="com.hsiaoling.bao.data.Service" />
+        <variable   name="salesman"     type="com.hsiaoling.bao.data.Salesman" />
 
     </data>
 
@@ -53,7 +47,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_text"
                     android:text="@{salesman.name}"
-                    android:textSize="10sp"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_status"
                     app:layout_constraintStart_toStartOf="@+id/imageView_status"
@@ -90,25 +85,12 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:padding="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/salesman_status_total" />
 
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:id="@+id/salesman_status_item"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:elevation="@dimen/elevation_all"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/salesman_status_total">-->
-
-<!--                -->
-
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

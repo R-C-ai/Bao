@@ -64,6 +64,7 @@
             android:elevation="@dimen/elevation_all"
             app:itemIconTint="@drawable/bottom_nav_item_selector"
             app:labelVisibilityMode="labeled"
+            android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.LOGIN ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

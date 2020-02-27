@@ -24,14 +24,32 @@
     <string name="login_description">登入後即可預約包膜服務。</string>
     <string name="login_twm_text">門市人員登入</string>
 
+    <!--Status-->
+    <string name="status0">請按下預約</string>
+    <string name="status1">已預約成功</string>
+    <string name="status2">正在進行中</string>
+    <string name="status3">包膜完成囉</string>
+    <string name="status4">已取消</string>
 
-    <string name="status0">可預約</string>
-    <string name="status1">已預約</string>
-    <string name="status2">已完成</string>
+    <string name="time0">12:00 - 01:00</string>
+    <string name="time1">01:00 - 02:00</string>
+    <string name="time2">02:00 - 03:00</string>
+    <string name="time3">03:00 - 04:00</string>
+    <string name="time4">04:00 - 05:00</string>
+    <string name="time5">05:00 - 06:00</string>
+    <string name="time6">06:00 - 07:00</string>
+    <string name="time7">07:00 - 08:00</string>
 
-    <string name="login_success">登入成功</string>
-    <string name="addto_success">預約成功</string>
-    <string name="bao_finished">包膜已完成</string>
+
+    <string name="login_success">成功登入囉</string>
+    <string name="addto_success">預約成功囉</string>
+    <string name="bao_finished">包膜完成囉</string>
+    <string name="done_success">確認完成囉</string>
+    <string name="delete_success">確認取消</string>
+已
+
+
+
 
     <string name="select_device">選擇手機型號</string>
     <string name="select_service0">選擇保貼商品</string>
@@ -55,7 +73,7 @@
     <string name="一般_玻璃保貼">一般_玻璃保貼</string>
     <string name="PET_曲面保貼">PET_曲面保貼</string>
     <string name="PET_保貼">PET_保貼</string>
-
+    <string name="無保貼">無保貼</string>
 
     <!--Service1_List-->
     <string name="客製_浮雕膜">客製_浮雕膜</string>
@@ -63,7 +81,7 @@
     <string name="非授權_浮雕膜">非授權_浮雕膜</string>
     <string name="彩繪_包膜">彩繪_包膜</string>
     <string name="透明壓紋_包膜">透明壓紋_包膜</string>
-
+    <string name="無包膜">無包膜</string>
 
     <!--Salesman_List-->
     <string name="TINA">Tina</string>

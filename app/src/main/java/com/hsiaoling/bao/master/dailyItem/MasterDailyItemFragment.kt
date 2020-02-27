@@ -55,6 +55,24 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
 
         // let  "date" from CalendarViewModel  pass to MasterDailyItemFragment ,need to pass by parentViewModel
         val parentViewModel = ViewModelProviders.of(parentFragment!!).get(CalendarViewModel::class.java)
+
+        //  navigato CalendarFragment  get today data first
+        parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {today ->
+            viewModel.getLiveDateServices(today,master.id)
+            Log.i("Hsiao","gettodayServices=${viewModel.schedules.value}")
+            viewModel.schedules.observe(this, Observer {
+                Log.i("Hsiao","schedules.observe=${viewModel.schedules.value}")
+                it?.let {
+                    if (it.size == 0) {
+                        viewModel.newDailyServices(today, master.id,master.name)
+                    }
+                }
+                Log.i("HsiaoLing","getLiveTodayServices = $it")
+                masterDailyItemAdapter.submitList(it)
+            })
+        })
+
+
         // when observe CalendarFragment  " date" change  , MasterDailyItemViewModel  get the Result of the "date"
         parentViewModel.date.observe(parentFragment as CalendarFragment, Observer {date ->
             Log.i("HsiaoLing","getDate=${date}")

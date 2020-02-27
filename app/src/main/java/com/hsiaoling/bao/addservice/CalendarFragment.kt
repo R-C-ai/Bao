@@ -19,6 +19,7 @@ import com.hsiaoling.bao.data.Date
 import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.databinding.CalendarFragmentBinding
 import com.hsiaoling.bao.ext.getVmFactory
+import com.hsiaoling.bao.ext.toTodayFormat
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.master.MasterAdapter
 import kotlinx.android.synthetic.main.calendar_fragment.*
@@ -51,6 +52,9 @@ class CalendarFragment : Fragment() {
             Log.i("SelectedDate", "selectedDay=${selectedDate}")
         }
 
+
+
+
 //        val masters = mutableListOf<Master>()
 //        val masterA = Master("9527", "Jimmy")
 //        val masterB = Master("9528", "Jerry")
@@ -60,6 +64,15 @@ class CalendarFragment : Fragment() {
 //        masters.add(masterC)
 
         //  observe  masters in CalenderViewModel getMasterResult , start Master viewpager  with masterResult
+
+
+        val today =viewModel.currentday.time.toTodayFormat()
+        viewModel.selectedDate((today))
+
+
+
+
+
         viewModel.masters.observe(this, Observer {
             Log.i("HsiaoLing","viewModel.masters.observe, it=$it")
             it?.let { masters ->

@@ -6,5 +6,6 @@
         <item>@string/非授權_浮雕膜</item>
         <item>@string/彩繪_包膜</item>
         <item>@string/透明壓紋_包膜</item>
+        <item>@string/無包膜</item>
     </string-array>
 </resources>

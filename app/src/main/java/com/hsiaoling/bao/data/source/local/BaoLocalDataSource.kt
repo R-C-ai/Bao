@@ -6,6 +6,7 @@ import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Salesman
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.data.source.BaoDataSource
+import com.hsiaoling.bao.servicestatus.ServiceAction
 
 object BaoLocalDataSource:BaoDataSource {
 
@@ -22,6 +23,13 @@ object BaoLocalDataSource:BaoDataSource {
     }
 
     override suspend fun updateService(service: Service): Result<Boolean> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun updateStatus(
+        service: Service,
+        serviceAction: ServiceAction
+    ): Result<Boolean> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -48,4 +56,8 @@ object BaoLocalDataSource:BaoDataSource {
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }
+
+    override fun getLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }

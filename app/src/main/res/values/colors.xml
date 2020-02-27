@@ -22,6 +22,14 @@
 
     <color name="cardgreen">#09af00</color>
 
+<!--    statusbackground-->
+    <color name="statusgold">#827717</color>
+    <color name="statusblue">#021aee</color>
+    <color name="statusgreen">#41c300</color>
+    <color name="statusred">#c70061</color>
+    <color name="status1red">#ee0290</color>
+
+
 
 
 
@@ -39,6 +47,12 @@
     <color name="translucent_40">#66000000</color>
     <color name="translucent_80">#cc000000</color>
 
+    <color name="transparentblue">#80D8FF</color>
+    <color name="translucentblue">#40C4FF</color>
+    <color name="translucentblue40">#00B0FF</color>
+    <color name="translucentblue80">#0091EA</color>
+
+
     <!-- Black Series -->
     <color name="black">#000000</color>
 
@@ -50,7 +64,6 @@
     <color name="gray_cccccc">#cccccc</color>
     <color name="gray_f0f0f0">#f0f0f0</color>
     <color name="gray_f5f5f5">#f5f5f5</color>
-
     <!-- Red Series -->
     <color name="red_d0021b">#d0021b</color>
 

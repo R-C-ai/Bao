@@ -65,4 +65,15 @@
     <action
         android:id="@+id/action_global_loginDialog"
         app:destination="@id/loginDialog" />
+    <dialog
+        android:id="@+id/statusUpdateDialog"
+        android:name="com.hsiaoling.bao.servicestatus.StatusUpdateDialog"
+        android:label="StatusUpdateDialog" >
+        <argument
+            android:name="serviceToUpdate"
+            app:argType="com.hsiaoling.bao.data.Service" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_statusUpdateDialog"
+        app:destination="@id/statusUpdateDialog" />
 </navigation>

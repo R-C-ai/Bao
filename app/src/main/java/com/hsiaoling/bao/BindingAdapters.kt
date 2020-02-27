@@ -35,7 +35,7 @@ fun bindRecyclerViewWithSchedule(recyclerView: RecyclerView, schedules: List<Ser
 
 @BindingAdapter("timeToDisplayFormat")
 fun bindDisplayFormatTime(textView: TextView, time: Long?) {
-        Log.i("HsiaoTime","bindDisplayFormatTime, time=$time")
+        Log.i("Hsiao","bindDisplayFormatTime, time=$time")
     time?.let {
         if (it<=0L){
             textView.visibility = View.INVISIBLE
@@ -47,6 +47,23 @@ fun bindDisplayFormatTime(textView: TextView, time: Long?) {
     }
 
 }
+
+@BindingAdapter("updateTime", "status")
+fun updateTime(textView: TextView, time: Long?,status:Int) {
+    Log.i("Hsiao", "doneTime, time=$time")
+
+    when {
+        status == 1 ->    textView.visibility = View.INVISIBLE
+        else ->            textView.visibility = View.VISIBLE
+    }
+    time?.let {
+           Log.i("HsiaoTime","${it.toDisplayFormat()}")
+            textView.text = it.toDisplayFormat()
+        }
+    }
+
+
+
 
 @BindingAdapter("itemScheduleSort")
 fun setScheduleSort(imageView: ImageView, sort: Int) {
@@ -79,8 +96,40 @@ fun setScheduleSort(imageView: ImageView, sort: Int) {
     }
 }
 
+@BindingAdapter("itemScheduleTime")
+fun itemScheduleTime(textView:TextView, sort: Int) {
+
+    when {
+        sort == 0 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time0)
+        }
+        sort == 1 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time1)
+        }
+        sort == 2 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time2)
+        }
+        sort == 3 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time3)
+        }
+        sort == 4 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time4)
+        }
+        sort == 5 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time5)
+        }
+        sort == 6 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time6)
+        }
+        sort == 7 -> {
+            textView.text = BaoApplication.instance.getString(R.string.time7)
+        }
+    }
+}
+
+
 @BindingAdapter("status")
-fun scheduleStatus(textView: TextView,status:Int){
+fun status(textView: TextView,status:Int){
 
     when {
         status == 0 -> {
@@ -91,9 +140,37 @@ fun scheduleStatus(textView: TextView,status:Int){
         }
         status == 2 -> {
             textView.text = BaoApplication.instance.getString(R.string.status2)
+    }
+        status == 3 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status3)
         }
+        status == 4 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status3)
+        }
+
     }
 }
+
+@BindingAdapter("statusBackground")
+fun statusBackground(imageView: ImageView, status: Int) {
+
+    when {
+        status == 0 -> {
+            imageView.setImageResource(R.drawable.bg_status0)
+        }
+        status == 1 -> {
+            imageView.setImageResource(R.drawable.bg_status1)
+        }
+        status == 2 -> {
+            imageView.setImageResource(R.drawable.bg_status2)
+        }
+        status == 3 -> {
+            imageView.setImageResource(R.drawable.bg_status3)
+        }
+
+    }
+}
+
 
 //@BindingAdapter("editorControllerStatus")
 //fun bindEditorControllerStatus(imageButton: ImageButton, enabled: Boolean) {

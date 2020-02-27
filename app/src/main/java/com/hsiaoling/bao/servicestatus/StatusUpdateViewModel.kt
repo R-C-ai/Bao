@@ -1,89 +1,45 @@
-package com.hsiaoling.bao.addservice
+package com.hsiaoling.bao.servicestatus
 
 
+import android.graphics.Rect
 import android.util.Log
+import android.view.View
 import androidx.databinding.InverseMethod
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.RecyclerView
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
+import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
+import com.hsiaoling.bao.util.Logger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Salesman
+import com.hsiaoling.bao.data.source.remote.BaoRemoteDataSource.getDateResult
+import com.hsiaoling.bao.login.SalesmanManager.salesman
 
-class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
-
-
-    //DeviceChosen spinner
-    val selectedDevicePosition = MutableLiveData<Int>()
-    val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
-        service.value!!.device = DeviceChosen.values()[it].toString()
-        Log.i("Hsiao", "service.value!!.device =$it")
-        DeviceChosen.values()[it]
-    }
-
-    //ScreenChosen spinner
-    val selectedScreenPosition = MutableLiveData<Int>()
-    val screenChosen: LiveData<ScreenChosen> = Transformations.map(selectedScreenPosition) {
-        // put livedata to service
-        service.value!!.service0 = ScreenChosen.values()[it].toString()
-        ScreenChosen.values()[it]
-    }
-    val screenPrice:LiveData<Int> = Transformations.map(selectedScreenPosition){
-        when(it) {
-            0 -> 1200
-            1 -> 800
-            2 -> 600
-            3 -> 600
-            4 -> 400
-            5 -> 0
-            else -> 0
-        }
-    }
-
-    //BackChosen spinner
-    val selectedBackPosition = MutableLiveData<Int>()
-    val backChosen: LiveData<BackChosen> = Transformations.map(selectedBackPosition) {
-        service.value!!.service1 = BackChosen.values()[it].toString()
-        BackChosen.values()[it]
-    }
-    val backPrice: LiveData<Int> = Transformations.map(selectedBackPosition){
-        when(it){
-            0 ->1650
-            1 ->1450
-            2 ->1250
-            3 ->1050
-            4 ->850
-            5 -> 0
-            else -> 0
-        }
-    }
-
-
-    val totalPrice = MediatorLiveData<Int>().apply {
-        addSource(screenPrice){
-            it?.let {value = it + (backPrice.value?:0) }
-        }
-        addSource(backPrice){
-            it?.let { value = it + (screenPrice.value?:0) }
-        }
-    }
+class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
 
-    // Get Input Service  LiveData
+    // Get Input Update Service Status  LiveData
     private val _service = MutableLiveData<Service>()
     val service: LiveData<Service>
         get() = _service as LiveData<Service>
 
-    // put selscted schedule data into service
-    fun setService(service: Service) {
+    // put selscted status card data into service
+    fun updateStatus(service: Service) {
         _service.value = service
+
+        Log.i("Hsiao"," StatusUpdateViewModel_service=${_service}")
     }
 
     // put loginsalesman data into service
@@ -95,11 +51,6 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
         _service.value = _service.value
     }
 
-    // get uodate Service
-    private val _oneService = MutableLiveData<Service>()
-    val oneService: LiveData<Service>
-        get() = _service as LiveData<Service>
-
 
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
@@ -109,16 +60,18 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    // get uodate Service
+    private val _oneService = MutableLiveData<Service>()
+    val oneService: LiveData<Service>
+        get() = _service as LiveData<Service>
+
+
     private val _refreshStatus = MutableLiveData<Boolean>()
 
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
 
-    // Handle when addservice is successful
-//    private val _addSuccess = MutableLiveData<CheckoutOrderResult>()
-//
-//    val checkoutSuccess: LiveData<CheckoutOrderResult>
-//        get() = _checkoutSuccess
+
 
 
     private val _navigateToAddSuccess = MutableLiveData<Service>()
@@ -152,17 +105,17 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
 
-    fun update(service: Service) {
+    fun updateStatus(service: Service,serviceAction: ServiceAction) {
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING
             Log.i("HsiaoLingUpdate", " _status.value=${service}")
-            when (val result = repository.updateService(service)) {
+            when (val result = repository.updateStatus(service,serviceAction)) {
 
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
                     refresh()
-                    Log.i("HsiaoLingUpdate", "refreshData=${result.data}")
+                    Log.i("Hsiao", "refreshData=${result.data}")
                     _navigateToAddSuccess.value = service
                 }
 
@@ -190,13 +143,14 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
                 service.value!!.date,
                 service.value!!.masterId,
                 service.value!!.serviceId
+
             )
-//       getDateResult(service.value!!.date,service.value!!.masterId)
+
         }
     }
 
 
-    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
+    fun getOneServiceResult(date:String,masterId:String,serviceId:String) {
 
         coroutineScope.launch {
 
@@ -230,74 +184,71 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
         }
     }
 
-
-    fun click() {
-        if (service.value != null) {
-//        insertServiceToMaster(service.value!!)
-            update(service.value!!)
-            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
-
+    fun selectDone(){
+        if(service.value!=null){
+            service.value!!.status = 4
+            updateStatus(service.value!!,serviceAction = ServiceAction.DONE)
+            Log.i("HsiaoLingStatus", "selectDone=${service.value}")
         }
+
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-fun onAddedSuccessNavigated() {
-            _navigateToAddSuccess.value = null
-        }
-
-        fun onAddedFailNavigated() {
-            _navigateToAddedFail.value = null
-        }
-
-        @InverseMethod("convertLongToString")
-        fun convertStringToLong(value: String): Long {
-            return try {
-                value.toLong().let {
-                    when (it) {
-                        0L -> 1
-                        else -> it
-                    }
-                }
-            } catch (e: NumberFormatException) {
-                1
-            }
-        }
-
-        fun convertLongToString(value: Long): String {
-            return value.toString()
-        }
-
-
-        fun leave() {
-            _leave.value = true
-        }
-
-        fun onLeft() {
-            _leave.value = null
-        }
-
-
-
-//    fun onRefreshed() {
-//        _refresh.value = null
+//    fun click() {
+//        if (service.value != null) {
+//            update(service.value!!)
+//            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
+//
+//        }
 //    }
 
-        fun onLeaveCompleted() {
-            _leave.value = null
-        }
 
-        fun nothing() {}
-
+    fun onAddedSuccessNavigated() {
+        _navigateToAddSuccess.value = null
     }
 
+    fun onAddedFailNavigated() {
+        _navigateToAddedFail.value = null
+    }
+
+    @InverseMethod("convertLongToString")
+    fun convertStringToLong(value: String): Long {
+        return try {
+            value.toLong().let {
+                when (it) {
+                    0L -> 1
+                    else -> it
+                }
+            }
+        } catch (e: NumberFormatException) {
+            1
+        }
+    }
+
+    fun convertLongToString(value: Long): String {
+        return value.toString()
+    }
+
+
+    fun leave() {
+        _leave.value = true
+    }
+
+    fun onLeft() {
+        _leave.value = null
+    }
+
+
+
+    fun onRefreshed() {
+        _refreshStatus.value = null
+    }
+
+    fun onLeaveCompleted() {
+        _leave.value = null
+    }
+
+    fun nothing() {}
+
+}

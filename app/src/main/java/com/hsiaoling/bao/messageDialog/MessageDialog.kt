@@ -54,6 +54,17 @@ class MessageDialog : AppCompatDialogFragment() {
                 iconRes = BaoApplication.instance.getDrawable(R.drawable.ic_success)
                 message = getString(R.string.addto_success)
             }
+
+            MessageType.DONE_SUCCESS -> {
+                iconRes = BaoApplication.instance.getDrawable(R.drawable.ic_success)
+                message = getString(R.string.done_success)
+            }
+
+            MessageType.DELETE_SUCCESS -> {
+                iconRes = BaoApplication.instance.getDrawable(R.drawable.ic_success)
+                message = getString(R.string.delete_success)
+            }
+
             MessageType.MESSAGE -> {
                 iconRes = BaoApplication.instance.getDrawable(R.drawable.ic_launcher_foreground)
                 message = messageType.value.message
@@ -68,6 +79,10 @@ class MessageDialog : AppCompatDialogFragment() {
         LOGIN_SUCCESS(Message()),
         LOGIN_FAIL(Message()),
         ADDED_SUCCESS(Message()),
+        DONE_SUCCESS(Message()),
+        DELETE_SUCCESS(Message()),
+        DONE_FAIL(Message()),
+
         MESSAGE(Message())
     }
 

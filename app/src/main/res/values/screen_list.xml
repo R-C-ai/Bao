@@ -6,5 +6,6 @@
         <item>@string/一般_玻璃保貼</item>
         <item>@string/PET_曲面保貼</item>
         <item>@string/PET_保貼</item>
+        <item>@string/無保貼</item>
     </string-array>
 </resources>

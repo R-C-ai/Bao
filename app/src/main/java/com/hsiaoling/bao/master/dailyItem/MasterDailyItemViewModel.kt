@@ -35,9 +35,9 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
     val error: LiveData<String>
         get() = _error
 
-    private val _refreshStatus = MutableLiveData<Boolean>()
-    val refreshStatus: LiveData<Boolean>
-        get() = _refreshStatus
+//    private val _refreshStatus = MutableLiveData<Boolean>()
+//    val refreshStatus: LiveData<Boolean>
+//        get() = _refreshStatus
 
 
     private val _navigateToAddBao = MutableLiveData<Service>()
@@ -64,6 +64,8 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
 
 
+
+
     fun getLiveDateServices(date: String,masterId:String) {
         _schedules =
             repository.getLiveDateServices(date, masterId) as MutableLiveData<List<Service>>
@@ -74,9 +76,11 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
     fun newDailyServices (date: String, masterId: String,masterName:String) {
 
-        for (i in 0..2) {
+        for (i in 0..7) {
             val service = Service(storeId,"松菸文創店","","",masterId,masterName,"",date,
-                i,"","","","",0,0,"可預約","",-1,-1,Master("",""))
+                i,"","","","",0,0,"可預約",
+                "",0,0,0,0,0,Master("",""))
+
             Log.i("HsiaoLing","addNewService=$service")
             addNewDayToMaster(service)
         }

@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-        name="service"        type="com.hsiaoling.bao.data.Service" />
 
+        <variable        name="service"        type="com.hsiaoling.bao.data.Service" />
+    <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="10sp"
+                android:textSize="12sp"
+                android:textStyle="bold"
                 app:timeToDisplayFormat="@{service.reserveTime}"
                 app:layout_constraintStart_toStartOf="@id/texttitle_reserve_time"
                 app:layout_constraintTop_toBottomOf="@id/texttitle_reserve_time"
@@ -113,12 +114,13 @@
                 android:id="@+id/text_done_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text=""
-                android:textSize="10sp"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintEnd_toStartOf="@+id/view_done_separation"
-                app:layout_constraintStart_toStartOf="@id/texttitle_done_time"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="32dp"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:updateTime="@{service.updateTime}"
+                app:status="@{service.status}"
+                app:layout_constraintStart_toEndOf="@+id/textView_side"
                 app:layout_constraintTop_toBottomOf="@id/texttitle_done_time"
                 tools:text="2020.02.20 02.50" />
 
@@ -157,7 +159,7 @@
                 android:layout_width="60dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp"
+                android:layout_marginEnd="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 

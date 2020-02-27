@@ -9,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.hsiaoling.bao.NavigationDirections
 
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.Service
@@ -24,7 +26,7 @@ class ServiceStatusFragment : Fragment() {
 
 
     private val viewModel by viewModels<ServiceStatusViewModel> { getVmFactory() }
-//    private var service: Service? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,37 +36,34 @@ class ServiceStatusFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-//        val serviseStatusItemAdapter =ServiceStatusItemAdapter(
-//            ServiceStatusItemAdapter.OnClickListener{
-//            }
-//        )
-//        binding.recyclerStatusItem.adapter = serviseStatusItemAdapter
+        //get exist status Service
 
-        viewModel.getLiveStatus()
-        Log.i("Hsiao","getLiveStatus=${viewModel.liveStatuses.value}")
         viewModel.liveStatuses.observe(this, Observer {
-            Log.i("Hsiao","liveStatuses.observe=${viewModel.liveStatuses.value}")
-
-            Log.i("HsiaoLing","liveStatuses.observe = $it")
-
-            val serviseStatusItemAdapter =ServiceStatusItemAdapter(
+                      Log.i("HsiaoLing","liveStatuses.observe = $it")
+            Log.i("Hsiao","getLiveStatus=${viewModel.liveStatuses.value}")
+            // show by recyclerview
+            val serviceStatusItemAdapter =ServiceStatusItemAdapter(
                 ServiceStatusItemAdapter.OnClickListener{
+                    viewModel.navgateToUpdateStatus(it)
+
                 }
             )
-            binding.recyclerStatusItem.adapter = serviseStatusItemAdapter
-            serviseStatusItemAdapter.submitList(it)
+            binding.recyclerStatusItem.adapter = serviceStatusItemAdapter
+            serviceStatusItemAdapter.submitList(it)
         })
 
-//        service?.let {
-//            viewModel.setNewstatus(it)
-//            SalesmanManager.salesman?.let {
-//                viewModel.setSalesmanForNewStatus(it)
-//            }
-//            Log.i("HsiaoLingSalesmanManager","SalesmanManager.salesman = $it")
-//        }
-
+        // get login salesman by Salesmaneger
         binding.salesman = SalesmanManager.salesman
 
+        viewModel.navgateToUpdateStatus.observe(this, Observer {
+            it?.let{
+                findNavController().navigate(NavigationDirections.actionGlobalStatusUpdateDialog(it))
+                viewModel.onUpdateStatusNavigated()
+
+            }
+        })
+
+        viewModel.getLiveStatus()
         return binding.root
     }
 
