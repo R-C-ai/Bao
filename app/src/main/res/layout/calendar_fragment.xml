@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.hsiaoling.bao.addservice.CalendarViewModel" />
+        <import type="com.hsiaoling.bao.network.LoadApiStatus"/>
 
     </data>
 
@@ -26,6 +27,7 @@
             android:endYear="2025"
             android:firstDayOfWeek="1"
             android:startYear="2020"
+            android:clickable="@{viewModel.getDayStatus == LoadApiStatus.LOADING ? false : true}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

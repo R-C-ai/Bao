@@ -41,38 +41,28 @@ class CalendarFragment : Fragment() {
 
         Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
 
+        // get the calendar
         binding.calendarView?.setOnDateChangeListener { view, year, month, dayOfMonth ->
             //  val msg = "Selected date is " + dayOfMonth + "/" + (month + 1) + "/" + year
             //  Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
 
-            // get date
+            // get date on click  the calendar day
             val selectedDate: String = "" + year + "-" + (month + 1) + "-" + dayOfMonth
+            // put the click day into selectedDate
             viewModel.selectedDate(selectedDate)
 
             Log.i("SelectedDate", "selectedDay=${selectedDate}")
         }
 
-
-
-
-//        val masters = mutableListOf<Master>()
-//        val masterA = Master("9527", "Jimmy")
-//        val masterB = Master("9528", "Jerry")
-//        val masterC = Master("9529", "Angela")
-//        masters.add(masterA)
-//        masters.add(masterB)
-//        masters.add(masterC)
-
-        //  observe  masters in CalenderViewModel getMasterResult , start Master viewpager  with masterResult
-
-
+            // get today  when navigate to calendarFragment without click
         val today =viewModel.currentday.time.toTodayFormat()
+            //put today into selectedDate
         viewModel.selectedDate((today))
 
 
 
 
-
+        //  observe  masters in CalenderViewModel getMasterResult , start Master viewpager  with masterResult
         viewModel.masters.observe(this, Observer {
             Log.i("HsiaoLing","viewModel.masters.observe, it=$it")
             it?.let { masters ->
@@ -90,3 +80,13 @@ class CalendarFragment : Fragment() {
 }
 
 
+
+
+
+//        val masters = mutableListOf<Master>()
+//        val masterA = Master("9527", "Jimmy")
+//        val masterB = Master("9528", "Jerry")
+//        val masterC = Master("9529", "Angela")
+//        masters.add(masterA)
+//        masters.add(masterB)
+//        masters.add(masterC)

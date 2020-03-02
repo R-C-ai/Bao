@@ -20,7 +20,7 @@
             android:id="@+id/layout_add_bao"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_dialog_corner"
+            android:background="@drawable/bg_addbao_card"
             android:onClick="@{() -> viewModel.nothing()}"
             app:layout_constraintBottom_toTopOf="@id/layout_add_bottom"
             app:layout_constraintEnd_toEndOf="parent"

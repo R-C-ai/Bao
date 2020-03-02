@@ -69,7 +69,7 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
             }
         })
 
-        viewModel.navigateToAddFail.observe(this, Observer {
+        viewModel.navigateToAddedFail.observe(this, Observer {
             it?.let {
                 findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
                     MessageDialog.MessageType.MESSAGE.apply { value.message = getString(R.string.bao_finished) }
@@ -80,10 +80,16 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
 
 
 
+//        viewModel.leave.observe(this, Observer {
+//            it?.let {
+//                dismiss()
+//                viewModel.onLeaveCompleted()
+//            }
+//        })
+
         viewModel.leave.observe(this, Observer {
             it?.let {
-                dismiss()
-                viewModel.onLeaveCompleted()
+                if (it) findNavController().popBackStack()
             }
         })
 

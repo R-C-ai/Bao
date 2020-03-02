@@ -38,18 +38,43 @@ class ServiceStatusFragment : Fragment() {
 
         //get exist status Service
 
+        val serviceStatusItemAdapter =ServiceStatusItemAdapter(
+            ServiceStatusItemAdapter.OnClickListener{
+                viewModel.navgateToUpdateStatus(it)
+            }
+        )
+
+        binding.recyclerStatusItem.adapter = serviceStatusItemAdapter
+
         viewModel.liveStatuses.observe(this, Observer {
-                      Log.i("HsiaoLing","liveStatuses.observe = $it")
             Log.i("Hsiao","getLiveStatus=${viewModel.liveStatuses.value}")
             // show by recyclerview
-            val serviceStatusItemAdapter =ServiceStatusItemAdapter(
-                ServiceStatusItemAdapter.OnClickListener{
-                    viewModel.navgateToUpdateStatus(it)
+            serviceStatusItemAdapter.submitList(it)
+        })
+
+
+        // when click search buttom, show search data
+        viewModel.filterStatus.observe(this, Observer {
+            it?.let {
+                when (it) {
+                    0 -> { // all
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value)
+                    }
+                    1 -> { //reserve
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 1 } ?: listOf())
+                    }
+                    2 -> { //doing
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 2 } ?: listOf())
+                    }
+                    3 -> { //finish
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 3 } ?: listOf())
+                    }
+                    4 -> { //delete
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 4 } ?: listOf())
+                    }
 
                 }
-            )
-            binding.recyclerStatusItem.adapter = serviceStatusItemAdapter
-            serviceStatusItemAdapter.submitList(it)
+            }
         })
 
         // get login salesman by Salesmaneger

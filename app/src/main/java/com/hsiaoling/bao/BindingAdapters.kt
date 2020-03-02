@@ -145,7 +145,7 @@ fun status(textView: TextView,status:Int){
             textView.text = BaoApplication.instance.getString(R.string.status3)
         }
         status == 4 -> {
-            textView.text = BaoApplication.instance.getString(R.string.status3)
+            textView.text = BaoApplication.instance.getString(R.string.status4)
         }
 
     }
@@ -166,6 +166,50 @@ fun statusBackground(imageView: ImageView, status: Int) {
         }
         status == 3 -> {
             imageView.setImageResource(R.drawable.bg_status3)
+        }
+        status == 4 -> {
+            imageView.setImageResource(R.drawable.bg_status4)
+        }
+
+    }
+}
+
+@BindingAdapter("statusPage")
+fun statusPage(textView: TextView,status:Int){
+
+    when {
+
+        status == 1 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page1)
+        }
+        status == 2 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page2)
+        }
+        status == 3 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page3)
+        }
+        status == 4 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page4)
+        }
+
+    }
+}
+
+@BindingAdapter("statusImage")
+fun statusImage(imageView: ImageView, status: Int) {
+
+    when {
+        status == 1 -> {
+            imageView.setImageResource(R.drawable.waitforservice)
+        }
+        status == 2 -> {
+            imageView.setImageResource(R.drawable.go1)
+        }
+        status == 3 -> {
+            imageView.setImageResource(R.drawable.doneforservice)
+        }
+        status == 4 -> {
+            imageView.setImageResource(R.drawable.delete3)
         }
 
     }

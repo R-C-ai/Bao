@@ -102,13 +102,17 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
         repository.getLiveStatus(SalesmanManager.salesman!!.id) {
             liveStatuses.value = it
         }
-
 //        liveStatuses =
 //            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
 //        Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
     }
 
+    // filter the status livedata  type to print different info
+    val filterStatus = MutableLiveData<Int>()
 
+   fun filterList(type: Int) {
+       filterStatus.value = type
+   }
 
 
     fun refresh() {

@@ -79,10 +79,19 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         get() = _navigateToAddSuccess
 
     private val _navigateToAddedFail = MutableLiveData<Service>()
-    val navigateToAddFail: LiveData<Service>
+    val navigateToAddedFail: LiveData<Service>
         get() = _navigateToAddedFail
 
+    private val _navigateToDeleteSuccess = MutableLiveData<Service>()
+    val navigateToDeleteSuccess: LiveData<Service>
+        get() = _navigateToDeleteSuccess
 
+    private val _navigateToDeletedFail = MutableLiveData<Service>()
+    val navigateToDeletedFail: LiveData<Service>
+        get() = _navigateToDeletedFail
+
+
+    // Handle leave
     private val _leave = MutableLiveData<Boolean>()
     val leave: LiveData<Boolean>
         get() = _leave
@@ -116,6 +125,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
                     _status.value = LoadApiStatus.DONE
                     refresh()
                     Log.i("Hsiao", "refreshData=${result.data}")
+
                     _navigateToAddSuccess.value = service
                 }
 
@@ -184,15 +194,23 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         }
     }
 
-    fun selectDone(){
+    fun selectFinish(){
         if(service.value!=null){
-            service.value!!.status = 4
-            updateStatus(service.value!!,serviceAction = ServiceAction.DONE)
-            Log.i("HsiaoLingStatus", "selectDone=${service.value}")
+            service.value!!.status = 3
+            updateStatus(service.value!!,serviceAction = ServiceAction.FINISH)
+            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
         }
 
     }
 
+    fun selectDelete(){
+        if(service.value!=null){
+            service.value!!.status = 4
+            updateStatus(service.value!!,serviceAction = ServiceAction.DELETE)
+            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+        }
+
+    }
 
 
 //    fun click() {
@@ -235,6 +253,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         _leave.value = true
     }
 
+
     fun onLeft() {
         _leave.value = null
     }
@@ -244,6 +263,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     fun onRefreshed() {
         _refreshStatus.value = null
     }
+
 
     fun onLeaveCompleted() {
         _leave.value = null

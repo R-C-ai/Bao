@@ -49,6 +49,7 @@ class AddBaoDialog : AppCompatDialogFragment() {
 
         Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
 
+        // get service from selected schedule
         service = requireArguments().getParcelable<Service>("givenservice")
 
         service?.let {
@@ -72,11 +73,11 @@ class AddBaoDialog : AppCompatDialogFragment() {
         })
 
 
-        //Service0 Spinner Adapter
+        //Service0 Screen Spinner Adapter
         binding.textService0.adapter=SpinnerAdapter(
             BaoApplication.instance.resources.getStringArray(R.array.service0_list)
         )
-
+        //
         viewModel.selectedScreenPosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedService0Position.observe, it=$it")
         })
@@ -85,7 +86,7 @@ class AddBaoDialog : AppCompatDialogFragment() {
         })
 
 
-        //Service1 Spinner Adapter
+        //Service1 Back Spinner Adapter
         binding.textService1.adapter=SpinnerAdapter(
             BaoApplication.instance.resources.getStringArray(R.array.service1_list)
         )

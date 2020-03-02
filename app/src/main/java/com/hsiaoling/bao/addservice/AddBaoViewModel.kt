@@ -21,19 +21,24 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
 
     //DeviceChosen spinner
     val selectedDevicePosition = MutableLiveData<Int>()
+    // change livedata by Transformation.map to selectedvalue
     val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
+        //put the selected data to service
         service.value!!.device = DeviceChosen.values()[it].toString()
         Log.i("Hsiao", "service.value!!.device =$it")
+        // get the DeviceChosen value  by the corresponding position
         DeviceChosen.values()[it]
     }
 
     //ScreenChosen spinner
     val selectedScreenPosition = MutableLiveData<Int>()
+    // get the screenChosen value by the selected position livedata
     val screenChosen: LiveData<ScreenChosen> = Transformations.map(selectedScreenPosition) {
         // put livedata to service
         service.value!!.service0 = ScreenChosen.values()[it].toString()
         ScreenChosen.values()[it]
     }
+    // get the screenPricevalue by the selected position livedata
     val screenPrice:LiveData<Int> = Transformations.map(selectedScreenPosition){
         when(it) {
             0 -> 1200
@@ -65,6 +70,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
 
+    // get two livedata be added by MediatorLiveData
     val totalPrice = MediatorLiveData<Int>().apply {
         addSource(screenPrice){
             it?.let {value = it + (backPrice.value?:0) }

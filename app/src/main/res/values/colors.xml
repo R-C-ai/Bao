@@ -12,15 +12,40 @@
     <color name="brightBlue">#0336ff</color>
     <color name="dark2Blue">#1A237E</color>
 
+
+    <color name="levelBlue0">#000066</color>
+    <color name="levelBlue1">#003865</color>
+    <color name="levelBlue2">#00629b</color>
+    <color name="levelBlue3">#00a6d6</color>
+
+
     <color name="royalBlue">#4169E1</color>
     <color name="loginBlue">#2196F3</color>
     <color name="eventColor">#553fa9eb</color>
     <color name="lightCyan_b2ebf2">#b2ebf2</color>
     <color name="eventColorSelected">#aab2c99a</color>
-    <color name="golden">#ffd300</color>
+    <color name="golden">#f9aa33</color>
     <color name="downyellow">#ffd300</color>
 
+    <color name="darkgreen">#558b2f</color>
     <color name="cardgreen">#09af00</color>
+
+<!--    status-->
+    <color name="s1green">#acc236</color>
+    <color name="s1purple">#537bc4</color>
+    <color name="s1red">#f53794</color>
+    <color name="s1orange">#f67019</color>
+    <color name="s1blue">#4dc9f6</color>
+
+<!--    RAINBOW-->
+    <color name="s2green">#13a538</color>
+    <color name="s2blue1">#009ee3</color>
+    <color name="s2purple">#954a97</color>
+    <color name="s2red1">#e50064</color>
+    <color name="s2red2">#e3001f</color>
+    <color name="s2orange">#f39100</color>
+    <color name="s2yellow">#fec600</color>
+    <color name="s2blue2">#0863b5</color>
 
 <!--    statusbackground-->
     <color name="statusgold">#827717</color>
@@ -28,9 +53,6 @@
     <color name="statusgreen">#41c300</color>
     <color name="statusred">#c70061</color>
     <color name="status1red">#ee0290</color>
-
-
-
 
 
     <!-- Bottom Navigation -->
@@ -43,14 +65,14 @@
     <color name="lightGray_f5f5f5">#f5f5f5</color>
 
     <color name="transparent">#00000000</color>
-    <color name="translucent">#80000000</color>
+    <color name="translucent_70">#30000000</color>
     <color name="translucent_40">#66000000</color>
     <color name="translucent_80">#cc000000</color>
 
-    <color name="transparentblue">#80D8FF</color>
-    <color name="translucentblue">#40C4FF</color>
-    <color name="translucentblue40">#00B0FF</color>
-    <color name="translucentblue80">#0091EA</color>
+    <color name="levelblue1">#80D8FF</color>
+    <color name="levelblue2">#40C4FF</color>
+    <color name="leveblue3">#00B0FF</color>
+    <color name="levelblue4">#0091EA</color>
 
 
     <!-- Black Series -->
@@ -73,6 +95,19 @@
     <!-- Blue Series -->
     <color name="blue_facebook">#3b5998</color>
 
+    <!-- Blue late Series -->
+    <color name="lateblue1">#484848</color>
+    <color name="lateblue2">#002561</color>
+    <color name="lateblue3">#2f6f7e</color>
+
+
+
+
+
+
+
+
+
     <!-- Voyage Respect Series -->
     <color name="purple_voyage">#7830b8</color>
     <color name="blue_voyage">#33a4cc</color>
@@ -81,6 +116,18 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccentBright">#FF4081</color>
+
+
+    <!--Oliver -->
+    <color name="colorOlivergreen">#436f8e</color>
+    <color name="colorOlivergoldgreen">#887d59</color>
+    <color name="colorOlivergray">#8f9696</color>
+
+
+
+
+
+
 
 
 </resources>

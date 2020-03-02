@@ -34,7 +34,9 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
         _date.value = date
     }
 
-
+    private val _getDayStatus = MutableLiveData<LoadApiStatus>()
+    val getDayStatus:LiveData<LoadApiStatus>
+    get()=_getDayStatus
 
     private val _schedules = MutableLiveData<List<Service>>()
     val schedules: LiveData<List<Service>>

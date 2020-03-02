@@ -31,6 +31,12 @@
     <string name="status3">包膜完成囉</string>
     <string name="status4">已取消</string>
 
+    <!--StatusPage-->
+    <string name="status_page1">待包膜</string>
+    <string name="status_page2">進行中</string>
+    <string name="status_page3">完成囉</string>
+    <string name="status_page4">已取消</string>
+
     <string name="time0">12:00 - 01:00</string>
     <string name="time1">01:00 - 02:00</string>
     <string name="time2">02:00 - 03:00</string>
@@ -44,9 +50,8 @@
     <string name="login_success">成功登入囉</string>
     <string name="addto_success">預約成功囉</string>
     <string name="bao_finished">包膜完成囉</string>
-    <string name="done_success">確認完成囉</string>
+    <string name="done_success">確認囉</string>
     <string name="delete_success">確認取消</string>
-已
 
 
 
