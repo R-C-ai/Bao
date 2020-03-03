@@ -14,11 +14,19 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override suspend fun getLoginSalesmansResult(salesId: String): Result<Salesman> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override suspend fun getMastersResult(): Result<List<Master>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override suspend fun addNewDayToMaster(service: Service): Result<Boolean> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

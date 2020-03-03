@@ -10,12 +10,14 @@ import com.hsiaoling.bao.servicestatus.ServiceAction
 interface BaoRepository {
 
     suspend fun getSalesmansResult():Result<List<Salesman>>
+    suspend fun getLoginSalesmansResult(salesId:String):Result<Salesman?>
     suspend fun getMastersResult(): Result<List<Master>>
     suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service>
 
 
     suspend fun getServicesInMaster(): Result<List<Service>>
     suspend fun addNewDayToMaster(service: Service):Result<Boolean>
+    suspend fun addNewSalesman(salesman: Salesman):Result<Salesman>
     suspend fun getDateResult(date: String,masterId:String): Result<List<Service>>
     fun getLiveDateServices(date: String,masterId: String):LiveData<List<Service>>
     fun getLiveStatus(salesmanId:String, completeHandler:(List<Service>) -> Unit)

@@ -11,9 +11,13 @@ interface BaoDataSource {
 
     suspend fun  getSalesmansResult():Result<List<Salesman>>
 
+    suspend fun getLoginSalesmansResult(salesId:String):Result<Salesman?>
+
     suspend fun getMastersResult():Result<List<Master>>
 
     suspend fun addNewDayToMaster(service: Service):Result<Boolean>
+
+    suspend fun addNewSalesman(salesman: Salesman):Result<Salesman>
 
     suspend fun getServicesInMaster():Result<List<Service>>
 

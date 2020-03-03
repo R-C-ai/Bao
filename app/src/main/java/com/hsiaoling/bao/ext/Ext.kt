@@ -14,7 +14,7 @@ fun Long.toDisplayFormat(): String {
 }
 
 fun Long.toTodayFormat():String {
-    return SimpleDateFormat ("yyyy.MM.dd",Locale.TAIWAN).format(this)
+    return SimpleDateFormat ("yyyy-M-d",Locale.TAIWAN).format(this)
 }
 
 fun View.setTouchDelegate() {

@@ -78,18 +78,40 @@ class MasterDailyItemFragment(private val master:Master):Fragment() {
             Log.i("HsiaoLing","getDate=${date}")
             Log.i("HsiaoLing","masters=${master}")
 
-            viewModel.getLiveDateServices(date, master.id)
-                Log.i("GetLiveData","getLiveDateServices=${viewModel.schedules.value}")
-            viewModel.schedules.observe(this, Observer {
-                Log.i("GetLiveData","schedules.observe=${viewModel.schedules.value}")
-                it?.let {
-                    if (it.size == 0) {
-                        viewModel.newDailyServices(date, master.id,master.name)
+            val today = parentViewModel.today
+            if ( date < today) {
+                viewModel.getLiveDateServices(date,master.id)
+                viewModel.schedules.observe(this, Observer {
+                    masterDailyItemAdapter.submitList(it)
+                })
+            }
+
+            else{
+                viewModel.getLiveDateServices(date,master.id)
+                viewModel.schedules.observe(this, Observer {
+                    it?.let{
+                        if(it.size == 0){
+                            viewModel.newDailyServices(date,master.id,master.name)
+                        }
                     }
-                }
-                Log.i("HsiaoLing","getLiveDateServices = $it")
-                masterDailyItemAdapter.submitList(it)
-            })
+                    masterDailyItemAdapter.submitList(it)
+                })
+
+            }
+
+//            viewModel.getLiveDateServices(date, master.id)
+//                Log.i("GetLiveData","getLiveDateServices=${viewModel.schedules.value}")
+//            viewModel.schedules.observe(this, Observer {
+//                Log.i("GetLiveData","schedules.observe=${viewModel.schedules.value}")
+//
+//                it?.let {
+//                    if (it.size == 0) {
+//                        viewModel.newDailyServices(date, master.id,master.name)
+//                    }
+//                }
+//                Log.i("HsiaoLing","getLiveDateServices = $it")
+//                masterDailyItemAdapter.submitList(it)
+//            })
         })
 
 

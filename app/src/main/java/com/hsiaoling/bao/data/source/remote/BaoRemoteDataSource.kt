@@ -62,6 +62,73 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
+    // get all login salesman data
+    override suspend fun getLoginSalesmansResult(salesId:String): Result<Salesman?> = suspendCoroutine { continuation->
+        Log.i("Hsiao","getLoginSalesmansResult, salesId=$salesId")
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SALESMAN)
+            .whereEqualTo("id", salesId)
+            .get()
+            .addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                  val salesman = MutableLiveData<Salesman>()
+
+                    Log.i("Hsiao","task.result!!=${task.result!!}, task.result!!.size=${task.result!!.size()}")
+                    if (task.result!!.size() == 0) {
+
+                        continuation.resume(Result.Success(null))
+                    } else {
+
+                        for (document in task.result!!){
+
+                            val salesman = document.toObject(Salesman::class.java)
+                            Log.i("Hsiao","isSuccessGetSalesman=$salesman")
+                            continuation.resume(Result.Success(salesman))
+                            break
+                        }
+                    }
+
+                } else if (task.exception != null) {
+                    task.exception?.let {
+                        Log.i("Hsiao","exception")
+                        continuation.resume(Result.Error(it))
+                    }
+                } else {
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+
+            }
+    }
+
+
+    // if there is no service in a new day , creat reservations for the day
+    override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> = suspendCoroutine { continuation ->
+        val salesman = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
+            PATH_SALESMAN).document()
+
+            .set(mapOf(
+                "id" to salesman.id,
+                "name" to salesman.name
+            ))
+
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("HsiaoAddNewSalesman: $salesman")
+
+                    continuation.resume(Result.Success(salesman))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                    }
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+    }
+
 
          // get all exist  Master Data
     override suspend fun getMastersResult(): Result<List<Master>> = suspendCoroutine { continuation->

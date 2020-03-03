@@ -17,6 +17,14 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
        return baoRemoteDataSource.addNewDayToMaster(service)
     }
 
+    override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> {
+        return baoRemoteDataSource.addNewSalesman(salesman)
+    }
+
+    override suspend fun getLoginSalesmansResult(salesId: String): Result<Salesman?> {
+        return baoRemoteDataSource.getLoginSalesmansResult(salesId)
+    }
+
     override suspend fun getSalesmansResult():Result<List<Salesman>>{
         return baoRemoteDataSource.getSalesmansResult()
     }

@@ -49,13 +49,6 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
         get() =  _navigateToSalesAmountByBottomNav
 
 
-    // Handle navigation to home by bottom nav directly which includes icon change
-//    private val _navigateToHomeByBottomNav = MutableLiveData<Boolean>()
-//
-//    val navigateToHomeByBottomNav: LiveData<Boolean>
-//        get() = _navigateToHomeByBottomNav
-
-
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -96,13 +89,9 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 
     }
 
-//    fun checkSalesman() {
-//        if (loginSalesman.value == null) {
-//            SalesmanManager.salesmanToken?.let {
-//                getSalesmanProfile(it)
-//            }
-//        }
-//    }
+
+
+
 
     fun navigateToLoginSuccess(salesman: Salesman) {
         _navigateToLoginSuccess.value = salesman
