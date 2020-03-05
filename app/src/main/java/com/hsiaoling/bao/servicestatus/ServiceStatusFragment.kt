@@ -37,14 +37,15 @@ class ServiceStatusFragment : Fragment() {
         binding.viewModel = viewModel
 
         //get exist status Service
-
         val serviceStatusItemAdapter =ServiceStatusItemAdapter(
             ServiceStatusItemAdapter.OnClickListener{
                 viewModel.navgateToUpdateStatus(it)
+
             }
         )
 
         binding.recyclerStatusItem.adapter = serviceStatusItemAdapter
+
 
         viewModel.liveStatuses.observe(this, Observer {
             Log.i("Hsiao","getLiveStatus=${viewModel.liveStatuses.value}")
@@ -87,6 +88,19 @@ class ServiceStatusFragment : Fragment() {
 
             }
         })
+
+        viewModel.navgateToInfoStatus.observe(this, Observer {
+            it?.let{
+                findNavController().navigate(NavigationDirections.actionGlobalStatusInfoDialog(it))
+                viewModel.onInfoStatusNavigated()
+
+            }
+        })
+
+
+
+
+
 
         viewModel.getLiveStatus()
         return binding.root

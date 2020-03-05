@@ -10,7 +10,7 @@ import com.hsiaoling.bao.servicestatus.ServiceAction
 interface BaoRepository {
 
     suspend fun getSalesmansResult():Result<List<Salesman>>
-    suspend fun getLoginSalesmansResult(salesId:String):Result<Salesman?>
+    suspend fun getLoginSalesmansResult(salesId:String,salesName:String):Result<Salesman?>
     suspend fun getMastersResult(): Result<List<Master>>
     suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service>
 

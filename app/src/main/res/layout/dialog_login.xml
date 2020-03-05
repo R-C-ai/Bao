@@ -37,16 +37,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/baolog0" />
 
+
             <View
                 android:id="@+id/view_login_separation"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="24dp"
                 android:background="@color/gray_cccccc"
-                app:layout_constraintBottom_toTopOf="@+id/button_login_salesman"
-                app:layout_constraintEnd_toEndOf="@+id/button_login_salesman"
-                app:layout_constraintStart_toStartOf="@+id/button_login_salesman" />
-
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView_store"
@@ -69,53 +69,37 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView_store"
                 app:layout_constraintTop_toTopOf="@+id/imageView_store" />
 
+            <!--            <Button-->
+<!--                android:id="@+id/button_login_salesman"-->
+<!--                style="@style/SalesmanLoginButton"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:clickable="true"-->
+<!--                android:fontFamily="@font/noto_sans"-->
+<!--                android:gravity="center"-->
+<!--                android:letterSpacing="0.15"-->
+<!--                android:onClick="@{() -> viewModel.navigateToCalendar(viewModel.selectedSalesman)}"-->
+<!--                android:text="@string/login_twm_text"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:textColor="@color/white_FFFFFF"-->
+<!--                android:textSize="15sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="1.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                tools:text="@string/login_twm_text" />-->
+
             <ImageView
                 android:id="@+id/imageView_salesman"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="32dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView_store"
-                app:layout_constraintStart_toEndOf="@+id/text_store"
-                app:layout_constraintTop_toTopOf="@+id/imageView_store"
+                app:layout_constraintEnd_toStartOf="@+id/button_google_login"
                 app:srcCompat="@drawable/salesman2" />
-
-            <Spinner
-                android:id="@+id/text_salesman"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:prompt="@string/select_salesman"
-                android:selectedItemPosition="@={viewModel.selectedSalesmanPosition}"
-                android:spinnerMode="dialog"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView_store"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@+id/imageView_salesman"
-                app:layout_constraintTop_toTopOf="@+id/imageView_store"
-                tools:text="選擇門市業務人員" />
-
-            <Button
-                android:id="@+id/button_login_salesman"
-                style="@style/SalesmanLoginButton"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:clickable="true"
-                android:fontFamily="@font/noto_sans"
-                android:gravity="center"
-                android:letterSpacing="0.15"
-                android:onClick="@{() -> viewModel.navigateToCalendar(viewModel.selectedSalesman)}"
-                android:text="@string/login_twm_text"
-                android:textAllCaps="false"
-                android:textColor="@color/white_FFFFFF"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="@string/login_twm_text" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -130,13 +114,17 @@
 
             <Button
                 android:id="@+id/button_google_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="248dp"
-                android:layout_marginTop="396dp"
-                android:text="Google Login"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                style="@style/SalesmanLoginButton"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+
+                android:layout_marginEnd="16dp"
+                android:text="門市人員登入"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView_salesman"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView_salesman" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

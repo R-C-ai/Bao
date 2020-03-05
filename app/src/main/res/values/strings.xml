@@ -37,6 +37,11 @@
     <string name="status_page3">完成囉</string>
     <string name="status_page4">已取消</string>
 
+    <string name="status_info2">火力全開 趕工中 !!</string>
+    <string name="status_info3">包膜完成囉</string>
+    <string name="status_info4">已經取消囉</string>
+
+
     <string name="time0">12:00 - 01:00</string>
     <string name="time1">01:00 - 02:00</string>
     <string name="time2">02:00 - 03:00</string>
@@ -52,6 +57,8 @@
     <string name="bao_finished">包膜完成囉</string>
     <string name="done_success">確認囉</string>
     <string name="delete_success">確認取消</string>
+    <string name="add_reject">不可異動其他人員的服務</string>
+    <string name="no_service">不可預約服務喔</string>
 
 
 

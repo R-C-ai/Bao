@@ -35,7 +35,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     // get the screenChosen value by the selected position livedata
     val screenChosen: LiveData<ScreenChosen> = Transformations.map(selectedScreenPosition) {
         // put livedata to service
-        service.value!!.service0 = ScreenChosen.values()[it].toString()
+        service.value!!.screen = ScreenChosen.values()[it].toString()
         ScreenChosen.values()[it]
     }
     // get the screenPricevalue by the selected position livedata
@@ -54,7 +54,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     //BackChosen spinner
     val selectedBackPosition = MutableLiveData<Int>()
     val backChosen: LiveData<BackChosen> = Transformations.map(selectedBackPosition) {
-        service.value!!.service1 = BackChosen.values()[it].toString()
+        service.value!!.back = BackChosen.values()[it].toString()
         BackChosen.values()[it]
     }
     val backPrice: LiveData<Int> = Transformations.map(selectedBackPosition){

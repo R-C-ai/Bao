@@ -53,7 +53,7 @@ fun updateTime(textView: TextView, time: Long?,status:Int) {
     Log.i("Hsiao", "doneTime, time=$time")
 
     when {
-        status == 1 ->    textView.visibility = View.INVISIBLE
+        status == 1 ->    textView.visibility = View.GONE
         else ->            textView.visibility = View.VISIBLE
     }
     time?.let {
@@ -215,33 +215,37 @@ fun statusImage(imageView: ImageView, status: Int) {
     }
 }
 
+@BindingAdapter("statusInfoImage")
+fun statusInfoImage(imageView: ImageView, status: Int) {
 
-//@BindingAdapter("editorControllerStatus")
-//fun bindEditorControllerStatus(imageButton: ImageButton, enabled: Boolean) {
-//
-//    imageButton.apply {
-//        foreground = ShapeDrawable(object : Shape() {
-//            override fun draw(canvas: Canvas, paint: Paint) {
-//
-//                paint.color = Color.BLACK
-//                paint.style = Paint.Style.STROKE
-//                paint.strokeWidth = BaoApplication.instance.resources
-//                    .getDimensionPixelSize(R.dimen.edge_add2cart_select).toFloat()
-//                canvas.drawRect(0f, 0f, this.width, this.height, paint)
-//            }
-//        })
-//        isClickable = enabled
-//        backgroundTintList = ColorStateList.valueOf(
-//            getColor(
-//                when (enabled) {
-//                    true -> R.color.black_3f3a3a
-//                    false -> R.color.gray_999999
-//                }))
-//        foregroundTintList = ColorStateList.valueOf(
-//            getColor(
-//                when (enabled) {
-//                    true -> R.color.black_3f3a3a
-//                    false -> R.color.gray_999999
-//                }))
-//    }
-//}
+    when {
+        status == 2 -> {
+            imageView.setImageResource(R.drawable.process)
+        }
+        status == 3 -> {
+            imageView.setImageResource(R.drawable.ok0)
+        }
+        status == 4 -> {
+            imageView.setImageResource(R.drawable.nochange)
+        }
+
+    }
+}
+
+@BindingAdapter("statusInfoText")
+fun statusInfoText(textView: TextView,status:Int){
+
+    when {
+
+        status == 2 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info2)
+        }
+        status == 3 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info3)
+        }
+        status == 4 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info4)
+        }
+
+    }
+}

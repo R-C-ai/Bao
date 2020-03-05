@@ -58,13 +58,14 @@
     <action
         android:id="@+id/action_global_messageDialog3"
         app:destination="@id/messageDialog" />
-    <fragment
+    <dialog
         android:id="@+id/loginDialog"
         android:name="com.hsiaoling.bao.login.LoginDialog"
         android:label="LoginDialog" />
     <action
         android:id="@+id/action_global_loginDialog"
         app:destination="@id/loginDialog" />
+
     <dialog
         android:id="@+id/statusUpdateDialog"
         android:name="com.hsiaoling.bao.servicestatus.StatusUpdateDialog"
@@ -76,4 +77,18 @@
     <action
         android:id="@+id/action_global_statusUpdateDialog"
         app:destination="@id/statusUpdateDialog" />
+    <dialog
+        android:id="@+id/statusInfoDialog"
+        android:name="com.hsiaoling.bao.servicestatus.StatusInfoDialog"
+        android:label="StatusInfoDialog" >
+        <argument
+            android:name="serviceInfo"
+            app:argType="com.hsiaoling.bao.data.Service" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_statusInfoDialog"
+        app:destination="@id/statusInfoDialog" />
+    <action
+        android:id="@+id/action_global_statusInfoDialog2"
+        app:destination="@id/statusInfoDialog" />
 </navigation>

@@ -63,19 +63,20 @@ object BaoRemoteDataSource:BaoDataSource {
     }
 
     // get all login salesman data
-    override suspend fun getLoginSalesmansResult(salesId:String): Result<Salesman?> = suspendCoroutine { continuation->
-        Log.i("Hsiao","getLoginSalesmansResult, salesId=$salesId")
+    override suspend fun getLoginSalesmansResult(salesId:String,salesName:String): Result<Salesman?> = suspendCoroutine { continuation->
+        Log.i("Hsiao","getLoginSalesmansResult, salesId=$salesId,$salesName")
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SALESMAN)
             .whereEqualTo("id", salesId)
+            .whereEqualTo("name",salesName)
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
                   val salesman = MutableLiveData<Salesman>()
-
                     Log.i("Hsiao","task.result!!=${task.result!!}, task.result!!.size=${task.result!!.size()}")
+
                     if (task.result!!.size() == 0) {
 
                         continuation.resume(Result.Success(null))
@@ -103,7 +104,7 @@ object BaoRemoteDataSource:BaoDataSource {
     }
 
 
-    // if there is no service in a new day , creat reservations for the day
+    // add newSalesman for Loginman
     override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> = suspendCoroutine { continuation ->
         val salesman = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
             PATH_SALESMAN).document()
@@ -317,8 +318,8 @@ object BaoRemoteDataSource:BaoDataSource {
                 "salesmanId" to service.salesmanId,
                 "salesmanName" to service.salesmanName,
                 "device" to service.device,
-                "service0" to service.service0,
-                "service1" to service.service1,
+                "screen" to service.screen,
+                "back" to service.back,
                 "price" to service.price,
                 "reserveTime" to Calendar.getInstance().timeInMillis,
                 "updateTime" to Calendar.getInstance().timeInMillis

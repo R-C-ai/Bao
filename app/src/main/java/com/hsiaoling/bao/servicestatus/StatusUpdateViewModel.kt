@@ -29,7 +29,6 @@ import com.hsiaoling.bao.login.SalesmanManager.salesman
 class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
-
     // Get Input Update Service Status  LiveData
     private val _service = MutableLiveData<Service>()
     val service: LiveData<Service>
@@ -39,7 +38,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     fun updateStatus(service: Service) {
         _service.value = service
 
-        Log.i("Hsiao"," StatusUpdateViewModel_service=${_service}")
+        Log.i("Hsiao", " StatusUpdateViewModel_service=${_service}")
     }
 
     // put loginsalesman data into service
@@ -70,8 +69,6 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
 
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
-
-
 
 
     private val _navigateToAddSuccess = MutableLiveData<Service>()
@@ -114,11 +111,11 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     }
 
 
-    fun updateStatus(service: Service,serviceAction: ServiceAction) {
+    fun updateStatus(service: Service, serviceAction: ServiceAction) {
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING
             Log.i("HsiaoLingUpdate", " _status.value=${service}")
-            when (val result = repository.updateStatus(service,serviceAction)) {
+            when (val result = repository.updateStatus(service, serviceAction)) {
 
                 is Result.Success -> {
                     _error.value = null
@@ -160,7 +157,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     }
 
 
-    fun getOneServiceResult(date:String,masterId:String,serviceId:String) {
+    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
 
         coroutineScope.launch {
 
@@ -194,19 +191,19 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         }
     }
 
-    fun selectFinish(){
-        if(service.value!=null){
+    fun selectFinish() {
+        if (service.value != null) {
             service.value!!.status = 3
-            updateStatus(service.value!!,serviceAction = ServiceAction.FINISH)
+            updateStatus(service.value!!, serviceAction = ServiceAction.FINISH)
             Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
         }
 
     }
 
-    fun selectDelete(){
-        if(service.value!=null){
+    fun selectDelete() {
+        if (service.value != null) {
             service.value!!.status = 4
-            updateStatus(service.value!!,serviceAction = ServiceAction.DELETE)
+            updateStatus(service.value!!, serviceAction = ServiceAction.DELETE)
             Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
         }
 
@@ -259,7 +256,6 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     }
 
 
-
     fun onRefreshed() {
         _refreshStatus.value = null
     }
@@ -271,4 +267,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
 
     fun nothing() {}
 
+
+
 }
+

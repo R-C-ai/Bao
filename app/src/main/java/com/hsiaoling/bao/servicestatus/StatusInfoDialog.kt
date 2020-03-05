@@ -17,18 +17,18 @@ import com.hsiaoling.bao.NavigationDirections
 
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.Service
-import com.hsiaoling.bao.databinding.DialogStatusUpdateBinding
-
+import com.hsiaoling.bao.databinding.DialogServiceInfoDetailBinding
+import com.hsiaoling.bao.databinding.DialogServiceInfoDetailBindingImpl
 import com.hsiaoling.bao.ext.getVmFactory
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.messageDialog.MessageDialog
 import com.hsiaoling.bao.util.Logger
 
 
-class StatusUpdateDialog : AppCompatDialogFragment() {
+class StatusInfoDialog : AppCompatDialogFragment() {
 
-    private val viewModel by viewModels<StatusUpdateViewModel> { getVmFactory() }
-    private lateinit var binding:DialogStatusUpdateBinding
+    private val viewModel by viewModels<StatusInfoViewModel> { getVmFactory() }
+    private lateinit var binding:DialogServiceInfoDetailBindingImpl
     private var service: Service? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,17 +41,20 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DialogStatusUpdateBinding.inflate(inflater, container, false)
-        binding.layoutStatusUpdate.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
+        val binding =DialogServiceInfoDetailBinding.inflate(inflater, container, false)
+        binding.layoutStatusInfo.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
         Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
 
-        service = requireArguments().getParcelable<Service>("serviceToUpdate")
+        service = requireArguments().getParcelable<Service>("serviceInfo")
 
         Log.i("Hsiao","requireArguments().getParcelable=${service}")
+
+
+
 
         service?.let {
             viewModel.updateStatus(it)
@@ -61,23 +64,6 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
         }
 
 
-        viewModel.navigateToAddSuccess.observe(this, Observer {
-            it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
-                    MessageDialog.MessageType.DONE_SUCCESS))
-                viewModel.onAddedSuccessNavigated()
-            }
-        })
-
-        viewModel.navigateToAddedFail.observe(this, Observer {
-            it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
-                    MessageDialog.MessageType.MESSAGE.apply { value.message = getString(R.string.bao_finished) }
-                ))
-                viewModel.onAddedFailNavigated()
-            }
-        })
-
 
 
         viewModel.leave.observe(this, Observer {
@@ -85,12 +71,6 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
                 if (it) findNavController().popBackStack()
             }
         })
-
-
-//        binding.textViewSalesman.text = service?.salesmanName
-//        binding.textViewMaster.text = service?.masterName
-//        binding.textViewCustomer.text = service?.customerNo
-
 
         return binding.root
 

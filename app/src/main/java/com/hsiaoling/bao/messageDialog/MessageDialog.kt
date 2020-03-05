@@ -69,6 +69,17 @@ class MessageDialog : AppCompatDialogFragment() {
                 iconRes = BaoApplication.instance.getDrawable(R.drawable.ic_launcher_foreground)
                 message = messageType.value.message
             }
+
+            MessageType.ADD_REJECT -> {
+                iconRes = BaoApplication.instance.getDrawable(R.drawable.close0)
+                message = getString(R.string.add_reject)
+            }
+
+            MessageType.NO_SERVICE -> {
+                iconRes = BaoApplication.instance.getDrawable(R.drawable.close0)
+                message = getString(R.string.no_service)
+            }
+
             else -> {
 
             }
@@ -82,7 +93,8 @@ class MessageDialog : AppCompatDialogFragment() {
         DONE_SUCCESS(Message()),
         DELETE_SUCCESS(Message()),
         DONE_FAIL(Message()),
-
+        ADD_REJECT(Message()),
+        NO_SERVICE(Message()),
         MESSAGE(Message())
     }
 

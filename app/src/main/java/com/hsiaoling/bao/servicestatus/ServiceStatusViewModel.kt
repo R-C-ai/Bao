@@ -76,6 +76,18 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     val navgateToUpdateStatus:LiveData<Service>
         get() = _navigateToUpdateStatus
 
+    private val _navigateToInfoStatus = MutableLiveData<Service>()
+    val navgateToInfoStatus:LiveData<Service>
+        get() = _navigateToInfoStatus
+
+
+    // Handle leave
+    private val _leave = MutableLiveData<Boolean>()
+    val leave: LiveData<Boolean>
+        get() = _leave
+
+
+
     private val _refresh = MutableLiveData<Boolean>()
     val refresh: LiveData<Boolean>
         get() = _refresh
@@ -125,15 +137,31 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
 
     fun navgateToUpdateStatus(service: Service){
-        _navigateToUpdateStatus.value =service
+        when(service.status){
+            1 -> _navigateToUpdateStatus.value =service
+            else -> navgateToInfoStatus(service)
+
+        }
+
+
     }
+
+    fun navgateToInfoStatus(service: Service){
+        _navigateToInfoStatus.value = service
+    }
+
+
 
     fun onUpdateStatusNavigated(){
         _navigateToUpdateStatus.value = null
     }
 
+    fun onInfoStatusNavigated(){
+       _navigateToInfoStatus.value = null
+    }
 
 
-
-
+    fun leave() {
+        _leave.value = true
+    }
 }

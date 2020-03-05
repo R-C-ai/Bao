@@ -4,17 +4,24 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import com.hsiaoling.bao.BaoApplication
+import com.hsiaoling.bao.NavigationDirections
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.data.source.BaoRepository
+import com.hsiaoling.bao.login.SalesmanManager
+import com.hsiaoling.bao.messageDialog.MessageDialog
 import com.hsiaoling.bao.network.LoadApiStatus
+import com.hsiaoling.bao.util.Util.getString
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import androidx.navigation.fragment.findNavController
 
 class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel(){
 
@@ -43,6 +50,18 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
     private val _navigateToAddBao = MutableLiveData<Service>()
     val navgateToAddBao:LiveData<Service>
     get() = _navigateToAddBao
+
+    private val _navigateToInfoStatus = MutableLiveData<Service>()
+    val navgateToInfoStatus:LiveData<Service>
+        get() = _navigateToInfoStatus
+
+
+    private val _navigateToAddReject = MutableLiveData<Boolean>()
+    val navigateToAddReject: LiveData<Boolean>
+        get() = _navigateToAddReject
+
+
+
 
     private val _refresh = MutableLiveData<Boolean>()
     val refresh: LiveData<Boolean>
@@ -127,96 +146,55 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
     }
 
 
+//    fun navgateToAddBao(service: Service){
+//        when(service.salesmanId) {
+//            SalesmanManager.salesman!!.id ->_navigateToAddBao.value =service
+//            ""->_navigateToAddBao.value =service
+//
+//            else -> navigateToAddReject()
+//        }
+//
+//    }
+
     fun navgateToAddBao(service: Service){
-        _navigateToAddBao.value =service
+        when(service.salesmanId) {
+            SalesmanManager.salesman!!.id ->
+                when(service.status){
+                    1 ->  _navigateToAddBao.value =service
+                    else -> navgateToInfoStatus(service)
+                }
+
+            ""->_navigateToAddBao.value =service
+
+            else -> navigateToAddReject()
+        }
+
     }
+
+
+    fun navigateToAddReject(){
+
+        _navigateToAddReject.value = true
+    }
+
 
     fun onAddJobNavigated(){
         _navigateToAddBao.value = null
     }
 
+    fun onAddedRejectNavigated() {
+        _navigateToAddReject.value = null
+    }
+
+    fun navgateToInfoStatus(service: Service){
+        _navigateToInfoStatus.value = service
+    }
 
 
+    fun onInfoStatusNavigated(){
+        _navigateToInfoStatus.value = null
+    }
 
-
-//    fun getLiveDateServices(date: String,masterId:String){
-//        coroutineScope.launch{
-//            _status.value = LoadApiStatus.LOADING
-//            val result = repository.getLiveDateServices(date,masterId)
-//            _schedules.value = when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//
-//                    Log.i("HsiaoLing", "GetExistData=${result.data}")
-//
-//                    if(result.data.size == 0){
-//                        newDailyServices(date,masterId)
-//                        Log.i("HsiaoLing", "AddNewData=${result.data}")
-//
-//                    }
-//                    result.data
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
-
-
-
-
-//    fun getDateResult(date: String,masterId:String){
-//        coroutineScope.launch{
-//            _status.value = LoadApiStatus.LOADING
-//            val result = repository.getDateResult(date,masterId)
-//            _schedules.value = when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//
-//                    Log.i("HsiaoLing", "GetExistData=${result.data}")
-//
-//                    if(result.data.size == 0){
-//                        newDailyServices(date,masterId)
-//                        Log.i("HsiaoLing", "AddNewData=${result.data}")
-//
-//                    }
-//                    result.data
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
 
 
 

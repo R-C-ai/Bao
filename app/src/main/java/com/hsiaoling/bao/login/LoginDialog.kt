@@ -87,28 +87,33 @@ class LoginDialog : AppCompatDialogFragment() {
         }
 
 
-
+        // set Salesman is LoginSales
         val mainViewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
-        viewModel.selectedSalesman.observe(this, Observer {
+
+        viewModel.loginSalesman.observe(this, Observer {
             mainViewModel.setupSalesman(it)
         })
 
 
-        viewModel.selectedSalesman.observe(this, Observer {
-            viewModel.addNewSalesman(it)
-            Log.i("Hsiao","viewModel.addNewSalesman=$it")
+//        viewModel.selectedSalesman.observe(this, Observer {
+//            mainViewModel.setupSalesman(it)
+//        })
 
-        })
+
+//        viewModel.selectedSalesman.observe(this, Observer {
+//            viewModel.addNewSalesman(it)
+//            Log.i("Hsiao","viewModel.addNewSalesman=$it")
+//
+//        })
 
         //Salesman Spinner Adapter
-        viewModel.salemans.observe(this, Observer {
-            it?. let{
-                binding.textSalesman.adapter= SalesmanSpinnerAdapter(it)
-
-                viewModel.selectedSalesmanPosition.observe(this, Observer {
-                    Log.i("Hsiao","viewModel.selectedSalesmanPosition.observe, it=$it")
-                })
-
+//        viewModel.salemans.observe(this, Observer {
+//            it?. let{
+//                binding.textSalesman.adapter= SalesmanSpinnerAdapter(it)
+//
+//                viewModel.selectedSalesmanPosition.observe(this, Observer {
+//                    Log.i("Hsiao","viewModel.selectedSalesmanPosition.observe, it=$it")
+//                })
 
                 // another way to get firebase salesman data link with spinner
 //                ---------------------------------------------------------------------------------------------------------------------
@@ -119,27 +124,12 @@ class LoginDialog : AppCompatDialogFragment() {
 //                        Log.d("Hsiao","onItemSelected, position=$position, id=$id, binding.textSalesman.adapter.getItem(position)=${binding.textSalesman.adapter.getItem(position) as Salesman}")
 //                    }
 //                }
-            }
-        })
-
-        viewModel.selectedSalesman.observe(this, Observer {
-            Log.i("Hsiao","viewModel.selectedSalesman.observe, it=$it")
-        })
-
-
-//        viewModel.navigateToCalendar.observe(this, Observer {
-//            it?.let {
-//
-//                // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
-//                SalesmanManager.salesman = viewModel.selectedSalesman.value
-//
-//                findNavController().navigate(
-//                    NavigationDirections.actionGlobalCalendarFragment())
-//                Log.i("Hsiao"," viewModel.navigateToCalendar.observe, it=$it")
-//
 //            }
 //        })
 
+//        viewModel.selectedSalesman.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.selectedSalesman.observe, it=$it")
+//        })
 
 //        viewModel.navigateToLoginSuccess.observe(this, Observer {
 //            it?.let {
@@ -155,36 +145,29 @@ class LoginDialog : AppCompatDialogFragment() {
             }
         })
 
-//        viewModel.loginTWM.observe(this, Observer {
+
+//        viewModel.navigateToCalendar.observe(this, Observer {
 //            it?.let {
-//                LoginManager.getInstance().logInWithReadPermissions(this, listOf("email"))
-//                viewModel.onLoginFacebookCompleted()
+//
+//                // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
+//                // SalesmanManager.salesman = viewModel.selectedSalesman.value
+//
+//                findNavController().navigate(
+//                    NavigationDirections.actionGlobalCalendarFragment())
+//                Log.i("Hsiao"," viewModel.navigateToCalendar.observe, it=$it")
+//
 //            }
 //        })
 
-        viewModel.navigateToCalendar.observe(this, Observer {
-            it?.let {
-
-                // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
-                // SalesmanManager.salesman = viewModel.selectedSalesman.value
-
-                findNavController().navigate(
-                    NavigationDirections.actionGlobalCalendarFragment())
-                Log.i("Hsiao"," viewModel.navigateToCalendar.observe, it=$it")
-
-            }
-        })
-
+        // login success navigate to calendar with loginSalesman
         viewModel.loginSalesman.observe(this, Observer {
             Log.i("Hsiao"," viewModel.loginSalesman.observe, it=$it")
             it?.let {
 
                 // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
                 SalesmanManager.salesman = it
-
                 findNavController().navigate(
                     NavigationDirections.actionGlobalCalendarFragment())
-
             }
         })
 
@@ -195,15 +178,11 @@ class LoginDialog : AppCompatDialogFragment() {
         binding.layoutLogin.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_slide_down))
         Handler().postDelayed({ super.dismiss() }, 200)
     }
-//
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        viewModel.fbCallbackManager.onActivityResult(requestCode, resultCode, data)
-//    }
 
+
+    // get LoginResult
      override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
@@ -212,7 +191,7 @@ class LoginDialog : AppCompatDialogFragment() {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account!!)
             } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
+                // Google Sign In failed
                 Log.w("Hsiao", "Google sign in failed", e)
 
             }
@@ -227,57 +206,23 @@ class LoginDialog : AppCompatDialogFragment() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
 
-                    // Sign in success, update UI with the signed-in user's information
+                    // Sign in success
                     Log.d("Hsiao", "signInWithCredential:success")
                     val user = auth.currentUser
                     Log.d("Hsiao", "auth.currentUser="+auth.currentUser)
 
-//--------------------------------------------------------------------------------------------------------
-//                    加特定店點有salesman , saleman id = user的uid 串聯 google 登入帳號與APP salesman
-//                    if no create a new salesman in this stores
-//
+                    // check loginSalesman in store
                    val loginSalesmanId:String = user!!.uid
-                   viewModel.getLoginSalesman(loginSalesmanId)
+                   val loginSalesmanName:String = user!!.displayName!!
+                    viewModel.getLoginSalesman(loginSalesmanId,loginSalesmanName)
 
-
-
-//                    if (viewModel.getLoginSalesman(loginSalesmanId) == null){
-//                        SalesmanManager.salesman = Salesman(user!!.uid, user!!.displayName!!)
-//                        Log.d("Hsiao", "SalesmanManager.salesman ="+Salesman(user!!.uid, user!!.displayName!!))
-//                        val newSalesman = SalesmanManager.salesman
-//                        viewModel.addNewSalesman(newSalesman!!)
-//                    }else{
-//                        let {
-//                            SalesmanManager.salesman = viewModel.getLoginSalesman(loginSalesmanId)
-//                        }
-//
-//                    }
-
-
-
-//                    updateUI(user)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("Hsiao", "signInWithCredential:failure", task.exception)
-//                    Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
-//                    updateUI(null)
+
                 }
 
             }
     }
-
-
-
-
-
-    private fun checkSalesman(){
-
-    }
-
-
-
-
-
-
 
 }

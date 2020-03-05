@@ -32,7 +32,7 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     val salemans: LiveData<List<Salesman>>
         get() = _salesmans
 
-    // Get Firebase salesman  Data
+    // Get Firebase salesman  Data, if no this salesman create in this store
     private var _loginSalesman = MutableLiveData<Salesman>()
     val loginSalesman: LiveData<Salesman>
         get() = _loginSalesman
@@ -56,16 +56,16 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
     // Handle navigation to login success
-    private val _navigateToLoginSuccess = MutableLiveData<Salesman>()
-
-    val navigateToLoginSuccess: LiveData<Salesman>
-        get() = _navigateToLoginSuccess
+//    private val _navigateToLoginSuccess = MutableLiveData<Salesman>()
+//
+//    val navigateToLoginSuccess: LiveData<Salesman>
+//        get() = _navigateToLoginSuccess
 
     // Handle leave login
-    private val _loginTWM = MutableLiveData<Boolean>()
-
-    val loginTWM: LiveData<Boolean>
-        get() = _loginTWM
+//    private val _loginTWM = MutableLiveData<Boolean>()
+//
+//    val loginTWM: LiveData<Boolean>
+//        get() = _loginTWM
 
     // Handle leave login
     private val _leave = MutableLiveData<Boolean>()
@@ -148,10 +148,11 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
 
-    fun getLoginSalesman(uId:String) {
+    // get Firestore salesman data  by loginsalesman uid ,displayname
+    fun getLoginSalesman(uId:String,displayname:String) {
         coroutineScope.launch{
             _status.value = LoadApiStatus.LOADING
-            val result = repository.getLoginSalesmansResult(uId)
+            val result = repository.getLoginSalesmansResult(uId,displayname)
             _loginSalesman.value = when (result) {
                 is Result.Success -> {
                     _error.value = null
@@ -159,9 +160,10 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
                     Log.i("HsiaoLing","salesmans=${result.data}")
 
+                    // if no this salesman create this salesman
                     if (result.data == null) {
                         Log.i("HsiaoLing","ready to add")
-                        val salesman = Salesman(uId,"")
+                        val salesman = Salesman(uId,displayname)
                         addNewSalesman(salesman)
                     }
                     result.data
@@ -186,6 +188,7 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
         }
     }
 
+    // add newSalesman for lodinMan
     fun addNewSalesman(salesman: Salesman) {
         Log.i("HsiaoLing","addNewSalesman")
         coroutineScope.launch {

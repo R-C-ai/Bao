@@ -11,7 +11,7 @@ interface BaoDataSource {
 
     suspend fun  getSalesmansResult():Result<List<Salesman>>
 
-    suspend fun getLoginSalesmansResult(salesId:String):Result<Salesman?>
+    suspend fun getLoginSalesmansResult(salesId:String,salesName:String):Result<Salesman?>
 
     suspend fun getMastersResult():Result<List<Master>>
 

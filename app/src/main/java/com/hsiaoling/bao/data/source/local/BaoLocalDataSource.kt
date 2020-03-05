@@ -14,7 +14,7 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun getLoginSalesmansResult(salesId: String): Result<Salesman> {
+    override suspend fun getLoginSalesmansResult(salesId:String,salesName:String): Result<Salesman> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
