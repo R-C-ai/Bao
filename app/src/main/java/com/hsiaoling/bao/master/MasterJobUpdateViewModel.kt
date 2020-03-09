@@ -1,4 +1,4 @@
-package com.hsiaoling.bao.servicestatus
+package com.hsiaoling.bao.master
 
 
 import android.graphics.Rect
@@ -22,8 +22,10 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.hsiaoling.bao.data.source.remote.BaoRemoteDataSource.getDateResult
 import com.hsiaoling.bao.login.SalesmanManager.salesman
+import com.hsiaoling.bao.login.UserManager
+import com.hsiaoling.bao.servicestatus.ServiceAction
 
-class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel() {
+class MasterJobUpdateViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
     // Get Input Update Service Status  LiveData
@@ -32,20 +34,20 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         get() = _service as LiveData<Service>
 
     // put selscted status card data into service
-    fun updateStatus(service: Service) {
+    fun updateMasterJob(service: Service) {
         _service.value = service
 
         Log.i("Hsiao", " StatusUpdateViewModel_service=${_service}")
     }
 
     // put loginsalesman data into service
-    fun setSalesmanForService(user: User) {
-        _service.value?.let {
-            it.salesmanId = user.id
-            it.salesmanName = user.name
+    fun setMsaterForJob(user: User) {
+            _service.value?.let {
+                it.masterId = user.id
+                it.masterName = user.name
+            }
+            _service.value = _service.value
         }
-        _service.value = _service.value
-    }
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -147,9 +149,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
                 service.value!!.date,
                 service.value!!.masterId,
                 service.value!!.serviceId
-
             )
-
         }
     }
 
@@ -188,22 +188,20 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         }
     }
 
-    fun selectFinish() {
+    fun selectGetJob() {
         if (service.value != null) {
-            service.value!!.status = 4
-            updateStatus(service.value!!, serviceAction = ServiceAction.FINISH_CHECK)
+            service.value!!.status = 2
+            updateStatus(service.value!!, serviceAction = ServiceAction.GETJOB)
             Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
         }
-
     }
 
-    fun selectDelete() {
+    fun selectDone() {
         if (service.value != null) {
-            service.value!!.status = 5
-            updateStatus(service.value!!, serviceAction = ServiceAction.DELETE)
+            service.value!!.status = 3
+            updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
             Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
         }
-
     }
 
 

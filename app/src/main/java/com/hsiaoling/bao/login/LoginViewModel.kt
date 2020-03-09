@@ -7,10 +7,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
-import com.hsiaoling.bao.data.Result
-import com.hsiaoling.bao.data.Salesman
-import com.hsiaoling.bao.data.Service
-import com.hsiaoling.bao.data.Store
+import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
@@ -28,13 +25,13 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     val mockStore = Store("4d7yMjfPO5lw66u8sHnt", "松菸文創店")
 
     // Get Firebase salesman  Data
-    private val _salesmans = MutableLiveData<List<Salesman>>()
-    val salemans: LiveData<List<Salesman>>
+    private val _salesmans = MutableLiveData<List<User>>()
+    val salemans: LiveData<List<User>>
         get() = _salesmans
 
     // Get Firebase salesman  Data, if no this salesman create in this store
-    private var _loginSalesman = MutableLiveData<Salesman>()
-    val loginSalesman: LiveData<Salesman>
+    private var _loginSalesman = MutableLiveData<User>()
+    val loginSalesman: LiveData<User>
         get() = _loginSalesman
 
 
@@ -45,12 +42,12 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
     //SalesmanChosen spinner
     val selectedSalesmanPosition = MutableLiveData<Int>()
-    val selectedSalesman: LiveData<Salesman> = Transformations.map(selectedSalesmanPosition) {
+    val selectedSalesman: LiveData<User> = Transformations.map(selectedSalesmanPosition) {
         salemans.value!![it]
     }
 
-    private val _navigateToCalendar = MutableLiveData<Salesman>()
-    val navigateToCalendar : LiveData<Salesman>
+    private val _navigateToCalendar = MutableLiveData<User>()
+    val navigateToCalendar : LiveData<User>
         get() = _navigateToCalendar
 
 
@@ -149,7 +146,8 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
     // get Firestore salesman data  by loginsalesman uid ,displayname
-    fun getLoginSalesman(uId:String,displayname:String) {
+    fun getLoginSalesman(uId: String, displayname: String) {
+        Log.i("HsiaoLing","getLoginSalesman()")
         coroutineScope.launch{
             _status.value = LoadApiStatus.LOADING
             val result = repository.getLoginSalesmansResult(uId,displayname)
@@ -158,14 +156,15 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
 
-                    Log.i("HsiaoLing","salesmans=${result.data}")
 
                     // if no this salesman create this salesman
                     if (result.data == null) {
-                        Log.i("HsiaoLing","ready to add")
-                        val salesman = Salesman(uId,displayname)
+                        Log.d("HsiaoLing","result.data == null")
+                        val salesman = User(uId,displayname,"salesman")
                         addNewSalesman(salesman)
                     }
+
+                    Log.i("HsiaoLing","result.data=${result.data}")
                     result.data
                 }
                 is Result.Fail -> {
@@ -189,13 +188,13 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
     // add newSalesman for lodinMan
-    fun addNewSalesman(salesman: Salesman) {
+    fun addNewSalesman(user: User) {
         Log.i("HsiaoLing","addNewSalesman")
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            _loginSalesman.value = when (val result = repository.addNewSalesman(salesman))
+            _loginSalesman.value = when (val result = repository.addNewSalesman(user))
 
             {
                 is Result.Success -> {
@@ -239,8 +238,8 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 //        }
 //    }
 
-    fun navigateToCalendar(salesman: Salesman) {
-        _navigateToCalendar.value = salesman
+    fun navigateToCalendar(user: User) {
+        _navigateToCalendar.value = user
     }
 
 

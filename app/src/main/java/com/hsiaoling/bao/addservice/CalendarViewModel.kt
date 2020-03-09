@@ -42,8 +42,8 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
     val schedules: LiveData<List<Service>>
         get() = _schedules
 
-    private val _masters = MutableLiveData<List<Master>>()
-    val masters: LiveData<List<Master>>
+    private val _masters = MutableLiveData<List<User>>()
+    val masters: LiveData<List<User>>
         get() = _masters
 
 

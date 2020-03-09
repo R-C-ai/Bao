@@ -8,13 +8,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
-import com.hsiaoling.bao.data.Master
+import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoDataSource
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import com.hsiaoling.bao.data.Result
-import com.hsiaoling.bao.data.Salesman
-import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.servicestatus.ServiceAction
 import com.hsiaoling.bao.util.Logger
 
@@ -25,8 +22,10 @@ object BaoRemoteDataSource:BaoDataSource {
     private const val PATH_SERVICE = "service"
     private const val PATH_MASTER = "master"
     private const val PATH_SALESMAN = "salesman"
+    private const val PATH_USER = "user"
     private const val KEY_DATE = "date"
     private const val PATH_SCHEDULESORT = "scheduleSort"
+    private const val KEY_TYPE = "type"
     private const val KEY_MASTERID = "masterId"
     private const val KEY_MASTER = "master"
     private const val KEY_SALESMANID = "salesmanId"
@@ -34,18 +33,147 @@ object BaoRemoteDataSource:BaoDataSource {
 
 
     // get all exist salesman data
-    override suspend fun getSalesmansResult(): Result<List<Salesman>> = suspendCoroutine { continuation->
+//    override suspend fun getSalesmansResult(): Result<List<Salesman>> = suspendCoroutine { continuation->
+//        FirebaseFirestore.getInstance()
+//            .collection("store")
+//            .document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_SALESMAN)
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if(task.isSuccessful){
+//                    val list = mutableListOf<Salesman>()
+//                    for (document in task.result!!){
+//
+//                        val salesman = document.toObject(Salesman::class.java)
+//                        Log.i("Hsiao","isSuccessGetSalesman=$list")
+//                        list.add(salesman)
+//                    }
+//                    continuation.resume(Result.Success(list))
+//                } else if (task.exception != null) {
+//                    task.exception?.let {
+//                        Log.i("Hsiao","exception")
+//                        continuation.resume(Result.Error(it))
+//                    }
+//                } else {
+//                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//
+//            }
+//    }
+
+    // get all login salesman data
+//    override suspend fun getLoginUsersResult(salesId:String,salesName:String): Result<Salesman?> = suspendCoroutine { continuation->
+//        Log.i("Hsiao","getLoginUsersResult, salesId=$salesId,$salesName")
+//        FirebaseFirestore.getInstance()
+//            .collection("store")
+//            .document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_SALESMAN)
+//            .whereEqualTo("id", salesId)
+//            .whereEqualTo("name",salesName)
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if(task.isSuccessful){
+//                  val salesman = MutableLiveData<Salesman>()
+//                    Log.i("Hsiao","task.result!!=${task.result!!}, task.result!!.size=${task.result!!.size()}")
+//
+//                    if (task.result!!.size() == 0) {
+//
+//                        continuation.resume(Result.Success(null))
+//                    } else {
+//
+//                        for (document in task.result!!){
+//
+//                            val salesman = document.toObject(Salesman::class.java)
+//                            Log.i("Hsiao","isSuccessGetSalesman=$salesman")
+//                            continuation.resume(Result.Success(salesman))
+//                            break
+//                        }
+//                    }
+//
+//                } else if (task.exception != null) {
+//                    task.exception?.let {
+//                        Log.i("Hsiao","exception")
+//                        continuation.resume(Result.Error(it))
+//                    }
+//                } else {
+//                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//
+//            }
+//    }
+
+
+    // add newSalesman for Loginman
+//    override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> = suspendCoroutine { continuation ->
+//        val salesman = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_SALESMAN).document()
+//
+//            .set(mapOf(
+//                "id" to salesman.id,
+//                "name" to salesman.name
+//            ))
+//
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    Logger.i("HsiaoAddNewSalesman: $salesman")
+//
+//                    continuation.resume(Result.Success(salesman))
+//                } else {
+//                    task.exception?.let {
+//
+//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+//                        continuation.resume(Result.Error(it))
+//                    }
+//                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//            }
+//    }
+
+    // get all exist  Master Data
+//    override suspend fun getMastersResult(): Result<List<Master>> = suspendCoroutine { continuation->
+//        FirebaseFirestore.getInstance()
+//            .collection("store")
+//            .document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_USER)
+//            .whereEqualTo(KEY_TYPE,"master")
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if(task.isSuccessful){
+//                    val list = mutableListOf<Master>()
+//                    for (document in task.result!!){
+//
+//                        val master = document.toObject(Master::class.java)
+//                        Log.i("HsiaoGetFirestoreMaster","isSuccessGetMaster=$list")
+//                        list.add(master)
+//                    }
+//                    continuation.resume(Result.Success(list))
+//                } else if (task.exception != null) {
+//                    task.exception?.let {
+//                        Log.i("master","exception")
+//                        continuation.resume(Result.Error(it))
+//                    }
+//                } else {
+//                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//
+//            }
+//    }
+
+
+    // get all exist salesman data
+    override suspend fun getSalesmansResult(): Result<List<User>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
-            .collection(PATH_SALESMAN)
+            .collection(PATH_USER)
+            .whereEqualTo(KEY_TYPE,"salesman")
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    val list = mutableListOf<Salesman>()
+                    val list = mutableListOf<User>()
                     for (document in task.result!!){
 
-                        val salesman = document.toObject(Salesman::class.java)
+                        val salesman = document.toObject(User::class.java)
                         Log.i("Hsiao","isSuccessGetSalesman=$list")
                         list.add(salesman)
                     }
@@ -62,19 +190,19 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
+
     // get all login salesman data
-    override suspend fun getLoginSalesmansResult(salesId:String,salesName:String): Result<Salesman?> = suspendCoroutine { continuation->
-        Log.i("Hsiao","getLoginSalesmansResult, salesId=$salesId,$salesName")
+    override suspend fun getLoginUsersResult(usersId:String, usersName:String): Result<User?> = suspendCoroutine { continuation->
+        Log.i("Hsiao","getLoginUsersResult, usersId=$usersId,$usersName")
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
-            .collection(PATH_SALESMAN)
-            .whereEqualTo("id", salesId)
-            .whereEqualTo("name",salesName)
+            .collection(PATH_USER)
+            .whereEqualTo("id", usersId)
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                  val salesman = MutableLiveData<Salesman>()
+                    val salesman = MutableLiveData<User>()
                     Log.i("Hsiao","task.result!!=${task.result!!}, task.result!!.size=${task.result!!.size()}")
 
                     if (task.result!!.size() == 0) {
@@ -84,7 +212,7 @@ object BaoRemoteDataSource:BaoDataSource {
 
                         for (document in task.result!!){
 
-                            val salesman = document.toObject(Salesman::class.java)
+                            val salesman = document.toObject(User::class.java)
                             Log.i("Hsiao","isSuccessGetSalesman=$salesman")
                             continuation.resume(Result.Success(salesman))
                             break
@@ -105,20 +233,21 @@ object BaoRemoteDataSource:BaoDataSource {
 
 
     // add newSalesman for Loginman
-    override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> = suspendCoroutine { continuation ->
-        val salesman = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
-            PATH_SALESMAN).document()
+    override suspend fun addNewSalesman(user: User): Result<User> = suspendCoroutine { continuation ->
+        val salesman = FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_USER).document()
 
             .set(mapOf(
-                "id" to salesman.id,
-                "name" to salesman.name
+                "id" to user.id,
+                "name" to user.name,
+                "type" to user.type
             ))
 
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Logger.i("HsiaoAddNewSalesman: $salesman")
+                    Logger.i("HsiaoAddNewSalesman: $user")
 
-                    continuation.resume(Result.Success(salesman))
+                    continuation.resume(Result.Success(user))
                 } else {
                     task.exception?.let {
 
@@ -131,19 +260,21 @@ object BaoRemoteDataSource:BaoDataSource {
     }
 
 
-         // get all exist  Master Data
-    override suspend fun getMastersResult(): Result<List<Master>> = suspendCoroutine { continuation->
+
+    // get all exist  Master Data
+    override suspend fun getMastersResult(): Result<List<User>> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
-            .collection(PATH_MASTER)
+            .collection(PATH_USER)
+            .whereEqualTo(KEY_TYPE,"master")
             .get()
             .addOnCompleteListener { task ->
                 if(task.isSuccessful){
-                    val list = mutableListOf<Master>()
+                    val list = mutableListOf<User>()
                     for (document in task.result!!){
 
-                        val master = document.toObject(Master::class.java)
+                        val master = document.toObject(User::class.java)
                         Log.i("HsiaoGetFirestoreMaster","isSuccessGetMaster=$list")
                         list.add(master)
                     }
@@ -218,7 +349,8 @@ object BaoRemoteDataSource:BaoDataSource {
         return liveData
     }
 
-    override fun getLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
+    // get salesman's  updated service which the statue >0,  intime by addSnapshotListener method2
+    override fun getSalesmanLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
         Logger.w("getLiveStatus $salesmanId")
 
         FirebaseFirestore.getInstance()
@@ -247,23 +379,19 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
-    // get updated service which the statue >0,  intime by addSnapshotListener
-    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
-        val liveData = MutableLiveData<List<Service>>()
-
-        Logger.w("getLiveStatus $salesmanId")
+    // get master's  updated service which the statue >0,  intime by addSnapshotListener method2
+    override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
+        Logger.w("getLiveStatus $masterId")
 
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICE)
-            .whereEqualTo(KEY_SALESMANID,salesmanId)
+            .whereEqualTo(KEY_MASTERID,masterId)
             .whereGreaterThan(KEY_STATUS,0)
             .orderBy(KEY_STATUS,Query.Direction.ASCENDING)
             .orderBy("updateTime",Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
-
-
                 Logger.i("addSnapshotListener detect")
                 exception?.let {
                     Logger.w("[] Error getting documents. ${it.message}")
@@ -275,13 +403,77 @@ object BaoRemoteDataSource:BaoDataSource {
                         val service = document.toObject(Service::class.java)
                         list.add(service)
                     }
-                    liveData.value = list
+                    completeHandler(list)
                     Logger.d( " liveData.value =============> $list")
-                    Log.i("Hsiao","liveData.value =============> $list")
                 }
             }
-        return liveData
     }
+
+//   get updated service which the statue >0,  intime by addSnapshotListener method2
+//    override fun getLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
+//        Logger.w("getLiveStatus $salesmanId")
+//
+//        FirebaseFirestore.getInstance()
+//            .collection("store")
+//            .document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_SERVICE)
+//            .whereEqualTo(KEY_SALESMANID,salesmanId)
+//            .whereGreaterThan(KEY_STATUS,0)
+//            .orderBy(KEY_STATUS,Query.Direction.ASCENDING)
+//            .orderBy("updateTime",Query.Direction.DESCENDING)
+//            .addSnapshotListener { snapshot, exception ->
+//                Logger.i("addSnapshotListener detect")
+//                exception?.let {
+//                    Logger.w("[] Error getting documents. ${it.message}")
+//                }
+//                val list = mutableListOf<Service>()
+//                snapshot?.let {
+//                    for (document in snapshot   !!) {
+//                        Logger.d(document.id + " =============> " + document.data)
+//                        val service = document.toObject(Service::class.java)
+//                        list.add(service)
+//                    }
+//                    completeHandler(list)
+//                    Logger.d( " liveData.value =============> $list")
+//                }
+//            }
+//    }
+
+    // get updated service which the statue >0,  intime by addSnapshotListener method1
+//    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
+//        val liveData = MutableLiveData<List<Service>>()
+//
+//        Logger.w("getLiveStatus $salesmanId")
+//
+//        FirebaseFirestore.getInstance()
+//            .collection("store")
+//            .document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_SERVICE)
+//            .whereEqualTo(KEY_SALESMANID,salesmanId)
+//            .whereGreaterThan(KEY_STATUS,0)
+//            .orderBy(KEY_STATUS,Query.Direction.ASCENDING)
+//            .orderBy("updateTime",Query.Direction.DESCENDING)
+//            .addSnapshotListener { snapshot, exception ->
+//
+//
+//                Logger.i("addSnapshotListener detect")
+//                exception?.let {
+//                    Logger.w("[] Error getting documents. ${it.message}")
+//                }
+//                val list = mutableListOf<Service>()
+//                snapshot?.let {
+//                    for (document in snapshot   !!) {
+//                        Logger.d(document.id + " =============> " + document.data)
+//                        val service = document.toObject(Service::class.java)
+//                        list.add(service)
+//                    }
+//                    liveData.value = list
+//                    Logger.d( " liveData.value =============> $list")
+//                    Log.i("Hsiao","liveData.value =============> $list")
+//                }
+//            }
+//        return liveData
+//    }
 
     // if there is no service in a new day , creat reservations for the day
     override suspend fun addNewDayToMaster(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
@@ -342,16 +534,59 @@ object BaoRemoteDataSource:BaoDataSource {
 
 
 
-    // change exist status from recerve to processing, done
+    // change exist status from recerve to delete, done by salesman
+//    override suspend fun updateStatusBySalesman(service: Service, action: ServiceAction): Result<Boolean> = suspendCoroutine { continuation ->
+//
+//        FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
+//            PATH_SERVICE).document(service.serviceId)
+//            .update(mapOf(
+//                "status" to action.value,
+//                "doneTime" to  Calendar.getInstance().timeInMillis,
+//                "updateTime" to Calendar.getInstance().timeInMillis
+//            ))
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    Logger.i("HsiaoaddOnCompleteListener: $service")
+//                    continuation.resume(Result.Success(true))
+//                } else {
+//                    task.exception?.let {
+//
+//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+//                        continuation.resume(Result.Error(it))
+//                    }
+//                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//            }
+//
+//    }
+
+    // change exist status to getJob,done by master
     override suspend fun updateStatus(service: Service, action: ServiceAction): Result<Boolean> = suspendCoroutine { continuation ->
+
+        var map: Map<String, Any>
+
+        when(action) {
+            ServiceAction.GETJOB -> map = mapOf(
+                "status" to action.value,
+                "getJobTime" to  Calendar.getInstance().timeInMillis,
+                "updateTime" to Calendar.getInstance().timeInMillis)
+            ServiceAction.DONE -> map = mapOf(
+                "status" to action.value,
+                "doneTime" to  Calendar.getInstance().timeInMillis,
+                "updateTime" to Calendar.getInstance().timeInMillis)
+            ServiceAction.FINISH_CHECK -> map = mapOf(
+                "status" to action.value,
+                "finishCheckTime" to  Calendar.getInstance().timeInMillis,
+                "updateTime" to Calendar.getInstance().timeInMillis)
+            ServiceAction.DELETE -> map = mapOf(
+                "status" to action.value,
+                "deleteTime" to  Calendar.getInstance().timeInMillis,
+                "updateTime" to Calendar.getInstance().timeInMillis)
+        }
 
         FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
             PATH_SERVICE).document(service.serviceId)
-            .update(mapOf(
-                "status" to action.value,
-                "doneTime" to  Calendar.getInstance().timeInMillis,
-                "updateTime" to Calendar.getInstance().timeInMillis
-            ))
+            .update(map)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Logger.i("HsiaoaddOnCompleteListener: $service")
@@ -367,6 +602,8 @@ object BaoRemoteDataSource:BaoDataSource {
             }
 
     }
+
+
 
 
     // get target serviceId exist servive updated data
@@ -431,6 +668,29 @@ object BaoRemoteDataSource:BaoDataSource {
 
             }
     }
+
+    // delete service
+    override suspend fun deleteService(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
+        FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
+            PATH_SERVICE).document(service.serviceId)
+            .delete()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("HsiaoaddOnCompleteListener: $service")
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                    }
+                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+                }
+            }
+
+    }
+
+
 
 
 

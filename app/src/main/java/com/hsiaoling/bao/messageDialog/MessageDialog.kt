@@ -70,6 +70,11 @@ class MessageDialog : AppCompatDialogFragment() {
                 message = messageType.value.message
             }
 
+            MessageType.MASTER_INFO -> {
+                iconRes = BaoApplication.instance.getDrawable(R.drawable.close0)
+                message = getString(R.string.master_info)
+            }
+
             MessageType.ADD_REJECT -> {
                 iconRes = BaoApplication.instance.getDrawable(R.drawable.close0)
                 message = getString(R.string.add_reject)
@@ -93,6 +98,7 @@ class MessageDialog : AppCompatDialogFragment() {
         DONE_SUCCESS(Message()),
         DELETE_SUCCESS(Message()),
         DONE_FAIL(Message()),
+        MASTER_INFO(Message()),
         ADD_REJECT(Message()),
         NO_SERVICE(Message()),
         MESSAGE(Message())

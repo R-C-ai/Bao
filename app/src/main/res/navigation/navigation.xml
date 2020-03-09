@@ -91,4 +91,15 @@
     <action
         android:id="@+id/action_global_statusInfoDialog2"
         app:destination="@id/statusInfoDialog" />
+    <dialog
+        android:id="@+id/masterJobUpdateDialog"
+        android:name="com.hsiaoling.bao.master.MasterJobUpdateDialog"
+        android:label="MasterJobUpdateDialog" >
+        <argument
+            android:name="serviceToUpdate"
+            app:argType="com.hsiaoling.bao.data.Service" />
+    </dialog>
+    <action
+        android:id="@+id/action_global_masterJobUpdateDialog"
+        app:destination="@id/masterJobUpdateDialog" />
 </navigation>

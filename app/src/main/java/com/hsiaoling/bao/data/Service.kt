@@ -18,18 +18,18 @@ data class Service(
     var date:String="",
     var scheduleSort: Int = -1,
     var serviceId:String="",
-    var device: String="",
+    var device:String="",
     var screen:String="",
     var back:String="",
     var price:Long=0,
     var status:Int=-1,
-    var statusImg: String = "",
-    var statusText: String = "",
+    var statusText:String="",
     var reserveTime: Long=-1,
-    var doneTime:Long=-1,
-    var updateTime: Long=-1,
-    var startWorkTime:Long=-1,
-    var endWorkTime:Long=-1,
-    var master: Master = Master("","")
+    var getJobTime:Long=-1,
+    var doneTime: Long=-1,
+    var finishCheckTime:Long=-1,
+    var deleteTime:Long=-1,
+    var updateTime: Long=-1
+
 //    val reserve_time: Timestamp = Timestamp(Calendar.getInstance().time)
 ): Parcelable

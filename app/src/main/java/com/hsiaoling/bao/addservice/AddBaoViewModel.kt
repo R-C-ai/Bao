@@ -15,6 +15,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.hsiaoling.bao.data.Result
 import com.hsiaoling.bao.data.Salesman
+import com.hsiaoling.bao.data.User
 
 class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
 
@@ -93,10 +94,10 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
     // put loginsalesman data into service
-    fun setSalesmanForService(salesman: Salesman) {
+    fun setSalesmanForService(user: User) {
         _service.value?.let {
-            it.salesmanId = salesman.id
-            it.salesmanName = salesman.name
+            it.salesmanId = user.id
+            it.salesmanName = user.name
         }
         _service.value = _service.value
     }

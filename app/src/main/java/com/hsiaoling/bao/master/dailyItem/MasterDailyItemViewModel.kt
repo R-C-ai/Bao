@@ -22,6 +22,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import androidx.navigation.fragment.findNavController
+import com.hsiaoling.bao.data.User
+import com.hsiaoling.bao.login.UserManager
 
 class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel(){
 
@@ -32,6 +34,10 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
     private var _schedules = MutableLiveData<List<Service>>()
     val schedules: LiveData<List<Service>>
         get() = _schedules
+
+    private var _service = MutableLiveData<Service>()
+    val service: LiveData<Service>
+        get() = _service
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -46,6 +52,10 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 //    val refreshStatus: LiveData<Boolean>
 //        get() = _refreshStatus
 
+    private val _isSalesman = MutableLiveData<Boolean>()
+    val isSalesman: LiveData<Boolean>
+        get() = _isSalesman
+
 
     private val _navigateToAddBao = MutableLiveData<Service>()
     val navgateToAddBao:LiveData<Service>
@@ -56,9 +66,19 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
         get() = _navigateToInfoStatus
 
 
+    private val _navigateToMasterInfo = MutableLiveData<Boolean>()
+    val navigateToMasterInfo: LiveData<Boolean>
+        get() = _navigateToMasterInfo
+
     private val _navigateToAddReject = MutableLiveData<Boolean>()
     val navigateToAddReject: LiveData<Boolean>
         get() = _navigateToAddReject
+
+
+    private val _navigateToMasterJob = MutableLiveData<Service>()
+    val navgateToMasterJob:LiveData<Service>
+        get() = _navigateToMasterJob
+
 
 
 
@@ -97,8 +117,8 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
         for (i in 0..7) {
             val service = Service(storeId,"松菸文創店","","",masterId,masterName,"",date,
-                i,"","","","",0,0,"可預約",
-                "",0,0,0,0,0,Master("",""))
+                i,"","","","",0,0,"可預約",0,0,0,0
+                ,0)
 
             Log.i("HsiaoLing","addNewService=$service")
             addNewDayToMaster(service)
@@ -113,6 +133,36 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
             _status.value = LoadApiStatus.LOADING
 
             when (val result = repository.addNewDayToMaster(service))
+
+            {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+                }
+                else -> {
+                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+                    _status.value = LoadApiStatus.ERROR
+                }
+            }
+        }
+    }
+
+
+    fun deleteService(service: Service) {
+
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            when (val result = repository.deleteService(service))
 
             {
                 is Result.Success -> {
@@ -156,35 +206,81 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 //
 //    }
 
-    fun navgateToAddBao(service: Service){
-        when(service.salesmanId) {
-            SalesmanManager.salesman!!.id ->
+
+
+        fun navgateToAddBao(service: Service){
+            val userType = UserManager.user!!.type
+            if (userType == "salesman"){
+                when(service.salesmanId) {
+                    UserManager.user!!.id ->
+                        when(service.status){
+                            0 ->  _navigateToAddBao.value =service
+                            1 -> _navigateToAddBao.value = service
+                            else -> navgateToInfoStatus(service)
+                        }
+                    ""->_navigateToAddBao.value =service
+                    else -> navigateToAddReject()
+                 }
+            }else {
                 when(service.status){
-                    1 ->  _navigateToAddBao.value =service
-                    else -> navgateToInfoStatus(service)
+                    0 -> navigateToMasterInfo()
+                    1 -> _navigateToMasterJob.value = service
+                    2 -> _navigateToMasterJob.value = service
+                    3 -> navgateToInfoStatus(service)
+                    4 -> navgateToInfoStatus(service)
+                    5 -> navgateToInfoStatus(service)
                 }
 
-            ""->_navigateToAddBao.value =service
+//                navigateToAddReject()
+            }
+         }
 
-            else -> navigateToAddReject()
-        }
 
+//    fun navgateToAddBao(service: Service){
+//        when(service.salesmanId) {
+//            UserManager.user!!.id ->
+//                when(service.status){
+//                    0 ->  _navigateToAddBao.value =service
+//                    else -> navgateToInfoStatus(service)
+//                }
+//
+//            ""->_navigateToAddBao.value =service
+//
+//            else -> navigateToAddReject()
+//        }
+//
+//    }
+
+    fun navigateToMasterInfo(){
+        _navigateToMasterInfo.value = true
+    }
+
+    fun onMasterInfoNavigated() {
+        _navigateToMasterInfo.value = null
+    }
+
+    fun navigateToMasterJob(service: Service){
+        _navigateToMasterJob.value = service
+    }
+
+    fun onMasterJobNavigated(){
+        _navigateToMasterJob.value = null
     }
 
 
     fun navigateToAddReject(){
-
         _navigateToAddReject.value = true
-    }
-
-
-    fun onAddJobNavigated(){
-        _navigateToAddBao.value = null
     }
 
     fun onAddedRejectNavigated() {
         _navigateToAddReject.value = null
     }
+
+    fun onAddJobNavigated(){
+        _navigateToAddBao.value = null
+    }
+
+
 
     fun navgateToInfoStatus(service: Service){
         _navigateToInfoStatus.value = service

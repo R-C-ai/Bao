@@ -10,6 +10,8 @@ import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.login.SalesmanManager.salesman
+import com.hsiaoling.bao.login.UserManager
+import com.hsiaoling.bao.login.UserManager.user
 import com.hsiaoling.bao.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,13 +22,27 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
 
     // set salesman in serviceStatusViiewModel
-    private val _salesman = MutableLiveData<Salesman>()
-    val salesman: LiveData<Salesman>
+    private val _salesman = MutableLiveData<User>()
+    val salesman: LiveData<User>
         get() = _salesman
 
-    fun setSalesman (salesman: Salesman){
-        _salesman.value = salesman
+    // set master in serviceStatusViiewModel
+    private val _master = MutableLiveData<User>()
+    val master: LiveData<User>
+        get() = _master
+
+    fun setUser (user: User){
+        when (user.type) {
+            "salesman" -> _salesman.value = user
+            "master" -> _master.value = user
+        }
     }
+
+
+
+//    fun setMaster (user: User){
+//        _master.value = user
+//    }
 
     //update newStatus
     private val _newStatuses = MutableLiveData<Service>()
@@ -39,10 +55,18 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     }
 
     // put loginsalesman data into service
-    fun setSalesmanForNewStatus(salesman: Salesman) {
+    fun setUserForNewStatus(user: User) {
         _newStatuses.value?.let {
-            it.salesmanId = salesman.id
-            it.salesmanName = salesman.name
+            when (user.type){
+                "salesman" -> {
+                    it.salesmanId = user.id
+                    it.salesmanName = user.name
+                }
+                "master" ->{
+                    it.masterId = user.id
+                    it.masterName = user.name
+                }
+            }
         }
         _newStatuses.value = _newStatuses.value
     }
@@ -70,6 +94,14 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     private val _refreshStatus = MutableLiveData<Boolean>()
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
+
+    private val _navigateToAddBao = MutableLiveData<Service>()
+    val navgateToAddBao:LiveData<Service>
+        get() = _navigateToAddBao
+
+    private val _navigateToUpdateMasterJob = MutableLiveData<Service>()
+    val navgateToUpdateMasterJob:LiveData<Service>
+        get() = _navigateToUpdateMasterJob
 
 
     private val _navigateToUpdateStatus = MutableLiveData<Service>()
@@ -111,13 +143,39 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
     // get live status from firebase
     fun getLiveStatus(){
-        repository.getLiveStatus(SalesmanManager.salesman!!.id) {
-            liveStatuses.value = it
+        when(user!!.type){
+            "master" -> {
+                repository.getMasterLiveStatus(UserManager.user!!.id) {
+                    liveStatuses.value = it
+                }
+            }else ->{
+            repository.getSalesmanLiveStatus(UserManager.user!!.id) {
+                liveStatuses.value = it
+            }
         }
+        }
+
+
+
+//        liveStatuses =
+//            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
+        Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
+    }
+
+
+//  ----------------------------------------------------------------------------
+    // get live status from firebase
+//    fun getLiveStatus(){
+//        repository.getLiveStatus(UserManager.user!!.id) {
+//            liveStatuses.value = it
+//        }
+
 //        liveStatuses =
 //            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
 //        Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
-    }
+//    }
+//    --------------------------------------------------------
+
 
     // filter the status livedata  type to print different info
     val filterStatus = MutableLiveData<Int>()
@@ -136,14 +194,29 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     }
 
 
+//    fun navgateToUpdateStatus(service: Service){
+//        when(service.status){
+//            1 -> _navigateToUpdateStatus.value =service
+//            else -> navgateToInfoStatus(service)
+//        }
+//    }
+
     fun navgateToUpdateStatus(service: Service){
-        when(service.status){
-            1 -> _navigateToUpdateStatus.value =service
-            else -> navgateToInfoStatus(service)
-
+        when(user!!.type){
+            "master" -> {
+                when(service.status){
+                    1 -> _navigateToUpdateMasterJob.value = service
+                    2 -> _navigateToUpdateMasterJob.value = service
+                    else -> navgateToInfoStatus(service)
+                }
+            }else -> {
+                when(service.status){
+                    1 -> _navigateToAddBao.value =service
+                    3 -> _navigateToUpdateStatus.value =service
+                    else -> navgateToInfoStatus(service)
+            }
         }
-
-
+        }
     }
 
     fun navgateToInfoStatus(service: Service){

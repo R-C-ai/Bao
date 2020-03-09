@@ -6,6 +6,7 @@ import com.hsiaoling.bao.addservice.AddBaoViewModel
 import com.hsiaoling.bao.addservice.CalendarViewModel
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.login.LoginViewModel
+import com.hsiaoling.bao.master.MasterJobUpdateViewModel
 import com.hsiaoling.bao.master.dailyItem.MasterDailyItemViewModel
 import com.hsiaoling.bao.servicestatus.ServiceStatusViewModel
 import com.hsiaoling.bao.servicestatus.StatusInfoViewModel
@@ -24,6 +25,9 @@ class ViewModelFactory constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>) =
         with(modelClass) {
             when {
+
+                isAssignableFrom(MasterJobUpdateViewModel::class.java) ->
+                    MasterJobUpdateViewModel(baoRepository)
 
                 isAssignableFrom(StatusInfoViewModel::class.java) ->
                     StatusInfoViewModel(baoRepository)

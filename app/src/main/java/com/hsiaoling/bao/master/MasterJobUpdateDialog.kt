@@ -1,4 +1,4 @@
-package com.hsiaoling.bao.servicestatus
+package com.hsiaoling.bao.master
 
 
 import android.os.Bundle
@@ -12,24 +12,22 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.NavigationDirections
 
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.Service
-import com.hsiaoling.bao.databinding.DialogStatusUpdateBinding
+import com.hsiaoling.bao.databinding.DialogMasterJobUpdateBinding
 
 import com.hsiaoling.bao.ext.getVmFactory
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.login.UserManager
 import com.hsiaoling.bao.messageDialog.MessageDialog
-import com.hsiaoling.bao.util.Logger
 
 
-class StatusUpdateDialog : AppCompatDialogFragment() {
+class MasterJobUpdateDialog : AppCompatDialogFragment() {
 
-    private val viewModel by viewModels<StatusUpdateViewModel> { getVmFactory() }
-    private lateinit var binding:DialogStatusUpdateBinding
+    private val viewModel by viewModels<MasterJobUpdateViewModel> { getVmFactory() }
+    private lateinit var binding:DialogMasterJobUpdateBinding
     private var service: Service? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,22 +40,22 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
-        val binding = DialogStatusUpdateBinding.inflate(inflater, container, false)
-        binding.layoutStatusUpdate.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
+        val binding = DialogMasterJobUpdateBinding.inflate(inflater, container, false)
+        binding.layoutMasterJobUpdate.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
+        Log.i("Hsiao","SalesmanManager.salesman=${UserManager.user}")
 
         service = requireArguments().getParcelable<Service>("serviceToUpdate")
 
         Log.i("Hsiao","requireArguments().getParcelable=${service}")
 
         service?.let {
-            viewModel.updateStatus(it)
+            viewModel.updateMasterJob(it)
             UserManager.user?.let {
-                viewModel.setSalesmanForService(it)
+                viewModel.setMsaterForJob(it)
             }
         }
 

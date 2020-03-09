@@ -21,6 +21,7 @@ import com.hsiaoling.bao.databinding.CalendarFragmentBinding
 import com.hsiaoling.bao.ext.getVmFactory
 import com.hsiaoling.bao.ext.toTodayFormat
 import com.hsiaoling.bao.login.SalesmanManager
+import com.hsiaoling.bao.login.UserManager
 import com.hsiaoling.bao.master.MasterAdapter
 import kotlinx.android.synthetic.main.calendar_fragment.*
 
@@ -69,7 +70,14 @@ class CalendarFragment : Fragment() {
 
                 binding.viewpagerMaster.let {
                     binding.tabsMaster.setupWithViewPager(it)
-                    it.adapter = MasterAdapter(childFragmentManager, masters)
+
+                    UserManager.user?.let { user ->
+                        if (user.type == "master") {
+                            it.adapter = MasterAdapter(childFragmentManager, listOf(user))
+                        } else {
+                            it.adapter = MasterAdapter(childFragmentManager, masters)
+                        }
+                    }
                     it.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(binding.tabsMaster))
                 }
             }

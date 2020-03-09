@@ -91,7 +91,9 @@ class LoginDialog : AppCompatDialogFragment() {
         val mainViewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
 
         viewModel.loginSalesman.observe(this, Observer {
-            mainViewModel.setupSalesman(it)
+           it?.let {
+               mainViewModel.setupSalesman(it)
+           }
         })
 
 
@@ -146,18 +148,6 @@ class LoginDialog : AppCompatDialogFragment() {
         })
 
 
-//        viewModel.navigateToCalendar.observe(this, Observer {
-//            it?.let {
-//
-//                // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
-//                // SalesmanManager.salesman = viewModel.selectedSalesman.value
-//
-//                findNavController().navigate(
-//                    NavigationDirections.actionGlobalCalendarFragment())
-//                Log.i("Hsiao"," viewModel.navigateToCalendar.observe, it=$it")
-//
-//            }
-//        })
 
         // login success navigate to calendar with loginSalesman
         viewModel.loginSalesman.observe(this, Observer {
@@ -165,7 +155,7 @@ class LoginDialog : AppCompatDialogFragment() {
             it?.let {
 
                 // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
-                SalesmanManager.salesman = it
+                UserManager.user = it
                 findNavController().navigate(
                     NavigationDirections.actionGlobalCalendarFragment())
             }

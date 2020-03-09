@@ -1,10 +1,7 @@
 package com.hsiaoling.bao.data.source
 
 import androidx.lifecycle.LiveData
-import com.hsiaoling.bao.data.Master
-import com.hsiaoling.bao.data.Result
-import com.hsiaoling.bao.data.Salesman
-import com.hsiaoling.bao.data.Service
+import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.servicestatus.ServiceAction
 
 class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
@@ -17,19 +14,19 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
        return baoRemoteDataSource.addNewDayToMaster(service)
     }
 
-    override suspend fun addNewSalesman(salesman: Salesman): Result<Salesman> {
-        return baoRemoteDataSource.addNewSalesman(salesman)
+    override suspend fun addNewSalesman(user: User): Result<User> {
+        return baoRemoteDataSource.addNewSalesman(user)
     }
 
-    override suspend fun getLoginSalesmansResult(salesId:String,salesName:String): Result<Salesman?> {
-        return baoRemoteDataSource.getLoginSalesmansResult(salesId,salesName)
+    override suspend fun getLoginSalesmansResult(salesId:String,salesName:String): Result<User?> {
+        return baoRemoteDataSource.getLoginUsersResult(salesId,salesName)
     }
 
-    override suspend fun getSalesmansResult():Result<List<Salesman>>{
+    override suspend fun getSalesmansResult():Result<List<User>>{
         return baoRemoteDataSource.getSalesmansResult()
     }
 
-    override suspend fun getMastersResult():Result<List<Master>>{
+    override suspend fun getMastersResult():Result<List<User>>{
         return baoRemoteDataSource.getMastersResult()
     }
 
@@ -50,26 +47,43 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.getLiveDateServices(date,masterId)
     }
 
-    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
-        return baoRemoteDataSource.getLiveStatus(salesmanId)
-    }
+//    override fun getLiveStatus(salesmanId:String): LiveData<List<Service>> {
+//        return baoRemoteDataSource.getLiveStatus(salesmanId)
+//    }
 
     override suspend fun updateService(service: Service): Result<Boolean> {
         return baoRemoteDataSource.updateService(service)
     }
 
+    override suspend fun deleteService(service: Service): Result<Boolean> {
+        return baoRemoteDataSource.deleteService(service)
+    }
+
+//    override suspend fun updateStatusBySalesman(service: Service,serviceAction: ServiceAction): Result<Boolean> {
+//        return baoRemoteDataSource.updateStatusBySalesman(service,serviceAction)
+//    }
+
     override suspend fun updateStatus(service: Service,serviceAction: ServiceAction): Result<Boolean> {
         return baoRemoteDataSource.updateStatus(service,serviceAction)
     }
+
+
 
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }
 
-    override fun getLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
-        return baoRemoteDataSource.getLiveStatus(salesmanId, completeHandler)
+    override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
+        return baoRemoteDataSource.getMasterLiveStatus(masterId, completeHandler)
     }
-    
+
+    override fun getSalesmanLiveStatus(
+        salesmanId: String,
+        completeHandler: (List<Service>) -> Unit
+    ) {
+        return baoRemoteDataSource.getSalesmanLiveStatus(salesmanId,completeHandler)
+    }
+
 }
 
 

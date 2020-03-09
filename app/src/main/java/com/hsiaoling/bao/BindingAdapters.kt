@@ -148,6 +148,10 @@ fun status(textView: TextView,status:Int){
             textView.text = BaoApplication.instance.getString(R.string.status4)
         }
 
+        status == 5 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status5)
+        }
+
     }
 }
 
@@ -170,6 +174,9 @@ fun statusBackground(imageView: ImageView, status: Int) {
         status == 4 -> {
             imageView.setImageResource(R.drawable.bg_status4)
         }
+        status == 5 -> {
+            imageView.setImageResource(R.drawable.bg_status5)
+        }
 
     }
 }
@@ -191,6 +198,9 @@ fun statusPage(textView: TextView,status:Int){
         status == 4 -> {
             textView.text = BaoApplication.instance.getString(R.string.status_page4)
         }
+        status == 5 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page5)
+        }
 
     }
 }
@@ -208,7 +218,12 @@ fun statusImage(imageView: ImageView, status: Int) {
         status == 3 -> {
             imageView.setImageResource(R.drawable.doneforservice)
         }
+
         status == 4 -> {
+            imageView.setImageResource(R.drawable.confirmok)
+        }
+
+        status == 5 -> {
             imageView.setImageResource(R.drawable.delete3)
         }
 
@@ -219,6 +234,9 @@ fun statusImage(imageView: ImageView, status: Int) {
 fun statusInfoImage(imageView: ImageView, status: Int) {
 
     when {
+        status == 1 -> {
+            imageView.setImageResource(R.drawable.waitforservice1)
+        }
         status == 2 -> {
             imageView.setImageResource(R.drawable.process)
         }
@@ -226,6 +244,10 @@ fun statusInfoImage(imageView: ImageView, status: Int) {
             imageView.setImageResource(R.drawable.ok0)
         }
         status == 4 -> {
+            imageView.setImageResource(R.drawable.okconfirm0)
+        }
+
+        status == 5 -> {
             imageView.setImageResource(R.drawable.nochange)
         }
 
@@ -236,15 +258,22 @@ fun statusInfoImage(imageView: ImageView, status: Int) {
 fun statusInfoText(textView: TextView,status:Int){
 
     when {
-
+        status == 1 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info1)
+        }
         status == 2 -> {
             textView.text = BaoApplication.instance.getString(R.string.status_info2)
         }
         status == 3 -> {
             textView.text = BaoApplication.instance.getString(R.string.status_info3)
         }
+
         status == 4 -> {
             textView.text = BaoApplication.instance.getString(R.string.status_info4)
+        }
+
+        status == 5 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info5)
         }
 
     }

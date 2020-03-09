@@ -3,21 +3,17 @@ package com.hsiaoling.bao.servicestatus
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.hsiaoling.bao.NavigationDirections
-
-import com.hsiaoling.bao.R
-import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.databinding.FragmentServiceStatusBinding
 import com.hsiaoling.bao.ext.getVmFactory
-import com.hsiaoling.bao.login.SalesmanManager
-import com.hsiaoling.bao.master.dailyItem.MasterDailyItemViewModel
+import com.hsiaoling.bao.login.UserManager
 
 /**
  * A simple [Fragment] subclass.
@@ -64,14 +60,17 @@ class ServiceStatusFragment : Fragment() {
                     1 -> { //reserve
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 1 } ?: listOf())
                     }
-                    2 -> { //doing
+                    2 -> { //get job
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 2 } ?: listOf())
                     }
-                    3 -> { //finish
+                    3 -> { //done
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 3 } ?: listOf())
                     }
-                    4 -> { //delete
+                    4 -> { //finish check
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 4 } ?: listOf())
+                    }
+                    5 -> { //delete
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 5 } ?: listOf())
                     }
 
                 }
@@ -79,7 +78,24 @@ class ServiceStatusFragment : Fragment() {
         })
 
         // get login salesman by Salesmaneger
-        binding.salesman = SalesmanManager.salesman
+        binding.salesman = UserManager.user
+
+        viewModel.navgateToAddBao.observe(this, Observer {
+            it?.let{
+                findNavController().navigate(NavigationDirections.actionGlobalAddBaoDialog(it))
+                viewModel.onUpdateStatusNavigated()
+
+            }
+        })
+
+        viewModel.navgateToUpdateMasterJob.observe(this, Observer {
+            it?.let{
+                findNavController().navigate(NavigationDirections.actionGlobalMasterJobUpdateDialog(it))
+                viewModel.onUpdateStatusNavigated()
+
+            }
+        })
+
 
         viewModel.navgateToUpdateStatus.observe(this, Observer {
             it?.let{
@@ -96,6 +112,8 @@ class ServiceStatusFragment : Fragment() {
 
             }
         })
+
+
 
 
 

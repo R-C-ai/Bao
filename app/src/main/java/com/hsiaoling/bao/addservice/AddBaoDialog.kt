@@ -21,6 +21,7 @@ import com.hsiaoling.bao.databinding.DialogAddBaoBinding
 
 import com.hsiaoling.bao.ext.getVmFactory
 import com.hsiaoling.bao.login.SalesmanManager
+import com.hsiaoling.bao.login.UserManager
 import com.hsiaoling.bao.messageDialog.MessageDialog
 import com.hsiaoling.bao.util.Logger
 
@@ -47,14 +48,14 @@ class AddBaoDialog : AppCompatDialogFragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        Log.i("Hsiao","SalesmanManager.salesman=${SalesmanManager.salesman}")
+        Log.i("Hsiao","UserManager.user=${UserManager.user}")
 
         // get service from selected schedule
         service = requireArguments().getParcelable<Service>("givenservice")
 
         service?.let {
             viewModel.setService(it)
-            SalesmanManager.salesman?.let {
+            UserManager.user?.let {
                 viewModel.setSalesmanForService(it)
             }
         }

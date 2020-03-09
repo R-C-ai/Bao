@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.data.Salesman
+import com.hsiaoling.bao.data.User
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.network.LoadApiStatus
 import com.hsiaoling.bao.util.CurrentFragmentType
@@ -21,8 +22,8 @@ import kotlinx.coroutines.Job
  */
 class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 
-    private val _loginSalesman = MutableLiveData<Salesman>()
-    val loginSalesman: LiveData<Salesman>
+    private val _loginSalesman = MutableLiveData<User?>()
+    val loginSalesman: LiveData<User?>
         get() = _loginSalesman
 
     // Handle navigation to login success
@@ -79,12 +80,12 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
     init {
 
     }
-    fun setupSalesman(salesman: Salesman) {
+    fun setupSalesman(user: User) {
 
-        _loginSalesman.value = salesman
+        _loginSalesman.value = user
 
         Log.i("Hsiao","| setupl=LoginSalesman |")
-        Log.i("Hsiao","user=$salesman")
+        Log.i("Hsiao","user=$user")
         Log.i("Hsiao","MainViewModel=${this}")
 
     }

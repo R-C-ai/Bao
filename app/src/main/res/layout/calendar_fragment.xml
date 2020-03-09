@@ -48,6 +48,7 @@
                 android:id="@+id/tabs_master"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_catalog_tab"
+                app:tabMode="scrollable"
                 app:tabIndicatorColor="@color/black_3f3a3a"
                 app:tabSelectedTextColor="@color/black_3f3a3a"
                 app:tabTextColor="@color/gray_888888">
