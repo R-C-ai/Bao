@@ -105,4 +105,9 @@
     <string name="ANGELA">Angela</string>
     <string name="RACHEL">Rachel</string>
 
+    <string name="dash">-</string>
+    <string name="scrollViewStart">START OF SCROLLVIEW</string>
+    <string name="scrollViewEnd">END OF SCROLLVIEW</string>
+
+
 </resources>

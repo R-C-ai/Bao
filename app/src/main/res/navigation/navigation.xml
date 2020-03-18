@@ -102,4 +102,11 @@
     <action
         android:id="@+id/action_global_masterJobUpdateDialog"
         app:destination="@id/masterJobUpdateDialog" />
+    <fragment
+        android:id="@+id/barChartFragment"
+        android:name="com.hsiaoling.bao.salesaomunt.BarChartFragment"
+        android:label="BarChartFragment" />
+    <action
+        android:id="@+id/action_global_barChartFragment"
+        app:destination="@id/barChartFragment" />
 </navigation>

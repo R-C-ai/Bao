@@ -52,9 +52,9 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 //    val refreshStatus: LiveData<Boolean>
 //        get() = _refreshStatus
 
-    private val _isSalesman = MutableLiveData<Boolean>()
-    val isSalesman: LiveData<Boolean>
-        get() = _isSalesman
+//    private val _isSalesman = MutableLiveData<Boolean>()
+//    val isSalesman: LiveData<Boolean>
+//        get() = _isSalesman
 
 
     private val _navigateToAddBao = MutableLiveData<Service>()

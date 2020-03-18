@@ -3,6 +3,7 @@ package com.hsiaoling.bao.data.source.local
 import androidx.lifecycle.LiveData
 import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoDataSource
+import com.hsiaoling.bao.salesaomunt.UserType
 import com.hsiaoling.bao.servicestatus.ServiceAction
 
 object BaoLocalDataSource:BaoDataSource {
@@ -55,6 +56,10 @@ object BaoLocalDataSource:BaoDataSource {
     }
 
     override suspend fun getDateResult(date: String,masterId:String): Result<List<Service>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getLiveRev(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

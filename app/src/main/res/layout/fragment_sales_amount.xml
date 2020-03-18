@@ -1,14 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".salesaomunt.SalesAmountFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.hsiaoling.bao.salesaomunt.SalesAmountViewModel" />
+    </data>
+
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".salesaomunt.SalesAmountFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/salesman_status_total"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_addbao_card"
+                android:elevation="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView_wait"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="50dp"
+                    app:itemIconTint="@drawable/bottom_nav_item_selector"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/wait2" />
+
+                <TextView
+                    android:id="@+id/text_wait"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="待包膜"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_wait"
+                    app:layout_constraintStart_toStartOf="@id/imageView_wait"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_wait" />
+
+                <ImageView
+                    android:id="@+id/imageView_doing"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_wait"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_wait"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_wait"
+                    app:srcCompat="@drawable/doing2" />
+
+                <TextView
+                    android:id="@+id/text_doing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="進行中"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_wait"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_doing"
+                    app:layout_constraintStart_toStartOf="@id/imageView_doing"
+                    app:layout_constraintTop_toTopOf="@+id/text_wait" />
+
+                <ImageView
+                    android:id="@+id/imageView_finish"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_doing"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_doing"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_doing"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/finish2" />
+
+                <TextView
+                    android:id="@+id/text_finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已完成"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_doing"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_finish"
+                    app:layout_constraintHorizontal_bias="0.65"
+                    app:layout_constraintStart_toStartOf="@id/imageView_finish"
+                    app:layout_constraintTop_toTopOf="@+id/text_doing" />
+
+
+                <ImageView
+                    android:id="@+id/imageView_confirmok"
+                    android:layout_width="35dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_finish"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_finish"
+                    app:srcCompat="@drawable/confirmok1" />
+
+                <TextView
+                    android:id="@+id/text_confirmok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="確認完成"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_confirmok"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_confirmok"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_confirmok" />
+
+                <ImageView
+                    android:id="@+id/imageView_delete"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_confirmok"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_finish"
+                    app:srcCompat="@drawable/delete2" />
+
+                <TextView
+                    android:id="@+id/text_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已取消"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_delete"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_delete"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_delete" />
+
+                <TextView
+                    android:id="@+id/text_salesman_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@drawable/bg_text"
+
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="salesman" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <com.github.mikephil.charting.charts.BarChart
+
+                android:id="@+id/revChart"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/salesman_amount_bottom"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/salesman_status_total" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/salesman_amount_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_addbao_card"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/revChart">
+
+                <ImageView
+                    android:id="@+id/imageView_w"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="50dp"
+                    android:scaleType="centerInside"
+
+                    app:itemIconTint="@drawable/bottom_nav_item_selector"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/wait2" />
+
+                <TextView
+                    android:id="@+id/text_w"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="待包膜"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_w"
+                    app:layout_constraintStart_toStartOf="@id/imageView_w"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_w" />
+
+                <ImageView
+                    android:id="@+id/imageView_d"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="12dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_w"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_w"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_w"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/doing2" />
+
+                <TextView
+                    android:id="@+id/text_d"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="進行中"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_w"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_d"
+                    app:layout_constraintStart_toStartOf="@id/imageView_d"
+                    app:layout_constraintTop_toTopOf="@+id/text_w" />
+
+                <ImageView
+                    android:id="@+id/imageView_f"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_d"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_d"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_d"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/finish2" />
+
+                <TextView
+                    android:id="@+id/text_f"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已完成"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_d"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_f"
+                    app:layout_constraintHorizontal_bias="0.65"
+                    app:layout_constraintStart_toStartOf="@id/imageView_f"
+                    app:layout_constraintTop_toTopOf="@+id/text_d" />
+
+
+                <ImageView
+                    android:id="@+id/imageView_c"
+                    android:layout_width="35dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+
+                    android:scaleType="centerInside"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_f"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_f"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_f"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/confirmok1" />
+
+                <TextView
+                    android:id="@+id/text_c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="確認完成"
+                    android:textColor="@color/lateblue2"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView_c"
+                    app:layout_constraintStart_toStartOf="@+id/imageView_c"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_c" />
 
 
 
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </FrameLayout>
+</layout>

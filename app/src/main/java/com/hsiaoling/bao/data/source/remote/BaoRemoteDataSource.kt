@@ -10,6 +10,7 @@ import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoDataSource
+
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import com.hsiaoling.bao.servicestatus.ServiceAction
@@ -323,6 +324,83 @@ object BaoRemoteDataSource:BaoDataSource {
 
             }
     }
+
+//    // get exist data  when add by   addOnCompleteListener  , need to refresh to update and get data
+//    override suspend fun getDateRevResult(date: String, userType: UserType): Result<List<Service>> = suspendCoroutine { continuation->
+//
+//        var userKey :String
+//        when (userType){
+//            UserType.SALESMAN-> userKey = KEY_SALESMANID
+//            UserType.MASTER -> userKey = KEY_MASTERID
+//        }
+//
+//        FirebaseFirestore.getInstance()
+//            .collection("store")
+//            .document("4d7yMjfPO5lw66u8sHnt")
+//            .collection(PATH_SERVICE)
+//            .whereEqualTo(KEY_DATE, date)
+//            .whereEqualTo(userKey,userType)
+//            .whereEqualTo(KEY_STATUS,4)
+//            .orderBy("updateTime",Query.Direction.DESCENDING)
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if(task.isSuccessful){
+//                    val list = mutableListOf<Service>()
+//                    for (document in task.result!!){
+//
+//                        val service = document.toObject(Service::class.java)
+//                        Log.i("HsiaoGetDateResult","isSuccessDateResult=$list")
+//                        list.add(service)
+//                    }
+//                    continuation.resume(Result.Success(list))
+//                } else if (task.exception != null) {
+//                    task.exception?.let {
+//                        Log.i("selectedDate","exception")
+//                        continuation.resume(Result.Error(it))
+//                    }
+//                } else {
+//                    continuation.resume(Result.Fail(BaoApplication.instance.getString(R.string.you_know_nothing)))
+//                }
+//
+//            }
+//    }
+
+    // get updated services right after add service  by addSnapshotListener
+    override fun getLiveRev(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>> {
+        val liveData = MutableLiveData<List<Service>>()
+        var userKey:String = ""
+        when (user.type){
+            "salesman"-> userKey = KEY_SALESMANID
+            "master" -> userKey = KEY_MASTERID
+        }
+
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SERVICE)
+            .whereEqualTo(userKey,user.id)
+            .whereEqualTo(KEY_STATUS,4)
+            .whereGreaterThan("doneTime",firstDay)
+            .whereLessThan("doneTime",endDay)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("addSnapshotListener detect")
+                exception?.let {
+                    Logger.w("[] Error getting documents. ${it.message}")
+                }
+                val list = mutableListOf<Service>()
+                for (document in snapshot!!) {
+                    Logger.d(document.id + " => " + document.data)
+                    val service = document.toObject(Service::class.java)
+                    list.add(service)
+                }
+                Logger.i("detect list=$list")
+                liveData.value = list
+            }
+        return liveData
+    }
+
+
+
             // get updated services right after add service  by addSnapshotListener
     override fun getLiveDateServices(date: String, masterId: String): LiveData<List<Service>> {
         val liveData = MutableLiveData<List<Service>>()

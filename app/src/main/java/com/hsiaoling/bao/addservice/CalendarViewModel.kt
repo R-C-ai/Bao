@@ -14,14 +14,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.icu.text.SimpleDateFormat
 
 import android.icu.util.Calendar
 import com.hsiaoling.bao.data.Date
-import java.util.*
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import com.hsiaoling.bao.ext.toTodayFormat
+import com.hsiaoling.bao.ext.toDayFormat
 
 
 class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
@@ -33,6 +30,8 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
     fun selectedDate (date: String){
         _date.value = date
     }
+
+
 
     private val _getDayStatus = MutableLiveData<LoadApiStatus>()
     val getDayStatus:LiveData<LoadApiStatus>
@@ -49,7 +48,10 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
 
     //define var to get  today and transfer to String
     var currentday = Calendar.getInstance().getTime()
-    var today =this.currentday.time.toTodayFormat()
+    var today =this.currentday.time.toDayFormat()
+
+
+    var transToday = SimpleDateFormat("yyyy-M-d").parse(today).time
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -85,6 +87,7 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
     init {
         getToday()
         getMastersResult()
+
 
 
     }
@@ -124,9 +127,21 @@ class CalendarViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
    fun getToday()  {
-       currentday.time.toTodayFormat()
-       Log.i("HsiaoLing","currentday=${ currentday.time.toTodayFormat()}")
+       currentday.time.toDayFormat()
+       Log.i("HsiaoLing","currentday=${ currentday.time.toDayFormat()}")
+       Log.i("HsiaoLing","currentday=${ currentday.time}")
+//       transformToday
+        transToday
+       Log.i("HsiaoLing","currentdaytest=${transToday}")
     }
+
+
+
+
+
+
+
+
 
 
 

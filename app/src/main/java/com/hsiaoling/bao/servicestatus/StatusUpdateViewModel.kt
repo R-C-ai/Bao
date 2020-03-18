@@ -38,11 +38,19 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         Log.i("Hsiao", " StatusUpdateViewModel_service=${_service}")
     }
 
-    // put loginsalesman data into service
+    // put loginUser data into service
     fun setSalesmanForService(user: User) {
         _service.value?.let {
-            it.salesmanId = user.id
-            it.salesmanName = user.name
+            when(user.type){
+                "salesman" -> {
+                    it.salesmanId = user.id
+                    it.salesmanName = user.name
+                }
+                "master" -> {
+                    it.masterId = user.id
+                    it.masterId = user.id
+                }
+            }
         }
         _service.value = _service.value
     }

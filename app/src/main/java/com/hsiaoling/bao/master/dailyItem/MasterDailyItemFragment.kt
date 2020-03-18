@@ -40,20 +40,11 @@ class MasterDailyItemFragment(private val master: User) : Fragment() {
 
         val list = mutableListOf<Service>()
 
-//        val masterDailyItemAdapter =MasterDailyItemAdapter(
-//            MasterDailyItemAdapter.OnClickListener{
-//                viewModel.navgateToAddBao(it)
-//            }
-//        )
-//
-
         val masterDailyItemAdapter = MasterDailyItemAdapter(
             MasterDailyItemAdapter.OnClickListener {
-                Log.i("HsiaoLing", "viewModel.isSalesman=$viewModel.isSalesman")
                 viewModel.navgateToAddBao(it)
             }
         )
-
 
         binding.recyclerMasterDailyItem.adapter = masterDailyItemAdapter
 

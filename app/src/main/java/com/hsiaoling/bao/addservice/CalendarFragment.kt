@@ -1,29 +1,20 @@
 package com.hsiaoling.bao.addservice
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.NavDirections
-import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayout
-import com.hsiaoling.bao.NavigationDirections
-import com.hsiaoling.bao.R
-import com.hsiaoling.bao.data.Date
-import com.hsiaoling.bao.data.Master
 import com.hsiaoling.bao.databinding.CalendarFragmentBinding
 import com.hsiaoling.bao.ext.getVmFactory
-import com.hsiaoling.bao.ext.toTodayFormat
+import com.hsiaoling.bao.ext.toDayFormat
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.login.UserManager
 import com.hsiaoling.bao.master.MasterAdapter
-import kotlinx.android.synthetic.main.calendar_fragment.*
 
 
 class CalendarFragment : Fragment() {
@@ -56,11 +47,9 @@ class CalendarFragment : Fragment() {
         }
 
             // get today  when navigate to calendarFragment without click
-        val today =viewModel.currentday.time.toTodayFormat()
+        val today =viewModel.currentday.time.toDayFormat()
             //put today into selectedDate
         viewModel.selectedDate((today))
-
-
 
 
         //  observe  masters in CalenderViewModel getMasterResult , start Master viewpager  with masterResult

@@ -2,6 +2,7 @@ package com.hsiaoling.bao.data.source
 
 import androidx.lifecycle.LiveData
 import com.hsiaoling.bao.data.*
+import com.hsiaoling.bao.salesaomunt.UserType
 import com.hsiaoling.bao.servicestatus.ServiceAction
 
 class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
@@ -41,6 +42,10 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
 
     override suspend fun getDateResult(date: String,masterId:String): Result<List<Service>> {
         return baoRemoteDataSource.getDateResult(date,masterId)
+    }
+
+    override fun getLiveRev(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>> {
+        return baoRemoteDataSource.getLiveRev(user,firstDay,endDay)
     }
 
     override fun getLiveDateServices(date: String,masterId: String): LiveData<List<Service>> {
