@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="year_list">
+        <item>@string/YEAR_2020</item>
+        <item>@string/YEAR_2021</item>
+        <item>@string/YEAR_2022</item>
+        <item>@string/YEAR_2023</item>
+        <item>@string/YEAR_2024</item>
+        <item>@string/YEAR_2025</item>
+        <item>@string/YEAR_2026</item>
+        <item>@string/YEAR_2027</item>
+        <item>@string/YEAR_2028</item>
+        <item>@string/YEAR_2029</item>
+        <item>@string/YEAR_2030</item>
+    </string-array>
+</resources>
+

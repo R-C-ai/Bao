@@ -17,6 +17,15 @@ fun Long.toDayFormat():String {
     return SimpleDateFormat ("yyyy-M-d",Locale.TAIWAN).format(this)
 }
 
+fun Long.toYearFormat():String {
+    return SimpleDateFormat ("yyyy",Locale.TAIWAN).format(this)
+}
+
+fun Long.toMonthFormat():String {
+    return SimpleDateFormat ("M",Locale.TAIWAN).format(this)
+}
+
+
 fun Long.toListDayFormat():String {
     return SimpleDateFormat ("M/d",Locale.TAIWAN).format(this)
 }

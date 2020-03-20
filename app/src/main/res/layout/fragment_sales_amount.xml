@@ -7,6 +7,9 @@
         <variable
             name="viewModel"
             type="com.hsiaoling.bao.salesaomunt.SalesAmountViewModel" />
+        <variable
+            name="userforSales"
+            type="com.hsiaoling.bao.data.User" />
     </data>
 
 
@@ -23,9 +26,9 @@
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/salesman_status_total"
+                android:id="@+id/salesman_sales_total"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="100dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_addbao_card"
                 android:elevation="8dp"
@@ -34,146 +37,92 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+
                 <ImageView
-                    android:id="@+id/imageView_wait"
+                    android:id="@+id/imageView_year"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="50dp"
-                    app:itemIconTint="@drawable/bottom_nav_item_selector"
-
+                    android:layout_marginTop="20dp"
                     android:scaleType="centerInside"
+
+                    app:itemIconTint="@drawable/bottom_nav_item_selector"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/wait2" />
+                    app:srcCompat="@drawable/rev0" />
 
                 <TextView
-                    android:id="@+id/text_wait"
+                    android:id="@+id/text_today"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="待包膜"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@id/imageView_wait"
-                    app:layout_constraintStart_toStartOf="@id/imageView_wait"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_wait" />
-
-                <ImageView
-                    android:id="@+id/imageView_doing"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
                     android:layout_marginStart="8dp"
+                    tools:text="日期"
+                    android:text="@{viewModel.today}"
+                    android:textSize="14sp"
 
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_wait"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_wait"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_wait"
-                    app:srcCompat="@drawable/doing2" />
-
-                <TextView
-                    android:id="@+id/text_doing"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="進行中"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_wait"
-                    app:layout_constraintEnd_toEndOf="@id/imageView_doing"
-                    app:layout_constraintStart_toStartOf="@id/imageView_doing"
-                    app:layout_constraintTop_toTopOf="@+id/text_wait" />
-
-                <ImageView
-                    android:id="@+id/imageView_finish"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="8dp"
-
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_doing"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_doing"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_doing"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/finish2" />
+                    app:layout_constraintStart_toEndOf="@+id/imageView_year"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_year" />
 
                 <TextView
-                    android:id="@+id/text_finish"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已完成"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_doing"
-                    app:layout_constraintEnd_toEndOf="@id/imageView_finish"
-                    app:layout_constraintHorizontal_bias="0.65"
-                    app:layout_constraintStart_toStartOf="@id/imageView_finish"
-                    app:layout_constraintTop_toTopOf="@+id/text_doing" />
-
-
-                <ImageView
-                    android:id="@+id/imageView_confirmok"
-                    android:layout_width="35dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="16dp"
-
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_finish"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_finish"
-                    app:srcCompat="@drawable/confirmok1" />
-
-                <TextView
-                    android:id="@+id/text_confirmok"
+                    android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="確認完成"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_confirmok"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_confirmok"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_confirmok" />
-
-                <ImageView
-                    android:id="@+id/imageView_delete"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
-
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_confirmok"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_finish"
-                    app:srcCompat="@drawable/delete2" />
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="@+id/text_today"
+                    app:layout_constraintTop_toBottomOf="@+id/text_today"
+                    app:revenue="@{viewModel.uptoDateRev}"
+                    tools:text="營收" />
 
                 <TextView
-                    android:id="@+id/text_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已取消"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_delete"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_delete"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_delete" />
-
-                <TextView
-                    android:id="@+id/text_salesman_name"
+                    android:id="@+id/salesman"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/bg_text"
-
+                    android:text="@{userforSales.name}"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="salesman" />
 
+<!--                <Spinner-->
+<!--                    android:id="@+id/text_year"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:prompt="@string/select_year"-->
+<!--                    android:selectedItemPosition="@={viewModel.selectedYearPosition}"-->
+<!--                    android:spinnerMode="dialog"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/imageView_year"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/imageView_year"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/imageView_year" />-->
+
+
+
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+
+                android:id="@+id/revGoalChart"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/revChart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/salesman_sales_total" />
 
             <com.github.mikephil.charting.charts.BarChart
 
@@ -184,125 +133,64 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/cumRevChart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/revGoalChart" />
+
+            <com.github.mikephil.charting.charts.LineChart
+
+                android:id="@+id/cumRevChart"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
+                android:elevation="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/salesman_amount_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/salesman_status_total" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/salesman_amount_bottom"
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_addbao_card"
-                android:elevation="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/revChart">
-
-                <ImageView
-                    android:id="@+id/imageView_w"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="50dp"
-                    android:scaleType="centerInside"
-
-                    app:itemIconTint="@drawable/bottom_nav_item_selector"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/wait2" />
-
-                <TextView
-                    android:id="@+id/text_w"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="待包膜"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@id/imageView_w"
-                    app:layout_constraintStart_toStartOf="@id/imageView_w"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_w" />
+                app:layout_constraintTop_toBottomOf="@+id/revChart" >
 
                 <ImageView
                     android:id="@+id/imageView_d"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="20dp"
 
                     android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_w"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_w"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_w"
-                    app:layout_constraintVertical_bias="0.0"
                     app:srcCompat="@drawable/doing2" />
-
-                <TextView
-                    android:id="@+id/text_d"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="進行中"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_w"
-                    app:layout_constraintEnd_toEndOf="@id/imageView_d"
-                    app:layout_constraintStart_toStartOf="@id/imageView_d"
-                    app:layout_constraintTop_toTopOf="@+id/text_w" />
-
-                <ImageView
-                    android:id="@+id/imageView_f"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="8dp"
-
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_d"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_d"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_d"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/finish2" />
-
-                <TextView
-                    android:id="@+id/text_f"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="已完成"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_d"
-                    app:layout_constraintEnd_toEndOf="@id/imageView_f"
-                    app:layout_constraintHorizontal_bias="0.65"
-                    app:layout_constraintStart_toStartOf="@id/imageView_f"
-                    app:layout_constraintTop_toTopOf="@+id/text_d" />
+            </com.github.mikephil.charting.charts.LineChart>
 
 
-                <ImageView
-                    android:id="@+id/imageView_c"
-                    android:layout_width="35dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="32dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/salesman_amount_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/white_FFFFFF"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cumRevChart">
 
-                    android:scaleType="centerInside"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_f"
-                    app:layout_constraintStart_toEndOf="@+id/imageView_f"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_f"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/confirmok1" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView_w"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="36dp"-->
+<!--                    android:scaleType="centerInside"-->
 
-                <TextView
-                    android:id="@+id/text_c"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="確認完成"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_c"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_c"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_c" />
+<!--                    app:itemIconTint="@drawable/bottom_nav_item_selector"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:srcCompat="@drawable/wait2" />-->
 
 
 

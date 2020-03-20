@@ -66,12 +66,31 @@
     <string name="no_service">不可預約服務喔</string>
 
 
+    <string name="select_year">查詢年度</string>
+    <string name="select_month">查詢月份</string>
 
+    <string name="cum_rev">本月累計營收 %d元</string>
+    <string name="nt_dollars_">NT$%d</string>
+    <string name="_dash_">%s - %s</string>
 
     <string name="select_device">選擇手機型號</string>
     <string name="select_service0">選擇保貼商品</string>
     <string name="select_service1">選擇包膜商品</string>
     <string name="select_salesman">門市業務人員</string>
+
+    <!--Year_List-->
+    <string name="YEAR_2020">2020</string>
+    <string name="YEAR_2021">2021</string>
+    <string name="YEAR_2022">2022</string>
+    <string name="YEAR_2023">2023</string>
+    <string name="YEAR_2024">2024</string>
+    <string name="YEAR_2025">2025</string>
+    <string name="YEAR_2026">2026</string>
+    <string name="YEAR_2027">2027</string>
+    <string name="YEAR_2028">2028</string>
+    <string name="YEAR_2029">2029</string>
+    <string name="YEAR_2030">2030</string>
+
 
 
 

@@ -19,15 +19,28 @@ import android.database.sqlite.SQLiteDatabase
 import android.content.ContentValues
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.github.mikephil.charting.data.BarEntry
+import com.hsiaoling.bao.ext.toMonthFormat
+import com.hsiaoling.bao.ext.toYearFormat
 
 
 class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() {
+
+
+
+
+
 
 
     // get  Rev
     private var _rev = MutableLiveData<List<Service>>()
     val rev: LiveData<List<Service>>
         get() = _rev
+
+    var  currentUser = UserManager.user!!
+    var firstDay:Long = 0L
+    var endDay:Long = 0L
+
+
 
     private var _serviceList = MutableLiveData<List<List<Service>>>()
     val serviceList: LiveData<List<List<Service>>>
@@ -36,8 +49,20 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
     var currentday = Calendar.getInstance().getTime()
     var today = this.currentday.time.toDayFormat()
     var todayTimeStamp = SimpleDateFormat("yyyy-M-d").parse(today).time
+    var currentMonth = currentday.time.toMonthFormat().toInt()
+    var currentYear=currentday.time.toYearFormat().toInt()
 
 
+    //Year Chosen spinner
+    val selectedYearPosition = MutableLiveData<Int>()
+    // change livedata by Transformation.map to selectedvalue
+    val yearChosen: LiveData<YearChosen> = Transformations.map(selectedYearPosition) {
+        val selectedYear = it.toString()
+        Log.i("HsiaoLing", "chosenYear=$selectedYear")
+        Log.i("HsiaoLing", "chosenYear=${YearChosen.values()[it]}")
+        // get the YearChosen value  by the corresponding position
+        YearChosen.values()[it]
+    }
 
 
 
@@ -90,33 +115,33 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
     init {
 
-
-        val firstMarch = SimpleDateFormat("yyyy-M-d").parse("2020-3-1").time
-        val firstApr = SimpleDateFormat("yyyy-M-d").parse("2020-4-1").time
-
-
-        getLiveRev(UserManager.user!!, firstMarch, firstApr)
-
-
+        setCurrentMonth()
+        getLiveRev(currentUser, firstDay, endDay)
 
     }
+
+
 
 
     // put loginUser service
     fun getLiveRev(user: User, firstDay: Long, endDay: Long) {
         _rev =
             repository.getLiveRev(user, firstDay, endDay) as MutableLiveData<List<Service>>
-        Log.i("HsiaoLing", "currentdaytest=$firstDay,$endDay")
+        Log.i("HsiaoLing", "repository.getLiveRev=$firstDay,$endDay")
 
     }
 
-    val firstJan = SimpleDateFormat("yyyy-M-d").parse("2020-1-1").time
-    val firstFeb = SimpleDateFormat("yyyy-M-d").parse("2020-2-1").time
-    val firstMay = SimpleDateFormat("yyyy-M-d").parse("2020-5-1").time
-    val firstJune = SimpleDateFormat("yyyy-M-d").parse("2020-6-1").time
-
-    fun getTodayTimeStamp() {
-        todayTimeStamp
+    fun setCurrentMonth(){
+        when{
+            currentMonth < 12 ->{
+                firstDay = SimpleDateFormat("yyyy-M-d").parse("$currentYear-$currentMonth-1").time
+                endDay =  SimpleDateFormat("yyyy-M-d").parse("$currentYear-${currentMonth+1}-1").time
+            }
+            else -> {firstDay = SimpleDateFormat("yyyy-M-d").parse("$currentYear-$currentMonth-1").time
+                endDay =  SimpleDateFormat("yyyy-M-d").parse("${currentYear+1}-1-1").time
+            }
+        }
+        Log.e("HsiaoLing", "currentMonth=$firstDay,$endDay")
     }
 
 
@@ -137,8 +162,11 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         Log.i("HsiaoLing", "currentdaytest=${rev.value?.size}")
         Log.i("HsiaoLing", "  uptoDateRev =$uptoDateRev")
         uptoDateRev
-
     }
+
+
+
+
 
 
     fun getServicesByDayGroup(list: List<Service>, month: Int, year: Int): List<List<Service>> {
@@ -177,21 +205,20 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         Log.i("HsiaoLing", "  servicesList =$servicesList")
         Log.i("HsiaoLing", "  servicesList.size =${servicesList.size}")
         return servicesList
-
     }
 
+    // get day revenue and put into BarEntry for chart data
     fun getBarEntries(list: List<List<Service>>):ArrayList<BarEntry>{
         val entries = ArrayList<BarEntry>()
         for ((index   , dayList) in list.withIndex()){
             if (dayList.isNotEmpty()){
                 var dayRev: Long = 0
-                var label = dayList[0].doneTime.toDayFormat()
+
                 for (service in dayList){
                     Log.i("HsiaoLing", "  dayList =$dayList")
                     service.price.let{
                         dayRev += (service.price)
                     }
-
                 }
                 Log.i("HsiaoLing", "  dayRev =$dayRev")
 
@@ -204,62 +231,29 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         return entries
     }
 
+    fun getCumRevBarEntries(list: List<List<Service>>):ArrayList<BarEntry>{
+        val cumRevEntries = ArrayList<BarEntry>()
+        var cumdayRev: Long = 0
+        for ((index   , dayList) in list.withIndex()){
+            if (dayList.isNotEmpty()){
 
+                for (service in dayList){
+                    Log.i("HsiaoLing", "  dayList =$dayList")
+                    service.price.let{
+                        cumdayRev += (service.price)
+                    }
+                }
+                Log.i("HsiaoLing", "  dayRev =$cumdayRev")
 
+                var cumBarEntry = BarEntry(index.toFloat(),cumdayRev.toFloat())
 
+                Log.i("HsiaoLing", "  barEntry =$cumBarEntry")
 
+                cumRevEntries.add(cumBarEntry)
+            }}
+        return cumRevEntries
+    }
 
-
-//    val dayRev:LiveData<Long> =
-
-
-//    fun getRev(date: String, userType: UserType) {
-//
-//        coroutineScope.launch {
-//
-//            _status.value = LoadApiStatus.LOADING
-//
-//            val result = repository.getDateRevResult(date, userType)
-//
-//            Log.i("HsiaogetRev", " userType=${userType}")
-//
-//            _rev.value = when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    result.data
-//
-//                    Log.i("HsiaogetRev", " _rev.value=${}")
-//
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
-
-
-//    fun onAddedSuccessNavigated() {
-//        _navigateToAddSuccess.value = null
-//    }
-//
-//    fun onAddedFailNavigated() {
-//        _navigateToAddedFail.value = null
-//    }
 
     @InverseMethod("convertLongToString")
     fun convertStringToLong(value: String): Long {
@@ -304,3 +298,17 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
 }
 
+enum class YearChosen(val positionOnSpinner: Int) {
+
+    YEAR_2020(0),
+    YEAR_2021(1),
+    YEAR_2022(2),
+    YEAR_2023(3),
+    YEAR_2024(4),
+    YEAR_2025(5),
+    YEAR_2026(6),
+    YEAR_2027(7),
+    YEAR_2028(8),
+    YEAR_2029(9),
+    YEAR_2030(10)
+}

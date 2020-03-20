@@ -48,6 +48,12 @@ fun bindDisplayFormatTime(textView: TextView, time: Long?) {
 
 }
 
+@BindingAdapter("revenue")
+fun bindRev(textView: TextView, revenue: Long?) {
+    revenue?.let { textView.text = BaoApplication.instance.getString(R.string.cum_rev, it) }
+}
+
+
 @BindingAdapter("updateTime", "status")
 fun updateTime(textView: TextView, time: Long?,status:Int) {
     Log.i("Hsiao", "doneTime, time=$time")
