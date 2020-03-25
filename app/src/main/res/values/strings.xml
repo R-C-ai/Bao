@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Bao</string>
     <string name="you_know_nothing">You know nothing</string>
+    <string name="without_this_account">查無此帳號 請重新登入</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -70,6 +71,7 @@
     <string name="select_month">查詢月份</string>
 
     <string name="cum_rev">本月累計營收 %d元</string>
+
     <string name="nt_dollars_">NT$%d</string>
     <string name="_dash_">%s - %s</string>
 

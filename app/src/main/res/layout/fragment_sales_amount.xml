@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     tools:text="日期"
-                    android:text="@{viewModel.today}"
+                    android:text="@{viewModel.currentDay}"
                     android:textSize="14sp"
 
                     app:layout_constraintStart_toEndOf="@+id/imageView_year"

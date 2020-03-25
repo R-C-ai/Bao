@@ -6,7 +6,7 @@
     <data>
         <variable   name="viewModel"   type="com.hsiaoling.bao.servicestatus.ServiceStatusViewModel" />
         <variable   name="service"       type="com.hsiaoling.bao.data.Service" />
-        <variable   name="salesman"     type="com.hsiaoling.bao.data.User" />
+        <variable   name="statusUser"     type="com.hsiaoling.bao.data.User" />
 
     </data>
 
@@ -163,7 +163,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/bg_text"
-                    android:text="@{salesman.name}"
+                    android:text="@{statusUser.name}"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"

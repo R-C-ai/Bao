@@ -25,14 +25,14 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     val mockStore = Store("4d7yMjfPO5lw66u8sHnt", "松菸文創店")
 
     // Get Firebase salesman  Data
-    private val _salesmans = MutableLiveData<List<User>>()
-    val salemans: LiveData<List<User>>
-        get() = _salesmans
+//    private val _salesmans = MutableLiveData<List<User>>()
+//    val salemans: LiveData<List<User>>
+//        get() = _salesmans
 
-    // Get Firebase salesman  Data, if no this salesman create in this store
-    private var _loginSalesman = MutableLiveData<User>()
-    val loginSalesman: LiveData<User>
-        get() = _loginSalesman
+    // Get Firebase user  Data
+    private var _loginUser = MutableLiveData<User>()
+    val loginUser: LiveData<User>
+        get() = _loginUser
 
 
     val loginSalesmanId = MutableLiveData<String>()
@@ -41,10 +41,10 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
     //SalesmanChosen spinner
-    val selectedSalesmanPosition = MutableLiveData<Int>()
-    val selectedSalesman: LiveData<User> = Transformations.map(selectedSalesmanPosition) {
-        salemans.value!![it]
-    }
+//    val selectedSalesmanPosition = MutableLiveData<Int>()
+//    val selectedSalesman: LiveData<User> = Transformations.map(selectedSalesmanPosition) {
+//        salemans.value!![it]
+//    }
 
     private val _navigateToCalendar = MutableLiveData<User>()
     val navigateToCalendar : LiveData<User>
@@ -112,46 +112,46 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
 //        getSalesmansResult()
 //    }
 
-    fun getSalesmansResult(){
-        coroutineScope.launch{
-            _status.value = LoadApiStatus.LOADING
-            val result = repository.getSalesmansResult()
-            _salesmans.value = when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-
-                    Log.i("HsiaoLing","salesmans=${result.data}")
-                    result.data
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                else -> {
-                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-            }
-            _refreshStatus.value = false
-        }
-    }
+//    fun getSalesmansResult(){
+//        coroutineScope.launch{
+//            _status.value = LoadApiStatus.LOADING
+//            val result = repository.getSalesmansResult()
+//            _salesmans.value = when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//
+//                    Log.i("HsiaoLing","salesmans=${result.data}")
+//                    result.data
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                else -> {
+//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
 
 
     // get Firestore salesman data  by loginsalesman uid ,displayname
-    fun getLoginSalesman(uId: String, displayname: String) {
+    fun getLoginUser(uId: String, displayname: String) {
         Log.i("HsiaoLing","getLoginSalesman()")
         coroutineScope.launch{
             _status.value = LoadApiStatus.LOADING
-            val result = repository.getLoginSalesmansResult(uId,displayname)
-            _loginSalesman.value = when (result) {
+            val result = repository.getLoginUserResult(uId,displayname)
+            _loginUser.value = when (result) {
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
@@ -160,8 +160,13 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
                     // if no this salesman create this salesman
                     if (result.data == null) {
                         Log.d("HsiaoLing","result.data == null")
-                        val salesman = User(uId,displayname,"salesman")
-                        addNewSalesman(salesman)
+                        _error.value = BaoApplication.instance.getString(R.string.without_this_account)
+                        _status.value = LoadApiStatus.ERROR
+                        null
+
+
+//                        val salesman = User(uId,displayname,"salesman")
+//                        addNewSalesman(salesman)
                     }
 
                     Log.i("HsiaoLing","result.data=${result.data}")
@@ -188,40 +193,40 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
     // add newSalesman for lodinMan
-    fun addNewSalesman(user: User) {
-        Log.i("HsiaoLing","addNewSalesman")
-        coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            _loginSalesman.value = when (val result = repository.addNewSalesman(user))
-
-            {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-
-                    Log.i("HsiaoLing","addNewSalesman, salesmans=${result.data}")
-                    result.data
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                else -> {
-                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-            }
-        }
-    }
+//    fun addNewSalesman(user: User) {
+//        Log.i("HsiaoLing","addNewSalesman")
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            _loginUser.value = when (val result = repository.addNewSalesman(user))
+//
+//            {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//
+//                    Log.i("HsiaoLing","addNewSalesman, salesmans=${result.data}")
+//                    result.data
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                else -> {
+//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//            }
+//        }
+//    }
 
 
 

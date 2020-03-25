@@ -53,32 +53,36 @@ class AddBaoDialog : AppCompatDialogFragment() {
         // get service from selected schedule
         service = requireArguments().getParcelable<Service>("givenservice")
 
+        // set loginUser to services
         service?.let {
             viewModel.setService(it)
             UserManager.user?.let {
-                viewModel.setSalesmanForService(it)
+                viewModel.setLoginUserForService(it)
             }
         }
+
+
 
 
         //Device Spinner Adapter
          binding.textDevice.adapter=SpinnerAdapter(
              BaoApplication.instance.resources.getStringArray(R.array.device_list)
          )
-
         viewModel.selectedDevicePosition.observe(this, Observer {
+
             Log.i("Hsiao","viewModel.selectedDevicePosition.observe, it=$it")
         })
         viewModel.deviceChosen.observe(this, Observer {
             Log.i("Hsiao","viewModel.deviceChosen.observe, it=$it")
+
         })
+
 
 
         //Service0 Screen Spinner Adapter
         binding.textService0.adapter=SpinnerAdapter(
             BaoApplication.instance.resources.getStringArray(R.array.service0_list)
         )
-        //
         viewModel.selectedScreenPosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedService0Position.observe, it=$it")
         })
@@ -91,7 +95,6 @@ class AddBaoDialog : AppCompatDialogFragment() {
         binding.textService1.adapter=SpinnerAdapter(
             BaoApplication.instance.resources.getStringArray(R.array.service1_list)
         )
-
         viewModel.selectedBackPosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedBackPosition.observe, it=$it")
         })
@@ -115,8 +118,11 @@ class AddBaoDialog : AppCompatDialogFragment() {
 
         viewModel.navigateToAddSuccess.observe(this, Observer {
             it?.let {
+                dismiss()
                 findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(MessageDialog.MessageType.ADDED_SUCCESS))
                 viewModel.onAddedSuccessNavigated()
+
+
             }
         })
 
@@ -138,22 +144,6 @@ class AddBaoDialog : AppCompatDialogFragment() {
             }
         })
 
-
-
-//        viewModel.leave.observe(this, Observer {
-//            it?.let { needRefresh ->
-//                if (needRefresh) {
-//                    ViewModelProviders.of(activity!!).get(MasterDailyItemViewModel::class.java).apply {
-//                        refresh()
-//                    }
-//                }
-//                findNavController().navigateUp()
-//                viewModel.onLeft()
-//            }
-//        })
-        viewModel.service.observe(this, Observer {
-            Logger.i("added")
-        })
 
         return binding.root
 

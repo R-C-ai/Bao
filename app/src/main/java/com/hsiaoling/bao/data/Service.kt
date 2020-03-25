@@ -21,7 +21,7 @@ data class Service(
     var device:String="",
     var screen:String="",
     var back:String="",
-    var price:Long=0,
+    var price:Int=0,
     var status:Int=-1,
     var statusText:String="",
     var reserveTime: Long=-1,

@@ -17,8 +17,11 @@ import androidx.navigation.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.hsiaoling.bao.data.Day
 import com.hsiaoling.bao.databinding.ActivityMainBinding
+import com.hsiaoling.bao.databinding.BadgeBottomBinding
 import com.hsiaoling.bao.ext.getVmFactory
+import com.hsiaoling.bao.login.DayManager
 import com.hsiaoling.bao.util.CurrentFragmentType
 import kotlinx.coroutines.launch
 
@@ -62,11 +65,18 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+
+
+        // set DayManager
+        viewModel.thisTime.observe(this, Observer {
+            DayManager.day = it
+            Log.i("HsiaoLing","viewModel.thisTime.observe=[${DayManager.day}]")
+        })
 
         // observe current fragment change, only for show info
         viewModel.currentFragmentType.observe(this, Observer {
@@ -99,22 +109,28 @@ class MainActivity : BaseActivity() {
         setupToolbar()
         setupBottomNav()
         setupNavController()
+
     }
 
     /**
      * Set up [BottomNavigationView],  [BottomNavigationMenuView] and [BottomNavigationItemView]
      *
      */
+
+
     private fun setupBottomNav() {
         binding.bottomNavView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
-
-        val menuView = binding.bottomNavView.getChildAt(0) as BottomNavigationMenuView
-        val itemView = menuView.getChildAt(2) as BottomNavigationItemView
-
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
-
     }
+
+
+    fun setupBadgeView() {
+        val menuView = binding.bottomNavView.getChildAt(0) as BottomNavigationMenuView
+        val itemView = menuView.getChildAt(1) as BottomNavigationItemView
+        val bindingBadge =BadgeBottomBinding.inflate(LayoutInflater.from(this),itemView,true)
+        bindingBadge.lifecycleOwner = this
+        bindingBadge.viewModel = viewModel
+    }
+
 
     /**
      * Set up [NavController.addOnDestinationChangedListener] to record the current fragment, it better than another design
@@ -168,6 +184,24 @@ class MainActivity : BaseActivity() {
         }
     }
 
+
+    fun reObserveLiveStatuses() {
+
+        // get first time liveStatus when login App
+        viewModel.liveStatuses.observe(this, Observer {
+            Log.i("HsiaoLing","viewModel.liveStatuses.observe=[$it]")
+
+        })
+
+        // set the first time status as most updated status
+        viewModel.countStatus1?.observe(this, Observer {
+            Log.i("HsiaoLing","viewModel.countStatus1.observe=[$it]")
+
+        })
+
+        // setup BadgeView
+        setupBadgeView()
+    }
 }
 
 

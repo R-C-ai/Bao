@@ -13,6 +13,11 @@ fun Long.toDisplayFormat(): String {
     return SimpleDateFormat("MM/dd hh:mm",Locale.TAIWAN).format(this)
 }
 
+fun Long.toCurrentFormat(): String {
+
+    return SimpleDateFormat("yyyy-M-d hh:mm",Locale.TAIWAN).format(this)
+}
+
 fun Long.toDayFormat():String {
     return SimpleDateFormat ("yyyy-M-d",Locale.TAIWAN).format(this)
 }

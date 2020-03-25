@@ -12,7 +12,7 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun getLoginUsersResult(salesId:String, salesName:String): Result<User> {
+    override suspend fun getLoginUserResult(salesId:String, salesName:String): Result<User> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -28,7 +28,7 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun updateService(service: Service): Result<Boolean> {
+    override suspend fun addMasterService(service: Service): Result<Boolean> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -47,7 +47,7 @@ object BaoLocalDataSource:BaoDataSource {
     }
 
 
-    override suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service> {
+    override suspend fun getAddServiceResult(date: String,masterId: String,serviceId:String): Result<Service> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -63,6 +63,10 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
+    override fun getLiveM(user: User, firstDay: Long, endDay: Long): LiveData<List<Service>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun getLiveDateServices(date: String,masterId: String): LiveData<List<Service>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -74,6 +78,15 @@ object BaoLocalDataSource:BaoDataSource {
 //    override suspend fun removeBaoInMaster(baoService: BaoService) {
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }
+
+    override fun getMonthLiveStatus(
+        user: User,
+        firstDay: Long,
+        endDay: Long,
+        completeHandler: (List<Service>) -> Unit
+    ) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

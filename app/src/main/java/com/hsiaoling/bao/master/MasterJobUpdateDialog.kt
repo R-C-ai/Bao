@@ -57,25 +57,27 @@ class MasterJobUpdateDialog : AppCompatDialogFragment() {
             UserManager.user?.let {
                 viewModel.setMsaterForJob(it)
             }
+
         }
 
 
         viewModel.navigateToAddSuccess.observe(this, Observer {
             it?.let {
+                dismiss()
                 findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
                     MessageDialog.MessageType.DONE_SUCCESS))
                 viewModel.onAddedSuccessNavigated()
             }
         })
-
-        viewModel.navigateToAddedFail.observe(this, Observer {
-            it?.let {
-                findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
-                    MessageDialog.MessageType.MESSAGE.apply { value.message = getString(R.string.bao_finished) }
-                ))
-                viewModel.onAddedFailNavigated()
-            }
-        })
+//
+//        viewModel.navigateToAddedFail.observe(this, Observer {
+//            it?.let {
+//                findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
+//                    MessageDialog.MessageType.MESSAGE.apply { value.message = getString(R.string.bao_finished) }
+//                ))
+//                viewModel.onAddedFailNavigated()
+//            }
+//        })
 
 
 
@@ -86,9 +88,6 @@ class MasterJobUpdateDialog : AppCompatDialogFragment() {
         })
 
 
-//        binding.textViewSalesman.text = service?.salesmanName
-//        binding.textViewMaster.text = service?.masterName
-//        binding.textViewCustomer.text = service?.customerNo
 
 
         return binding.root

@@ -73,6 +73,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
 
     // get two livedata be added by MediatorLiveData
     val totalPrice = MediatorLiveData<Int>().apply {
+
         addSource(screenPrice){
             it?.let {value = it + (backPrice.value?:0) }
         }
@@ -88,16 +89,35 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     val service: LiveData<Service>
         get() = _service as LiveData<Service>
 
+
     // put selscted schedule data into service
     fun setService(service: Service) {
         _service.value = service
+
     }
 
+
+//    fun setSalesmanForService(user: User) {
+//        _service.value?.let {
+//            it.salesmanId = user.id
+//            it.salesmanName = user.name
+//        }
+//        _service.value = _service.value
+//    }
+
     // put loginsalesman data into service
-    fun setSalesmanForService(user: User) {
+    fun setLoginUserForService(user: User) {
         _service.value?.let {
-            it.salesmanId = user.id
-            it.salesmanName = user.name
+            when(user.type){
+                "salesman" -> {
+                    it.salesmanId = user.id
+                    it.salesmanName = user.name
+                }
+                "master" -> {
+                    it.masterId = user.id
+                    it.masterId = user.id
+                }
+            }
         }
         _service.value = _service.value
     }
@@ -105,7 +125,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     // get uodate Service
     private val _oneService = MutableLiveData<Service>()
     val oneService: LiveData<Service>
-        get() = _service as LiveData<Service>
+        get() = _oneService as LiveData<Service>
 
 
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -121,11 +141,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     val refreshStatus: LiveData<Boolean>
         get() = _refreshStatus
 
-    // Handle when addservice is successful
-//    private val _addSuccess = MutableLiveData<CheckoutOrderResult>()
-//
-//    val checkoutSuccess: LiveData<CheckoutOrderResult>
-//        get() = _checkoutSuccess
+
 
 
     private val _navigateToAddSuccess = MutableLiveData<Service>()
@@ -153,17 +169,23 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
     init {
-//        Logger.i("------------------------------------")
-//        Logger.i("[${this::class.simpleName}]${this}")
-//        Logger.i("------------------------------------")
+    }
+
+    fun click() {
+        if (service.value != null) {
+            service.value!!.price = totalPrice.value!!
+            addMasterService(service.value!!)
+            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
+
+        }
     }
 
 
-    fun update(service: Service) {
+    fun addMasterService(service: Service) {
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING
             Log.i("HsiaoLingUpdate", " _status.value=${service}")
-            when (val result = repository.updateService(service)) {
+            when (val result = repository.addMasterService(service)) {
 
                 is Result.Success -> {
                     _error.value = null
@@ -193,7 +215,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     fun refresh() {
         if (status.value != LoadApiStatus.LOADING) {
             Log.i("Hsiao", "")
-            getOneServiceResult(
+            getAddServiceResult(
                 service.value!!.date,
                 service.value!!.masterId,
                 service.value!!.serviceId
@@ -203,13 +225,13 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
 
-    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
+    fun getAddServiceResult(date: String, masterId: String, serviceId: String) {
 
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            val result = repository.getOneServiceResult(date, masterId, serviceId)
+            val result = repository.getAddServiceResult(date, masterId, serviceId)
 
             _oneService.value = when (result) {
                 is Result.Success -> {
@@ -238,28 +260,9 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
     }
 
 
-    fun click() {
-        if (service.value != null) {
-//        insertServiceToMaster(service.value!!)
-            update(service.value!!)
-            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
-
-        }
-    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-fun onAddedSuccessNavigated() {
+        fun onAddedSuccessNavigated() {
             _navigateToAddSuccess.value = null
         }
 
@@ -294,11 +297,6 @@ fun onAddedSuccessNavigated() {
             _leave.value = null
         }
 
-
-
-//    fun onRefreshed() {
-//        _refresh.value = null
-//    }
 
         fun onLeaveCompleted() {
             _leave.value = null

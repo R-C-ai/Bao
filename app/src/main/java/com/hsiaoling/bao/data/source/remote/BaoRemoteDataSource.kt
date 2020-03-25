@@ -193,7 +193,7 @@ object BaoRemoteDataSource:BaoDataSource {
 
 
     // get all login salesman data
-    override suspend fun getLoginUsersResult(usersId:String, usersName:String): Result<User?> = suspendCoroutine { continuation->
+    override suspend fun getLoginUserResult(usersId:String, usersName:String): Result<User?> = suspendCoroutine { continuation->
         Log.i("Hsiao","getLoginUsersResult, usersId=$usersId,$usersName")
         FirebaseFirestore.getInstance()
             .collection("store")
@@ -427,6 +427,83 @@ object BaoRemoteDataSource:BaoDataSource {
         return liveData
     }
 
+    // get monthStatus updated services  by addSnapshotListener
+    override fun getLiveM(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>> {
+
+
+        val liveData = MutableLiveData<List<Service>>()
+        var userKey:String = ""
+        when (user.type){
+            "salesman"-> userKey = KEY_SALESMANID
+            "master" -> userKey = KEY_MASTERID
+        }
+
+        Log.i("HsiaoLing","getLiveM user=${user.type},${user.id}")
+
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SERVICE)
+            .whereEqualTo(userKey,user.id)
+            .whereGreaterThan("updateTime",firstDay)
+            .whereLessThan("updateTime",endDay)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("addSnapshotListener detect")
+                exception?.let {
+                    Logger.w("[] Error getting documents. ${it.message}")
+                }
+                val list = mutableListOf<Service>()
+                for (document in snapshot!!) {
+                    Logger.d(document.id + " => " + document.data)
+                    val service = document.toObject(Service::class.java)
+                    list.add(service)
+                }
+                Logger.i("detect list=$list")
+                Log.i("HsiaoLing","getLiveM list=$list")
+                liveData.value = list
+            }
+        return liveData
+    }
+
+
+
+
+    // get salesman's  updated service which the statue >0,  intime by addSnapshotListener method2
+    override fun getMonthLiveStatus(user: User,firstDay: Long,endDay: Long, completeHandler: (List<Service>) -> Unit) {
+        var userKey:String = ""
+        when (user.type){
+            "salesman"-> userKey = KEY_SALESMANID
+            "master" -> userKey = KEY_MASTERID
+        }
+
+        FirebaseFirestore.getInstance()
+            .collection("store")
+            .document("4d7yMjfPO5lw66u8sHnt")
+            .collection(PATH_SERVICE)
+            .whereEqualTo(userKey,user.id)
+            .whereGreaterThan("updateTime",firstDay)
+            .whereLessThan("updateTime",endDay)
+            .addSnapshotListener { snapshot, exception ->
+                Logger.i("addSnapshotListener detect")
+                exception?.let {
+                    Logger.w("[] Error getting documents. ${it.message}")
+                }
+                val list = mutableListOf<Service>()
+                snapshot?.let {
+                    for (document in snapshot   !!) {
+                        Logger.d(document.id + " =============> " + document.data)
+                        val service = document.toObject(Service::class.java)
+                        list.add(service)
+                    }
+                    completeHandler(list)
+                    Logger.d( " liveData.value =============> $list")
+                }
+            }
+    }
+
+
+
+
     // get salesman's  updated service which the statue >0,  intime by addSnapshotListener method2
     override fun getSalesmanLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
         Logger.w("getLiveStatus $salesmanId")
@@ -579,7 +656,7 @@ object BaoRemoteDataSource:BaoDataSource {
     }
 
    // make a new reserve for the exist empty schedule
-    override suspend fun updateService(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
+    override suspend fun addMasterService(service: Service): Result<Boolean> = suspendCoroutine { continuation ->
         FirebaseFirestore.getInstance().collection("store").document("4d7yMjfPO5lw66u8sHnt").collection(
             PATH_SERVICE).document(service.serviceId)
             .update(mapOf(
@@ -648,6 +725,7 @@ object BaoRemoteDataSource:BaoDataSource {
                 "status" to action.value,
                 "getJobTime" to  Calendar.getInstance().timeInMillis,
                 "updateTime" to Calendar.getInstance().timeInMillis)
+
             ServiceAction.DONE -> map = mapOf(
                 "status" to action.value,
                 "doneTime" to  Calendar.getInstance().timeInMillis,
@@ -685,7 +763,7 @@ object BaoRemoteDataSource:BaoDataSource {
 
 
     // get target serviceId exist servive updated data
-    override suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service> = suspendCoroutine { continuation->
+    override suspend fun getAddServiceResult(date: String,masterId: String,serviceId:String): Result<Service> = suspendCoroutine { continuation->
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")

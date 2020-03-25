@@ -11,7 +11,6 @@ import com.hsiaoling.bao.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import com.hsiaoling.bao.ext.toDayFormat
 import com.hsiaoling.bao.login.UserManager
 import java.text.SimpleDateFormat
 import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
@@ -19,16 +18,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.content.ContentValues
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import com.github.mikephil.charting.data.BarEntry
-import com.hsiaoling.bao.ext.toMonthFormat
-import com.hsiaoling.bao.ext.toYearFormat
+import com.hsiaoling.bao.ext.*
+import com.hsiaoling.bao.login.DayManager
 
 
 class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() {
-
-
-
-
-
 
 
     // get  Rev
@@ -37,32 +31,42 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         get() = _rev
 
     var  currentUser = UserManager.user!!
-    var firstDay:Long = 0L
-    var endDay:Long = 0L
+//    var firstDay:Long = 0L
+//    var endDay:Long = 0L
 
+    // Get Input Update Service Status  LiveData
+    private val _service = MutableLiveData<Service>()
+    val service: LiveData<Service>
+        get() = _service as LiveData<Service>
 
+    var firstDay = DayManager.day!!.firstDay
+    var endDay = DayManager.day!!.endDay
+    var todayTimeStamp = DayManager.day!!.todayTimeStamp
 
     private var _serviceList = MutableLiveData<List<List<Service>>>()
     val serviceList: LiveData<List<List<Service>>>
         get() = _serviceList
 
     var currentday = Calendar.getInstance().getTime()
-    var today = this.currentday.time.toDayFormat()
-    var todayTimeStamp = SimpleDateFormat("yyyy-M-d").parse(today).time
-    var currentMonth = currentday.time.toMonthFormat().toInt()
-    var currentYear=currentday.time.toYearFormat().toInt()
+//    var today = this.currentday.time.toCurrentFormat()
+//    var todayTimeStamp = SimpleDateFormat("yyyy-M-d hh:mm").parse(today).time
+
+//    var currentMonth = currentday.time.toMonthFormat().toInt()
+//    var currentYear=currentday.time.toYearFormat().toInt()
+    var currentDay = currentday.time.toDayFormat()
+
 
 
     //Year Chosen spinner
-    val selectedYearPosition = MutableLiveData<Int>()
+//    val selectedYearPosition = MutableLiveData<Int>()
     // change livedata by Transformation.map to selectedvalue
-    val yearChosen: LiveData<YearChosen> = Transformations.map(selectedYearPosition) {
-        val selectedYear = it.toString()
-        Log.i("HsiaoLing", "chosenYear=$selectedYear")
-        Log.i("HsiaoLing", "chosenYear=${YearChosen.values()[it]}")
-        // get the YearChosen value  by the corresponding position
-        YearChosen.values()[it]
-    }
+//    val yearChosen: LiveData<YearChosen> = Transformations.map(selectedYearPosition) {
+//        val selectedYear = it.toString()
+//        Log.i("HsiaoLing", "chosenYear=$selectedYear")
+//        Log.i("HsiaoLing", "chosenYear=${YearChosen.values()[it]}")
+//        // get the YearChosen value  by the corresponding position
+//        YearChosen.values()[it]
+//    }
 
 
 
@@ -80,21 +84,7 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         get() = _refreshStatus
 
 
-//    private val _navigateToAddSuccess = MutableLiveData<Service>()
-//    val navigateToAddSuccess: LiveData<Service>
-//        get() = _navigateToAddSuccess
-//
-//    private val _navigateToAddedFail = MutableLiveData<Service>()
-//    val navigateToAddedFail: LiveData<Service>
-//        get() = _navigateToAddedFail
-//
-//    private val _navigateToDeleteSuccess = MutableLiveData<Service>()
-//    val navigateToDeleteSuccess: LiveData<Service>
-//        get() = _navigateToDeleteSuccess
-//
-//    private val _navigateToDeletedFail = MutableLiveData<Service>()
-//    val navigateToDeletedFail: LiveData<Service>
-//        get() = _navigateToDeletedFail
+
 
 
     // Handle leave
@@ -115,7 +105,7 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
     init {
 
-        setCurrentMonth()
+//        setCurrentMonth()
         getLiveRev(currentUser, firstDay, endDay)
 
     }
@@ -123,26 +113,27 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
 
 
-    // put loginUser service
+    // put loginUser service for currentMonth
     fun getLiveRev(user: User, firstDay: Long, endDay: Long) {
         _rev =
             repository.getLiveRev(user, firstDay, endDay) as MutableLiveData<List<Service>>
         Log.i("HsiaoLing", "repository.getLiveRev=$firstDay,$endDay")
 
+
     }
 
-    fun setCurrentMonth(){
-        when{
-            currentMonth < 12 ->{
-                firstDay = SimpleDateFormat("yyyy-M-d").parse("$currentYear-$currentMonth-1").time
-                endDay =  SimpleDateFormat("yyyy-M-d").parse("$currentYear-${currentMonth+1}-1").time
-            }
-            else -> {firstDay = SimpleDateFormat("yyyy-M-d").parse("$currentYear-$currentMonth-1").time
-                endDay =  SimpleDateFormat("yyyy-M-d").parse("${currentYear+1}-1-1").time
-            }
-        }
-        Log.e("HsiaoLing", "currentMonth=$firstDay,$endDay")
-    }
+//    fun setCurrentMonth(){
+//        when{
+//            currentMonth < 12 ->{
+//                firstDay = SimpleDateFormat("yyyy-M-d").parse("$currentYear-$currentMonth-1").time
+//                endDay =  SimpleDateFormat("yyyy-M-d").parse("$currentYear-${currentMonth+1}-1").time
+//            }
+//            else -> {firstDay = SimpleDateFormat("yyyy-M-d").parse("$currentYear-$currentMonth-1").time
+//                endDay =  SimpleDateFormat("yyyy-M-d").parse("${currentYear+1}-1-1").time
+//            }
+//        }
+//        Log.e("HsiaoLing", "currentMonth=$firstDay,$endDay")
+//    }
 
 
     val uptoDateRev: LiveData<Long> = Transformations.map(rev) {
@@ -297,18 +288,18 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
 
 }
-
-enum class YearChosen(val positionOnSpinner: Int) {
-
-    YEAR_2020(0),
-    YEAR_2021(1),
-    YEAR_2022(2),
-    YEAR_2023(3),
-    YEAR_2024(4),
-    YEAR_2025(5),
-    YEAR_2026(6),
-    YEAR_2027(7),
-    YEAR_2028(8),
-    YEAR_2029(9),
-    YEAR_2030(10)
-}
+//
+//enum class YearChosen(val positionOnSpinner: Int) {
+//
+//    YEAR_2020(0),
+//    YEAR_2021(1),
+//    YEAR_2022(2),
+//    YEAR_2023(3),
+//    YEAR_2024(4),
+//    YEAR_2025(5),
+//    YEAR_2026(6),
+//    YEAR_2027(7),
+//    YEAR_2028(8),
+//    YEAR_2029(9),
+//    YEAR_2030(10)
+//}

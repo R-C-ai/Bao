@@ -59,15 +59,20 @@ class ServiceStatusFragment : Fragment() {
                     }
                     1 -> { //reserve
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 1 } ?: listOf())
+
+
                     }
                     2 -> { //get job
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 2 } ?: listOf())
+
                     }
                     3 -> { //done
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 3 } ?: listOf())
+
                     }
                     4 -> { //finish check
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 4 } ?: listOf())
+
                     }
                     5 -> { //delete
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 5 } ?: listOf())
@@ -77,8 +82,8 @@ class ServiceStatusFragment : Fragment() {
             }
         })
 
-        // get login salesman by Salesmaneger
-        binding.salesman = UserManager.user
+        // get loginUser by UserManeger
+        binding.statusUser = UserManager.user
 
         viewModel.navgateToAddBao.observe(this, Observer {
             it?.let{

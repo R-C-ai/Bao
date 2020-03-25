@@ -54,16 +54,33 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
 
         Log.i("Hsiao","requireArguments().getParcelable=${service}")
 
+
+        // set loginUser to services
         service?.let {
             viewModel.updateStatus(it)
             UserManager.user?.let {
-                viewModel.setSalesmanForService(it)
+                viewModel.setLoginUserForService(it)
             }
         }
+
+        viewModel.navgateToChange.observe(this, Observer {
+            it?.let {
+                Log.i("HsiaoLing","viewModel.navgateToChange.observe=${it}")
+                dismiss()
+                findNavController().navigate(NavigationDirections.actionGlobalAddBaoDialog(it))
+
+
+            }
+        })
+
+
+
+
 
 
         viewModel.navigateToAddSuccess.observe(this, Observer {
             it?.let {
+                dismiss()
                 findNavController().navigate(NavigationDirections.actionGlobalMessageDialog3(
                     MessageDialog.MessageType.DONE_SUCCESS))
                 viewModel.onAddedSuccessNavigated()
@@ -86,12 +103,6 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
                 if (it) findNavController().popBackStack()
             }
         })
-
-
-//        binding.textViewSalesman.text = service?.salesmanName
-//        binding.textViewMaster.text = service?.masterName
-//        binding.textViewCustomer.text = service?.customerNo
-
 
         return binding.root
 

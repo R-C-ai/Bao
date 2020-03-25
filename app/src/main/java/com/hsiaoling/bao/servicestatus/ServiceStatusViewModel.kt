@@ -3,6 +3,7 @@ package com.hsiaoling.bao.servicestatus
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
@@ -75,6 +76,11 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     //get exit reserved service
 //    private var _liveStatuses = MutableLiveData<List<Service>>()
     var  liveStatuses = MutableLiveData<List<Service>>()
+
+
+    val s1 = liveStatuses.value?.filter { it.status == 1 } ?.size ?: 0
+
+
 //        get() = _liveStatuses
 
 
@@ -141,7 +147,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 //        getLiveStatus()
     }
 
-    // get live status from firebase
+    // get live status from firebase by loginUser
     fun getLiveStatus(){
         when(user!!.type){
             "master" -> {
@@ -151,16 +157,19 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
             }else ->{
             repository.getSalesmanLiveStatus(UserManager.user!!.id) {
                 liveStatuses.value = it
+               }
             }
         }
-        }
-
-
-
 //        liveStatuses =
 //            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
         Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
     }
+
+
+
+
+
+
 
 
 //  ----------------------------------------------------------------------------
@@ -176,7 +185,6 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 //    }
 //    --------------------------------------------------------
 
-
     // filter the status livedata  type to print different info
     val filterStatus = MutableLiveData<Int>()
 
@@ -187,7 +195,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
     fun refresh() {
         _refresh.value = true
-    }
+     }
 
     fun onRefreshed() {
         _refresh.value = null
@@ -211,7 +219,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
                 }
             }else -> {
                 when(service.status){
-                    1 -> _navigateToAddBao.value =service
+                    1 -> _navigateToUpdateStatus.value =service
                     3 -> _navigateToUpdateStatus.value =service
                     else -> navgateToInfoStatus(service)
             }

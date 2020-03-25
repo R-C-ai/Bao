@@ -104,9 +104,7 @@ class MasterJobUpdateViewModel(private val repository: BaoRepository) : ViewMode
     }
 
     init {
-//        Logger.i("------------------------------------")
-//        Logger.i("[${this::class.simpleName}]${this}")
-//        Logger.i("------------------------------------")
+
     }
 
 
@@ -119,7 +117,7 @@ class MasterJobUpdateViewModel(private val repository: BaoRepository) : ViewMode
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
-                    refresh()
+//                    refresh()
                     Log.i("Hsiao", "refreshData=${result.data}")
 
                     _navigateToAddSuccess.value = service
@@ -142,76 +140,92 @@ class MasterJobUpdateViewModel(private val repository: BaoRepository) : ViewMode
         }
     }
 
-    fun refresh() {
-        if (status.value != LoadApiStatus.LOADING) {
-            Log.i("Hsiao", "")
-            getOneServiceResult(
-                service.value!!.date,
-                service.value!!.masterId,
-                service.value!!.serviceId
-            )
-        }
-    }
-
-
-    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
-
-        coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            val result = repository.getOneServiceResult(date, masterId, serviceId)
-
-            _oneService.value = when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-                    result.data
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                else -> {
-                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-            }
-            _refreshStatus.value = false
-        }
-    }
-
-    fun selectGetJob() {
-        if (service.value != null) {
-            service.value!!.status = 2
-            updateStatus(service.value!!, serviceAction = ServiceAction.GETJOB)
-            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
-        }
-    }
-
-    fun selectDone() {
-        if (service.value != null) {
-            service.value!!.status = 3
-            updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
-            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
-        }
-    }
-
-
-//    fun click() {
-//        if (service.value != null) {
-//            update(service.value!!)
-//            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
-//
+//    fun refresh() {
+//        if (status.value != LoadApiStatus.LOADING) {
+//            Log.i("Hsiao", "")
+//            getOneServiceResult(
+//                service.value!!.date,
+//                service.value!!.masterId,
+//                service.value!!.serviceId
+//            )
 //        }
 //    }
+
+
+//    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getOneServiceResult(date, masterId, serviceId)
+//
+//            _oneService.value = when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    result.data
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                else -> {
+//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
+    fun updateMasterJob() {
+         if (service.value != null) {
+             when{
+                 service.value!!.status == 1 ->{
+                     service.value!!.status = 2
+                     updateStatus(service.value!!, serviceAction = ServiceAction.GETJOB)
+                     Log.i("HsiaoLingStatus", "selectGetJob=${service.value}")
+                 }
+
+                 service.value!!.status == 2 ->{
+                     service.value!!.status = 3
+                     updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
+                     Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+                 }
+             }
+
+         }
+    }
+
+
+
+
+
+    //
+//    fun selectGetJob() {
+//        if (service.value != null) {
+//            service.value!!.status = 2
+//            updateStatus(service.value!!, serviceAction = ServiceAction.GETJOB)
+//            Log.i("HsiaoLingStatus", "selectGetJob=${service.value}")
+//        }
+//    }
+//
+//    fun selectDone() {
+//        if (service.value != null) {
+//            service.value!!.status = 3
+//            updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
+//            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+//        }
+//    }
+
+
 
 
     fun onAddedSuccessNavigated() {

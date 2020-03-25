@@ -31,6 +31,11 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     val service: LiveData<Service>
         get() = _service as LiveData<Service>
 
+    private val _navigateToChange = MutableLiveData<Service>()
+    val navgateToChange:LiveData<Service>
+        get() = _navigateToChange
+
+
     // put selscted status card data into service
     fun updateStatus(service: Service) {
         _service.value = service
@@ -39,7 +44,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     }
 
     // put loginUser data into service
-    fun setSalesmanForService(user: User) {
+    fun setLoginUserForService(user: User) {
         _service.value?.let {
             when(user.type){
                 "salesman" -> {
@@ -125,7 +130,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
                 is Result.Success -> {
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
-                    refresh()
+//                    refresh()
                     Log.i("Hsiao", "refreshData=${result.data}")
 
                     _navigateToAddSuccess.value = service
@@ -148,54 +153,76 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         }
     }
 
-    fun refresh() {
-        if (status.value != LoadApiStatus.LOADING) {
-            Log.i("Hsiao", "")
-            getOneServiceResult(
-                service.value!!.date,
-                service.value!!.masterId,
-                service.value!!.serviceId
+//    fun refresh() {
+//        if (status.value != LoadApiStatus.LOADING) {
+//            Log.i("Hsiao", "")
+//            getOneServiceResult(
+//                service.value!!.date,
+//                service.value!!.masterId,
+//                service.value!!.serviceId
+//
+//            )
+//
+//        }
+//    }
 
-            )
 
-        }
-    }
+//    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getOneServiceResult(date, masterId, serviceId)
+//
+//            _oneService.value = when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    result.data
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                else -> {
+//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
 
-
-    fun getOneServiceResult(date: String, masterId: String, serviceId: String) {
-
-        coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            val result = repository.getOneServiceResult(date, masterId, serviceId)
-
-            _oneService.value = when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-                    result.data
+    fun updateSalesmanJob() {
+        if (service.value != null) {
+            when{
+                service.value!!.status == 3 ->{
+                    service.value!!.status = 4
+                    updateStatus(service.value!!, serviceAction = ServiceAction.FINISH_CHECK)
+                    Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
                 }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                    null
-                }
-                else -> {
-                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
-                    _status.value = LoadApiStatus.ERROR
-                    null
+
+                service.value!!.status == 1 ->{
+                    service.value!!.status = 5
+                    updateStatus(service.value!!, serviceAction = ServiceAction.DELETE)
+                    Log.i("HsiaoLingStatus", "selectDelete=${service.value}")
                 }
             }
-            _refreshStatus.value = false
+
         }
     }
 
+
+
+    // salesman confirm finish service
     fun selectFinish() {
         if (service.value != null) {
             service.value!!.status = 4
@@ -205,6 +232,18 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
 
     }
 
+    // salesman delete service
+    fun selectChange() {
+        _navigateToChange.value = service.value!!
+
+        Log.i("HsiaoLingStatus", " _navigateToChange.value=${service.value}")
+
+    }
+
+
+
+
+    // salesman delete service
     fun selectDelete() {
         if (service.value != null) {
             service.value!!.status = 5
@@ -215,13 +254,6 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     }
 
 
-//    fun click() {
-//        if (service.value != null) {
-//            update(service.value!!)
-//            Log.i("HsiaoLingUpdate", "UpateNewData=${service.value}")
-//
-//        }
-//    }
 
 
     fun onAddedSuccessNavigated() {

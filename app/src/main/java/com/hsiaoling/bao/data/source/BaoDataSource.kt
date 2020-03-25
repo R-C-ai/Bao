@@ -9,7 +9,7 @@ interface BaoDataSource {
 
     suspend fun  getSalesmansResult():Result<List<User>>
 
-    suspend fun getLoginUsersResult(salesId:String, salesName:String):Result<User?>
+    suspend fun getLoginUserResult(usersId:String, usersName:String): Result<User?>
 
     suspend fun getMastersResult():Result<List<User>>
 
@@ -19,7 +19,7 @@ interface BaoDataSource {
 
     suspend fun getServicesInMaster():Result<List<Service>>
 
-    suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String):Result<Service>
+    suspend fun getAddServiceResult(date: String,masterId: String,serviceId:String):Result<Service>
 
 
     suspend fun getDateResult(date: String,masterId:String):Result<List<Service>>
@@ -30,7 +30,7 @@ interface BaoDataSource {
 
 //    fun getLiveStatus(salesmanId:String):LiveData<List<Service>>
 
-    suspend fun updateService(service: Service):Result<Boolean>
+    suspend fun addMasterService(service: Service):Result<Boolean>
 
     suspend fun deleteService(service: Service):Result<Boolean>
 
@@ -38,8 +38,9 @@ interface BaoDataSource {
 
     suspend fun updateStatus(service: Service,serviceAction: ServiceAction):Result<Boolean>
 
-//    suspend fun removeBaoInMaster(baoService: BaoService)
+    fun getLiveM(user: User,firstDay:Long,endDay:Long):LiveData<List<Service>>
 
+    fun getMonthLiveStatus(user: User,firstDay: Long,endDay: Long, completeHandler:(List<Service>) -> Unit)
     fun getMasterLiveStatus(masterId: String, completeHandler:(List<Service>) -> Unit)
     fun getSalesmanLiveStatus(salesmanId: String, completeHandler:(List<Service>) -> Unit)
 

@@ -96,56 +96,61 @@
 
                 <ImageView
                     android:id="@+id/imageView_getjob"
-                    android:layout_width="95dp"
-                    android:layout_height="95dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:onClick="@{() -> viewModel.selectGetJob()}"
+                    android:layout_width="119dp"
+                    android:layout_height="116dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="8dp"
+                    android:clickable="true"
+                    android:onClick="@{() -> viewModel.updateMasterJob()}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/go1" />
+                    app:masterJobstatus="@{viewModel.service.status}"
+                    tools:srcCompat="@drawable/go1" />
 
                 <TextView
                     android:id="@+id/textView_getjob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="開始包膜囉"
+                    app:masterJobstatusText="@{viewModel.service.status}"
+                    tools:text="開始包膜囉!!"
                     android:textSize="12sp"
                     android:textColor="@color/colorOlivergoldgreen"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_getjob"
                     app:layout_constraintStart_toStartOf="@+id/imageView_getjob"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_getjob" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_getjob"
+                    />
 
 
-                <ImageView
-                    android:id="@+id/imageView_jobdone"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginBottom="16dp"
-                    android:onClick="@{() -> viewModel.selectDone()}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/go2" />
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView_jobdone"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_marginStart="150dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    android:onClick="@{() -> viewModel.selectDone()}"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:srcCompat="@drawable/go2" />-->
 
-                <TextView
-                    android:id="@+id/textView_jobdone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="包膜完成囉"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_jobdone"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_jobdone" />
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_jobdone"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginBottom="4dp"-->
+<!--                    android:text="包膜完成囉"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="@+id/imageView_jobdone"-->
+<!--                    app:layout_constraintStart_toStartOf="@+id/imageView_jobdone" />-->
 
 
                 <ImageView
                     android:id="@+id/imageView_master"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
                     android:tint="@color/colorOlivergoldgreen"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -169,6 +174,7 @@
                     android:id="@+id/imageView_customer"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginEnd="4dp"
                     android:tint="@color/colorOlivergoldgreen"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_customer"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -189,6 +195,59 @@
                     app:layout_constraintEnd_toStartOf="@+id/imageView_customer"
                     app:layout_constraintTop_toBottomOf="@+id/textView_master"
                     tools:text="customer" />
+
+                <ImageView
+                    android:id="@+id/imageView_price"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:tint="@color/colorOlivergoldgreen"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_price"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/newprice1" />
+
+                <TextView
+                    android:id="@+id/textView_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="end"
+                    android:text="@{viewModel.convertLongToString(viewModel.service.price)}"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textView_customer"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_customer"
+                    tools:text="price" />
+
+                <TextView
+                    android:id="@+id/textView_reserve_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@+id/text_reserve_time"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_price"
+                    app:timeToDisplayFormat="@{viewModel.service.reserveTime}"
+                    tools:text="2/2 08:00" />
+
+                <TextView
+                    android:id="@+id/text_reserve_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="預約"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_reserve_time"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_reserve_time"
+                    tools:text="預約" />
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

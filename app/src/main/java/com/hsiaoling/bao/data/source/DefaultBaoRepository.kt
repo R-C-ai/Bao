@@ -19,8 +19,8 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.addNewSalesman(user)
     }
 
-    override suspend fun getLoginSalesmansResult(salesId:String,salesName:String): Result<User?> {
-        return baoRemoteDataSource.getLoginUsersResult(salesId,salesName)
+    override suspend fun getLoginUserResult(salesId:String,salesName:String): Result<User?> {
+        return baoRemoteDataSource.getLoginUserResult(salesId,salesName)
     }
 
     override suspend fun getSalesmansResult():Result<List<User>>{
@@ -31,8 +31,8 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.getMastersResult()
     }
 
-    override suspend fun getOneServiceResult(date: String,masterId: String,serviceId:String): Result<Service> {
-        return baoRemoteDataSource.getOneServiceResult(date,masterId,serviceId)
+    override suspend fun getAddServiceResult(date: String,masterId: String,serviceId:String): Result<Service> {
+        return baoRemoteDataSource.getAddServiceResult(date,masterId,serviceId)
 
     }
 
@@ -48,6 +48,11 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
         return baoRemoteDataSource.getLiveRev(user,firstDay,endDay)
     }
 
+    override fun getLiveM(user: User, firstDay: Long, endDay: Long): LiveData<List<Service>> {
+        return baoRemoteDataSource.getLiveM(user,firstDay,endDay)
+    }
+
+
     override fun getLiveDateServices(date: String,masterId: String): LiveData<List<Service>> {
         return baoRemoteDataSource.getLiveDateServices(date,masterId)
     }
@@ -56,8 +61,8 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
 //        return baoRemoteDataSource.getLiveStatus(salesmanId)
 //    }
 
-    override suspend fun updateService(service: Service): Result<Boolean> {
-        return baoRemoteDataSource.updateService(service)
+    override suspend fun addMasterService(service: Service): Result<Boolean> {
+        return baoRemoteDataSource.addMasterService(service)
     }
 
     override suspend fun deleteService(service: Service): Result<Boolean> {
@@ -74,18 +79,17 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
 
 
 
-//    override suspend fun removeBaoInMaster(baoService: BaoService) {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
+
+    override fun getMonthLiveStatus(user: User,firstDay: Long,endDay: Long,completeHandler: (List<Service>) -> Unit) {
+        return baoRemoteDataSource.getMonthLiveStatus(user, firstDay, endDay, completeHandler)
+    }
+
 
     override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
         return baoRemoteDataSource.getMasterLiveStatus(masterId, completeHandler)
     }
 
-    override fun getSalesmanLiveStatus(
-        salesmanId: String,
-        completeHandler: (List<Service>) -> Unit
-    ) {
+    override fun getSalesmanLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
         return baoRemoteDataSource.getSalesmanLiveStatus(salesmanId,completeHandler)
     }
 

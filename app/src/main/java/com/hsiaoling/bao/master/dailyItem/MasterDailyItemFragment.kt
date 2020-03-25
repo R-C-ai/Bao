@@ -60,6 +60,23 @@ class MasterDailyItemFragment(private val master: User) : Fragment() {
             }
         })
 
+        viewModel.navgateToDeleteJob.observe(this, Observer {
+            Log.i("HsiaoLing", " viewModel.navgateToDeleteJob.observe=$it")
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalStatusUpdateDialog(it))
+                viewModel.onDeleteJobNavigated()
+            }
+        })
+
+
+        viewModel.navgateToUpdateStatus.observe(this, Observer {
+            Log.i("HsiaoLing", "viewModel.navgateToUpdateStatus.observe=$it")
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalStatusUpdateDialog(it))
+                viewModel.onConfirmDoneNavigated()
+            }
+        })
+
 
 //        viewModel.navgateToAddBao.observe(this, Observer {
 //            Log.i("HsiaoLing","viewModel.navgateToAddBao.observe=$it")

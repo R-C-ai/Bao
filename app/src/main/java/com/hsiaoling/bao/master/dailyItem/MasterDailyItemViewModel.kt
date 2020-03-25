@@ -24,6 +24,7 @@ import kotlinx.coroutines.launch
 import androidx.navigation.fragment.findNavController
 import com.hsiaoling.bao.data.User
 import com.hsiaoling.bao.login.UserManager
+import com.hsiaoling.bao.login.UserManager.user
 
 class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel(){
 
@@ -60,6 +61,15 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
     private val _navigateToAddBao = MutableLiveData<Service>()
     val navgateToAddBao:LiveData<Service>
     get() = _navigateToAddBao
+
+    private val _navigateToDeleteJob = MutableLiveData<Service>()
+    val navgateToDeleteJob:LiveData<Service>
+        get() = _navigateToDeleteJob
+
+
+    private val _navigateToUpdateStatus = MutableLiveData<Service>()
+    val navgateToUpdateStatus:LiveData<Service>
+        get() = _navigateToUpdateStatus
 
     private val _navigateToInfoStatus = MutableLiveData<Service>()
     val navgateToInfoStatus:LiveData<Service>
@@ -208,6 +218,9 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
 
 
+
+
+
         fun navgateToAddBao(service: Service){
             val userType = UserManager.user!!.type
             if (userType == "salesman"){
@@ -216,6 +229,8 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                         when(service.status){
                             0 ->  _navigateToAddBao.value =service
                             1 -> _navigateToAddBao.value = service
+                            3 -> _navigateToUpdateStatus.value = service
+
                             else -> navgateToInfoStatus(service)
                         }
                     ""->_navigateToAddBao.value =service
@@ -257,6 +272,22 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
     fun onMasterInfoNavigated() {
         _navigateToMasterInfo.value = null
+    }
+
+    fun navigateToDeleteJob(service: Service){
+        _navigateToDeleteJob.value = service
+    }
+
+    fun onDeleteJobNavigated(){
+        _navigateToDeleteJob.value = null
+    }
+
+    fun navigateToConfirmDone(service: Service){
+        _navigateToUpdateStatus.value = service
+    }
+
+    fun onConfirmDoneNavigated(){
+        _navigateToUpdateStatus.value = null
     }
 
     fun navigateToMasterJob(service: Service){

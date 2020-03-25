@@ -46,14 +46,9 @@ class LoginDialog : AppCompatDialogFragment() {
     private val viewModel by viewModels<LoginViewModel> { getVmFactory() }
     private lateinit var binding: DialogLoginBinding
 
-    private lateinit var googleSignInClient :GoogleSignInClient
+    private lateinit var googleSignInClient: GoogleSignInClient
     val RC_SIGN_IN = 1
     private val auth = FirebaseAuth.getInstance()
-
-
-
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,8 +57,11 @@ class LoginDialog : AppCompatDialogFragment() {
     }
 
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -72,31 +70,24 @@ class LoginDialog : AppCompatDialogFragment() {
 
 
         binding = DialogLoginBinding.inflate(inflater, container, false)
-        binding.layoutLogin.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_slide_up))
+        binding.layoutLogin.startAnimation(
+            AnimationUtils.loadAnimation(
+                context,
+                R.anim.anim_slide_up
+            )
+        )
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
 
         binding.buttonGoogleLogin.setOnClickListener {
-           googleSignInClient = GoogleSignIn.getClient(context!!,gso)
+            googleSignInClient = GoogleSignIn.getClient(context!!, gso)
 
-                val signInIntent = googleSignInClient.signInIntent
-                startActivityForResult(signInIntent, RC_SIGN_IN)
+            val signInIntent = googleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
 
         }
-
-
-        // set Salesman is LoginSales
-        val mainViewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
-
-        viewModel.loginSalesman.observe(this, Observer {
-           it?.let {
-               mainViewModel.setupSalesman(it)
-           }
-        })
-
-
 //        viewModel.selectedSalesman.observe(this, Observer {
 //            mainViewModel.setupSalesman(it)
 //        })
@@ -117,7 +108,7 @@ class LoginDialog : AppCompatDialogFragment() {
 //                    Log.i("Hsiao","viewModel.selectedSalesmanPosition.observe, it=$it")
 //                })
 
-                // another way to get firebase salesman data link with spinner
+        // another way to get firebase salesman data link with spinner
 //                ---------------------------------------------------------------------------------------------------------------------
 //                binding.textSalesman.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 //                    override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -129,16 +120,6 @@ class LoginDialog : AppCompatDialogFragment() {
 //            }
 //        })
 
-//        viewModel.selectedSalesman.observe(this, Observer {
-//            Log.i("Hsiao","viewModel.selectedSalesman.observe, it=$it")
-//        })
-
-//        viewModel.navigateToLoginSuccess.observe(this, Observer {
-//            it?.let {
-//            mainViewModel.navigateToLoginSuccess(it)
-//                dismiss()
-//            }
-//        })
 
         viewModel.leave.observe(this, Observer {
             it?.let {
@@ -148,16 +129,23 @@ class LoginDialog : AppCompatDialogFragment() {
         })
 
 
-
-        // login success navigate to calendar with loginSalesman
-        viewModel.loginSalesman.observe(this, Observer {
-            Log.i("Hsiao"," viewModel.loginSalesman.observe, it=$it")
+        // login success navigate to calendar with loginSalesman,
+        viewModel.loginUser.observe(this, Observer {
+            Log.i("HsiaoLing", " viewModel.loginUser.observe, it=$it")
             it?.let {
 
                 // set SalesmanManager data is selectedsalesman ,so can be used anywhere in this App
                 UserManager.user = it
-                findNavController().navigate(
-                    NavigationDirections.actionGlobalCalendarFragment())
+
+                val mainViewModel = ViewModelProviders.of(activity!!).get(MainViewModel::class.java)
+
+                //  get first time liveStatus when login App
+                mainViewModel.getMonthLiveStatus()
+
+                // reObserve liveStatus to get the most updated livestatus in mainActivity for first time login App
+                (activity as MainActivity).reObserveLiveStatuses()
+
+                findNavController().navigate(NavigationDirections.actionGlobalCalendarFragment())
             }
         })
 
@@ -165,13 +153,18 @@ class LoginDialog : AppCompatDialogFragment() {
     }
 
     override fun dismiss() {
-        binding.layoutLogin.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anim_slide_down))
+        binding.layoutLogin.startAnimation(
+            AnimationUtils.loadAnimation(
+                context,
+                R.anim.anim_slide_down
+            )
+        )
         Handler().postDelayed({ super.dismiss() }, 200)
     }
 
 
     // get LoginResult
-     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -189,7 +182,7 @@ class LoginDialog : AppCompatDialogFragment() {
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d("Hsiao ","firebaseAuthWithGoogle:" + acct.id!!)
+        Log.d("Hsiao ", "firebaseAuthWithGoogle:" + acct.id!!)
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
@@ -199,12 +192,12 @@ class LoginDialog : AppCompatDialogFragment() {
                     // Sign in success
                     Log.d("Hsiao", "signInWithCredential:success")
                     val user = auth.currentUser
-                    Log.d("Hsiao", "auth.currentUser="+auth.currentUser)
+                    Log.d("Hsiao", "auth.currentUser=" + auth.currentUser)
 
                     // check loginSalesman in store
-                   val loginSalesmanId:String = user!!.uid
-                   val loginSalesmanName:String = user!!.displayName!!
-                    viewModel.getLoginSalesman(loginSalesmanId,loginSalesmanName)
+                    val loginUserId: String = user!!.uid
+                    val loginUserName: String = user!!.displayName!!
+                    viewModel.getLoginUser(loginUserId, loginUserName)
 
                 } else {
                     // If sign in fails, display a message to the user.
