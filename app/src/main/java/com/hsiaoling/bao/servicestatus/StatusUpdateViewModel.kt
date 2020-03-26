@@ -220,6 +220,18 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         }
     }
 
+    fun changeSalesmanJob() {
+        if (service.value != null) {
+            when{
+                service.value!!.status == 1 ->{
+                    _navigateToChange.value = service.value!!
+                    Log.i("HsiaoLingStatus", "selectDelete=${service.value}")
+                }
+            }
+
+        }
+    }
+
 
 
     // salesman confirm finish service

@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hsiaoling.bao.data.Service
+import com.hsiaoling.bao.data.User
 import com.hsiaoling.bao.ext.toDisplayFormat
 import com.hsiaoling.bao.master.dailyItem.MasterDailyItemAdapter
 import com.hsiaoling.bao.salesaomunt.UserType
@@ -64,7 +65,7 @@ fun bindPrice(textView: TextView, price: Int?) {
 // set time text for status update
 @BindingAdapter("updateTime", "status")
 fun updateTime(textView: TextView, time: Long?,status:Int) {
-    Log.i("Hsiao", "doneTime, time=$time")
+    Log.i("Hsiao", "updateTime, time=$time")
 
     when {
         status == 1 ->    textView.visibility = View.GONE
@@ -75,6 +76,7 @@ fun updateTime(textView: TextView, time: Long?,status:Int) {
         textView.text = it.toDisplayFormat()
     }
 }
+
 
 
 @BindingAdapter("itemScheduleSort")
@@ -337,5 +339,19 @@ fun statusInfoText(textView: TextView,status:Int){
             textView.text = BaoApplication.instance.getString(R.string.status_info5)
         }
 
+    }
+}
+
+@BindingAdapter("userText")
+fun userText(textView: TextView,user: User){
+
+    when {
+         user.type == "salesman" -> {
+             textView.text = "門市人員"
+        }
+
+        user.type == "master" -> {
+            textView.text = "包膜師"
+        }
     }
 }

@@ -42,7 +42,7 @@ class SalesAmountFragment() : Fragment( ) {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         // get login user for SalesAmount
-        binding.userforSales = UserManager.user
+        binding.salesUser = UserManager.user
 
         val revChart =  binding.revChart
         val cumRevChart = binding.cumRevChart

@@ -235,13 +235,41 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:gravity="end"
+                        android:textColor="@color/colorOlivergoldgreen"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView_reservice_time"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView_done_back"
                         app:statusPrice="@{viewModel.service.price}"
+                        tools:text="price" />
+
+                    <TextView
+                        android:id="@+id/textView_reservice_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="end"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_done_back"
-                        tools:text="price" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView_done_price"
+                        app:timeToDisplayFormat="@{viewModel.service.reserveTime}"
+                        tools:text="time" />
+
+                    <TextView
+                        android:id="@+id/text_reserve_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="end"
+                        android:text="預約"
+                        android:textColor="@color/colorOlivergoldgreen"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView_reservice_time"
+                        app:layout_constraintEnd_toStartOf="@+id/textView_reservice_time"
+                        app:layout_constraintTop_toTopOf="@+id/textView_reservice_time"
+                        tools:text="預約" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

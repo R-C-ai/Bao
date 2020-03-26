@@ -19,17 +19,59 @@ import com.hsiaoling.bao.data.User
 
 class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
 
+    // Get Input Service  LiveData
+    private val _service = MutableLiveData<Service>()
+    val service: LiveData<Service>
+        get() = _service as LiveData<Service>
+
+    private val _deviceIndex = MutableLiveData<Int>()
+    val deviceIndex: LiveData<Int>
+        get() = _deviceIndex as LiveData<Int>
+
+    private val _screenIndex = MutableLiveData<Int>()
+    val screenIndex: LiveData<Int>
+        get() = _screenIndex as LiveData<Int>
+
+    private val _backIndex = MutableLiveData<Int>()
+    val backIndex: LiveData<Int>
+        get() = _backIndex as LiveData<Int>
+
+
+    // put selscted schedule data into service
+    fun setService(service: Service) {
+        _service.value = service
+
+    }
+
+
 
     //DeviceChosen spinner
+//    val selectedDevicePosition = MutableLiveData<Int>()
+//    // change livedata by Transformation.map to selectedvalue
+//    val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
+//        //put the selected data to service
+//        service.value!!.device = DeviceChosen.values()[it].toString()
+//        Log.i("Hsiao", "service.value!!.device =$it")
+//        // get the DeviceChosen value  by the corresponding position
+//        DeviceChosen.values()[it]
+//    }
+
     val selectedDevicePosition = MutableLiveData<Int>()
-    // change livedata by Transformation.map to selectedvalue
-    val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
-        //put the selected data to service
-        service.value!!.device = DeviceChosen.values()[it].toString()
-        Log.i("Hsiao", "service.value!!.device =$it")
-        // get the DeviceChosen value  by the corresponding position
-        DeviceChosen.values()[it]
+     val deviceChosen: LiveData<DeviceChosen> = Transformations.map(selectedDevicePosition) {
+         service.value!!.device = DeviceChosen.values()[it].toString()
+         DeviceChosen.values()[it]
+        }
+
+    fun getDevicePosition(){
+        val priorDevice = _service.value!!.device
+        DeviceChosen.values()?.let {
+            for (i in it) {
+                 _deviceIndex.value =it.indexOf(DeviceChosen.valueOf(priorDevice))
+            }
+        }
     }
+
+
 
     //ScreenChosen spinner
     val selectedScreenPosition = MutableLiveData<Int>()
@@ -38,7 +80,18 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
         // put livedata to service
         service.value!!.screen = ScreenChosen.values()[it].toString()
         ScreenChosen.values()[it]
+        }
+
+        // for change service
+        fun getScreenPosition(){
+        val priorScreen = _service.value!!.screen
+        ScreenChosen.values()?.let {
+            for (i in it) {
+                _screenIndex.value =it.indexOf(ScreenChosen.valueOf(priorScreen))
+            }
+        }
     }
+
     // get the screenPricevalue by the selected position livedata
     val screenPrice:LiveData<Int> = Transformations.map(selectedScreenPosition){
         when(it) {
@@ -58,6 +111,17 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
         service.value!!.back = BackChosen.values()[it].toString()
         BackChosen.values()[it]
     }
+
+    // for change service
+    fun getBackPosition(){
+        val priorBack = _service.value!!.back
+        BackChosen.values()?.let {
+            for (i in it) {
+                _backIndex.value =it.indexOf(BackChosen.valueOf(priorBack))
+            }
+        }
+    }
+
     val backPrice: LiveData<Int> = Transformations.map(selectedBackPosition){
         when(it){
             0 ->1650
@@ -84,26 +148,8 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
 
 
 
-    // Get Input Service  LiveData
-    private val _service = MutableLiveData<Service>()
-    val service: LiveData<Service>
-        get() = _service as LiveData<Service>
 
 
-    // put selscted schedule data into service
-    fun setService(service: Service) {
-        _service.value = service
-
-    }
-
-
-//    fun setSalesmanForService(user: User) {
-//        _service.value?.let {
-//            it.salesmanId = user.id
-//            it.salesmanName = user.name
-//        }
-//        _service.value = _service.value
-//    }
 
     // put loginsalesman data into service
     fun setLoginUserForService(user: User) {
@@ -220,7 +266,7 @@ class AddBaoViewModel(private val repository: BaoRepository) : ViewModel() {
                 service.value!!.masterId,
                 service.value!!.serviceId
             )
-//       getDateResult(service.value!!.date,service.value!!.masterId)
+
         }
     }
 

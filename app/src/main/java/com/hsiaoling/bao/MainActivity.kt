@@ -190,7 +190,6 @@ class MainActivity : BaseActivity() {
         // get first time liveStatus when login App
         viewModel.liveStatuses.observe(this, Observer {
             Log.i("HsiaoLing","viewModel.liveStatuses.observe=[$it]")
-
         })
 
         // set the first time status as most updated status

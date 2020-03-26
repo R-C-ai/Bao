@@ -62,27 +62,48 @@ class AddBaoDialog : AppCompatDialogFragment() {
         }
 
 
+        viewModel.service.observe(this, Observer {
+            it?.let {
+                when(it.status){
+                    1 ->{
+                        viewModel.getDevicePosition()
+                        viewModel.getScreenPosition()
+                        viewModel.getBackPosition()
+                    }
+                }
+            }
+        })
 
 
         //Device Spinner Adapter
          binding.textDevice.adapter=SpinnerAdapter(
              BaoApplication.instance.resources.getStringArray(R.array.device_list)
          )
-        viewModel.selectedDevicePosition.observe(this, Observer {
 
+        // for status1 to change service
+        viewModel.deviceIndex.observe(this, Observer {
+            viewModel.selectedDevicePosition.value = viewModel.deviceIndex.value
+        })
+
+        viewModel.selectedDevicePosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedDevicePosition.observe, it=$it")
         })
         viewModel.deviceChosen.observe(this, Observer {
             Log.i("Hsiao","viewModel.deviceChosen.observe, it=$it")
-
         })
 
 
 
         //Service0 Screen Spinner Adapter
-        binding.textService0.adapter=SpinnerAdapter(
+        binding.textScreen.adapter=SpinnerAdapter(
             BaoApplication.instance.resources.getStringArray(R.array.service0_list)
         )
+
+        // for status1 change service
+        viewModel.screenIndex.observe(this, Observer {
+            viewModel.selectedScreenPosition.value = viewModel.screenIndex.value
+        })
+
         viewModel.selectedScreenPosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedService0Position.observe, it=$it")
         })
@@ -92,9 +113,14 @@ class AddBaoDialog : AppCompatDialogFragment() {
 
 
         //Service1 Back Spinner Adapter
-        binding.textService1.adapter=SpinnerAdapter(
+        binding.textBack.adapter=SpinnerAdapter(
             BaoApplication.instance.resources.getStringArray(R.array.service1_list)
         )
+
+        //for status1 change service
+        viewModel.backIndex.observe(this, Observer {
+            viewModel.selectedBackPosition.value = viewModel.backIndex.value
+        })
         viewModel.selectedBackPosition.observe(this, Observer {
             Log.i("Hsiao","viewModel.selectedBackPosition.observe, it=$it")
         })

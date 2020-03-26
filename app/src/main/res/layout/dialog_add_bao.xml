@@ -20,7 +20,8 @@
             android:id="@+id/layout_add_bao"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_addbao_card"
+            android:background="@color/white_FFFFFF"
+            android:elevation="4dp"
             android:onClick="@{() -> viewModel.nothing()}"
             app:layout_constraintBottom_toTopOf="@id/layout_add_bottom"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,10 +32,11 @@
                 android:layout_width="0dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_selected_info"
-
+                android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
+                android:elevation="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/selected_customer_info"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -61,29 +63,27 @@
                     android:id="@+id/text_enter_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_text"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="4dp"
                     android:text="@={viewModel.service.date}"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/text_salesman"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/text_salesman"
-                    app:layout_constraintTop_toTopOf="@+id/text_salesman"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:text="點選日期" />
 
                 <TextView
                     android:id="@+id/text_store"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
 
+                    android:layout_marginStart="24dp"
                     android:layout_marginTop="9dp"
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/bg_text"
+                    android:elevation="2dp"
                     android:text="@={viewModel.service.storeName}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/text_salesman"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_master"
                     tools:text="門市" />
@@ -92,12 +92,12 @@
                     android:id="@+id/text_salesman"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:background="@drawable/bg_text"
+                    android:elevation="2dp"
                     android:text="@={viewModel.service.salesmanName}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_store"
-                    app:layout_constraintEnd_toStartOf="@+id/text_enter_time"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/text_store"
                     app:layout_constraintTop_toTopOf="@+id/text_store"
                     tools:text="門市業代" />
@@ -132,7 +132,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_selected_info"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
+                android:elevation="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -143,8 +146,8 @@
                     android:id="@+id/image_customer"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="4dp"
                     android:scaleType="centerInside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -155,10 +158,9 @@
                     android:id="@+id/text_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_marginStart="16dp"
                     android:hint=" 輸入客戶代碼"
                     android:text="@={viewModel.service.customerNo}"
-
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/image_customer"
                     app:layout_constraintStart_toEndOf="@id/image_customer"
@@ -169,11 +171,10 @@
                     android:id="@+id/image_device"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
                     android:scaleType="centerCrop"
-
-                    app:layout_constraintEnd_toEndOf="@+id/image_customer"
-                    app:layout_constraintStart_toStartOf="@+id/image_customer"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/image_customer"
                     app:srcCompat="@drawable/newphone1" />
 
@@ -184,7 +185,6 @@
                     android:layout_marginStart="4dp"
                     android:prompt="@string/select_device"
                     android:selectedItemPosition="@={viewModel.selectedDevicePosition}"
-
                     android:spinnerMode="dialog"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/image_device"
@@ -192,70 +192,72 @@
                     app:layout_constraintStart_toEndOf="@+id/image_device"
                     app:layout_constraintTop_toTopOf="@+id/image_device" />
 
+
                 <ImageView
                     android:id="@+id/image_service"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
                     android:scaleType="centerInside"
-                    app:layout_constraintEnd_toEndOf="@+id/image_device"
-                    app:layout_constraintStart_toStartOf="@+id/image_device"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/image_device"
                     app:srcCompat="@drawable/newwork1" />
 
                 <Spinner
-                    android:id="@+id/text_service_0"
+                    android:id="@+id/text_screen"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:prompt="@string/select_service0"
                     android:selectedItemPosition="@={viewModel.selectedScreenPosition}"
+
                     android:spinnerMode="dialog"
                     android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/image_service"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_service"
-                    app:layout_constraintTop_toTopOf="@+id/image_service"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintStart_toEndOf="@id/image_service"
+                    app:layout_constraintTop_toTopOf="@id/image_service" />
 
                 <Spinner
-                    android:id="@+id/text_service_1"
+                    android:id="@+id/text_back"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:prompt="@string/select_service0"
                     android:selectedItemPosition="@={viewModel.selectedBackPosition}"
                     android:spinnerMode="dialog"
                     android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_screen"
+                    app:layout_constraintTop_toBottomOf="@+id/text_screen" />
 
-                    app:layout_constraintEnd_toEndOf="@+id/text_service_0"
-                    app:layout_constraintStart_toStartOf="@+id/text_service_0"
-                    app:layout_constraintTop_toBottomOf="@+id/text_service_0" />
 
                 <ImageView
                     android:id="@+id/image_price"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginBottom="16dp"
 
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/image_service"
-                    app:layout_constraintStart_toStartOf="@+id/image_service"
-                    app:layout_constraintTop_toBottomOf="@id/image_service"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_service"
                     app:srcCompat="@drawable/newprice1" />
 
                 <TextView
                     android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:hint="輸入包膜服務金額"
                     android:inputType="number"
                     android:text="@{viewModel.convertLongToString(viewModel.totalPrice)}"
                     android:textSize="18sp"
-
-                    app:layout_constraintEnd_toEndOf="@+id/text_service_1"
-                    app:layout_constraintStart_toStartOf="@+id/text_service_1"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_price"
+                    app:layout_constraintStart_toEndOf="@id/image_price"
                     app:layout_constraintTop_toTopOf="@+id/image_price" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

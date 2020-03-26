@@ -39,9 +39,9 @@
                     android:layout_height="50dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="50dp"
-                    app:itemIconTint="@drawable/bottom_nav_item_selector"
                     android:onClick="@{() -> viewModel.filterList(1)}"
                     android:scaleType="centerInside"
+                    app:itemIconTint="@drawable/bottom_nav_item_selector"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/wait2" />
@@ -156,19 +156,46 @@
                     app:layout_constraintStart_toStartOf="@+id/imageView_delete"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_delete" />
 
-                <TextView
-                    android:id="@+id/text_salesman_name"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/status_user_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
                     android:background="@drawable/bg_text"
-                    android:text="@{statusUser.name}"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
+                    android:elevation="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="salesman" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/text_userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:textColor="@color/lateblue2"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/text_salesman_name"
+                        app:layout_constraintEnd_toStartOf="@+id/text_salesman_name"
+                        app:layout_constraintTop_toTopOf="@+id/text_salesman_name"
+                        app:userText="@{statusUser}"
+                        tools:text="門市人員" />
+
+                    <TextView
+                        android:id="@+id/text_salesman_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="@{statusUser.name}"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="salesman" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

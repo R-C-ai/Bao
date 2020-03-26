@@ -228,7 +228,7 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                     UserManager.user!!.id ->
                         when(service.status){
                             0 ->  _navigateToAddBao.value =service
-                            1 -> _navigateToAddBao.value = service
+                            1 -> _navigateToUpdateStatus.value = service
                             3 -> _navigateToUpdateStatus.value = service
 
                             else -> navgateToInfoStatus(service)
@@ -245,26 +245,10 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                     4 -> navgateToInfoStatus(service)
                     5 -> navgateToInfoStatus(service)
                 }
-
-//                navigateToAddReject()
             }
          }
 
 
-//    fun navgateToAddBao(service: Service){
-//        when(service.salesmanId) {
-//            UserManager.user!!.id ->
-//                when(service.status){
-//                    0 ->  _navigateToAddBao.value =service
-//                    else -> navgateToInfoStatus(service)
-//                }
-//
-//            ""->_navigateToAddBao.value =service
-//
-//            else -> navigateToAddReject()
-//        }
-//
-//    }
 
     fun navigateToMasterInfo(){
         _navigateToMasterInfo.value = true
