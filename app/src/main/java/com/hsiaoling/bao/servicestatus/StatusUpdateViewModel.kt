@@ -61,6 +61,8 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     }
 
 
+
+
     private val _status = MutableLiveData<LoadApiStatus>()
     val status: LiveData<LoadApiStatus>
         get() = _status

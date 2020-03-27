@@ -32,6 +32,11 @@ class ServiceStatusFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+
+
+
+
+
         //get exist status Service
         val serviceStatusItemAdapter =ServiceStatusItemAdapter(
             ServiceStatusItemAdapter.OnClickListener{

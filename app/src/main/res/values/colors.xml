@@ -13,10 +13,10 @@
     <color name="dark2Blue">#1A237E</color>
 
 
-    <color name="levelBlue0">#000066</color>
-    <color name="levelBlue1">#003865</color>
-    <color name="levelBlue2">#00629b</color>
-    <color name="levelBlue3">#00a6d6</color>
+    <color name="leveldBlue0">#000066</color>
+    <color name="leveldBlue1">#003865</color>
+    <color name="leveldBlue2">#00629b</color>
+    <color name="leveldBlue3">#00a6d6</color>
 
 
     <color name="royalBlue">#4169E1</color>
@@ -71,7 +71,7 @@
 
     <color name="levelblue1">#80D8FF</color>
     <color name="levelblue2">#40C4FF</color>
-    <color name="leveblue3">#00B0FF</color>
+    <color name="levelblue3">#00B0FF</color>
     <color name="levelblue4">#0091EA</color>
 
 

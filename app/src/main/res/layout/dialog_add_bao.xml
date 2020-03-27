@@ -162,6 +162,7 @@
                     android:hint=" 輸入客戶代碼"
                     android:text="@={viewModel.service.customerNo}"
                     android:textSize="18sp"
+                    android:maxLength="10"
                     app:layout_constraintBottom_toBottomOf="@id/image_customer"
                     app:layout_constraintStart_toEndOf="@id/image_customer"
                     app:layout_constraintTop_toTopOf="@+id/image_customer" />

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hsiaoling.bao.data.Schedule
 import com.hsiaoling.bao.data.Service
 import com.hsiaoling.bao.databinding.ItemStatusBinding
+import com.hsiaoling.bao.login.UserManager
 import com.hsiaoling.bao.status
 
 
@@ -19,6 +20,7 @@ class ServiceStatusItemAdapter(val onClickListener : OnClickListener) :
     RecyclerView.ViewHolder(binding.root){
         fun bind(service: Service){
             binding.service = service
+            binding.user = UserManager.user
             binding.textDoneTime.visibility = if(service.status == 1) View.GONE
             else View.VISIBLE
             binding.executePendingBindings()

@@ -32,6 +32,13 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     val master: LiveData<User>
         get() = _master
 
+//    private val _user = MutableLiveData<User>()
+//    val user:LiveData<User>
+//    get() = _user
+
+
+
+
     fun setUser (user: User){
         when (user.type) {
             "salesman" -> _salesman.value = user

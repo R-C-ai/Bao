@@ -214,7 +214,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="end"
-                    android:text="@{viewModel.convertLongToString(viewModel.service.price)}"
+                    app:statusPrice="@{viewModel.service.price}"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView_customer"

@@ -355,3 +355,20 @@ fun userText(textView: TextView,user: User){
         }
     }
 }
+
+@BindingAdapter("itemStatusUser","service")
+fun itemStatusUser(textView: TextView,user: User?,service: Service?){
+    service?.let {
+        user?.let {
+            when {
+                user.type == "salesman" -> {
+                    textView.text = service.masterName
+                }
+                user.type == "master" -> {
+                    textView.text = service.salesmanName
+                }
+            }
+        }
+
+    }
+}
