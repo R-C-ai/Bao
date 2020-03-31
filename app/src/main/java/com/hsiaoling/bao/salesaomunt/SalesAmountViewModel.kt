@@ -160,6 +160,7 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
 
 
+
     fun getServicesByDayGroup(list: List<Service>, month: Int, year: Int): List<List<Service>> {
         Log.i("HsiaoLing", "  list =$list")
         val servicesList = mutableListOf<List<Service>>()
@@ -244,6 +245,11 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
             }}
         return cumRevEntries
     }
+
+
+
+
+
 
 
     @InverseMethod("convertLongToString")

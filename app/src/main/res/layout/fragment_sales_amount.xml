@@ -112,42 +112,23 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-                <!--                <Spinner-->
-<!--                    android:id="@+id/text_year"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="8dp"-->
-<!--                    android:prompt="@string/select_year"-->
-<!--                    android:selectedItemPosition="@={viewModel.selectedYearPosition}"-->
-<!--                    android:spinnerMode="dialog"-->
-<!--                    android:textSize="18sp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/imageView_year"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toEndOf="@+id/imageView_year"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/imageView_year" />-->
-
-
-
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.github.mikephil.charting.charts.HorizontalBarChart
+<!--            <com.github.mikephil.charting.charts.HorizontalBarChart-->
 
-                android:id="@+id/revGoalChart"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="@color/white_FFFFFF"
-                android:elevation="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/revChart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/salesman_sales_total" />
+<!--                android:id="@+id/revGoalChart"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:background="@color/white_FFFFFF"-->
+<!--                android:elevation="8dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/revChart"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/salesman_sales_total" />-->
 
             <com.github.mikephil.charting.charts.BarChart
 
@@ -163,7 +144,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/cumRevChart"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/revGoalChart" />
+                app:layout_constraintTop_toBottomOf="@+id/salesman_sales_total" />
 
             <com.github.mikephil.charting.charts.LineChart
 

@@ -48,17 +48,16 @@ class SalesAmountFragment() : Fragment( ) {
         val cumRevChart = binding.cumRevChart
 
 
+
+
         //set BarChart YAxis and Data
         revChart.axisLeft.apply {
             setDrawTopYLabelEntry(true)
 //            enableAxisLineDashedLine(10f,10f,0f)
             setDrawLabels(false)
-
         }
 
         revChart.axisRight.apply {
-
-
             setDrawTopYLabelEntry(true)
             setDrawZeroLine(false)
             setDrawGridLines(false)
@@ -129,11 +128,6 @@ class SalesAmountFragment() : Fragment( ) {
                 lb.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
                 lb.orientation = Legend.LegendOrientation.HORIZONTAL
 
-
-
-
-
-
                 revChart.description.isEnabled= false
                 revChart.setData(revBarData)
             }
@@ -145,8 +139,16 @@ class SalesAmountFragment() : Fragment( ) {
         // set LineChart YAxis and Data
         cumRevChart.axisLeft.apply {
             setDrawTopYLabelEntry(true)
+            setDrawGridLines(false)
             setDrawLabels(false)
 
+            //set revenue goal line
+//            val yLimitLine = LimitLine(60000f,"Goal 60,000")
+//            axisMaximum = 70000f
+//            addLimitLine(yLimitLine)
+//            yLimitLine.lineColor = BaoApplication.instance.getColor(R.color.blue_voyage)
+//            yLimitLine.textColor = BaoApplication.instance.getColor(R.color.backBlue)
+//            yLimitLine.lineWidth = 0.5f
         }
 
         cumRevChart.axisRight.apply {
@@ -275,6 +277,8 @@ class SalesAmountFragment() : Fragment( ) {
             Log.i("HsiaoLing","  viewModel.getBarEntries(list)=$entries")
 
             val cumRevEntries =viewModel.getCumRevBarEntries(list)
+
+
 
 
 

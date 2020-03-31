@@ -160,7 +160,10 @@ class LoginViewModel(private val repository: BaoRepository) : ViewModel() {
                     // if no this salesman create this salesman
                     if (result.data == null) {
                         Log.d("HsiaoLing","result.data == null")
+
                         _error.value = BaoApplication.instance.getString(R.string.without_this_account)
+                        Log.d("HsiaoLing","_error.value =${_error.value}")
+
                         _status.value = LoadApiStatus.ERROR
                         null
 

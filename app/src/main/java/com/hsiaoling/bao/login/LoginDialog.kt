@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
@@ -84,10 +85,16 @@ class LoginDialog : AppCompatDialogFragment() {
         binding.buttonGoogleLogin.setOnClickListener {
             googleSignInClient = GoogleSignIn.getClient(context!!, gso)
 
+
+
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
 
         }
+
+
+
+
 //        viewModel.selectedSalesman.observe(this, Observer {
 //            mainViewModel.setupSalesman(it)
 //        })
@@ -148,6 +155,21 @@ class LoginDialog : AppCompatDialogFragment() {
                 findNavController().navigate(NavigationDirections.actionGlobalCalendarFragment())
             }
         })
+
+        // login success navigate to calendar with loginSalesman,
+        viewModel.error.observe(this, Observer {
+            Log.i("HsiaoLing", " viewModel.loginUser.observe, it=$it")
+            it?.let {
+                // set error message
+                val msg = BaoApplication.instance.getString(R.string.without_this_account)
+                Toast.makeText(context,msg,Toast.LENGTH_LONG).show()
+
+                // logout exit account for next new account to login
+                googleSignInClient.signOut()
+
+            }
+        })
+
 
         return binding.root
     }
