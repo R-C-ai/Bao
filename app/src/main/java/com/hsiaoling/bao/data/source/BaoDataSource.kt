@@ -41,7 +41,10 @@ interface BaoDataSource {
     fun getLiveM(user: User,firstDay:Long,endDay:Long):LiveData<List<Service>>
 
     fun getMonthLiveStatus(user: User,firstDay: Long,endDay: Long, completeHandler:(List<Service>) -> Unit)
-    fun getMasterLiveStatus(masterId: String, completeHandler:(List<Service>) -> Unit)
-    fun getSalesmanLiveStatus(salesmanId: String, completeHandler:(List<Service>) -> Unit)
+
+
+    fun getMasterMonthLiveStatus(masterId: String,firstDay: Long,endDay: Long, completeHandler: (List<Service>) -> Unit)
+
+    fun getSalesmanMonthLiveStatus(salesmanId: String,firstDay: Long,endDay: Long, completeHandler:(List<Service>) -> Unit)
 
 }

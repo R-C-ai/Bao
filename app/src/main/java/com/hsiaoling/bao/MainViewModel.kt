@@ -46,6 +46,9 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 
     var currentday = Calendar.getInstance().getTime()
     var today = this.currentday.time?.toCurrentFormat()
+
+
+
     var todayTimeStamp = SimpleDateFormat("yyyy-M-d hh:mm").parse(today).time
 
     var currentMonth = currentday.time?.toMonthFormat().toInt()
@@ -129,10 +132,10 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
             }
         }
         Log.e("HsiaoLing", "currentMonth=$firstDay,$endDay")
-
+        Log.e("HsiaoLing", "_thisTime.value=${_thisTime.value}")
         _thisTime.value = Day(todayTimeStamp, firstDay, endDay)
 
-        Log.e("HsiaoLing", "_thisTime.value=${_thisTime.value}")
+
     }
 
 

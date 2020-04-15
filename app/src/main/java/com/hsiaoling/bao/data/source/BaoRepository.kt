@@ -17,6 +17,7 @@ interface BaoRepository {
     suspend fun addNewDayToMaster(service: Service):Result<Boolean>
     suspend fun addNewSalesman(user: User):Result<User>
     suspend fun getDateResult(date: String,masterId:String): Result<List<Service>>
+
     fun getLiveRev(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>>
 
 
@@ -26,8 +27,10 @@ interface BaoRepository {
     fun getLiveM(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>>
 
     fun getMonthLiveStatus(user: User,firstDay: Long,endDay: Long, completeHandler:(List<Service>) -> Unit)
-    fun getMasterLiveStatus(masterId: String, completeHandler:(List<Service>) -> Unit)
-    fun getSalesmanLiveStatus(salesmanId: String, completeHandler:(List<Service>) -> Unit)
+
+    fun getMasterMonthLiveStatus(masterId: String,firstDay: Long,endDay: Long, completeHandler: (List<Service>) -> Unit)
+
+    fun getSalesmanMonthLiveStatus(salesmanId: String,firstDay: Long,endDay: Long, completeHandler:(List<Service>) -> Unit)
 
 //    fun getLiveStatus(salesmanId:String):LiveData<List<Service>>
     suspend fun addMasterService(service: Service):Result<Boolean>

@@ -9,6 +9,7 @@ import com.hsiaoling.bao.BaoApplication
 import com.hsiaoling.bao.R
 import com.hsiaoling.bao.data.*
 import com.hsiaoling.bao.data.source.BaoRepository
+import com.hsiaoling.bao.login.DayManager
 import com.hsiaoling.bao.login.SalesmanManager
 import com.hsiaoling.bao.login.SalesmanManager.salesman
 import com.hsiaoling.bao.login.UserManager
@@ -32,9 +33,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     val master: LiveData<User>
         get() = _master
 
-//    private val _user = MutableLiveData<User>()
-//    val user:LiveData<User>
-//    get() = _user
+
 
 
 
@@ -48,9 +47,6 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
 
 
-//    fun setMaster (user: User){
-//        _master.value = user
-//    }
 
     //update newStatus
     private val _newStatuses = MutableLiveData<Service>()
@@ -61,6 +57,13 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
     fun setNewstatus(service: Service) {
         _newStatuses.value = service
     }
+
+    var firstDay = DayManager.day!!.firstDay
+    var endDay = DayManager.day!!.endDay
+    var todayTimeStamp = DayManager.day!!.todayTimeStamp
+
+
+
 
     // put loginsalesman data into service
     fun setUserForNewStatus(user: User) {
@@ -154,21 +157,22 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 //        getLiveStatus()
     }
 
-    // get live status from firebase by loginUser
+    // get live this month status from firebase by loginUser
     fun getLiveStatus(){
         when(user!!.type){
             "master" -> {
-                repository.getMasterLiveStatus(UserManager.user!!.id) {
+                repository.getMasterMonthLiveStatus(UserManager.user!!.id,firstDay,endDay) {
+                    Log.i("HsiaoLing","repository.getMasterMonthLiveStatus=$firstDay,$endDay")
+                    Log.i("HsiaoLing","repository.getMasterMonthLiveStatus=$it")
+
                     liveStatuses.value = it
                 }
             }else ->{
-            repository.getSalesmanLiveStatus(UserManager.user!!.id) {
+            repository.getSalesmanMonthLiveStatus(UserManager.user!!.id,firstDay,endDay) {
                 liveStatuses.value = it
                }
             }
         }
-//        liveStatuses =
-//            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
         Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
     }
 
@@ -176,21 +180,15 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
 
 
 
-
-
-
-//  ----------------------------------------------------------------------------
-    // get live status from firebase
-//    fun getLiveStatus(){
-//        repository.getLiveStatus(UserManager.user!!.id) {
-//            liveStatuses.value = it
-//        }
-
-//        liveStatuses =
-//            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
+////        liveStatuses =
+////            repository.getLiveStatus(SalesmanManager.salesman!!.id) as MutableLiveData<List<Service>>
 //        Log.i("HsiaoLing","getLiveStatus=${liveStatuses.value}")
 //    }
-//    --------------------------------------------------------
+
+
+
+
+
 
     // filter the status livedata  type to print different info
     val filterStatus = MutableLiveData<Int>()

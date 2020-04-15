@@ -57,7 +57,7 @@ class StatusUpdateDialog : AppCompatDialogFragment() {
 
         // set loginUser to services
         service?.let {
-            viewModel.updateStatus(it)
+            viewModel.setStatus(it)
             UserManager.user?.let {
                 viewModel.setLoginUserForService(it)
             }

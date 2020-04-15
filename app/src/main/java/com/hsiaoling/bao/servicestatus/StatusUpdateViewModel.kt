@@ -21,6 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import com.hsiaoling.bao.data.source.remote.BaoRemoteDataSource.getDateResult
+import com.hsiaoling.bao.login.DayManager
 import com.hsiaoling.bao.login.SalesmanManager.salesman
 
 class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel() {
@@ -31,13 +32,20 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
     val service: LiveData<Service>
         get() = _service as LiveData<Service>
 
+    var firstDay = DayManager.day!!.firstDay
+    var endDay = DayManager.day!!.endDay
+    var todayTimeStamp = DayManager.day!!.todayTimeStamp
+
+
+
+
     private val _navigateToChange = MutableLiveData<Service>()
     val navgateToChange:LiveData<Service>
         get() = _navigateToChange
 
 
     // put selscted status card data into service
-    fun updateStatus(service: Service) {
+    fun setStatus(service: Service) {
         _service.value = service
 
         Log.i("Hsiao", " StatusUpdateViewModel_service=${_service}")
@@ -122,7 +130,6 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
 //        Logger.i("------------------------------------")
     }
 
-
     fun updateStatus(service: Service, serviceAction: ServiceAction) {
         coroutineScope.launch {
             _status.value = LoadApiStatus.LOADING
@@ -154,6 +161,39 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
             _refreshStatus.value = false
         }
     }
+
+
+//    fun updateStatus(service: Service, serviceAction: ServiceAction) {
+//        coroutineScope.launch {
+//            _status.value = LoadApiStatus.LOADING
+//            Log.i("HsiaoLingUpdate", " _status.value=${service}")
+//            when (val result = repository.updateStatus(service, serviceAction)) {
+//
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+////                    refresh()
+//                    Log.i("Hsiao", "refreshData=${result.data}")
+//
+//                    _navigateToAddSuccess.value = service
+//                }
+//
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//                else -> {
+//                    _error.value = BaoApplication.instance.getString(R.string.you_know_nothing)
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
 
 //    fun refresh() {
 //        if (status.value != LoadApiStatus.LOADING) {
@@ -203,6 +243,8 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
 //        }
 //    }
 
+
+    // salesman confirm service finished when service status=3 ,delete service when service status = 1
     fun updateSalesmanJob() {
         if (service.value != null) {
             when{
@@ -222,6 +264,7 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
         }
     }
 
+    // salesman change service when service status = 1
     fun changeSalesmanJob() {
         if (service.value != null) {
             when{
@@ -237,35 +280,35 @@ class StatusUpdateViewModel(private val repository: BaoRepository) : ViewModel()
 
 
     // salesman confirm finish service
-    fun selectFinish() {
-        if (service.value != null) {
-            service.value!!.status = 4
-            updateStatus(service.value!!, serviceAction = ServiceAction.FINISH_CHECK)
-            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
-        }
-
-    }
-
-    // salesman delete service
-    fun selectChange() {
-        _navigateToChange.value = service.value!!
-
-        Log.i("HsiaoLingStatus", " _navigateToChange.value=${service.value}")
-
-    }
-
-
-
+//    fun selectFinish() {
+//        if (service.value != null) {
+//            service.value!!.status = 4
+//            updateStatus(service.value!!, serviceAction = ServiceAction.FINISH_CHECK)
+//            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+//        }
+//
+//    }
 
     // salesman delete service
-    fun selectDelete() {
-        if (service.value != null) {
-            service.value!!.status = 5
-            updateStatus(service.value!!, serviceAction = ServiceAction.DELETE)
-            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
-        }
+//    fun selectChange() {
+//        _navigateToChange.value = service.value!!
+//
+//        Log.i("HsiaoLingStatus", " _navigateToChange.value=${service.value}")
+//
+//    }
 
-    }
+
+
+
+    // salesman delete service
+//    fun selectDelete() {
+//        if (service.value != null) {
+//            service.value!!.status = 5
+//            updateStatus(service.value!!, serviceAction = ServiceAction.DELETE)
+//            Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+//        }
+//
+//    }
 
 
 

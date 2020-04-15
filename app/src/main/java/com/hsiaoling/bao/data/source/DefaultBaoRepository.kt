@@ -85,12 +85,23 @@ class DefaultBaoRepository (private val baoRemoteDataSource:BaoDataSource,
     }
 
 
-    override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
-        return baoRemoteDataSource.getMasterLiveStatus(masterId, completeHandler)
+
+    override fun getMasterMonthLiveStatus(
+        masterId: String,
+        firstDay: Long,
+        endDay: Long,
+        completeHandler: (List<Service>) -> Unit
+    ) {
+        return baoRemoteDataSource.getMasterMonthLiveStatus(masterId,firstDay, endDay, completeHandler)
     }
 
-    override fun getSalesmanLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
-        return baoRemoteDataSource.getSalesmanLiveStatus(salesmanId,completeHandler)
+    override fun getSalesmanMonthLiveStatus(
+        salesmanId: String,
+        firstDay: Long,
+        endDay: Long,
+        completeHandler: (List<Service>) -> Unit
+    ) {
+        return baoRemoteDataSource.getSalesmanMonthLiveStatus(salesmanId,firstDay,endDay,completeHandler)
     }
 
 }

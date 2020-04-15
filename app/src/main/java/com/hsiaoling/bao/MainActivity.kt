@@ -198,7 +198,6 @@ class MainActivity : BaseActivity() {
 
         })
 
-        // setup BadgeView
         setupBadgeView()
     }
 }

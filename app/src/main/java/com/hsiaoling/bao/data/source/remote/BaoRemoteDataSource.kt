@@ -380,20 +380,24 @@ object BaoRemoteDataSource:BaoDataSource {
             .collection(PATH_SERVICE)
             .whereEqualTo(userKey,user.id)
             .whereEqualTo(KEY_STATUS,4)
-            .whereGreaterThan("doneTime",firstDay)
-            .whereLessThan("doneTime",endDay)
+            .whereGreaterThan("updateTime",firstDay)
+            .whereLessThan("updateTime",endDay)
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("addSnapshotListener detect")
                 exception?.let {
                     Logger.w("[] Error getting documents. ${it.message}")
                 }
                 val list = mutableListOf<Service>()
+                Logger.i("snapshot=$snapshot")
+                Logger.i("snapshot firstDay=$firstDay")
+                Logger.i("snapshot endDay=$endDay")
                 for (document in snapshot!!) {
                     Logger.d(document.id + " => " + document.data)
                     val service = document.toObject(Service::class.java)
                     list.add(service)
                 }
-                Logger.i("detect list=$list")
+                Logger.i("getlive rev detect list=$list")
+
                 liveData.value = list
             }
         return liveData
@@ -429,8 +433,6 @@ object BaoRemoteDataSource:BaoDataSource {
 
     // get monthStatus updated services  by addSnapshotListener
     override fun getLiveM(user: User,firstDay:Long,endDay:Long): LiveData<List<Service>> {
-
-
         val liveData = MutableLiveData<List<Service>>()
         var userKey:String = ""
         when (user.type){
@@ -505,16 +507,17 @@ object BaoRemoteDataSource:BaoDataSource {
 
 
     // get salesman's  updated service which the statue >0,  intime by addSnapshotListener method2
-    override fun getSalesmanLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
-        Logger.w("getLiveStatus $salesmanId")
+    override fun getSalesmanMonthLiveStatus(salesmanId: String,firstDay: Long,endDay: Long, completeHandler: (List<Service>) -> Unit) {
+        Logger.w("getSalesmanMonthLiveStatus $salesmanId")
 
         FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICE)
             .whereEqualTo(KEY_SALESMANID,salesmanId)
-            .whereGreaterThan(KEY_STATUS,0)
-            .orderBy(KEY_STATUS,Query.Direction.ASCENDING)
+            .whereIn(KEY_STATUS, listOf(1, 2, 3, 4, 5))
+            .whereGreaterThan(  "updateTime",firstDay)
+            .whereLessThan("updateTime",endDay)
             .orderBy("updateTime",Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("addSnapshotListener detect")
@@ -535,16 +538,17 @@ object BaoRemoteDataSource:BaoDataSource {
     }
 
     // get master's  updated service which the statue >0,  intime by addSnapshotListener method2
-    override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
-        Logger.w("getLiveStatus $masterId")
+    override fun getMasterMonthLiveStatus(masterId: String,firstDay: Long,endDay: Long, completeHandler: (List<Service>) -> Unit) {
+        Logger.d("getMasterMonthLiveStatus $masterId,$firstDay,$endDay")
 
-        FirebaseFirestore.getInstance()
+        val reference = FirebaseFirestore.getInstance()
             .collection("store")
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICE)
             .whereEqualTo(KEY_MASTERID,masterId)
-            .whereGreaterThan(KEY_STATUS,0)
-            .orderBy(KEY_STATUS,Query.Direction.ASCENDING)
+            .whereIn(KEY_STATUS, listOf(1, 2, 3, 4, 5))
+            .whereGreaterThan(  "updateTime",firstDay)
+            .whereLessThan("updateTime",endDay)
             .orderBy("updateTime",Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
                 Logger.i("addSnapshotListener detect")
@@ -564,6 +568,8 @@ object BaoRemoteDataSource:BaoDataSource {
             }
     }
 
+
+//
 //   get updated service which the statue >0,  intime by addSnapshotListener method2
 //    override fun getLiveStatus(salesmanId: String, completeHandler: (List<Service>) -> Unit) {
 //        Logger.w("getLiveStatus $salesmanId")

@@ -46,6 +46,7 @@ class SalesAmountFragment() : Fragment( ) {
 
         val revChart =  binding.revChart
         val cumRevChart = binding.cumRevChart
+//        val revGoalChart =binding.revGoalChart
 
 
 
@@ -82,7 +83,7 @@ class SalesAmountFragment() : Fragment( ) {
             }  else {
                 var  dataSetBao = BarDataSet(baoDayRev, "每日包膜營收")
                      dataSetBao.setDrawIcons(false)
-                     dataSetBao.color = BaoApplication.instance.getColor(R.color.s1orange)
+                     dataSetBao.color = BaoApplication.instance.getColor(R.color.colorAccent)
                 val dataSets = ArrayList<IBarDataSet>()
                 dataSets.add(dataSetBao)
 
@@ -101,8 +102,8 @@ class SalesAmountFragment() : Fragment( ) {
                         Log.i("HsiaoLing","list.size=${list.size}")
                         Log.i("HsiaoLing","getAxisLabel, value=${value}")
                         Log.i("HsiaoLing","list[${value.toInt()}]=${list[value.toInt()]}")
-                        return if (list[value.toInt()].isNotEmpty()) {
-                            list[value.toInt()][0].doneTime.toListDayFormat()
+                        return if (value.toInt() >= 0 && list[value.toInt()].isNotEmpty()) {
+                            list[value.toInt()][0].finishCheckTime.toListDayFormat()
                         } else {
                             ""
                         }
@@ -199,11 +200,15 @@ class SalesAmountFragment() : Fragment( ) {
                 // set date data for linechart
                 val formatter = object : ValueFormatter() {
                     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                        Log.i("HsiaoLing","list.size=${list.size}")
-                        Log.i("HsiaoLing","getAxisLabel, value=${value}")
-                        Log.i("HsiaoLing","list[${value.toInt()}]=${list[value.toInt()]}")
-                        return if (list[value.toInt()].isNotEmpty()) {
-                            list[value.toInt()][0].doneTime.toListDayFormat()
+
+                        Log.i("HsiaoLing","line getAxisLabel, value=${value}")
+
+                        return if (value.toInt() >= 0 && list[value.toInt()].isNotEmpty()) {
+                            Log.i("HsiaoLing","line list[${value.toInt()}]=${list[value.toInt()]}")
+
+                            list[value.toInt()][0].finishCheckTime.toListDayFormat()
+
+
                         } else {
                             ""
                         }
@@ -259,6 +264,7 @@ class SalesAmountFragment() : Fragment( ) {
 //        })
 
 
+
         viewModel.uptoDateRev.observe(this, Observer {
             Log.e("HsiaoLing"," viewModel.uptoDateRev.observe=$it")
 
@@ -277,10 +283,7 @@ class SalesAmountFragment() : Fragment( ) {
             Log.i("HsiaoLing","  viewModel.getBarEntries(list)=$entries")
 
             val cumRevEntries =viewModel.getCumRevBarEntries(list)
-
-
-
-
+            Log.i("HsiaoLing","viewModel.getCumRevBarEntries(list)=$cumRevEntries")
 
             setBarChartData(entries, list)
             setLineChartData(cumRevEntries,list)

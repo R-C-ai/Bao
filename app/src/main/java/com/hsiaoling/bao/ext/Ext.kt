@@ -8,35 +8,35 @@ import android.view.View
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
+    // get date String without year
 fun Long.toDisplayFormat(): String {
-
     return SimpleDateFormat("MM/dd hh:mm",Locale.TAIWAN).format(this)
 }
 
+    // get  date String with year from current timestamp
 fun Long.toCurrentFormat(): String {
-
     return SimpleDateFormat("yyyy-M-d hh:mm",Locale.TAIWAN).format(this)
 }
 
+    // get date String without  minutes
 fun Long.toDayFormat():String {
     return SimpleDateFormat ("yyyy-M-d",Locale.TAIWAN).format(this)
 }
 
+    // get year String
 fun Long.toYearFormat():String {
     return SimpleDateFormat ("yyyy",Locale.TAIWAN).format(this)
 }
 
+    // get month String
 fun Long.toMonthFormat():String {
     return SimpleDateFormat ("M",Locale.TAIWAN).format(this)
 }
 
-
+    //  get momth / day String for Chart
 fun Long.toListDayFormat():String {
     return SimpleDateFormat ("M/d",Locale.TAIWAN).format(this)
 }
-
-
-
 
 
 

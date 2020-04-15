@@ -31,13 +31,19 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         get() = _rev
 
     var  currentUser = UserManager.user!!
-//    var firstDay:Long = 0L
-//    var endDay:Long = 0L
+
 
     // Get Input Update Service Status  LiveData
     private val _service = MutableLiveData<Service>()
     val service: LiveData<Service>
         get() = _service as LiveData<Service>
+
+
+    // get current time
+    var currentday = Calendar.getInstance().getTime()
+
+    // set current time to Day formate to display
+    var currentDay = currentday.time.toDayFormat()
 
     var firstDay = DayManager.day!!.firstDay
     var endDay = DayManager.day!!.endDay
@@ -47,13 +53,9 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
     val serviceList: LiveData<List<List<Service>>>
         get() = _serviceList
 
-    var currentday = Calendar.getInstance().getTime()
-//    var today = this.currentday.time.toCurrentFormat()
-//    var todayTimeStamp = SimpleDateFormat("yyyy-M-d hh:mm").parse(today).time
-
-//    var currentMonth = currentday.time.toMonthFormat().toInt()
-//    var currentYear=currentday.time.toYearFormat().toInt()
-    var currentDay = currentday.time.toDayFormat()
+    private var _cumR = MutableLiveData<Long>()
+    val cumR: LiveData<Long>
+        get() = _cumR
 
 
 
@@ -108,6 +110,7 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 //        setCurrentMonth()
         getLiveRev(currentUser, firstDay, endDay)
 
+
     }
 
 
@@ -117,8 +120,6 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
     fun getLiveRev(user: User, firstDay: Long, endDay: Long) {
         _rev =
             repository.getLiveRev(user, firstDay, endDay) as MutableLiveData<List<Service>>
-        Log.i("HsiaoLing", "repository.getLiveRev=$firstDay,$endDay")
-
 
     }
 
@@ -137,21 +138,33 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
 
     val uptoDateRev: LiveData<Long> = Transformations.map(rev) {
-        var uptoDateRev = 0L
-        rev.value?.let {
-            for (service in it) {
-                Log.i("HsiaoLing", "  todayTimeStamp =$todayTimeStamp")
 
-                if (service.doneTime <= todayTimeStamp) {
+        Log.i("HsiaoLing", "repository.getLiveRev uptoDateRev=$currentUser,$firstDay,$endDay")
+        Log.i("HsiaoLing", "uptoDateRev rev=$it")
+        Log.i("HsiaoLing", "uptoDateRev rev.size=${it.size}")
+
+        var uptoDateRev: Long = 0
+
+        for (service in it) {
+
+//            if (service.finishCheckTime <= todayTimeStamp) {
+                rev.value?.let {
+
+                    Log.i("HsiaoLing", "repository.getLiveRev  uptoDateRev for=$it")
+                    Log.i("HsiaoLing", " repository.getLiveRev uptoDateRev time =$todayTimeStamp")
+
                     service.price.let { price ->
                         uptoDateRev += (service.price)
-                        Log.i("HsiaoLing", " service.doneTime <  todayTimeStamp =$uptoDateRev")
+
+                        Log.i("HsiaoLing", "repository.getLiveRev uptoDateRev =$uptoDateRev")
                     }
                 }
-            }
+
         }
-        Log.i("HsiaoLing", "currentdaytest=${rev.value?.size}")
-        Log.i("HsiaoLing", "  uptoDateRev =$uptoDateRev")
+
+        Log.i("HsiaoLing", "uptoDateRev rev.value?.size =${rev.value?.size}")
+        Log.i("HsiaoLing", "uptoDateRev =$uptoDateRev")
+
         uptoDateRev
     }
 
@@ -160,6 +173,42 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
 
 
+
+
+
+
+
+
+
+
+
+
+//    val uptoDateRev: LiveData<Long> = Transformations.map(rev) {
+//        Log.i("HsiaoLing", "repository.getLiveRev uptoDateRev=$currentUser,$firstDay,$endDay")
+//        Log.i("HsiaoLing", "uptoDateRev rev=$it")
+//        Log.i("HsiaoLing", "uptoDateRev rev.size=${it.size}")
+//
+//        var uptoDateRev :Long = 0
+//        Log.i("HsiaoLing", "repository.getLiveRev uptoDateRev =$uptoDateRev")
+//        rev.value?.let {
+//            for (service in it) {
+//                Log.i("HsiaoLing", "repository.getLiveRev  uptoDateRev for=$it")
+//                Log.i("HsiaoLing", " repository.getLiveRev uptoDateRev time =$todayTimeStamp")
+//
+////                if (service.finishCheckTime <= todayTimeStamp)
+//                    service.price.let { price ->
+//                        uptoDateRev += (service.price)
+//                        Log.i("HsiaoLing",
+//                            " uptoDateRev.finishCheckTime <= todayTimeStamp=${service.finishCheckTime},$todayTimeStamp"
+//                        )
+//                }
+//            }
+//        }
+//        Log.i("HsiaoLing", "uptoDateRev rev.value?.size =${rev.value?.size}")
+//        Log.i("HsiaoLing", "uptoDateRev =$uptoDateRev")
+//        uptoDateRev
+//    }
+//
 
     fun getServicesByDayGroup(list: List<Service>, month: Int, year: Int): List<List<Service>> {
         Log.i("HsiaoLing", "  list =$list")
@@ -176,9 +225,9 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
             servicesList.add(mutableListOf<Service>())
         }
 
-        // put service list of the day into servicesList by day ( the donetime day of the service is the servicesList day)
+        // put service list of the day into servicesList by day ( the finishtime day of the service is the servicesList day)
         for (service in list) {
-            val dayFormat = service.doneTime.toDayFormat()
+            val dayFormat = service.updateTime.toDayFormat()
 
             for (day in 1..daysOfMonth) {
 
@@ -187,10 +236,11 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
 
                 if ("$year-$month-$day" == dayFormat) {
                     // the start index of function is 0 , so need to do day-1
-                    (servicesList[day - 1] as MutableList).add(service)
+                   //
+                    (servicesList[day-1] as MutableList).add(service)
                     Log.i("HsiaoLing", " dayFormat1=$year-$month-$day")
                     Log.i("HsiaoLing", "dayFormat=$dayFormat")
-                    Log.i("HsiaoLing", " servicesList[${day - 1}]=${servicesList[day - 1]}")
+                    Log.i("HsiaoLing", " dayFormat servicesList[${day-1 }]=${servicesList[day-1 ]}")
                 }
             }
         }
@@ -199,13 +249,12 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         return servicesList
     }
 
-    // get day revenue and put into BarEntry for chart data
+    // get everyday revenue and put into BarEntry for barchart data
     fun getBarEntries(list: List<List<Service>>):ArrayList<BarEntry>{
         val entries = ArrayList<BarEntry>()
         for ((index   , dayList) in list.withIndex()){
             if (dayList.isNotEmpty()){
                 var dayRev: Long = 0
-
                 for (service in dayList){
                     Log.i("HsiaoLing", "  dayList =$dayList")
                     service.price.let{
@@ -223,6 +272,7 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
         return entries
     }
 
+    // get everyday cumRevenue and put into BarEntry for linechart data
     fun getCumRevBarEntries(list: List<List<Service>>):ArrayList<BarEntry>{
         val cumRevEntries = ArrayList<BarEntry>()
         var cumdayRev: Long = 0
@@ -242,7 +292,9 @@ class SalesAmountViewModel(private val repository: BaoRepository) : ViewModel() 
                 Log.i("HsiaoLing", "  barEntry =$cumBarEntry")
 
                 cumRevEntries.add(cumBarEntry)
+
             }}
+        Log.i("HsiaoLing", "cumRevEntries.add(cumBarEntry)=$cumRevEntries")
         return cumRevEntries
     }
 

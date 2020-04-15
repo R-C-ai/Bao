@@ -88,12 +88,23 @@ object BaoLocalDataSource:BaoDataSource {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getMasterLiveStatus(masterId: String, completeHandler: (List<Service>) -> Unit) {
+
+
+
+    override fun getMasterMonthLiveStatus(
+        masterId: String,
+        firstDay: Long,
+        endDay: Long,
+        completeHandler: (List<Service>) -> Unit
+    ) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getSalesmanLiveStatus(
+
+    override fun getSalesmanMonthLiveStatus(
         salesmanId: String,
+        firstDay: Long,
+        endDay: Long,
         completeHandler: (List<Service>) -> Unit
     ) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

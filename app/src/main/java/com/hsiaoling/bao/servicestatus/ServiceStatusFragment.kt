@@ -34,9 +34,6 @@ class ServiceStatusFragment : Fragment() {
 
 
 
-
-
-
         //get exist status Service
         val serviceStatusItemAdapter =ServiceStatusItemAdapter(
             ServiceStatusItemAdapter.OnClickListener{
@@ -53,6 +50,8 @@ class ServiceStatusFragment : Fragment() {
             // show by recyclerview
             serviceStatusItemAdapter.submitList(it)
         })
+
+
 
 
         // when click search buttom, show search data
@@ -122,11 +121,6 @@ class ServiceStatusFragment : Fragment() {
 
             }
         })
-
-
-
-
-
 
 
 
