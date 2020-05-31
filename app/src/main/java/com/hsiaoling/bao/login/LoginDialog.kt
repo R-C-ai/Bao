@@ -85,8 +85,6 @@ class LoginDialog : AppCompatDialogFragment() {
         binding.buttonGoogleLogin.setOnClickListener {
             googleSignInClient = GoogleSignIn.getClient(context!!, gso)
 
-
-
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
 
@@ -94,7 +92,7 @@ class LoginDialog : AppCompatDialogFragment() {
 
 
 
-
+//  -------------------------------------------------------------------------------
 //        viewModel.selectedSalesman.observe(this, Observer {
 //            mainViewModel.setupSalesman(it)
 //        })
