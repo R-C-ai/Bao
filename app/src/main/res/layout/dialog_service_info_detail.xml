@@ -152,7 +152,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout"
                     android:layout_width="180dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:background="@color/white_FFFFFF"
@@ -176,16 +176,13 @@
 
 
                     <ImageView
-                        android:id="@+id/imageView_customer"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="8dp"
-                        android:tint="@color/colorOlivergoldgreen"
+                        android:id="@+id/imageViewP"
+                        android:layout_width="50dp"
+                        android:layout_height="45dp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView_customer"
                         app:layout_constraintEnd_toStartOf="@+id/textView_customer"
                         app:layout_constraintTop_toTopOf="@+id/textView_customer"
-                        app:layout_constraintVertical_bias="0.0"
-                        app:srcCompat="@drawable/newcustomer1" />
+                        app:srcCompat="@drawable/penguin1" />
 
                     <TextView
                         android:id="@+id/textView_done_device"
@@ -273,6 +270,8 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
