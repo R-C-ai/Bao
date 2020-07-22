@@ -14,102 +14,246 @@
         android:background="@color/dark1Blue"
             android:onClick="@{() -> viewModel.leave()}">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_login"
             android:layout_width="0dp"
-            android:layout_height="600dp"
+            android:layout_height="500dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/bg_dialog_corner"
+            android:elevation="15dp"
             android:onClick="@{() -> viewModel.nothing()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:id="@+id/box_userName"-->
+            <!--                android:layout_width="300dp"-->
+            <!--                android:layout_height="50dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:background="@color/white_FFFFFF"-->
+            <!--                android:elevation="8dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/textView_signUp">-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/imageView_userName"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="8dp"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="@+id/text_userName"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="@+id/text_userName"-->
+            <!--                    app:srcCompat="@drawable/ic_person_black_24dp" />-->
+
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/text_userName"-->
+            <!--                    android:layout_width="250dp"-->
+            <!--                    android:layout_height="30dp"-->
+            <!--                    android:layout_marginTop="8dp"-->
+            <!--                    android:layout_marginBottom="8dp"-->
+            <!--                    android:background="@color/lightGray_f5f5f5"-->
+            <!--                    android:hint=" 姓名 "-->
+            <!--                    android:inputType="text"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="@id/box_userName"-->
+            <!--                    app:layout_constraintStart_toEndOf="@+id/imageView_userName"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:id="@+id/box_passwordSet"-->
+            <!--                android:layout_width="300dp"-->
+            <!--                android:layout_height="50dp"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:background="@color/white_FFFFFF"-->
+            <!--                android:elevation="8dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/box_userName">-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/imageView_passwordSet"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="8dp"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="@+id/text_passwordSet"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="@+id/text_passwordSet"-->
+            <!--                    app:srcCompat="@drawable/ic_lock_black_24dp" />-->
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/text_passwordSet"-->
+            <!--                    android:layout_width="250dp"-->
+            <!--                    android:layout_height="30dp"-->
+            <!--                    android:layout_marginTop="8dp"-->
+            <!--                    android:layout_marginBottom="8dp"-->
+            <!--                    android:background="@color/lightGray_f5f5f5"-->
+            <!--                    android:hint=" 設定密碼 "-->
+            <!--                    android:inputType="number"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toEndOf="@+id/imageView_passwordSet"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/text_settingRule"-->
+            <!--                android:layout_width="200dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="7dp"-->
+            <!--                android:text="密碼8-12字,需有數字、英文"-->
+            <!--                android:textColor="@color/gray_cccccc"-->
+            <!--                android:textSize="12sp"-->
+            <!--                android:textStyle="normal"-->
+            <!--                app:layout_constraintStart_toStartOf="@+id/box_passwordSet"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/box_passwordSet" />-->
+
+
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:id="@+id/box_passWord"-->
+            <!--                android:layout_width="300dp"-->
+            <!--                android:layout_height="50dp"-->
+            <!--                android:layout_marginTop="8dp"-->
+            <!--                android:background="@color/white_FFFFFF"-->
+            <!--                android:elevation="8dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/text_settingRule">-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/imageView_passWord"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="8dp"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="@+id/text_passWord"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="@+id/text_passWord"-->
+            <!--                    app:srcCompat="@drawable/ic_lock_black_24dp" />-->
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/text_passWord"-->
+            <!--                    android:layout_width="250dp"-->
+            <!--                    android:layout_height="30dp"-->
+            <!--                    android:layout_marginTop="8dp"-->
+            <!--                    android:layout_marginBottom="8dp"-->
+            <!--                    android:background="@color/lightGray_f5f5f5"-->
+            <!--                    android:hint=" 確認密碼 "-->
+            <!--                    android:inputType="number"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toEndOf="@+id/imageView_passWord"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+            <ImageView
+                android:id="@+id/imageView_bao"
+                android:layout_width="350dp"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/endurebao" />
+
+            <Button
+                android:id="@+id/button_google_login"
+                style="@style/SalesmanLoginButton"
+                android:layout_width="180dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/bg_pagetitle"
+                android:text="請登入"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_bao" />
 
             <View
                 android:id="@+id/view_login_separation"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/gray_cccccc"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_google_login" />
 
             <!--            <Button-->
-<!--                android:id="@+id/button_login_salesman"-->
-<!--                style="@style/SalesmanLoginButton"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="48dp"-->
-<!--                android:layout_marginStart="16dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                android:clickable="true"-->
-<!--                android:fontFamily="@font/noto_sans"-->
-<!--                android:gravity="center"-->
-<!--                android:letterSpacing="0.15"-->
-<!--                android:onClick="@{() -> viewModel.navigateToCalendar(viewModel.selectedSalesman)}"-->
-<!--                android:text="@string/login_twm_text"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/white_FFFFFF"-->
-<!--                android:textSize="15sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="1.0"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                tools:text="@string/login_twm_text" />-->
+            <!--                android:id="@+id/button_signUp"-->
+            <!--                style="@style/SalesmanLoginButton"-->
+            <!--                android:layout_width="180dp"-->
+            <!--                android:layout_height="40dp"-->
+            <!--                android:layout_marginBottom="16dp"-->
+            <!--                android:background="@drawable/bg_pagetitle"-->
+            <!--                android:text="已有帳號 ? 請登入"-->
+            <!--                android:textColor="@color/white_FFFFFF"-->
+            <!--                android:textSize="15sp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent" />-->
 
-
-            <EditText
-
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="71dp"
-
-                android:inputType="number"
-                android:hint="Password"
-                android:layout_marginTop="10dp"
-
-                app:layout_constraintBottom_toTopOf="@+id/button_google_login"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:id="@+id/imageView_salesman"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/view_login_separation"
-                app:layout_constraintEnd_toStartOf="@+id/button_google_login"
-                app:srcCompat="@drawable/salesman2" />
-
-            <Button
-                android:id="@+id/button_google_login"
-                style="@style/SalesmanLoginButton"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-
-                android:layout_marginEnd="16dp"
-                android:text="登入"
-                android:textColor="@color/white_FFFFFF"
-                android:textSize="15sp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView_salesman"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView_salesman" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/endurebao" />
+            <!--            <TextView-->
+            <!--                android:id="@+id/textView_signUp"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginTop="16dp"-->
+            <!--                android:text="第一次使用 請註冊"-->
+            <!--                android:textStyle="bold"-->
+            <!--                android:textSize="20dp"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/imageView_bao" />-->
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+    <!--            <Button-->
+    <!--                android:id="@+id/button_login_salesman"-->
+    <!--                style="@style/SalesmanLoginButton"-->
+    <!--                android:layout_width="0dp"-->
+    <!--                android:layout_height="48dp"-->
+    <!--                android:layout_marginStart="16dp"-->
+    <!--                android:layout_marginEnd="16dp"-->
+    <!--                android:layout_marginBottom="16dp"-->
+    <!--                android:clickable="true"-->
+    <!--                android:fontFamily="@font/noto_sans"-->
+    <!--                android:gravity="center"-->
+    <!--                android:letterSpacing="0.15"-->
+    <!--                android:onClick="@{() -> viewModel.navigateToCalendar(viewModel.selectedSalesman)}"-->
+    <!--                android:text="@string/login_twm_text"-->
+    <!--                android:textAllCaps="false"-->
+    <!--                android:textColor="@color/white_FFFFFF"-->
+    <!--                android:textSize="15sp"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintEnd_toEndOf="parent"-->
+    <!--                app:layout_constraintHorizontal_bias="1.0"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                tools:text="@string/login_twm_text" />-->
+
+
+    <!--            <ImageView-->
+    <!--                android:id="@+id/imageView_salesman"-->
+    <!--                android:layout_width="30dp"-->
+    <!--                android:layout_height="30dp"-->
+    <!--                app:srcCompat="@drawable/salesman2"-->
+    <!--                tools:layout_editor_absoluteX="56dp"-->
+    <!--                tools:layout_editor_absoluteY="566dp" />-->
