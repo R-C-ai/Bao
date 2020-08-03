@@ -17,7 +17,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
-        android:layout_height="105dp"
+        android:layout_height="110dp"
         android:layout_margin="15dp"
         android:layout_marginStart="5dp"
         android:background="@drawable/bg_dialog_corner"
@@ -47,17 +47,14 @@
             app:layout_constraintTop_toTopOf="parent">
 
 
-
-
-
-<!--            <View-->
-<!--                android:id="@+id/view_lineseparation"-->
-<!--                style="@style/LineSeparation"-->
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:layout_marginStart="4dp"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
+            <!--            <View-->
+            <!--                android:id="@+id/view_lineseparation"-->
+            <!--                style="@style/LineSeparation"-->
+            <!--                android:layout_width="1dp"-->
+            <!--                android:layout_height="0dp"-->
+            <!--                android:layout_marginStart="4dp"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 
             <TextView
@@ -146,20 +143,20 @@
 
             <ImageView
                 android:id="@+id/imageView_customer"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_marginTop="8dp"
+                android:layout_width="20dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="2dp"
                 app:layout_constraintEnd_toStartOf="@+id/text_customer"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/newcustomer1" />
+                app:srcCompat="@drawable/penguin1" />
 
 
             <TextView
                 android:id="@+id/text_customer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="4dp"
                 android:background="@color/white_FFFFFF"
                 android:elevation="2dp"
                 android:text="@{service.customerNo}"
@@ -223,14 +220,14 @@
 
             <ImageView
                 android:id="@+id/imageView_master"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginBottom="2dp"
                 android:tint="@color/colorOlivergoldgreen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/newmaster1" />
+                app:srcCompat="@drawable/ic_person_black_24dp" />
 
             <TextView
                 android:id="@+id/text_master_name"
@@ -252,8 +249,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/status_image"
-            android:layout_width="50dp"
-            android:layout_height="85dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/status_card"
@@ -261,28 +258,26 @@
 
             <ImageView
                 android:id="@+id/imageView_done"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:scaleType="fitEnd"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:statusImage="@{service.status}"
-                tools:srcCompat="@drawable/waitforservice" />
+                tools:srcCompat="@drawable/endure6" />
 
 
             <TextView
                 android:id="@+id/text_reserve_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_done"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_done"
                 app:statusPage="@{service.status}"
-                tools:text="預約" />
+                tools:text="包膜中" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

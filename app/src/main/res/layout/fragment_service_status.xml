@@ -36,7 +36,7 @@
                 <ImageView
                     android:id="@+id/imageView_wait"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_height="60dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="50dp"
                     android:onClick="@{() -> viewModel.filterList(1)}"
@@ -44,56 +44,59 @@
                     app:itemIconTint="@drawable/bottom_nav_item_selector"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/wait2" />
+                    app:srcCompat="@drawable/endure1" />
 
                 <TextView
                     android:id="@+id/text_wait"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="待包膜"
+                    android:layout_marginBottom="2dp"
+                    android:text="已接單"
                     android:textColor="@color/lateblue2"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/imageView_wait"
                     app:layout_constraintStart_toStartOf="@id/imageView_wait"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_wait" />
 
                 <ImageView
                     android:id="@+id/imageView_doing"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="16dp"
                     android:onClick="@{() -> viewModel.filterList(2)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_wait"
                     app:layout_constraintStart_toEndOf="@+id/imageView_wait"
                     app:layout_constraintTop_toTopOf="@+id/imageView_wait"
-                    app:srcCompat="@drawable/doing2" />
+                    app:srcCompat="@drawable/endure6" />
 
                 <TextView
                     android:id="@+id/text_doing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="進行中"
+                    android:text="包膜中"
                     android:textColor="@color/lateblue2"
                     android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_wait"
                     app:layout_constraintEnd_toEndOf="@id/imageView_doing"
+                    app:layout_constraintHorizontal_bias="0.566"
                     app:layout_constraintStart_toStartOf="@id/imageView_doing"
                     app:layout_constraintTop_toTopOf="@+id/text_wait" />
 
                 <ImageView
                     android:id="@+id/imageView_finish"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="24dp"
                     android:onClick="@{() -> viewModel.filterList(3)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_doing"
                     app:layout_constraintStart_toEndOf="@+id/imageView_doing"
                     app:layout_constraintTop_toTopOf="@+id/imageView_doing"
                     app:layout_constraintVertical_bias="0.0"
-                    app:srcCompat="@drawable/finish2" />
+                    app:srcCompat="@drawable/endure4" />
 
                 <TextView
                     android:id="@+id/text_finish"
@@ -111,39 +114,40 @@
 
                 <ImageView
                     android:id="@+id/imageView_confirmok"
-                    android:layout_width="35dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="24dp"
                     android:onClick="@{() -> viewModel.filterList(4)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
                     app:layout_constraintStart_toEndOf="@+id/imageView_finish"
                     app:layout_constraintTop_toTopOf="@+id/imageView_finish"
-                    app:srcCompat="@drawable/confirmok1" />
+                    app:srcCompat="@drawable/endure8" />
 
                 <TextView
                     android:id="@+id/text_confirmok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="確認完成"
+                    android:layout_marginStart="42dp"
+                    android:text="已驗收"
                     android:textColor="@color/lateblue2"
                     android:textSize="10sp"
-                    app:layout_constraintEnd_toEndOf="@+id/imageView_confirmok"
-                    app:layout_constraintStart_toStartOf="@+id/imageView_confirmok"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_confirmok" />
+                    app:layout_constraintBottom_toBottomOf="@+id/text_finish"
+                    app:layout_constraintStart_toEndOf="@+id/text_finish"
+                    app:layout_constraintTop_toTopOf="@+id/text_finish" />
 
                 <ImageView
                     android:id="@+id/imageView_delete"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
                     android:onClick="@{() -> viewModel.filterList(5)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
                     app:layout_constraintStart_toEndOf="@+id/imageView_confirmok"
                     app:layout_constraintTop_toTopOf="@+id/imageView_finish"
-                    app:srcCompat="@drawable/delete2" />
+                    app:srcCompat="@drawable/endure7" />
+
 
                 <TextView
                     android:id="@+id/text_delete"
@@ -152,10 +156,11 @@
                     android:text="已取消"
                     android:textColor="@color/lateblue2"
                     android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_confirmok"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_delete"
+                    app:layout_constraintHorizontal_bias="0.55"
                     app:layout_constraintStart_toStartOf="@+id/imageView_delete"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_delete" />
-
+                    app:layout_constraintTop_toTopOf="@+id/text_confirmok" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/status_user_info"

@@ -57,6 +57,11 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 //    val isSalesman: LiveData<Boolean>
 //        get() = _isSalesman
 
+//------------------------------
+    private val _navigateToGetJob = MutableLiveData<Service>()
+    val navgateToGetJob:LiveData<Service>
+        get() = _navigateToGetJob
+//-------------------------
 
     private val _navigateToAddBao = MutableLiveData<Service>()
     val navgateToAddBao:LiveData<Service>
@@ -125,7 +130,7 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
     fun newDailyServices (date: String, masterId: String,masterName:String) {
 
-        for (i in 0..7) {
+        for (i in 0..5) {
             val service = Service(storeId,"松菸文創店","","",masterId,masterName,"",date,
                 i,"","","","",0,0,"可預約",0,0,0,0
                 ,0)

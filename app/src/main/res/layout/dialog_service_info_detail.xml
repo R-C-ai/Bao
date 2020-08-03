@@ -109,7 +109,7 @@
                         android:tint="@color/colorOlivergoldgreen"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageView_finish"
-                        app:srcCompat="@drawable/newmaster1" />
+                        app:srcCompat="@drawable/ic_person_black_24dp" />
 
 
                     <TextView
@@ -130,10 +130,11 @@
                         android:id="@+id/imageView_finish"
                         android:layout_width="105dp"
                         android:layout_height="119dp"
-                        app:statusInfoImage="@{viewModel.service.status}"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@drawable/process" />
+                        app:statusInfoImage="@{viewModel.service.status}"
+                        tools:srcCompat="@drawable/endure6" />
 
                     <TextView
                         android:id="@+id/textView_finish"

@@ -12,11 +12,13 @@
     <string name="addService">預約包膜服務</string>
     <string name="serviceStatus">查詢包膜進度</string>
     <string name="salesAmount">查詢包膜業績</string>
+    <string name="masterStatus">包膜師服務狀態</string>
 
     <!--    BottonNavigation-->
     <string name="bottomAdd">預約包膜</string>
     <string name="bottomStatus">查詢進度</string>
     <string name="bottomSales">查詢業績</string>
+    <string name="bottomMaster">包膜師</string>
 
 
 
@@ -25,36 +27,38 @@
     <string name="login_description">登入後即可預約包膜服務。</string>
     <string name="login_twm_text">門市人員登入</string>
 
-    <!--Status-->
-    <string name="status0">請按下預約</string>
-    <string name="status1">已預約成功</string>
+    <!--  Item Status-->
+    <string name="status0">收到通知 快搶單</string>
+    <string name="status1">已搶單成功</string>
     <string name="status2">正在進行中</string>
     <string name="status3">包膜完成囉</string>
     <string name="status4">包膜驗收囉</string>
     <string name="status5">已取消了喔</string>
+    <string name="status_fail">被別人搶單了</string>
 
-    <!--StatusPage-->
-    <string name="status_page1">待包膜</string>
-    <string name="status_page2">進行中</string>
-    <string name="status_page3">完成囉</string>
-    <string name="status_page4">驗收囉</string>
-    <string name="status_page5">已取消</string>
+    <!--item_status.xml   StatusPage-->
+    <string name="status_page1">已經接單囉</string>
+    <string name="status_page2">包膜進行中</string>
+    <string name="status_page3">已經完成囉</string>
+    <string name="status_page4">已經驗收囉</string>
+    <string name="status_page5">已經取消啦</string>
 
-    <string name="status_info1">待包膜師 接單喔 !!</string>
+<!--    dialog_service_info_detail  statusInfoText-->
+    <string name="status_info1">包膜師 搶單啦 !!</string>
     <string name="status_info2">火力全開 趕工中 !!</string>
-    <string name="status_info3">包膜完成囉</string>
-    <string name="status_info4">確認驗收囉</string>
+    <string name="status_info3">完成囉等驗收</string>
+    <string name="status_info4">已經驗收囉</string>
     <string name="status_info5">已經取消囉</string>
 
 
-    <string name="time0">12:00 - 01:00</string>
-    <string name="time1">01:00 - 02:00</string>
-    <string name="time2">02:00 - 03:00</string>
-    <string name="time3">03:00 - 04:00</string>
-    <string name="time4">04:00 - 05:00</string>
-    <string name="time5">05:00 - 06:00</string>
-    <string name="time6">06:00 - 07:00</string>
-    <string name="time7">07:00 - 08:00</string>
+    <string name="time0">第1件包膜單 </string>
+    <string name="time1">第2件包膜單</string>
+    <string name="time2">第3件包膜單</string>
+    <string name="time3">第4件包膜單</string>
+    <string name="time4">第5件包膜單</string>
+    <string name="time5">第6件包膜單</string>
+    <string name="time6">第7件包膜單</string>
+    <string name="time7">第8件包膜單</string>
 
 
     <string name="login_success">成功登入囉</string>
@@ -62,7 +66,7 @@
     <string name="bao_finished">包膜完成囉</string>
     <string name="done_success">確認囉</string>
     <string name="delete_success">確認取消</string>
-    <string name="master_info">只能受理已預約的時段喔</string>
+    <string name="master_info">門市預約後才能搶單喔</string>
     <string name="add_reject">不可異動其他人員的服務</string>
     <string name="no_service">不可預約服務喔</string>
 

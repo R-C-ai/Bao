@@ -41,6 +41,18 @@
                 app:statusBackground="@{service.status}"
                 tools:background="@color/gray_999999" />
 
+<!--            <ImageView-->
+<!--                android:id="@+id/image_sort_number"-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginStart="8dp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:srcCompat="@drawable/statuswhite1"-->
+<!--                tools:srcCompat="@drawable/statuswhite1" />-->
+
+
 
             <ImageView
                 android:id="@+id/image_sort_number"
@@ -50,23 +62,23 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/statuswhite1"
-                tools:srcCompat="@drawable/statuswhite1" />
+                app:itemScheduleSort="@{service.scheduleSort}"
+                tools:srcCompat="@drawable/ic_av_timer_black_24dp" />
 
-<!--            <TextView-->
-<!--                android:id="@+id/text_reserve_time"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:textColor="@color/white_FFFFFF"-->
-<!--                android:textSize="12sp"-->
-<!--                app:itemScheduleTime="@{service.scheduleSort}"-->
+            <TextView
+                android:id="@+id/text_reserve_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="12sp"
+                app:itemScheduleTime="@{service.scheduleSort}"
 
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toEndOf="@id/image_sort_number"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.482"-->
-<!--                tools:text="02/25 06:00" />-->
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_sort_number"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.482"
+                tools:text="第1件包膜單" />
 
             <TextView
                 android:id="@+id/text_reserve_status"

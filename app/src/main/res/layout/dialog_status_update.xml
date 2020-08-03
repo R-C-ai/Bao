@@ -107,7 +107,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:salesmanJobstatus="@{viewModel.service.status}"
-                    tools:srcCompat="@drawable/ok0" />
+                    tools:srcCompat="@drawable/endure4" />
 
                 <TextView
                     android:id="@+id/textView_finishcheck"
@@ -120,7 +120,7 @@
                     app:layout_constraintStart_toStartOf="@+id/imageView_finishcheck"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_finishcheck"
                     app:salesmanJobstatusText="@{viewModel.service.status}"
-                    tools:text="確認完成" />
+                    tools:text="我已完成" />
 
                 <ImageView
                     android:id="@+id/imageView_change"
@@ -131,8 +131,8 @@
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/change0"
-                    tools:srcCompat="@drawable/change0" />
+                    app:srcCompat="@drawable/endure5"
+                    tools:srcCompat="@drawable/endure5" />
 
                 <TextView
                     android:id="@+id/textView_change"
@@ -156,8 +156,8 @@
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@+id/textView_delete"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/no0"
-                    tools:srcCompat="@drawable/no0" />
+                    app:srcCompat="@drawable/endure7"
+                    tools:srcCompat="@drawable/endure7" />
 
                 <TextView
                     android:id="@+id/textView_delete"
@@ -181,7 +181,7 @@
                     android:tint="@color/colorOlivergoldgreen"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/newmaster1" />
+                    app:srcCompat="@drawable/ic_person_black_24dp" />
 
                 <TextView
                     android:id="@+id/textView_master"
@@ -199,21 +199,22 @@
 
                 <ImageView
                     android:id="@+id/imageView_customer"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
-                    android:tint="@color/colorOlivergoldgreen"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="2dp"
+
                     app:layout_constraintBottom_toBottomOf="@+id/textView_customer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView_customer"
                     app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/newcustomer1" />
+                    app:srcCompat="@drawable/penguin1" />
+
 
                 <TextView
                     android:id="@+id/textView_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="end"
                     android:text="@{viewModel.service.customerNo}"
@@ -227,7 +228,7 @@
                     android:id="@+id/imageView_price"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:tint="@color/colorOlivergoldgreen"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_price"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -239,21 +240,21 @@
                     android:id="@+id/textView_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="end"
-                    app:statusPrice="@{viewModel.service.price}"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toStartOf="@+id/imageView_price"
                     app:layout_constraintTop_toBottomOf="@+id/textView_customer"
+                    app:statusPrice="@{viewModel.service.price}"
                     tools:text="price" />
 
                 <TextView
                     android:id="@+id/textView_reserve_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="2dp"
                     android:gravity="end"
                     android:textColor="@color/colorOlivergoldgreen"
@@ -267,7 +268,7 @@
                     android:id="@+id/text_reserve_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
+                    android:layout_marginEnd="12dp"
                     android:gravity="end"
                     android:text="預約"
                     android:textColor="@color/colorOlivergoldgreen"
@@ -282,6 +283,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 

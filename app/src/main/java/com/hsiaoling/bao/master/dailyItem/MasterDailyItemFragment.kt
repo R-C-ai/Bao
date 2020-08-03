@@ -49,6 +49,16 @@ class MasterDailyItemFragment(private val master: User) : Fragment() {
         binding.recyclerMasterDailyItem.adapter = masterDailyItemAdapter
 
 
+//    -------------------------------------------------------------------------
+        viewModel.navgateToGetJob.observe(this, Observer {
+            Log.i("HsiaoLing", "viewModel.navgateToGetJob.observe=$it")
+            it?.let {
+                findNavController().navigate(NavigationDirections.actionGlobalAddBaoDialog(it))
+                viewModel.onAddJobNavigated()
+            }
+        })
+
+//---------------------------------
 
 
 

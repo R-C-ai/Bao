@@ -81,33 +81,18 @@ fun updateTime(textView: TextView, time: Long?,status:Int) {
 
 @BindingAdapter("itemScheduleSort")
 fun setScheduleSort(imageView: ImageView, sort: Int) {
-    val drawable1 = when {
-        sort == 0 -> {
-            R.drawable.one
-        }
-        sort == 1 -> {
-            R.drawable.two
-        }
-        sort == 2 -> {
-            R.drawable.three
-        }
-        sort == 3 -> {
-            R.drawable.four
-        }
-        sort == 4 -> {
-            R.drawable.five
-        }
-        sort == 5 -> {
-            R.drawable.six
-        }
-        sort == 6 -> {
-            R.drawable.seven
-        }
-        sort == 7 -> {
-            R.drawable.eight
-        }
+
+    when {
+        sort == 0 -> { imageView.setImageResource(R.drawable.ic_looks_1_white_24dp)}
+        sort == 1 -> { imageView.setImageResource(R.drawable.ic_looks_2_white_24dp)}
+        sort == 2 -> { imageView.setImageResource(R.drawable.ic_looks_3_white_24dp)}
+        sort == 3 -> { imageView.setImageResource(R.drawable.ic_looks_4_white_24dp)}
+        sort == 4 -> { imageView.setImageResource(R.drawable.ic_looks_5_white_24dp)}
+        sort == 5 -> { imageView.setImageResource(R.drawable.ic_looks_6_white_24dp)}
+
+
         else ->{
-            R.drawable.eight
+            imageView.setImageResource(R.drawable.ic_av_timer_black_24dp)
         }
     }
 
@@ -154,8 +139,8 @@ fun itemScheduleTime(textView:TextView, sort: Int) {
 @BindingAdapter("masterJobstatus")
 fun masterJobstatus(imageView: ImageView,status:Int){
     when {
-        status == 1 -> {imageView.setImageResource(R.drawable.go1)}
-        status == 2 -> {imageView.setImageResource(R.drawable.go2)}
+        status == 1 -> {imageView.setImageResource(R.drawable.endure2)}
+        status == 2 -> {imageView.setImageResource(R.drawable.endure4)}
     }
 }
 
@@ -164,7 +149,7 @@ fun masterJobstatus(imageView: ImageView,status:Int){
 fun masterJobstatusText(textView: TextView,status:Int){
     when {
         status == 1 -> {textView.text ="開始包膜囉"}
-        status == 2 -> {textView.text ="包膜完成囉"}
+        status == 2 -> {textView.text ="我已完成囉"}
     }
 }
 
@@ -173,8 +158,8 @@ fun masterJobstatusText(textView: TextView,status:Int){
 fun salesmanJobstatus(imageView: ImageView,status:Int){
 
     when {
-        status == 1 -> {imageView.setImageResource(R.drawable.no0)}
-        status == 3 -> {imageView.setImageResource(R.drawable.ok0)}
+        status == 1 -> {imageView.setImageResource(R.drawable.endure7)}
+        status == 3 -> {imageView.setImageResource(R.drawable.endure8)}
     }
 }
 
@@ -183,8 +168,8 @@ fun salesmanJobstatus(imageView: ImageView,status:Int){
 @BindingAdapter("salesmanJobstatusText")
 fun salesmanJobstatusText(textView: TextView,status:Int){
     when {
-        status == 1 -> {textView.text ="確認取消囉"}
-        status == 3 -> {textView.text ="確認完成囉"}
+        status == 1 -> {textView.text ="我要取消囉"}
+        status == 3 -> {textView.text ="我要驗收囉"}
     }
 }
 
@@ -273,21 +258,21 @@ fun statusImage(imageView: ImageView, status: Int) {
 
     when {
         status == 1 -> {
-            imageView.setImageResource(R.drawable.waitforservice)
+            imageView.setImageResource(R.drawable.endure1)
         }
         status == 2 -> {
-            imageView.setImageResource(R.drawable.go1)
+            imageView.setImageResource(R.drawable.endure6)
         }
         status == 3 -> {
-            imageView.setImageResource(R.drawable.doneforservice)
+            imageView.setImageResource(R.drawable.endure4)
         }
 
         status == 4 -> {
-            imageView.setImageResource(R.drawable.confirmok)
+            imageView.setImageResource(R.drawable.endure8)
         }
 
         status == 5 -> {
-            imageView.setImageResource(R.drawable.delete3)
+            imageView.setImageResource(R.drawable.endure7)
         }
 
     }
@@ -298,20 +283,20 @@ fun statusInfoImage(imageView: ImageView, status: Int) {
 
     when {
         status == 1 -> {
-            imageView.setImageResource(R.drawable.waitforservice1)
+            imageView.setImageResource(R.drawable.endure6)
         }
         status == 2 -> {
-            imageView.setImageResource(R.drawable.process)
+            imageView.setImageResource(R.drawable.endure2)
         }
         status == 3 -> {
-            imageView.setImageResource(R.drawable.ok0)
+            imageView.setImageResource(R.drawable.endure4)
         }
         status == 4 -> {
-            imageView.setImageResource(R.drawable.okconfirm0)
+            imageView.setImageResource(R.drawable.endure8)
         }
 
         status == 5 -> {
-            imageView.setImageResource(R.drawable.nochange)
+            imageView.setImageResource(R.drawable.endure7)
         }
 
     }
