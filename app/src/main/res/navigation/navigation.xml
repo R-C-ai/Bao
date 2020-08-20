@@ -28,6 +28,16 @@
         app:destination="@id/salesAmountFragment" />
 
     <fragment
+        android:id="@+id/masterStatusFragment"
+        android:name="com.hsiaoling.bao.master.MasterStatusFragment"
+        android:label="MasterStatusFragment"
+        tools:layout="@layout/fragment_master_status"/>
+    <action
+        android:id="@+id/action_global_masterStatusFragment"
+        app:destination="@id/masterStatusFragment" />
+
+
+    <fragment
         android:id="@+id/calendarFragment"
         android:name="com.hsiaoling.bao.addservice.CalendarFragment"
         android:label="CalendarFragment" >
@@ -109,4 +119,5 @@
     <action
         android:id="@+id/action_global_barChartFragment"
         app:destination="@id/barChartFragment" />
+
 </navigation>

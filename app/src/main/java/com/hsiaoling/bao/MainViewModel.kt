@@ -89,6 +89,11 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
     val navigateToSalesAmountByBottomNav: LiveData<Service>
         get() = _navigateToSalesAmountByBottomNav
 
+    // Handle navigation to servicestatus by bottom nav directly which includes icon change
+    private val _navigateToMasterStatusByBottomNav = MutableLiveData<Service>()
+    val navigateToMasterStatusByBottomNav: LiveData<Service>
+        get() = _navigateToMasterStatusByBottomNav
+
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -212,6 +217,10 @@ class MainViewModel(private val repository: BaoRepository) : ViewModel() {
 
     fun onSalesAmountNavigated() {
         _navigateToSalesAmountByBottomNav.value = null
+    }
+
+    fun onMasterStatusNavigated() {
+        _navigateToMasterStatusByBottomNav.value = null
     }
 
 

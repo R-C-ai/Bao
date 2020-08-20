@@ -15,7 +15,7 @@
     <string name="masterStatus">包膜師服務狀態</string>
 
     <!--    BottonNavigation-->
-    <string name="bottomAdd">預約包膜</string>
+    <string name="bottomAdd">包膜行程</string>
     <string name="bottomStatus">查詢進度</string>
     <string name="bottomSales">查詢業績</string>
     <string name="bottomMaster">包膜師</string>

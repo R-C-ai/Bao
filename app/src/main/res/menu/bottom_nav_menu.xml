@@ -17,4 +17,12 @@
         android:id="@+id/navigation_sales_amount"
         android:icon="@drawable/ic_nav_sales_amount_selector"
         android:title="@string/bottomSales"/>
+
+    <item
+        android:id="@+id/navigation_master_status"
+        android:icon="@drawable/ic_nav_master_status_selector"
+        android:title="@string/bottomMaster"/>
+
+
+
 </menu>

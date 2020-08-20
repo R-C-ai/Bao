@@ -7,6 +7,7 @@ import com.hsiaoling.bao.addservice.CalendarViewModel
 import com.hsiaoling.bao.data.source.BaoRepository
 import com.hsiaoling.bao.login.LoginViewModel
 import com.hsiaoling.bao.master.MasterJobUpdateViewModel
+import com.hsiaoling.bao.master.MasterStatusViewModel
 import com.hsiaoling.bao.master.dailyItem.MasterDailyItemViewModel
 import com.hsiaoling.bao.salesaomunt.SalesAmountViewModel
 import com.hsiaoling.bao.servicestatus.ServiceStatusViewModel
@@ -57,6 +58,9 @@ class ViewModelFactory constructor(
 
                 isAssignableFrom(CalendarViewModel::class.java) ->
                     CalendarViewModel(baoRepository)
+
+                isAssignableFrom(MasterStatusViewModel::class.java) ->
+                    MasterStatusViewModel(baoRepository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

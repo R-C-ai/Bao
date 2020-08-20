@@ -48,6 +48,13 @@ class MainActivity : BaseActivity() {
                 findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.actionGlobalSalesAmountFragment())
                 return@OnNavigationItemSelectedListener true
             }
+
+            R.id.navigation_master_status-> {
+
+                findNavController(R.id.myNavHostFragment).navigate(NavigationDirections.actionGlobalMasterStatusFragment())
+                return@OnNavigationItemSelectedListener true
+            }
+
         }
         false
     }
@@ -106,6 +113,14 @@ class MainActivity : BaseActivity() {
             }
         })
 
+        viewModel.navigateToMasterStatusByBottomNav.observe(this, Observer {
+            it?.let {
+                binding.bottomNavView.selectedItemId = R.id.navigation_master_status
+                viewModel.onMasterStatusNavigated()
+            }
+        })
+
+
         setupToolbar()
         setupBottomNav()
         setupNavController()
@@ -143,6 +158,7 @@ class MainActivity : BaseActivity() {
                 R.id.calendarFragment -> CurrentFragmentType.ADDSERVICE
                 R.id.serviceStatusFragment -> CurrentFragmentType.SERVICESTATUS
                 R.id.salesAmountFragment -> CurrentFragmentType.SALESAMOUNT
+                R.id.masterStatusFragment -> CurrentFragmentType.MASTERSTATUS
                 else -> viewModel.currentFragmentType.value
             }
         }

@@ -7,5 +7,6 @@ enum class CurrentFragmentType(val value: String) {
     LOGIN(""),
     ADDSERVICE(getString(R.string.addService)),
     SERVICESTATUS(getString(R.string.serviceStatus)),
-    SALESAMOUNT(getString(R.string.salesAmount))
+    SALESAMOUNT(getString(R.string.salesAmount)),
+    MASTERSTATUS(getString(R.string.masterStatus))
 }
