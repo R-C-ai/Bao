@@ -24,10 +24,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/salesman_status_total"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="140dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_addbao_card"
                 android:elevation="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/recycler_status_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +39,7 @@
                     android:layout_width="50dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="40dp"
                     android:onClick="@{() -> viewModel.filterList(1)}"
                     android:scaleType="centerInside"
                     app:itemIconTint="@drawable/bottom_nav_item_selector"
@@ -50,11 +51,13 @@
                     android:id="@+id/text_wait"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="2dp"
-                    android:text="被門市預約件"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/bg_text"
+                    android:elevation="4dp"
+                    android:text="人工預約件"
+                    android:textColor="@color/s2green"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/imageView_wait"
                     app:layout_constraintStart_toStartOf="@id/imageView_wait"
@@ -64,7 +67,7 @@
                     android:id="@+id/imageView_doing"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="40dp"
                     android:onClick="@{() -> viewModel.filterList(2)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_wait"
@@ -76,20 +79,22 @@
                     android:id="@+id/text_doing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="搶到單趕工件"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
+                    android:background="@drawable/bg_text"
+                    android:elevation="4dp"
+                    android:text="搶單趕工件"
+                    android:textColor="@color/s2orange"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_wait"
                     app:layout_constraintEnd_toEndOf="@id/imageView_doing"
-                    app:layout_constraintHorizontal_bias="0.566"
-                    app:layout_constraintStart_toStartOf="@id/imageView_doing"
-                    app:layout_constraintTop_toTopOf="@+id/text_wait" />
+                    app:layout_constraintStart_toStartOf="@+id/imageView_doing"
+                    app:layout_constraintTop_toTopOf="@+id/text_wait"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
                     android:id="@+id/imageView_finish"
                     android:layout_width="50dp"
                     android:layout_height="60dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="45dp"
                     android:onClick="@{() -> viewModel.filterList(3)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_doing"
@@ -102,9 +107,11 @@
                     android:id="@+id/text_finish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_text"
+                    android:elevation="4dp"
                     android:text="已經完成件"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
+                    android:textColor="@color/s2purple"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_doing"
                     app:layout_constraintEnd_toEndOf="@id/imageView_finish"
                     app:layout_constraintHorizontal_bias="0.65"
@@ -112,50 +119,52 @@
                     app:layout_constraintTop_toTopOf="@+id/text_doing" />
 
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView_confirmok"-->
-<!--                    android:layout_width="50dp"-->
-<!--                    android:layout_height="60dp"-->
-<!--                    android:layout_marginStart="24dp"-->
-<!--                    android:onClick="@{() -> viewModel.filterList(4)}"-->
-<!--                    android:scaleType="centerInside"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"-->
-<!--                    app:layout_constraintStart_toEndOf="@+id/imageView_finish"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/imageView_finish"-->
-<!--                    app:srcCompat="@drawable/endure8" />-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/imageView_confirmok"-->
+                <!--                    android:layout_width="50dp"-->
+                <!--                    android:layout_height="60dp"-->
+                <!--                    android:layout_marginStart="24dp"-->
+                <!--                    android:onClick="@{() -> viewModel.filterList(4)}"-->
+                <!--                    android:scaleType="centerInside"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"-->
+                <!--                    app:layout_constraintStart_toEndOf="@+id/imageView_finish"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/imageView_finish"-->
+                <!--                    app:srcCompat="@drawable/endure8" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/text_confirmok"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="42dp"-->
-<!--                    android:text="已驗收"-->
-<!--                    android:textColor="@color/lateblue2"-->
-<!--                    android:textSize="10sp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="@+id/text_finish"-->
-<!--                    app:layout_constraintStart_toEndOf="@+id/text_finish"-->
-<!--                    app:layout_constraintTop_toTopOf="@+id/text_finish" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/text_confirmok"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="42dp"-->
+                <!--                    android:text="已驗收"-->
+                <!--                    android:textColor="@color/lateblue2"-->
+                <!--                    android:textSize="10sp"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/text_finish"-->
+                <!--                    app:layout_constraintStart_toEndOf="@+id/text_finish"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/text_finish" />-->
 
                 <ImageView
                     android:id="@+id/imageView_delete"
                     android:layout_width="50dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="32dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="45dp"
                     android:onClick="@{() -> viewModel.filterList(5)}"
                     android:scaleType="centerInside"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView_finish"
                     app:layout_constraintStart_toEndOf="@+id/imageView_finish"
                     app:layout_constraintTop_toTopOf="@+id/imageView_finish"
-                    app:srcCompat="@drawable/endure7" />
+                    app:srcCompat="@drawable/endure3" />
 
 
                 <TextView
                     android:id="@+id/text_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/bg_text"
+                    android:elevation="4dp"
                     android:text="已經取消件"
-                    android:textColor="@color/lateblue2"
-                    android:textSize="10sp"
+                    android:textColor="@color/gray_646464"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_finish"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_delete"
                     app:layout_constraintHorizontal_bias="0.55"
@@ -166,7 +175,7 @@
                     android:id="@+id/status_user_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/bg_text"
                     android:elevation="2dp"
@@ -201,16 +210,14 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_status_item"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:padding="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

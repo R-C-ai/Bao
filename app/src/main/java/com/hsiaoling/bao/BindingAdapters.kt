@@ -136,20 +136,26 @@ fun itemScheduleTime(textView:TextView, sort: Int) {
 
 
 // set image when master update job status
+// in Fragment master status , after fliter by status , show the image
 @BindingAdapter("masterJobstatus")
 fun masterJobstatus(imageView: ImageView,status:Int){
     when {
-        status == 1 -> {imageView.setImageResource(R.drawable.endure2)}
-        status == 2 -> {imageView.setImageResource(R.drawable.endure4)}
+        status == 1 -> {imageView.setImageResource(R.drawable.endure5)}
+
+
+        status == 2 -> {imageView.setImageResource(R.drawable.endure5)}
     }
 }
 
 // set text when master update job status
+// in Fragment master status , after fliter by status , show the text
 @BindingAdapter("masterJobstatusText")
 fun masterJobstatusText(textView: TextView,status:Int){
     when {
-        status == 1 -> {textView.text ="開始包膜囉"}
-        status == 2 -> {textView.text ="我已完成囉"}
+//        status == 1 -> {textView.text ="開始包膜囉"}
+        status == 1 -> {textView.text ="完成包膜 按我確認喔"}
+//        status == 2 -> {textView.text ="我已完成囉"}
+        status == 2 -> {textView.text ="完成包膜 按我確認喔"}
     }
 }
 
@@ -188,7 +194,7 @@ fun status(textView: TextView,status:Int){
         }
         status == 2 -> {
             textView.text = BaoApplication.instance.getString(R.string.status2)
-    }
+        }
         status == 3 -> {
             textView.text = BaoApplication.instance.getString(R.string.status3)
         }
@@ -272,7 +278,7 @@ fun statusImage(imageView: ImageView, status: Int) {
         }
 
         status == 5 -> {
-            imageView.setImageResource(R.drawable.endure7)
+            imageView.setImageResource(R.drawable.endure3)
         }
 
     }
@@ -296,7 +302,7 @@ fun statusInfoImage(imageView: ImageView, status: Int) {
         }
 
         status == 5 -> {
-            imageView.setImageResource(R.drawable.endure7)
+            imageView.setImageResource(R.drawable.endure3)
         }
 
     }

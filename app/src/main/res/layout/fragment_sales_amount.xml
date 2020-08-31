@@ -49,7 +49,7 @@
                     app:itemIconTint="@drawable/bottom_nav_item_selector"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/rev0" />
+                    app:srcCompat="@drawable/ic_local_atm_black_24dp" />
 
                 <TextView
                     android:id="@+id/text_today"

@@ -732,6 +732,10 @@ object BaoRemoteDataSource:BaoDataSource {
                 "getJobTime" to  Calendar.getInstance().timeInMillis,
                 "updateTime" to Calendar.getInstance().timeInMillis)
 
+
+
+
+
             ServiceAction.DONE -> map = mapOf(
                 "status" to action.value,
                 "doneTime" to  Calendar.getInstance().timeInMillis,

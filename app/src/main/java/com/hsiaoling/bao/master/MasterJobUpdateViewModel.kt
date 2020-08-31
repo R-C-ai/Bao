@@ -185,26 +185,50 @@ class MasterJobUpdateViewModel(private val repository: BaoRepository) : ViewMode
 //            _refreshStatus.value = false
 //        }
 //    }
-    fun updateMasterJob() {
-         if (service.value != null) {
-             when{
-                 service.value!!.status == 1 ->{
-                     service.value!!.status = 2
-                     updateStatus(service.value!!, serviceAction = ServiceAction.GETJOB)
-                     Log.i("HsiaoLingStatus", "selectGetJob=${service.value}")
-                 }
 
-                 service.value!!.status == 2 ->{
-                     service.value!!.status = 3
-                     updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
-                     Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
-                 }
-             }
+//    master grab job (status1) can update to doneJob (status 3)
+fun updateMasterJob() {
+    if (service.value != null) {
+        when{
+            service.value!!.status == 1 ->{
+                service.value!!.status = 3
+                updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
+                Log.i("HsiaoLingStatus", "selectGetJob=${service.value}")
+            }
 
-         }
+            service.value!!.status == 2 ->{
+                service.value!!.status = 3
+                updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
+                Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+            }
+        }
+
     }
+}
 
 
+    //    master  has been reserve (status1) can update to start getJob (status 2) , and than can from getJob(status2) to doneJob(status3)
+//    ------------------------------------------------------------------------------------------------------------------------------------------------------------
+//    fun updateMasterJob() {
+//         if (service.value != null) {
+//             when{
+//                 service.value!!.status == 1 ->{
+//                     service.value!!.status = 2
+//                     updateStatus(service.value!!, serviceAction = ServiceAction.GETJOB)
+//                     Log.i("HsiaoLingStatus", "selectGetJob=${service.value}")
+//                 }
+//
+//                 service.value!!.status == 2 ->{
+//                     service.value!!.status = 3
+//                     updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
+//                     Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
+//                 }
+//             }
+//
+//         }
+//    }
+
+//  -------------------------------------------------------------------------------------------------------------------
 
 
 

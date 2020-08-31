@@ -45,6 +45,13 @@ class AddBaoDialog : AppCompatDialogFragment() {
         val binding = DialogAddBaoBinding.inflate(inflater, container, false)
         binding.layoutAddBao.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
 
+//        ---------------------------------------------------------------------------------------------------
+//         binding  dialod_master_grab_bao,
+//        binding.layoutGrabBao.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
+// --------------------------------------------------------------------------------------------------------
+
+
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -75,6 +82,7 @@ class AddBaoDialog : AppCompatDialogFragment() {
         })
 
 
+//        Spinner------------------------------------------------------------------------------------------------------------------------------
         //Device Spinner Adapter
          binding.textDevice.adapter=SpinnerAdapter(
              BaoApplication.instance.resources.getStringArray(R.array.device_list)
@@ -127,6 +135,8 @@ class AddBaoDialog : AppCompatDialogFragment() {
         viewModel.backChosen.observe(this, Observer {
             Log.i("Hsiao","viewModel.backChosen.observe, it=$it")
         })
+
+//        ---------------------------------------------------------------------------------------------------------------------------------
 
 //        binding.textDevice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 //

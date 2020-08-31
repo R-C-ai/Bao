@@ -29,15 +29,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_master_job_update"
-            android:layout_width="350dp"
-            android:layout_height="220dp"
+            android:layout_width="380dp"
+            android:layout_height="280dp"
             android:background="@color/white_FFFFFF"
             android:elevation="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,62 +86,67 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/status_service_info"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status_store_info">
 
                 <ImageView
                     android:id="@+id/imageView_getjob"
-                    android:layout_width="119dp"
-                    android:layout_height="116dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_text"
                     android:clickable="true"
+                    android:elevation="4dp"
                     android:onClick="@{() -> viewModel.updateMasterJob()}"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_getjob"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:masterJobstatus="@{viewModel.service.status}"
-                    tools:srcCompat="@drawable/endure2" />
+                    tools:srcCompat="@drawable/endure5" />
 
                 <TextView
                     android:id="@+id/textView_getjob"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:masterJobstatusText="@{viewModel.service.status}"
-                    tools:text="開始包膜囉!!"
-                    android:textSize="12sp"
+                    android:layout_marginBottom="8dp"
                     android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_getjob"
                     app:layout_constraintStart_toStartOf="@+id/imageView_getjob"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_getjob"
-                    />
+                    app:masterJobstatusText="@{viewModel.service.status}"
+                    tools:text="完成包膜 按我確認!!" />
 
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/imageView_jobdone"-->
-<!--                    android:layout_width="80dp"-->
-<!--                    android:layout_height="80dp"-->
-<!--                    android:layout_marginStart="150dp"-->
-<!--                    android:layout_marginBottom="16dp"-->
-<!--                    android:onClick="@{() -> viewModel.selectDone()}"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:srcCompat="@drawable/go2" />-->
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/imageView_jobdone"-->
+                <!--                    android:layout_width="80dp"-->
+                <!--                    android:layout_height="80dp"-->
+                <!--                    android:layout_marginStart="150dp"-->
+                <!--                    android:layout_marginBottom="16dp"-->
+                <!--                    android:onClick="@{() -> viewModel.selectDone()}"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:srcCompat="@drawable/go2" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textView_jobdone"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="4dp"-->
-<!--                    android:text="包膜完成囉"-->
-<!--                    android:textColor="@color/colorOlivergoldgreen"-->
-<!--                    android:textSize="12sp"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="@+id/imageView_jobdone"-->
-<!--                    app:layout_constraintStart_toStartOf="@+id/imageView_jobdone" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textView_jobdone"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginBottom="4dp"-->
+                <!--                    android:text="包膜完成囉"-->
+                <!--                    android:textColor="@color/colorOlivergoldgreen"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintEnd_toEndOf="@+id/imageView_jobdone"-->
+                <!--                    app:layout_constraintStart_toStartOf="@+id/imageView_jobdone" />-->
 
 
                 <ImageView
@@ -214,11 +218,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="end"
-                    app:statusPrice="@{viewModel.service.price}"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView_customer"
                     app:layout_constraintTop_toBottomOf="@+id/textView_customer"
+                    app:statusPrice="@{viewModel.service.price}"
                     tools:text="price" />
 
                 <TextView
@@ -249,10 +253,7 @@
                     tools:text="預約" />
 
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,15 +29,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_status_update"
-            android:layout_width="350dp"
-            android:layout_height="250dp"
+            android:layout_width="380dp"
+            android:layout_height="280dp"
             android:background="@color/white_FFFFFF"
             android:elevation="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,25 +86,32 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/status_service_info"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="220dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status_store_info"
+                app:layout_constraintVertical_bias="0.0">
 
                 <ImageView
                     android:id="@+id/imageView_finishcheck"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="45dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_text"
                     android:clickable="true"
+                    android:elevation="4dp"
                     android:onClick="@{() -> viewModel.updateSalesmanJob()}"
                     android:visibility="@{viewModel.service.status == 1 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_finishcheck"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     app:salesmanJobstatus="@{viewModel.service.status}"
                     tools:srcCompat="@drawable/endure4" />
 
@@ -113,20 +119,25 @@
                     android:id="@+id/textView_finishcheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
                     android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:visibility="@{viewModel.service.status == 1 ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_finishcheck"
                     app:layout_constraintStart_toStartOf="@+id/imageView_finishcheck"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_finishcheck"
                     app:salesmanJobstatusText="@{viewModel.service.status}"
-                    tools:text="我已完成" />
+                    tools:text="按我 驗收" />
 
                 <ImageView
                     android:id="@+id/imageView_change"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="120dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="150dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_text"
+
+                    android:elevation="4dp"
                     android:onClick="@{() -> viewModel.changeSalesmanJob()}"
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
@@ -138,34 +149,39 @@
                     android:id="@+id/textView_change"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="更改預約"
                     android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_change"
                     app:layout_constraintStart_toStartOf="@+id/imageView_change"
                     app:layout_constraintTop_toBottomOf="@+id/imageView_change"
-                    android:text="更改服務"
-                    tools:text="更改服務" />
+                     />
 
                 <ImageView
                     android:id="@+id/imageView_delete"
                     android:layout_width="100dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/bg_text"
+                    android:elevation="4dp"
                     android:onClick="@{() -> viewModel.updateSalesmanJob()}"
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toTopOf="@+id/textView_delete"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/endure7"
-                    tools:srcCompat="@drawable/endure7" />
+                    app:srcCompat="@drawable/endure3"
+                    tools:srcCompat="@drawable/endure3" />
 
                 <TextView
                     android:id="@+id/textView_delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="取消服務"
+                    android:layout_marginBottom="4dp"
+                    android:text="取消預約"
                     android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_delete"

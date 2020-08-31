@@ -3,7 +3,7 @@
     android:shape="oval">
 
     <stroke  android:color="@color/eventColorSelected"   android:width="1dp"/>
-<!--    <solid android:color="@color/lightGray_f5f5f5"/>-->
+    <solid android:color="@color/white_FFFFFF"/>
     <padding android:bottom="10dp"         android:top="10dp"     android:left="10dp"        android:right="10dp"/>
     <corners android:radius="30dp"/>
 
