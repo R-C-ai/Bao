@@ -89,7 +89,7 @@ fun setScheduleSort(imageView: ImageView, sort: Int) {
         sort == 3 -> { imageView.setImageResource(R.drawable.ic_looks_4_white_24dp)}
         sort == 4 -> { imageView.setImageResource(R.drawable.ic_looks_5_white_24dp)}
         sort == 5 -> { imageView.setImageResource(R.drawable.ic_looks_6_white_24dp)}
-
+        sort == 6 -> { imageView.setImageResource(R.drawable.ic_filter_7_white_24dp)}
 
         else ->{
             imageView.setImageResource(R.drawable.ic_av_timer_black_24dp)
@@ -143,7 +143,7 @@ fun masterJobstatus(imageView: ImageView,status:Int){
         status == 1 -> {imageView.setImageResource(R.drawable.endure5)}
 
 
-        status == 2 -> {imageView.setImageResource(R.drawable.endure5)}
+        status == 6 -> {imageView.setImageResource(R.drawable.endure5)}
     }
 }
 
@@ -155,7 +155,7 @@ fun masterJobstatusText(textView: TextView,status:Int){
 //        status == 1 -> {textView.text ="開始包膜囉"}
         status == 1 -> {textView.text ="完成包膜 按我確認喔"}
 //        status == 2 -> {textView.text ="我已完成囉"}
-        status == 2 -> {textView.text ="完成包膜 按我確認喔"}
+        status == 6 -> {textView.text ="完成包膜 按我確認喔"}
     }
 }
 
@@ -205,6 +205,15 @@ fun status(textView: TextView,status:Int){
         status == 5 -> {
             textView.text = BaoApplication.instance.getString(R.string.status5)
         }
+        status == 6 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status6)
+        }
+
+        status == 7 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status7)
+        }
+
+
 
     }
 }
@@ -231,6 +240,18 @@ fun statusBackground(imageView: ImageView, status: Int) {
         status == 5 -> {
             imageView.setImageResource(R.drawable.bg_status5)
         }
+        status == 6 -> {
+            imageView.setImageResource(R.drawable.bg_status6)
+        }
+        status == 7 -> {
+            imageView.setImageResource(R.drawable.bg_status7)
+        }
+
+
+
+
+
+
 
     }
 }
@@ -254,6 +275,12 @@ fun statusPage(textView: TextView,status:Int){
         }
         status == 5 -> {
             textView.text = BaoApplication.instance.getString(R.string.status_page5)
+        }
+        status == 6 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page6)
+        }
+        status == 7 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_page7)
         }
 
     }
@@ -281,6 +308,15 @@ fun statusImage(imageView: ImageView, status: Int) {
             imageView.setImageResource(R.drawable.endure3)
         }
 
+        status == 6 -> {
+            imageView.setImageResource(R.drawable.endure6)
+        }
+
+        status == 7 -> {
+            imageView.setImageResource(R.drawable.endure8)
+        }
+
+
     }
 }
 
@@ -300,10 +336,17 @@ fun statusInfoImage(imageView: ImageView, status: Int) {
         status == 4 -> {
             imageView.setImageResource(R.drawable.endure8)
         }
-
         status == 5 -> {
             imageView.setImageResource(R.drawable.endure3)
         }
+        status == 6 -> {
+            imageView.setImageResource(R.drawable.endure6)
+        }
+        status == 7 -> {
+            imageView.setImageResource(R.drawable.endure8)
+        }
+
+
 
     }
 }
@@ -329,6 +372,15 @@ fun statusInfoText(textView: TextView,status:Int){
         status == 5 -> {
             textView.text = BaoApplication.instance.getString(R.string.status_info5)
         }
+        status == 6 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info6)
+        }
+
+        status == 7 -> {
+            textView.text = BaoApplication.instance.getString(R.string.status_info7)
+        }
+
+
 
     }
 }

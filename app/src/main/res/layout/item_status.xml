@@ -293,7 +293,7 @@
                 app:layout_constraintStart_toStartOf="@+id/imageView_statusBox"
                 app:layout_constraintTop_toTopOf="@+id/imageView_done"
                 app:statusPage="@{service.status}"
-                tools:text="包膜中" />
+                tools:text="人工預約件" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

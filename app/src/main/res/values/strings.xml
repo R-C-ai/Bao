@@ -30,26 +30,32 @@
     <!--  Item Status-->
     <!--    Fragement  caleddar item -->
     <string name="status0">請按下預約</string>
-    <string name="status1">請搶單</string>
-    <string name="status2">搶到單啦!開工</string>
+    <string name="status1">已被預約囉</string>
+    <string name="status2">快!來搶單啦!</string>
     <string name="status3">包膜完成囉</string>
     <string name="status4">包膜驗收囉</string>
     <string name="status5">已取消了喔</string>
-    <string name="status_fail">被搶單了 下次請快</string>
+    <string name="status6">搶到單啦!開工</string>
+    <string name="status7">被搶單了...下次快</string>
 
     <!--item_status.xml   StatusPage-->
-    <string name="status_page1">人工預約件</string>
-    <string name="status_page2">完工!按我確認 </string>
+    <string name="status_page1">人工預約件 </string>
+    <string name="status_page2">請搶單! </string>
     <string name="status_page3">已經完成囉</string>
     <string name="status_page4">已經驗收囉</string>
     <string name="status_page5">已經取消啦</string>
+    <string name="status_page6">搶單件完成</string>
+    <string name="status_page7">沒有搶到啦</string>
 
 <!--    dialog_service_info_detail  statusInfoText-->
-    <string name="status_info1">包膜師 搶單啦 !!</string>
-    <string name="status_info2">火力全開 趕工中 !!</string>
-    <string name="status_info3">完成囉等驗收</string>
+    <string name="status_info1">包膜師搶單中!!</string>
+    <string name="status_info2">搶單搶單搶單!!</string>
+    <string name="status_info3">完成囉!等門市驗收</string>
     <string name="status_info4">已經驗收囉</string>
     <string name="status_info5">已經取消囉</string>
+    <string name="status_info6">火力全開 趕工中 !!</string>
+    <string name="status_info7">本次搶單結束</string>
+
 
 
     <string name="time0">第1件包膜單 </string>

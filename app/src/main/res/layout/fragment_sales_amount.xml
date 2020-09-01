@@ -40,16 +40,16 @@
 
                 <ImageView
                     android:id="@+id/imageView_year"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="20dp"
-                    android:scaleType="centerInside"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="24dp"
 
+                    android:scaleType="centerInside"
                     app:itemIconTint="@drawable/bottom_nav_item_selector"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_local_atm_black_24dp" />
+                    app:srcCompat="@drawable/penguin2" />
 
                 <TextView
                     android:id="@+id/text_today"

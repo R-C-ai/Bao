@@ -66,7 +66,7 @@ class ServiceStatusFragment : Fragment() {
 
 
                     }
-                    2 -> { //get job,master  grab the reserve
+                    2 -> { //receive the notice , can  grab the reservation
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 2 } ?: listOf())
 
                     }
@@ -81,6 +81,15 @@ class ServiceStatusFragment : Fragment() {
                     5 -> { //delete
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 5 } ?: listOf())
                     }
+                    6 -> { // already grabbed service
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 6 } ?: listOf())
+
+                    }
+                    7 -> { //didn't grab service
+                        serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 7 } ?: listOf())
+                    }
+
+
 
                 }
             }

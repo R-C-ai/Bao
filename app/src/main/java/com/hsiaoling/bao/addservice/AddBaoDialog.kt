@@ -136,7 +136,7 @@ class AddBaoDialog : AppCompatDialogFragment() {
             Log.i("Hsiao","viewModel.backChosen.observe, it=$it")
         })
 
-//        ---------------------------------------------------------------------------------------------------------------------------------
+//        spinener---------------------------------------------------------------------------------------------------------------------------------
 
 //        binding.textDevice.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 //

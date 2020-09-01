@@ -130,7 +130,7 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
 
     fun newDailyServices (date: String, masterId: String,masterName:String) {
 
-        for (i in 0..5) {
+        for (i in 0..6) {
             val service = Service(storeId,"松菸文創店","","",masterId,masterName,"",date,
                 i,"","","","",0,0,"可預約",0,0,0,0
                 ,0)
@@ -234,7 +234,6 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                         when(service.status){
                                 //   0 -> salesman can  make a reserve , 1 -> salesman  can change or delete the reserve , 3 ->salesman confirm the reservation done
                             0 ->  _navigateToAddBao.value =service
-
                             1 -> _navigateToUpdateStatus.value = service
                             3 -> _navigateToUpdateStatus.value = service
 
@@ -249,10 +248,13 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                         //    0 -> read imformation , 1 -> master can grab the reservation , 2 ->  read the information
                     0 -> navigateToMasterInfo()
                     1 -> _navigateToMasterJob.value = service
-                    2 -> _navigateToMasterJob.value = service
-                    3 -> navgateToInfoStatus(service)
-                    4 -> navgateToInfoStatus(service)
-                    5 -> navgateToInfoStatus(service)
+                    6 -> _navigateToMasterJob.value = service
+
+                    else -> navgateToInfoStatus(service)
+//                    3 -> navgateToInfoStatus(service)
+//                    4 -> navgateToInfoStatus(service)
+//                    5 -> navgateToInfoStatus(service)
+
                 }
             }
          }
