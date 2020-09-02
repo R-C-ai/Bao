@@ -63,8 +63,6 @@ class ServiceStatusFragment : Fragment() {
                     }
                     1 -> { //reserve, master has been reserved by salesman
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 1 } ?: listOf())
-
-
                     }
                     2 -> { //receive the notice , can  grab the reservation
                         serviceStatusItemAdapter.submitList(viewModel.liveStatuses.value?.filter { it.status == 2 } ?: listOf())

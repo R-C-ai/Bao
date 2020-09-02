@@ -63,7 +63,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:itemScheduleSort="@{service.scheduleSort}"
-                tools:srcCompat="@drawable/ic_av_timer_black_24dp" />
+                tools:srcCompat="@drawable/ic_filter_7_white_24dp" />
 
             <TextView
                 android:id="@+id/text_reserve_time"
@@ -71,41 +71,59 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:textColor="@color/white_FFFFFF"
-                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textSize="14sp"
                 app:itemScheduleTime="@{service.scheduleSort}"
 
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/image_sort_number"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.482"
-                tools:text="第1件包膜單" />
+                tools:text="11:30" />
+
+
+            <TextView
+                android:id="@+id/text_reserve_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="松菸文創店"
+                android:textColor="@color/darkBlue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintStart_toEndOf="@+id/imageView_statusColor"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.545" />
 
             <TextView
                 android:id="@+id/text_reserve_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:textColor="@color/darkBlue"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/text_time"
-                app:layout_constraintTop_toTopOf="parent"
-                app:status="@{service.status}"
-                tools:text="預約狀態" />
-
-            <TextView
-                android:id="@+id/text_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:textColor="@color/darkBlue"
-                android:textSize="12sp"
+                android:textSize="14sp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.448"
-                app:timeToDisplayFormat="@{service.reserveTime}"
-                tools:text="預約時間" />
+                app:layout_constraintVertical_bias="0.545"
+                app:status="@{service.status}"
+                tools:text="預約狀態" />
+
+            <!--            <TextView-->
+<!--                android:id="@+id/text_time"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                android:textColor="@color/darkBlue"-->
+<!--                android:textSize="12sp"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintVertical_bias="0.448"-->
+<!--                app:timeToDisplayFormat="@{service.reserveTime}"-->
+<!--                tools:text="預約時間" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

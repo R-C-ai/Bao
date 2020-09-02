@@ -43,11 +43,11 @@ class AddBaoDialog : AppCompatDialogFragment() {
     ): View? {
 
         val binding = DialogAddBaoBinding.inflate(inflater, container, false)
-        binding.layoutAddBao.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
+//        binding.layoutAddBao.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
 
 //        ---------------------------------------------------------------------------------------------------
 //         binding  dialod_master_grab_bao,
-//        binding.layoutGrabBao.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
+        binding.layoutGrabBao.startAnimation(AnimationUtils.loadAnimation(context,R.anim.anim_slide_up))
 // --------------------------------------------------------------------------------------------------------
 
 
@@ -83,58 +83,58 @@ class AddBaoDialog : AppCompatDialogFragment() {
 
 
 //        Spinner------------------------------------------------------------------------------------------------------------------------------
-        //Device Spinner Adapter
-         binding.textDevice.adapter=SpinnerAdapter(
-             BaoApplication.instance.resources.getStringArray(R.array.device_list)
-         )
-
-        // for status1 to change service
-        viewModel.deviceIndex.observe(this, Observer {
-            viewModel.selectedDevicePosition.value = viewModel.deviceIndex.value
-        })
-
-        viewModel.selectedDevicePosition.observe(this, Observer {
-            Log.i("Hsiao","viewModel.selectedDevicePosition.observe, it=$it")
-        })
-        viewModel.deviceChosen.observe(this, Observer {
-            Log.i("Hsiao","viewModel.deviceChosen.observe, it=$it")
-        })
-
-
-
-        //Service0 Screen Spinner Adapter
-        binding.textScreen.adapter=SpinnerAdapter(
-            BaoApplication.instance.resources.getStringArray(R.array.service0_list)
-        )
-
-        // for status1 change service
-        viewModel.screenIndex.observe(this, Observer {
-            viewModel.selectedScreenPosition.value = viewModel.screenIndex.value
-        })
-
-        viewModel.selectedScreenPosition.observe(this, Observer {
-            Log.i("Hsiao","viewModel.selectedService0Position.observe, it=$it")
-        })
-        viewModel.screenChosen.observe(this, Observer {
-            Log.i("Hsiao","viewModel.screenChosen.observe, it=$it")
-        })
-
-
-        //Service1 Back Spinner Adapter
-        binding.textBack.adapter=SpinnerAdapter(
-            BaoApplication.instance.resources.getStringArray(R.array.service1_list)
-        )
-
-        //for status1 change service
-        viewModel.backIndex.observe(this, Observer {
-            viewModel.selectedBackPosition.value = viewModel.backIndex.value
-        })
-        viewModel.selectedBackPosition.observe(this, Observer {
-            Log.i("Hsiao","viewModel.selectedBackPosition.observe, it=$it")
-        })
-        viewModel.backChosen.observe(this, Observer {
-            Log.i("Hsiao","viewModel.backChosen.observe, it=$it")
-        })
+//        //Device Spinner Adapter
+//         binding.textDevice.adapter=SpinnerAdapter(
+//             BaoApplication.instance.resources.getStringArray(R.array.device_list)
+//         )
+//
+//        // for status1 to change service
+//        viewModel.deviceIndex.observe(this, Observer {
+//            viewModel.selectedDevicePosition.value = viewModel.deviceIndex.value
+//        })
+//
+//        viewModel.selectedDevicePosition.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.selectedDevicePosition.observe, it=$it")
+//        })
+//        viewModel.deviceChosen.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.deviceChosen.observe, it=$it")
+//        })
+//
+//
+//
+//        //Service0 Screen Spinner Adapter
+//        binding.textScreen.adapter=SpinnerAdapter(
+//            BaoApplication.instance.resources.getStringArray(R.array.service0_list)
+//        )
+//
+//        // for status1 change service
+//        viewModel.screenIndex.observe(this, Observer {
+//            viewModel.selectedScreenPosition.value = viewModel.screenIndex.value
+//        })
+//
+//        viewModel.selectedScreenPosition.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.selectedService0Position.observe, it=$it")
+//        })
+//        viewModel.screenChosen.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.screenChosen.observe, it=$it")
+//        })
+//
+//
+//        //Service1 Back Spinner Adapter
+//        binding.textBack.adapter=SpinnerAdapter(
+//            BaoApplication.instance.resources.getStringArray(R.array.service1_list)
+//        )
+//
+//        //for status1 change service
+//        viewModel.backIndex.observe(this, Observer {
+//            viewModel.selectedBackPosition.value = viewModel.backIndex.value
+//        })
+//        viewModel.selectedBackPosition.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.selectedBackPosition.observe, it=$it")
+//        })
+//        viewModel.backChosen.observe(this, Observer {
+//            Log.i("Hsiao","viewModel.backChosen.observe, it=$it")
+//        })
 
 //        spinener---------------------------------------------------------------------------------------------------------------------------------
 

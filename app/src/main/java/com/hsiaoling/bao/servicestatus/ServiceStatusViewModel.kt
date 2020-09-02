@@ -218,7 +218,7 @@ class ServiceStatusViewModel(private val repository: BaoRepository) : ViewModel(
         when(user!!.type){
             "master" -> {
                 when(service.status){
-//                    1 -> _navigateToUpdateMasterJob.value = service
+                    1 -> _navigateToUpdateMasterJob.value = service
 //                    2 -> _navigateToUpdateMasterJob.value = service
                     6 -> _navigateToUpdateMasterJob.value = service
                     else -> navgateToInfoStatus(service)

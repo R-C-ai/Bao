@@ -232,10 +232,10 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                 when(service.salesmanId) {
                     UserManager.user!!.id ->
                         when(service.status){
-                                //   0 -> salesman can  make a reserve , 1 -> salesman  can change or delete the reserve , 3 ->salesman confirm the reservation done
+                                //   0 -> salesman can  make a reserve , 1 -> salesman  can change or delete the reserve
                             0 ->  _navigateToAddBao.value =service
                             1 -> _navigateToUpdateStatus.value = service
-                            3 -> _navigateToUpdateStatus.value = service
+//                            3 -> _navigateToUpdateStatus.value = service
 
                                 //  other status ,salesman read information
                             else -> navgateToInfoStatus(service)
@@ -245,7 +245,7 @@ class MasterDailyItemViewModel(private val repository: BaoRepository) :ViewModel
                  }
             }else {
                 when(service.status){
-                        //    0 -> read imformation , 1 -> master can grab the reservation , 2 ->  read the information
+                        //    0 -> read imformation , 1,6 -> master can done  the reservation  , others  ->  read the information
                     0 -> navigateToMasterInfo()
                     1 -> _navigateToMasterJob.value = service
                     6 -> _navigateToMasterJob.value = service

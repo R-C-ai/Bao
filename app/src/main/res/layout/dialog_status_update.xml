@@ -126,7 +126,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_finishcheck"
                     app:layout_constraintStart_toStartOf="@+id/imageView_finishcheck"
-                    app:salesmanJobstatusText="@{viewModel.service.status}"
+                    android:text="按我驗收!! 收費囉"
+
                     tools:text="按我 驗收" />
 
                 <ImageView
@@ -136,7 +137,6 @@
                     android:layout_marginStart="150dp"
                     android:layout_marginTop="4dp"
                     android:background="@drawable/bg_text"
-
                     android:elevation="4dp"
                     android:onClick="@{() -> viewModel.changeSalesmanJob()}"
                     android:visibility="@{viewModel.service.status == 1 ? View.VISIBLE : View.GONE}"
@@ -305,3 +305,5 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+
+<!--    app:salesmanJobstatusText="@{viewModel.service.status}"-->

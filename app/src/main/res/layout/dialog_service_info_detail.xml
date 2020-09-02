@@ -130,6 +130,8 @@
                         android:id="@+id/imageView_finish"
                         android:layout_width="105dp"
                         android:layout_height="119dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView_finish"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -140,6 +142,7 @@
                         android:id="@+id/textView_finish"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +164,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
+
                     <TextView
                         android:id="@+id/textView_customer"
                         android:layout_width="wrap_content"
@@ -170,45 +174,59 @@
                         android:text="@{viewModel.service.customerNo}"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView_done_device"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageViewP"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/imageViewP"
                         tools:text="customer" />
-
 
                     <ImageView
                         android:id="@+id/imageViewP"
                         android:layout_width="50dp"
                         android:layout_height="45dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView_customer"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
                         app:layout_constraintEnd_toStartOf="@+id/textView_customer"
-                        app:layout_constraintTop_toTopOf="@+id/textView_customer"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/penguin1" />
 
                     <TextView
                         android:id="@+id/textView_done_device"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="end"
                         android:text="@{viewModel.service.device}"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView_done_screen"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView_customer"
                         tools:text="device" />
+
+                    <!--                    <TextView-->
+<!--                        android:id="@+id/textView_done_price"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:gravity="end"-->
+<!--                        android:textColor="@color/colorOlivergoldgreen"-->
+<!--                        android:textSize="14sp"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/textView_reservice_time"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/textView_done_back"-->
+<!--                        app:statusPrice="@{viewModel.service.price}"-->
+<!--                        tools:text="price" />-->
 
                     <TextView
                         android:id="@+id/textView_done_screen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="end"
                         android:text="@{viewModel.service.screen}"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView_done_back"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView_done_device"
                         tools:text="screen" />
@@ -217,41 +235,27 @@
                         android:id="@+id/textView_done_back"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="end"
                         android:text="@{viewModel.service.back}"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView_done_price"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView_done_screen"
                         tools:text="back" />
-
-                    <TextView
-                        android:id="@+id/textView_done_price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:gravity="end"
-                        android:textColor="@color/colorOlivergoldgreen"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView_reservice_time"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_done_back"
-                        app:statusPrice="@{viewModel.service.price}"
-                        tools:text="price" />
 
                     <TextView
                         android:id="@+id/textView_reservice_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
                         android:gravity="end"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView_done_price"
                         app:timeToDisplayFormat="@{viewModel.service.reserveTime}"
                         tools:text="time" />
 
@@ -259,15 +263,14 @@
                         android:id="@+id/text_reserve_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="8dp"
                         android:gravity="end"
-                        android:text="預約"
+                        android:text="預約到店時間"
                         android:textColor="@color/colorOlivergoldgreen"
                         android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView_reservice_time"
-                        app:layout_constraintEnd_toStartOf="@+id/textView_reservice_time"
-                        app:layout_constraintTop_toTopOf="@+id/textView_reservice_time"
-                        tools:text="預約" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

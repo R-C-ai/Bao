@@ -379,7 +379,7 @@ object BaoRemoteDataSource:BaoDataSource {
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICE)
             .whereEqualTo(userKey,user.id)
-            .whereEqualTo(KEY_STATUS,4)
+            .whereEqualTo(KEY_STATUS,3)    // when master done the job count into the rev
             .whereGreaterThan("updateTime",firstDay)
             .whereLessThan("updateTime",endDay)
             .addSnapshotListener { snapshot, exception ->
@@ -515,7 +515,7 @@ object BaoRemoteDataSource:BaoDataSource {
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICE)
             .whereEqualTo(KEY_SALESMANID,salesmanId)
-            .whereIn(KEY_STATUS, listOf(1, 2, 3, 4, 5))
+            .whereIn(KEY_STATUS, listOf(1,3,6)) // only fliter the reserve,grab,done status
             .whereGreaterThan(  "updateTime",firstDay)
             .whereLessThan("updateTime",endDay)
             .orderBy("updateTime",Query.Direction.DESCENDING)
@@ -546,7 +546,7 @@ object BaoRemoteDataSource:BaoDataSource {
             .document("4d7yMjfPO5lw66u8sHnt")
             .collection(PATH_SERVICE)
             .whereEqualTo(KEY_MASTERID,masterId)
-            .whereIn(KEY_STATUS, listOf(1, 2, 3, 4, 5))
+            .whereIn(KEY_STATUS, listOf(1,3,6)) // only fliter the reserve,grab,done status
             .whereGreaterThan(  "updateTime",firstDay)
             .whereLessThan("updateTime",endDay)
             .orderBy("updateTime",Query.Direction.DESCENDING)

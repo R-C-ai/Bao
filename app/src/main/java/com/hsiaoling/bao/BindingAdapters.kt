@@ -142,7 +142,6 @@ fun masterJobstatus(imageView: ImageView,status:Int){
     when {
         status == 1 -> {imageView.setImageResource(R.drawable.endure5)}
 
-
         status == 6 -> {imageView.setImageResource(R.drawable.endure5)}
     }
 }
@@ -153,9 +152,12 @@ fun masterJobstatus(imageView: ImageView,status:Int){
 fun masterJobstatusText(textView: TextView,status:Int){
     when {
 //        status == 1 -> {textView.text ="開始包膜囉"}
-        status == 1 -> {textView.text ="完成包膜 按我確認喔"}
+        status == 1 -> {textView.text = BaoApplication.instance.getString(R.string.master_status1)}
+
 //        status == 2 -> {textView.text ="我已完成囉"}
-        status == 6 -> {textView.text ="完成包膜 按我確認喔"}
+        status == 6 -> {textView.text = BaoApplication.instance.getString(R.string.master_status6)}
+
+
     }
 }
 
@@ -174,8 +176,11 @@ fun salesmanJobstatus(imageView: ImageView,status:Int){
 @BindingAdapter("salesmanJobstatusText")
 fun salesmanJobstatusText(textView: TextView,status:Int){
     when {
-        status == 1 -> {textView.text ="我要取消囉"}
-        status == 3 -> {textView.text ="我要驗收囉"}
+//        status == 1 -> {textView.text ="我要取消囉"}
+//        status == 3 -> {textView.text ="我要驗收囉"}
+        status == 1 -> {textView.text = BaoApplication.instance.getString(R.string.salesman_status1)}
+        status == 3 -> {textView.text = BaoApplication.instance.getString(R.string.salesman_status3)}
+
     }
 }
 

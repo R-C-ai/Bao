@@ -30,7 +30,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_master_job_update"
             android:layout_width="380dp"
-            android:layout_height="280dp"
+            android:layout_height="300dp"
             android:background="@color/white_FFFFFF"
             android:elevation="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -86,7 +86,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/status_service_info"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="230dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -151,14 +151,14 @@
 
                 <ImageView
                     android:id="@+id/imageView_master"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="4dp"
-                    android:tint="@color/colorOlivergoldgreen"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/newmaster1" />
+                    app:srcCompat="@drawable/endure011" />
 
                 <TextView
                     android:id="@+id/textView_master"
@@ -176,66 +176,110 @@
 
                 <ImageView
                     android:id="@+id/imageView_customer"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="4dp"
-                    android:tint="@color/colorOlivergoldgreen"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_customer"
+
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_customer"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/newcustomer1" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_master"
+                    app:srcCompat="@drawable/penguin1" />
+
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/imageView_price"-->
+                <!--                    android:layout_width="20dp"-->
+                <!--                    android:layout_height="20dp"-->
+                <!--                    android:layout_marginEnd="4dp"-->
+                <!--                    android:tint="@color/colorOlivergoldgreen"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="@+id/textView_price"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="@+id/textView_price"-->
+                <!--                    app:layout_constraintVertical_bias="1.0"-->
+                <!--                    app:srcCompat="@drawable/newprice1" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textView_price"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:gravity="end"-->
+                <!--                    android:textColor="@color/colorOlivergoldgreen"-->
+                <!--                    android:textSize="14sp"-->
+                <!--                    app:statusPrice="@{viewModel.service.price}"-->
+                <!--                    tools:layout_editor_absoluteX="242dp"-->
+                <!--                    tools:layout_editor_absoluteY="116dp"-->
+                <!--                    tools:text="price" />-->
 
                 <TextView
                     android:id="@+id/textView_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="end"
                     android:text="@{viewModel.service.customerNo}"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView_customer"
                     app:layout_constraintEnd_toStartOf="@+id/imageView_customer"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_master"
+                    app:layout_constraintTop_toTopOf="@+id/imageView_customer"
                     tools:text="customer" />
 
-                <ImageView
-                    android:id="@+id/imageView_price"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:tint="@color/colorOlivergoldgreen"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_price"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_price"
-                    app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/newprice1" />
 
                 <TextView
-                    android:id="@+id/textView_price"
+                    android:id="@+id/textView_done_device"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="end"
+                    android:text="@{viewModel.service.device}"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@+id/textView_customer"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_customer"
-                    app:statusPrice="@{viewModel.service.price}"
-                    tools:text="price" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_customer"
+                    tools:text="device" />
+
+                <TextView
+                    android:id="@+id/textView_done_screen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="@{viewModel.service.screen}"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_done_device"
+                    tools:text="screen" />
+
+
+                <TextView
+                    android:id="@+id/textView_done_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:gravity="end"
+                    android:text="@{viewModel.service.back}"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_done_screen"
+                    tools:text="back" />
+
 
                 <TextView
                     android:id="@+id/textView_reserve_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="4dp"
                     android:gravity="end"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_reserve_time"
+
                     app:layout_constraintEnd_toStartOf="@+id/text_reserve_time"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_price"
+                    app:layout_constraintTop_toTopOf="@+id/text_reserve_time"
                     app:timeToDisplayFormat="@{viewModel.service.reserveTime}"
                     tools:text="2/2 08:00" />
 
@@ -243,14 +287,15 @@
                     android:id="@+id/text_reserve_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:gravity="end"
-                    android:text="預約"
+                    android:text="預約到店"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_reserve_time"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_reserve_time"
-                    tools:text="預約" />
+                     />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

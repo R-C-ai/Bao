@@ -27,45 +27,54 @@
     <string name="login_description">登入後即可預約包膜服務。</string>
     <string name="login_twm_text">門市人員登入</string>
 
+    <!--    salesman job status item -->
+    <string name="master_status1">完成包膜!! 按我確認喔</string>
+    <string name="master_status6">完成包膜!! 按我確認喔</string>
+
+    <!--    salesman job status item -->
+    <string name="salesman_status1">取消預約</string>
+    <string name="salesman_status3">按我驗收!! 收費囉</string>
+
+
     <!--  Item Status-->
     <!--    Fragement  caleddar item -->
     <string name="status0">請按下預約</string>
-    <string name="status1">已被預約囉</string>
+    <string name="status1">被預約囉!待完成</string>
     <string name="status2">快!來搶單啦!</string>
     <string name="status3">包膜完成囉</string>
-    <string name="status4">包膜驗收囉</string>
+    <string name="status4">已經收費囉</string>
     <string name="status5">已取消了喔</string>
-    <string name="status6">搶到單啦!開工</string>
-    <string name="status7">被搶單了...下次快</string>
+    <string name="status6">搶到單啦!待完成</string>
+    <string name="status7">被搶走了...下次快</string>
 
     <!--item_status.xml   StatusPage-->
-    <string name="status_page1">人工預約件 </string>
+    <string name="status_page1">預約待完成 </string>
     <string name="status_page2">請搶單! </string>
     <string name="status_page3">已經完成囉</string>
-    <string name="status_page4">已經驗收囉</string>
+    <string name="status_page4">已經收費囉</string>
     <string name="status_page5">已經取消啦</string>
-    <string name="status_page6">搶單件完成</string>
-    <string name="status_page7">沒有搶到啦</string>
+    <string name="status_page6">搶單待完成</string>
+    <string name="status_page7">沒有搶到單</string>
 
 <!--    dialog_service_info_detail  statusInfoText-->
     <string name="status_info1">包膜師搶單中!!</string>
     <string name="status_info2">搶單搶單搶單!!</string>
-    <string name="status_info3">完成囉!等門市驗收</string>
-    <string name="status_info4">已經驗收囉</string>
+    <string name="status_info3">包膜完成囉</string>
+    <string name="status_info4">已經收費囉</string>
     <string name="status_info5">已經取消囉</string>
     <string name="status_info6">火力全開 趕工中 !!</string>
     <string name="status_info7">本次搶單結束</string>
 
 
 
-    <string name="time0">第1件包膜單 </string>
-    <string name="time1">第2件包膜單</string>
-    <string name="time2">第3件包膜單</string>
-    <string name="time3">第4件包膜單</string>
-    <string name="time4">第5件包膜單</string>
-    <string name="time5">第6件包膜單</string>
-    <string name="time6">第7件包膜單</string>
-    <string name="time7">第8件包膜單</string>
+    <string name="time0">11:30 </string>
+    <string name="time1">12:00</string>
+    <string name="time2">12:30</string>
+    <string name="time3">13:00</string>
+    <string name="time4">14:00</string>
+    <string name="time5">15:00</string>
+    <string name="time6">16:00</string>
+    <string name="time7">17:00</string>
 
 
     <string name="login_success">成功登入囉</string>
