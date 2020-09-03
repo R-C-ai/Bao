@@ -324,14 +324,15 @@
         <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;    -->
 
         <!--        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_grab_bao"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="130dp"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="8dp"
             android:background="@color/dark1Blue"
             android:elevation="4dp"
             android:onClick="@{() -> viewModel.nothing()}"
@@ -341,91 +342,172 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/slected_info"
+                android:id="@+id/service_info"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_text"
                 android:elevation="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/selected_grab_info"
+                app:layout_constraintBottom_toTopOf="@+id/text_grab"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <TextView
-                    android:id="@+id/text_master"
+                    android:id="@+id/textView_store"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="4dp"
-                    android:fadingEdge="horizontal"
-                    android:text="@={viewModel.service.masterName}"
-                    android:textAlignment="inherit"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/image_master"
-                    app:layout_constraintStart_toStartOf="@+id/image_master"
-                    app:layout_constraintTop_toBottomOf="@+id/image_master"
-                    tools:text="包膜師" />
-
-                <ImageView
-                    android:id="@+id/image_master"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="4dp"
-
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/endure011" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="end"
+                    android:text="松菸文創店"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_salesman"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/text_grab"
+                    android:id="@+id/textView_salesman"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text=" 按下到店時間 搶單 !!  "
-                    android:textColor="@color/s2blue2"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/image_master"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="end"
+                    android:text="門市人員"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/text_reserve_time"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="預約單編號"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView_done_device"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="end"
+                    android:text="機型"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_done_screen"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_customer" />
+
+                <TextView
+                    android:id="@+id/textView_done_screen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="保貼"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_done_device" />
+
+                <TextView
+                    android:id="@+id/textView_done_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="end"
+                    android:text="包膜"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_done_screen" />
+
+                <TextView
+                    android:id="@+id/textView_reservice_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="2dp"
+                    android:gravity="end"
+                    android:text=" 09/01  02:30  "
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_reserve_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="end"
+                    android:text="預約到店時間"
+                    android:textColor="@color/colorOlivergoldgreen"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView_reservice_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_reservice_time" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/selected_grab_info"
-                android:layout_width="0dp"
+
+            <TextView
+                android:id="@+id/text_grab"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:text=" 按下到店時間 接單 !!  "
+                android:textColor="@color/white_FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/selected_grab_info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/service_info" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/selected_grab_info"
+                android:layout_width="0dp"
+                android:layout_height="280dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="4dp"
                 android:background="@drawable/bg_text"
+
                 android:elevation="8dp"
-
-
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.483"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/slected_info">
+                app:layout_constraintTop_toBottomOf="@+id/text_grab">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/window_15"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="70dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/bg_text"
                     android:elevation="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/window_20"
@@ -435,8 +517,8 @@
 
                     <ImageView
                         android:id="@+id/image_15min"
-                        android:layout_width="110dp"
-                        android:layout_height="100dp"
+                        android:layout_width="70dp"
+                        android:layout_height="60dp"
                         android:layout_marginEnd="4dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/text_15min"
@@ -450,6 +532,7 @@
                         android:layout_height="wrap_content"
                         android:text=" 15分鐘內到店  "
                         android:textColor="@color/s2blue2"
+                        android:textStyle="bold"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/image_15min"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -463,11 +546,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/window_20"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="70dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/bg_text"
                     android:elevation="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/window_30"
@@ -478,8 +561,8 @@
 
                     <ImageView
                         android:id="@+id/image_20min"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
 
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/text_20min"
@@ -494,6 +577,7 @@
                         android:layout_marginStart="8dp"
                         android:text=" 20分鐘內到店  "
                         android:textColor="@color/s2blue2"
+                        android:textStyle="bold"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/image_20min"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -506,11 +590,11 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/window_30"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="70dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/bg_text"
                     android:elevation="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -520,8 +604,8 @@
 
                     <ImageView
                         android:id="@+id/image_30min"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
 
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/text_30min"
@@ -536,6 +620,7 @@
                         android:layout_marginStart="8dp"
                         android:text=" 30分鐘內到店  "
                         android:textColor="@color/s2blue2"
+                        android:textStyle="bold"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="@+id/image_30min"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -553,11 +638,11 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
+    <!--  按下到店時間-->
+    <!--    android:background="@drawable/bg_master_active"-->
+
     <!--  &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;  -->
 
     </layout>
-
-
-
-
 

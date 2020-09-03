@@ -15,115 +15,134 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_margin="5dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/lightGray_f5f5f5"
-        android:elevation="8dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_dialog_corner_line"
+
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/schedule_box"
+            android:id="@+id/schedule_line"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:background="@color/lightGray_f5f5f5"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:background="@color/white_FFFFFF"
+           android:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView_statusColor"
-                android:layout_width="120dp"
-                android:layout_height="match_parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:statusBackground="@{service.status}"
-                tools:background="@color/gray_999999" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/schedule_box"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
 
-<!--            <ImageView-->
-<!--                android:id="@+id/image_sort_number"-->
-<!--                android:layout_width="20dp"-->
-<!--                android:layout_height="20dp"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:srcCompat="@drawable/statuswhite1"-->
-<!--                tools:srcCompat="@drawable/statuswhite1" />-->
-
-
-
-            <ImageView
-                android:id="@+id/image_sort_number"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:itemScheduleSort="@{service.scheduleSort}"
-                tools:srcCompat="@drawable/ic_filter_7_white_24dp" />
-
-            <TextView
-                android:id="@+id/text_reserve_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textColor="@color/white_FFFFFF"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                app:itemScheduleTime="@{service.scheduleSort}"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image_sort_number"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.482"
-                tools:text="11:30" />
-
-
-            <TextView
-                android:id="@+id/text_reserve_store"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="松菸文創店"
-                android:textColor="@color/darkBlue"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-
-                app:layout_constraintStart_toEndOf="@+id/imageView_statusColor"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.545" />
-
-            <TextView
-                android:id="@+id/text_reserve_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/darkBlue"
-                android:textSize="14sp"
-
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.545"
-                app:status="@{service.status}"
-                tools:text="預約狀態" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <!--            <TextView-->
-<!--                android:id="@+id/text_time"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:textColor="@color/darkBlue"-->
-<!--                android:textSize="12sp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintVertical_bias="0.448"-->
-<!--                app:timeToDisplayFormat="@{service.reserveTime}"-->
-<!--                tools:text="預約時間" />-->
+                <ImageView
+                    android:id="@+id/imageView_statusColor"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:statusBackground="@{service.status}"
+                    tools:background="@color/gray_999999" />
+
+                <!--            <ImageView-->
+                <!--                android:id="@+id/image_sort_number"-->
+                <!--                android:layout_width="20dp"-->
+                <!--                android:layout_height="20dp"-->
+                <!--                android:layout_marginStart="8dp"-->
+                <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                app:layout_constraintStart_toStartOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="parent"-->
+                <!--                app:srcCompat="@drawable/statuswhite1"-->
+                <!--                tools:srcCompat="@drawable/statuswhite1" />-->
+
+
+                <ImageView
+                    android:id="@+id/image_sort_number"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    app:itemScheduleSort="@{service.scheduleSort}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@drawable/ic_filter_7_white_24dp" />
+
+                <TextView
+                    android:id="@+id/text_reserve_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textColor="@color/white_FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:itemScheduleTime="@{service.scheduleSort}"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_sort_number"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.482"
+                    tools:text="11:30" />
+
+
+                <TextView
+                    android:id="@+id/text_reserve_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="松菸文創店"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_statusColor"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.545" />
+
+                <TextView
+                    android:id="@+id/text_reserve_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/darkBlue"
+                    android:textSize="14sp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.545"
+                    app:status="@{service.status}"
+                    tools:text="預約狀態" />
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/text_time"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_marginEnd="8dp"-->
+                <!--                android:textColor="@color/darkBlue"-->
+                <!--                android:textSize="12sp"-->
+                <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                app:layout_constraintTop_toTopOf="parent"-->
+                <!--                app:layout_constraintVertical_bias="0.448"-->
+                <!--                app:timeToDisplayFormat="@{service.reserveTime}"-->
+                <!--                tools:text="預約時間" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
