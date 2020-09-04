@@ -57,13 +57,13 @@
     <string name="status_page7">沒有搶到單</string>
 
 <!--    dialog_service_info_detail  statusInfoText-->
-    <string name="status_info1">包膜師搶單中!!</string>
+    <string name="status_info1">包膜師接單中!!</string>
     <string name="status_info2">搶單搶單搶單!!</string>
     <string name="status_info3">包膜完成囉</string>
     <string name="status_info4">已經收費囉</string>
     <string name="status_info5">已經取消囉</string>
     <string name="status_info6">火力全開 趕工中 !!</string>
-    <string name="status_info7">本次搶單結束</string>
+    <string name="status_info7">本次接單結束囉</string>
 
 
 
@@ -82,7 +82,7 @@
     <string name="bao_finished">包膜完成囉</string>
     <string name="done_success">確認囉</string>
     <string name="delete_success">確認取消</string>
-    <string name="master_info">門市預約後才能搶單喔</string>
+    <string name="master_info">門市預約通知後才能接單喔</string>
     <string name="add_reject">不可異動其他人員的服務</string>
     <string name="no_service">不可預約服務喔</string>
 

@@ -174,16 +174,15 @@
                     app:layout_constraintTop_toTopOf="@+id/imageView_master"
                     tools:text="master" />
 
-                <ImageView
-                    android:id="@+id/imageView_customer"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="4dp"
+<!--                <ImageView-->
+<!--                    android:id="@+id/imageView_customer"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="30dp"-->
 
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_master"
-                    app:srcCompat="@drawable/penguin1" />
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:srcCompat="@drawable/penguin1"-->
+<!--                    tools:layout_editor_absoluteY="34dp" />-->
 
                 <!--                <ImageView-->
                 <!--                    android:id="@+id/imageView_price"-->
@@ -209,20 +208,20 @@
                 <!--                    tools:layout_editor_absoluteY="116dp"-->
                 <!--                    tools:text="price" />-->
 
+
                 <TextView
                     android:id="@+id/textView_customer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
                     android:gravity="end"
                     android:text="@{viewModel.service.customerNo}"
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView_customer"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView_customer"
-                    app:layout_constraintTop_toTopOf="@+id/imageView_customer"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView_master"
                     tools:text="customer" />
-
 
                 <TextView
                     android:id="@+id/textView_done_device"
@@ -235,7 +234,7 @@
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView_customer"
+                    app:layout_constraintTop_toBottomOf="@+id/textView_customer"
                     tools:text="device" />
 
                 <TextView
@@ -252,7 +251,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView_done_device"
                     tools:text="screen" />
 
-
                 <TextView
                     android:id="@+id/textView_done_back"
                     android:layout_width="wrap_content"
@@ -266,7 +264,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView_done_screen"
                     tools:text="back" />
-
 
                 <TextView
                     android:id="@+id/textView_reserve_time"

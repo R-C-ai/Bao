@@ -21,626 +21,664 @@
 
 
         <!--            -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--            android:id="@+id/layout_add_bao"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:background="@color/white_FFFFFF"-->
-        <!--            android:elevation="4dp"-->
-        <!--            android:onClick="@{() -> viewModel.nothing()}"-->
-        <!--            app:layout_constraintBottom_toTopOf="@id/layout_add_bottom"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent">-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:id="@+id/slected_info"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="110dp"-->
-        <!--                android:layout_marginStart="8dp"-->
-        <!--                android:layout_marginTop="8dp"-->
-        <!--                android:layout_marginEnd="8dp"-->
-        <!--                android:layout_marginBottom="16dp"-->
-        <!--                android:background="@color/white_FFFFFF"-->
-        <!--                android:elevation="8dp"-->
-        <!--                app:layout_constraintBottom_toTopOf="@+id/selected_customer_info"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintHorizontal_bias="0.5"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent">-->
-
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_master"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="8dp"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:fadingEdge="horizontal"-->
-        <!--                    android:text="@={viewModel.service.masterName}"-->
-        <!--                    android:textAlignment="inherit"-->
-        <!--                    android:textSize="18sp"-->
-        <!--                    android:textStyle="bold"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/image_master"-->
-        <!--                    app:layout_constraintTop_toTopOf="@+id/image_master"-->
-        <!--                    tools:text="包膜師" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_enter_time"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="24dp"-->
-        <!--                    android:layout_marginEnd="4dp"-->
-        <!--                    android:text="@={viewModel.service.date}"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    tools:text="點選日期" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_store"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-
-        <!--                    android:layout_marginStart="24dp"-->
-        <!--                    android:layout_marginTop="9dp"-->
-        <!--                    android:layout_marginBottom="4dp"-->
-        <!--                    android:background="@drawable/bg_text"-->
-        <!--                    android:elevation="2dp"-->
-        <!--                    android:text="@={viewModel.service.storeName}"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@+id/image_master"-->
-        <!--                    tools:text="門市" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_salesman"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="16dp"-->
-        <!--                    android:background="@drawable/bg_text"-->
-        <!--                    android:elevation="2dp"-->
-        <!--                    android:text="@={viewModel.service.salesmanName}"-->
-        <!--                    android:textSize="14sp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="@+id/text_store"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/text_store"-->
-        <!--                    app:layout_constraintTop_toTopOf="@+id/text_store"-->
-        <!--                    tools:text="門市業代" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_master"-->
-        <!--                    android:layout_width="60dp"-->
-        <!--                    android:layout_height="60dp"-->
-        <!--                    android:layout_marginStart="2dp"-->
-        <!--                    android:layout_marginTop="10dp"-->
-        <!--                    android:background="@drawable/bg_round"-->
-        <!--                    app:layout_constraintBottom_toTopOf="@+id/text_store"-->
-        <!--                    app:layout_constraintEnd_toStartOf="@+id/text_master"-->
-        <!--                    app:layout_constraintHorizontal_bias="0.5"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:srcCompat="@drawable/master1" />-->
-
-        <!--                <androidx.constraintlayout.widget.Barrier-->
-        <!--                    android:id="@+id/barrier"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    app:barrierDirection="left" />-->
-
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:id="@+id/selected_customer_info"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginStart="8dp"-->
-        <!--                android:layout_marginTop="8dp"-->
-        <!--                android:layout_marginEnd="8dp"-->
-        <!--                android:layout_marginBottom="16dp"-->
-        <!--                android:background="@color/white_FFFFFF"-->
-        <!--                android:elevation="8dp"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintHorizontal_bias="0.0"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@id/slected_info">-->
-
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_customer"-->
-        <!--                    android:layout_width="40dp"-->
-        <!--                    android:layout_height="40dp"-->
-        <!--                    android:layout_marginStart="8dp"-->
-        <!--                    android:layout_marginTop="4dp"-->
-        <!--                    android:scaleType="centerInside"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent"-->
-        <!--                    app:srcCompat="@drawable/newcustomer1" />-->
-
-
-        <!--                <EditText-->
-        <!--                    android:id="@+id/text_customer"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="16dp"-->
-        <!--                    android:hint=" 輸入客戶代碼"-->
-        <!--                    android:maxLength="10"-->
-        <!--                    android:text="@={viewModel.service.customerNo}"-->
-        <!--                    android:textSize="18sp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="@id/image_customer"-->
-        <!--                    app:layout_constraintStart_toEndOf="@id/image_customer"-->
-        <!--                    app:layout_constraintTop_toTopOf="@+id/image_customer" />-->
-
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_device"-->
-        <!--                    android:layout_width="40dp"-->
-        <!--                    android:layout_height="40dp"-->
-        <!--                    android:layout_marginStart="8dp"-->
-        <!--                    android:layout_marginTop="24dp"-->
-        <!--                    android:scaleType="centerCrop"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/image_customer"-->
-        <!--                    app:srcCompat="@drawable/newphone1" />-->
-
-        <!--                <Spinner-->
-        <!--                    android:id="@+id/text_device"-->
-        <!--                    android:layout_width="0dp"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="4dp"-->
-        <!--                    android:prompt="@string/select_device"-->
-        <!--                    android:selectedItemPosition="@={viewModel.selectedDevicePosition}"-->
-        <!--                    android:spinnerMode="dialog"-->
-        <!--                    android:textSize="18sp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="@id/image_device"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintStart_toEndOf="@+id/image_device"-->
-        <!--                    app:layout_constraintTop_toTopOf="@+id/image_device" />-->
-
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_service"-->
-        <!--                    android:layout_width="40dp"-->
-        <!--                    android:layout_height="40dp"-->
-        <!--                    android:layout_marginStart="8dp"-->
-        <!--                    android:layout_marginTop="24dp"-->
-        <!--                    android:scaleType="centerInside"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@id/image_device"-->
-        <!--                    app:srcCompat="@drawable/newwork1" />-->
-
-        <!--                <Spinner-->
-        <!--                    android:id="@+id/text_screen"-->
-        <!--                    android:layout_width="0dp"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="4dp"-->
-        <!--                    android:prompt="@string/select_service0"-->
-        <!--                    android:selectedItemPosition="@={viewModel.selectedScreenPosition}"-->
-
-        <!--                    android:spinnerMode="dialog"-->
-        <!--                    android:textSize="18sp"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintStart_toEndOf="@id/image_service"-->
-        <!--                    app:layout_constraintTop_toTopOf="@id/image_service" />-->
-
-        <!--                <Spinner-->
-        <!--                    android:id="@+id/text_back"-->
-        <!--                    android:layout_width="0dp"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginTop="8dp"-->
-        <!--                    android:prompt="@string/select_service0"-->
-        <!--                    android:selectedItemPosition="@={viewModel.selectedBackPosition}"-->
-        <!--                    android:spinnerMode="dialog"-->
-        <!--                    android:textSize="18sp"-->
-        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                    app:layout_constraintStart_toStartOf="@+id/text_screen"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@+id/text_screen" />-->
-
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/image_price"-->
-        <!--                    android:layout_width="40dp"-->
-        <!--                    android:layout_height="40dp"-->
-
-        <!--                    android:layout_marginStart="8dp"-->
-        <!--                    android:layout_marginTop="70dp"-->
-        <!--                    android:layout_marginBottom="8dp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toBottomOf="@+id/image_service"-->
-        <!--                    app:srcCompat="@drawable/newprice1" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/text_price"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_marginStart="16dp"-->
-        <!--                    android:hint="輸入包膜服務金額"-->
-        <!--                    android:inputType="number"-->
-        <!--                    android:text="@{viewModel.convertLongToString(viewModel.totalPrice)}"-->
-        <!--                    android:textSize="18sp"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="@+id/image_price"-->
-        <!--                    app:layout_constraintStart_toEndOf="@id/image_price"-->
-        <!--                    app:layout_constraintTop_toTopOf="@+id/image_price" />-->
-
-
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
-        <!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                        android:id="@+id/layout_add_bottom"-->
-        <!--                        android:layout_width="0dp"-->
-        <!--                        android:layout_height="@dimen/height_all_bottom_layout"-->
-        <!--                        android:background="@color/white_FFFFFF"-->
-        <!--                        android:onClick="@{() -> viewModel.nothing()}"-->
-        <!--                        app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                        app:layout_constraintStart_toStartOf="parent">-->
-
-        <!--                        <View-->
-        <!--                            android:id="@+id/view_add_bottom_separation"-->
-        <!--                            android:layout_width="0dp"-->
-        <!--                            android:layout_height="1dp"-->
-        <!--                            android:layout_marginStart="16dp"-->
-        <!--                            android:layout_marginEnd="16dp"-->
-        <!--                            android:background="@color/lightGray_f5f5f5"-->
-        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                            app:layout_constraintStart_toStartOf="parent"-->
-        <!--                            app:layout_constraintTop_toTopOf="parent"/>-->
-
-
-        <!--                        <Button-->
-        <!--                            android:id="@+id/button_reserve"-->
-        <!--                            style="@style/Base.Widget.AppCompat.Button.Borderless"-->
-        <!--                            android:layout_width="0dp"-->
-        <!--                            android:layout_height="0dp"-->
-        <!--                            android:layout_marginStart="16dp"-->
-        <!--                            android:layout_marginTop="16dp"-->
-        <!--                            android:layout_marginEnd="16dp"-->
-        <!--                            android:layout_marginBottom="16dp"-->
-        <!--                            android:letterSpacing="0.15"-->
-        <!--                            android:text="預約包膜服務"-->
-        <!--                            android:textColor="@color/white_FFFFFF"-->
-        <!--                            android:textSize="16sp"-->
-        <!--                            android:background="@drawable/bg_buttom"-->
-        <!--                            android:clickable="true"-->
-        <!--                            android:gravity="center"-->
-        <!--                            android:onClick="@{() -> viewModel.click()}"-->
-
-
-        <!--                            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                            app:layout_constraintStart_toStartOf="parent"-->
-        <!--                            app:layout_constraintTop_toTopOf="parent"/>-->
-
-        <!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
-        <!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-        <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;    -->
-
-        <!--        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_grab_bao"
+            android:id="@+id/layout_add_bao"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="130dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/dark1Blue"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/white_FFFFFF"
             android:elevation="4dp"
             android:onClick="@{() -> viewModel.nothing()}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/layout_add_bottom"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/service_info"
+                android:id="@+id/slected_info"
                 android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:layout_marginStart="16dp"
+                android:layout_height="110dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_text"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
                 android:elevation="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/text_grab"
+                app:layout_constraintBottom_toTopOf="@+id/selected_customer_info"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
 
                 <TextView
-                    android:id="@+id/textView_store"
+                    android:id="@+id/text_master"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="end"
-                    android:text="松菸文創店"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_salesman"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView_salesman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:gravity="end"
-                    android:text="門市人員"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/text_reserve_time"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView_customer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:gravity="end"
-                    android:text="預約單編號"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView_done_device"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:fadingEdge="horizontal"
+                    android:text="@={viewModel.service.masterName}"
+                    android:textAlignment="inherit"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/image_master"
+                    app:layout_constraintTop_toTopOf="@+id/image_master"
+                    tools:text="包膜師" />
+
+                <TextView
+                    android:id="@+id/text_enter_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="4dp"
+                    android:text="@={viewModel.service.date}"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="預約日期" />
+
+                <TextView
+                    android:id="@+id/text_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="9dp"
                     android:layout_marginBottom="8dp"
-                    android:gravity="end"
-                    android:text="機型"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_done_screen"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_customer" />
-
-                <TextView
-                    android:id="@+id/textView_done_screen"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="4dp"
-                    android:gravity="end"
-                    android:text="保貼"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_done_device" />
-
-                <TextView
-                    android:id="@+id/textView_done_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="4dp"
-                    android:gravity="end"
-                    android:text="包膜"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_done_screen" />
-
-                <TextView
-                    android:id="@+id/textView_reservice_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    android:layout_marginBottom="2dp"
-                    android:gravity="end"
-                    android:text=" 09/01  02:30  "
-                    android:textColor="@color/colorOlivergoldgreen"
+                    android:background="@drawable/bg_text"
+                    android:elevation="2dp"
+                    android:text="@={viewModel.service.storeName}"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/image_master"
+                    tools:text="門市" />
 
                 <TextView
-                    android:id="@+id/text_reserve_time"
+                    android:id="@+id/text_salesman"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:gravity="end"
-                    android:text="預約到店時間"
-                    android:textColor="@color/colorOlivergoldgreen"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_reservice_time"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/bg_text"
+                    android:elevation="2dp"
+                    android:text="@={viewModel.service.salesmanName}"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_store"
+                    app:layout_constraintStart_toEndOf="@+id/text_store"
+                    app:layout_constraintTop_toTopOf="@+id/text_store"
+                    tools:text="門市業代" />
+
+                <ImageView
+                    android:id="@+id/image_master"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_round"
+                    app:layout_constraintBottom_toTopOf="@+id/text_store"
+                    app:layout_constraintEnd_toStartOf="@+id/text_master"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_reservice_time" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/endure011" />
+
+                <androidx.constraintlayout.widget.Barrier
+                    android:id="@+id/barrier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:barrierDirection="left" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <TextView
-                android:id="@+id/text_grab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:text=" 按下到店時間 接單 !!  "
-                android:textColor="@color/white_FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/selected_grab_info"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/service_info" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/selected_grab_info"
+                android:id="@+id/selected_customer_info"
                 android:layout_width="0dp"
-                android:layout_height="280dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="4dp"
-                android:background="@drawable/bg_text"
-
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/white_FFFFFF"
                 android:elevation="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.483"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_grab">
+                app:layout_constraintTop_toBottomOf="@id/slected_info">
 
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/window_15"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="16dp"
+                <ImageView
+                    android:id="@+id/image_customer"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/bg_text"
-                    android:elevation="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/window_20"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scaleType="centerInside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/image_15min"
-                        android:layout_width="70dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="4dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/text_15min"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/endure2" />
-
-                    <TextView
-                        android:id="@+id/text_15min"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=" 15分鐘內到店  "
-                        android:textColor="@color/s2blue2"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/image_15min"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/image_15min"
-                        app:layout_constraintTop_toTopOf="@+id/image_15min" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/penguin1" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/window_20"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                <EditText
+                    android:id="@+id/text_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/bg_text"
-                    android:elevation="8dp"
-                    app:layout_constraintBottom_toTopOf="@+id/window_30"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    android:hint=" 輸入客戶代碼"
+                    android:maxLength="10"
+                    android:text="@={viewModel.service.customerNo}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/image_customer"
+                    app:layout_constraintStart_toEndOf="@id/image_customer"
+                    app:layout_constraintTop_toTopOf="@+id/image_customer" />
+
+
+                <ImageView
+                    android:id="@+id/image_device"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/window_15">
+                    app:layout_constraintTop_toBottomOf="@id/image_customer"
+                    app:srcCompat="@drawable/penguin3" />
 
-                    <ImageView
-                        android:id="@+id/image_20min"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/text_20min"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/endure5" />
-
-                    <TextView
-                        android:id="@+id/text_20min"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text=" 20分鐘內到店  "
-                        android:textColor="@color/s2blue2"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/image_20min"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/image_20min"
-                        app:layout_constraintTop_toTopOf="@+id/image_20min" />
+                <Spinner
+                    android:id="@+id/text_device"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:prompt="@string/select_device"
+                    android:selectedItemPosition="@={viewModel.selectedDevicePosition}"
+                    android:spinnerMode="dialog"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/image_device"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/image_device"
+                    app:layout_constraintTop_toTopOf="@+id/image_device" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/image_service"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="24dp"
+                    android:scaleType="centerInside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image_device"
+                    app:srcCompat="@drawable/penguin4" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/window_30"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="4dp"
-                    android:background="@drawable/bg_text"
-                    android:elevation="8dp"
+                <Spinner
+                    android:id="@+id/text_screen"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:prompt="@string/select_service0"
+                    android:selectedItemPosition="@={viewModel.selectedScreenPosition}"
+
+                    android:spinnerMode="dialog"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_service"
+                    app:layout_constraintTop_toTopOf="@id/image_service" />
+
+                <Spinner
+                    android:id="@+id/text_back"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:prompt="@string/select_service0"
+                    android:selectedItemPosition="@={viewModel.selectedBackPosition}"
+                    android:spinnerMode="dialog"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/text_screen"
+                    app:layout_constraintTop_toBottomOf="@+id/text_screen" />
+
+
+                <ImageView
+                    android:id="@+id/image_price"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginBottom="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/window_20">
+                    app:layout_constraintTop_toBottomOf="@+id/image_service"
+                    app:srcCompat="@drawable/penguin2" />
 
-                    <ImageView
-                        android:id="@+id/image_30min"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/text_30min"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/endure6" />
-
-                    <TextView
-                        android:id="@+id/text_30min"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text=" 30分鐘內到店  "
-                        android:textColor="@color/s2blue2"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/image_30min"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/image_30min"
-                        app:layout_constraintTop_toTopOf="@+id/image_30min" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/text_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:hint="輸入包膜服務金額"
+                    android:inputType="number"
+                    android:text="@{viewModel.convertLongToString(viewModel.totalPrice)}"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_price"
+                    app:layout_constraintStart_toEndOf="@id/image_price"
+                    app:layout_constraintTop_toTopOf="@+id/image_price" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/layout_add_bottom"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/height_all_bottom_layout"
+                                android:background="@color/white_FFFFFF"
+                                android:onClick="@{() -> viewModel.nothing()}"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent">
+
+                                <View
+                                    android:id="@+id/view_add_bottom_separation"
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:background="@color/lightGray_f5f5f5"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+
+                                <Button
+                                    android:id="@+id/button_reserve"
+                                    style="@style/Base.Widget.AppCompat.Button.Borderless"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginTop="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginBottom="16dp"
+                                    android:letterSpacing="0.15"
+                                    android:text="預約包膜服務"
+                                    android:textColor="@color/white_FFFFFF"
+                                    android:textSize="16sp"
+                                    android:background="@drawable/bg_buttom"
+                                    android:clickable="true"
+                                    android:gravity="center"
+                                    android:onClick="@{() -> viewModel.click()}"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"/>
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;    -->
+
+        <!--        &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/layout_grab_bao"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_marginStart="24dp"-->
+<!--            android:layout_marginTop="110dp"-->
+<!--            android:layout_marginEnd="24dp"-->
+<!--            android:layout_marginBottom="8dp"-->
+<!--            android:background="@color/dark1Blue"-->
+<!--            android:elevation="4dp"-->
+<!--            android:onClick="@{() -> viewModel.nothing()}"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/service_info"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="260dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+
+<!--                android:layout_marginBottom="4dp"-->
+<!--                android:background="@drawable/bg_text"-->
+<!--                android:elevation="8dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/text_grab"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_store"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="松菸文創店"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/textView_salesman"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_salesman"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="門市人員"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/text_reserve_time"-->
+<!--                    app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_customer"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="預約單編號"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_done_device"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="機型"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/textView_done_screen"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView_customer" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_done_screen"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="保貼"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView_done_device" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_done_back"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="包膜"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textView_done_screen" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/textView_reservice_time"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:layout_marginBottom="2dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text=" 09/01  02:30  "-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="14sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text_reserve_time"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:gravity="end"-->
+<!--                    android:text="通知時間"-->
+<!--                    android:textColor="@color/colorOlivergoldgreen"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="@+id/textView_reservice_time"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="@+id/textView_reservice_time" />-->
+
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--            <TextView-->
+<!--                android:id="@+id/text_grab"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:text=" 按下到店時間 接單 !!  "-->
+<!--                android:textColor="@color/white_FFFFFF"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                app:layout_constraintBottom_toTopOf="@id/selected_grab_info"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/service_info" />-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/selected_grab_info"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="250dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="2dp"-->
+<!--                android:background="@drawable/bg_text"-->
+<!--                android:elevation="8dp"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/grab_buttom"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.483"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/text_grab">-->
+
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:id="@+id/window_15"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:layout_marginBottom="4dp"-->
+<!--                    android:background="@drawable/bg_text"-->
+<!--                    android:elevation="8dp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/window_20"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/image_15min"-->
+<!--                        android:layout_width="70dp"-->
+<!--                        android:layout_height="60dp"-->
+<!--                        android:layout_marginEnd="4dp"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/text_15min"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/endure2" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/text_15min"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text=" 15分鐘內到店  "-->
+<!--                        android:textColor="@color/s2blue2"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/image_15min"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/image_15min"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/image_15min" />-->
+
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:id="@+id/window_20"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:layout_marginBottom="4dp"-->
+<!--                    android:background="@drawable/bg_text"-->
+<!--                    android:elevation="8dp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/window_30"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintHorizontal_bias="0.0"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/window_15">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/image_20min"-->
+<!--                        android:layout_width="60dp"-->
+<!--                        android:layout_height="60dp"-->
+
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/text_20min"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/endure5" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/text_20min"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:text=" 20分鐘內到店  "-->
+<!--                        android:textColor="@color/s2blue2"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/image_20min"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/image_20min"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/image_20min" />-->
+
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:id="@+id/window_30"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="70dp"-->
+<!--                    android:layout_marginStart="16dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:layout_marginBottom="4dp"-->
+<!--                    android:background="@drawable/bg_text"-->
+<!--                    android:elevation="8dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/window_20">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/image_30min"-->
+<!--                        android:layout_width="60dp"-->
+<!--                        android:layout_height="70dp"-->
+
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/text_30min"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:srcCompat="@drawable/endure6" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/text_30min"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:text=" 30分鐘內到店  "-->
+<!--                        android:textColor="@color/s2blue2"-->
+<!--                        android:textSize="20sp"-->
+<!--                        android:textStyle="bold"-->
+<!--                        app:layout_constraintBottom_toBottomOf="@+id/image_30min"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/image_30min"-->
+<!--                        app:layout_constraintTop_toTopOf="@+id/image_30min" />-->
+
+
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/grab_buttom"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginTop="2dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:layout_marginBottom="2dp"-->
+
+<!--                android:elevation="8dp"-->
+
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/selected_grab_info">-->
+
+
+<!--                <Button-->
+<!--                    android:id="@+id/button"-->
+<!--                    android:layout_width="320dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="4dp"-->
+<!--                    android:layout_marginTop="2dp"-->
+
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:background="@drawable/bg_pagetitle"-->
+<!--                    android:text="確認接單"-->
+<!--                    android:textColor="@color/white_FFFFFF"-->
+<!--                    android:textSize="20sp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
 
-    <!--  按下到店時間-->
-    <!--    android:background="@drawable/bg_master_active"-->
+<!--&lt;!&ndash;    &lt;!&ndash;  按下到店時間&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash;    android:background="@drawable/bg_master_active"&ndash;&gt;&ndash;&gt;-->
 
     <!--  &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;  -->
 

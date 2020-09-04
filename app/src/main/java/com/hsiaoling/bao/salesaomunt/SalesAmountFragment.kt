@@ -103,7 +103,11 @@ class SalesAmountFragment() : Fragment( ) {
                         Log.i("HsiaoLing","getAxisLabel, value=${value}")
                         Log.i("HsiaoLing","list[${value.toInt()}]=${list[value.toInt()]}")
                         return if (value.toInt() >= 0 && list[value.toInt()].isNotEmpty()) {
-                            list[value.toInt()][0].finishCheckTime.toListDayFormat()
+
+                            //    count revenue by finishchecktime,show the barChart date
+                            //   list[value.toInt()][0].finishCheckTime.toListDayFormat()
+                            list[value.toInt()][0].doneTime.toListDayFormat()
+
                         } else {
                             ""
                         }
@@ -206,8 +210,11 @@ class SalesAmountFragment() : Fragment( ) {
                         return if (value.toInt() >= 0 && list[value.toInt()].isNotEmpty()) {
                             Log.i("HsiaoLing","line list[${value.toInt()}]=${list[value.toInt()]}")
 
-                            list[value.toInt()][0].finishCheckTime.toListDayFormat()
+                        //    count revenue by finishchecktime,show the lineChart date
+                        //   list[value.toInt()][0].finishCheckTime.toListDayFormat()
 
+                            // count revenue by donetime,show the lineChart date
+                            list[value.toInt()][0].doneTime.toListDayFormat()
 
                         } else {
                             ""
