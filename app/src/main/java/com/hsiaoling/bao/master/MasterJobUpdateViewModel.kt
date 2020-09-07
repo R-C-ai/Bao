@@ -196,7 +196,7 @@ fun updateMasterJob() {
                 Log.i("HsiaoLingStatus", "selectGetJob=${service.value}")
             }
 
-            service.value!!.status == 2 ->{
+            service.value!!.status == 6 ->{
                 service.value!!.status = 3
                 updateStatus(service.value!!, serviceAction = ServiceAction.DONE)
                 Log.i("HsiaoLingStatus", "selectFinish=${service.value}")
