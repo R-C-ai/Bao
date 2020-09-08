@@ -98,20 +98,17 @@
 
                 <ImageView
                     android:id="@+id/imageView_finishcheck"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="50dp"
                     android:background="@drawable/bg_text"
                     android:clickable="true"
                     android:elevation="4dp"
                     android:onClick="@{() -> viewModel.updateSalesmanJob()}"
                     android:visibility="@{viewModel.service.status == 1 ? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_finishcheck"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0"
                     app:salesmanJobstatus="@{viewModel.service.status}"
                     tools:srcCompat="@drawable/endure4" />
 
@@ -119,23 +116,23 @@
                     android:id="@+id/textView_finishcheck"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="按我驗收!! 收費囉"
+                    android:layout_marginBottom="8dp"
+                    android:text="按我驗收!! "
                     android:textColor="@color/colorOlivergoldgreen"
                     android:textSize="14sp"
+
                     android:visibility="@{viewModel.service.status == 1 ? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/textView_delete"
                     app:layout_constraintEnd_toEndOf="@+id/imageView_finishcheck"
                     app:layout_constraintStart_toStartOf="@+id/imageView_finishcheck"
-
-                    tools:text="按我 驗收" />
+                    tools:text="按我驗收!!" />
 
                 <ImageView
                     android:id="@+id/imageView_change"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="110dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginTop="50dp"
                     android:background="@drawable/bg_text"
                     android:elevation="4dp"
                     android:onClick="@{() -> viewModel.changeSalesmanJob()}"
@@ -191,7 +188,7 @@
                     android:id="@+id/imageView_master"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="2dp"
                     android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
